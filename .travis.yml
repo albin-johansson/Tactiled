@@ -9,7 +9,8 @@ notifications:
 env:
   global:
     - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
-    - ENABLE_COVERAGE=false
+    - ENABLE_COVERAGE=true
+    - CODECOV_TOKEN="be5150b2-1f9d-4d38-9d82-549ab50ccc6b"
 
 addons:
   apt:
@@ -53,3 +54,10 @@ script:
 
   - cd test
   - ctest
+
+after_success:
+  - cd ${TRAVIS_BUILD_DIR}
+  - lcov --directory . --capture --output-file coverage.info
+  - lcov --remove coverage.info 'test/*' 'Tactiled/lib/*' '/usr/*' --output-file coverage.info
+  - lcov --list coverage.info
+  - bash <(curl -s https://codecov.io/bash) -X gcov || echo "Codecov did not collect coverage reports"

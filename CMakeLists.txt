@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.15)
 project(Tactiled)
 
+set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
 set(TACTILED_ROOT ${PROJECT_SOURCE_DIR})
 set(TACTILED_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(TACTILED_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
@@ -19,6 +21,12 @@ else ()
 endif ()
 
 include(CTest)
+
+if (DEFINED ENV{ENABLE_COVERAGE})
+    include(CodeCoverage)
+    append_coverage_compiler_flags()
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 --coverage")
+endif ()
 
 enable_testing()
 add_subdirectory(src)
