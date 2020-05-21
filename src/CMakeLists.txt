@@ -3,6 +3,10 @@ project(TactiledSource)
 
 set(SOURCE_FILES
         ${TACTILED_INCLUDE_DIR}/tactiled_cfg.h
+        ${TACTILED_INCLUDE_DIR}/tiled_map.h
+        tiled_map.cpp
+
+        )
 
 add_library(${TACTILED_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

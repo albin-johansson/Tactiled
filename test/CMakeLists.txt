@@ -2,7 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 project(TactiledTest)
 
 set(TEST_FILES
-        unittest/test_main.cpp)
+        unittest/test_main.cpp
+        unittest/tiled_map_test.h)
 
 add_executable(${TACTILED_TEST_TARGET} ${TEST_FILES})
 
