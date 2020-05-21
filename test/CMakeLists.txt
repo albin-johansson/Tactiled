@@ -16,6 +16,9 @@ set_target_properties(${TACTILED_TEST_TARGET} PROPERTIES
 add_library(Doctest INTERFACE)
 target_include_directories(Doctest INTERFACE lib)
 
+add_test(NAME ${TACTILED_TEST_TARGET}
+        COMMAND ${TACTILED_TEST_TARGET})
+
 target_include_directories(${TACTILED_TEST_TARGET} PUBLIC unittests)
 target_include_directories(${TACTILED_TEST_TARGET} PUBLIC lib)
 
