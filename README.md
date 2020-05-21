@@ -1,2 +1,3 @@
-# Tactiled
+# Tactiled [![version](https://img.shields.io/badge/version-0.1.0-red.svg)](https://semver.org) [![Build Status](https://travis-ci.org/albin-johansson/Centurion.svg?branch=master)](https://travis-ci.org/albin-johansson/Tactiled) [![codecov](https://codecov.io/gh/albin-johansson/Tactiled/branch/master/graph/badge.svg)](https://codecov.io/gh/albin-johansson/Tactiled) [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/albin-johansson/Tactiled) ![GitHub repo size](https://img.shields.io/github/repo-size/albin-johansson/Tactiled)  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
 A parsing library for the Tiled map editors JSON format.
