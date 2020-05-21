@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.15)
 project(TactiledSource)
 
 set(SOURCE_FILES
-        ${TACTILED_INCLUDE_DIR}/dummy.h)
+        ${TACTILED_INCLUDE_DIR}/tactiled_cfg.h
 
 add_library(${TACTILED_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
@@ -25,9 +25,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             -Wsuggest-final-methods
             -Wsuggest-override
             -Wduplicated-cond
-            -Wconversion
-            -Wc++14-compat
-            -Wc++17-compat)
+            -Wconversion)
 endif ()
 
 set_target_properties(${TACTILED_LIB_TARGET} PROPERTIES
