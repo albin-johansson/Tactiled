@@ -30,9 +30,18 @@
 
 namespace tactiled::detail {
 
+/**
+ * Parses the specified JSON file and returns the data associated with the
+ * file as a JSON object.
+ *
+ * @param file the the JSON file that will be parsed.
+ * @return a JSON object that contains the data from the parsed file.
+ * @throws TactiledException if the file cannot be parsed.
+ * @since 0.1.0
+ */
 [[nodiscard]] TACTILED_API JSON parse_json(CZString file);
 
-}
+}  // namespace tactiled::detail
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_utils.cpp"
