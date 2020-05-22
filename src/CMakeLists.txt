@@ -14,6 +14,9 @@ set(SOURCE_FILES
         tactiled_point.cpp
 
         ${TACTILED_INCLUDE_DIR}/tactiled_utils.h
+        tactiled_utils.cpp
+        ${TACTILED_INCLUDE_DIR}/tactiled_color.h
+        tactiled_color.cpp)
 
 add_library(${TACTILED_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
