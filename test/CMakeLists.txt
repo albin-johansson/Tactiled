@@ -19,7 +19,7 @@ target_include_directories(Catch INTERFACE catch)
 add_library(Doctest INTERFACE)
 target_include_directories(Doctest INTERFACE doctest)
 
-include(Doctest)
+include(doctest)
 
 add_test(NAME ${TACTILED_TEST_TARGET}
         COMMAND ${TACTILED_TEST_TARGET})
