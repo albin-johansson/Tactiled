@@ -14,8 +14,6 @@ if (WIN32)
     add_definitions(-DWIN_EXPORT)
 endif ()
 
-#set_target_properties(${TACTILED_LIB_TARGET} PROPERTIES LINKER_LANGUAGE CXX)
-
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${TACTILED_LIB_TARGET} PRIVATE
             -Wall
