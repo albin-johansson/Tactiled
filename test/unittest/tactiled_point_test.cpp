@@ -11,7 +11,7 @@ TEST_SUITE("Point")
 {
   TEST_CASE("Parsing valid point")
   {
-    JSON json = detail::parse_json("resources/point_valid.json");
+    JSON json = detail::parse_json("resource/point_valid.json");
     Point point{json};
 
     CHECK(point.x() == 42.6);
@@ -20,7 +20,7 @@ TEST_SUITE("Point")
 
   TEST_CASE("Parsing invalid point")
   {
-    JSON json = detail::parse_json("resources/point_invalid.json");
+    JSON json = detail::parse_json("resource/point_invalid.json");
     CHECK_THROWS_AS(Point{json}, TactiledException);
   }
 }
