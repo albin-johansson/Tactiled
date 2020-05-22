@@ -13,14 +13,15 @@ set_target_properties(${TACTILED_TEST_TARGET} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON)
 
-add_library(Catch INTERFACE)
-target_include_directories(Catch INTERFACE catch)
+#add_library(Catch INTERFACE)
+#target_include_directories(Catch INTERFACE catch)
 
 add_library(Doctest INTERFACE)
 target_include_directories(Doctest INTERFACE doctest)
 
 include(doctest)
 
+doctest_discover_tests(${TACTILED_TEST_TARGET})
 #add_test(NAME ${TACTILED_TEST_TARGET}
 #        COMMAND ${TACTILED_TEST_TARGET})
 
@@ -31,10 +32,10 @@ target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_SOUR
 
 target_link_libraries(${TACTILED_TEST_TARGET}
         PUBLIC ${TACTILED_LIBRARIES}
-        PUBLIC Catch
+#        PUBLIC Catch
         PUBLIC Doctest)
 
-doctest_discover_tests(${TACTILED_TEST_TARGET})
+#doctest_discover_tests(${TACTILED_TEST_TARGET})
 
 copy_directory_post_build(
         ${TACTILED_TEST_TARGET}
