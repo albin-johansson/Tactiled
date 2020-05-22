@@ -16,7 +16,7 @@ set_target_properties(${TACTILED_TEST_TARGET} PROPERTIES
 add_library(Catch INTERFACE)
 target_include_directories(Catch INTERFACE catch)
 
-include(CTest)
+#include(CTest)
 include(Catch)
 
 add_test(NAME ${TACTILED_TEST_TARGET}
