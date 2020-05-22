@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(TactiledTest)
 
+set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resources)
 set(TEST_FILES
         unittest/test_main.cpp
         unittest/tiled_map_test.cpp)
@@ -32,19 +33,14 @@ target_link_libraries(${TACTILED_TEST_TARGET}
 
 catch_discover_tests(${TACTILED_TEST_TARGET})
 
-#copy_directory_post_build(
-#        ${TACTILED_TEST_TARGET}
-#        ${TACTILED_RESOURCES_DIR}
-#        ${CMAKE_CURRENT_BINARY_DIR}/resources)
+copy_directory_post_build(
+        ${TACTILED_TEST_TARGET}
+        ${TACTILED_TEST_RESOURCES}
+        ${CMAKE_CURRENT_BINARY_DIR}/resources)
 
 if (WIN32)
     copy_file_post_build(
             ${TACTILED_TEST_TARGET}
             ${TACTILED_DYNAMIC_LIB}
             ${CMAKE_CURRENT_BINARY_DIR})
-
-    #    copy_directory_post_build(
-    #            ${TACTILED_TEST_TARGET}
-    #            ${TACTILED_BINARIES_DIR}
-    #            ${CMAKE_CURRENT_BINARY_DIR})
 endif ()
