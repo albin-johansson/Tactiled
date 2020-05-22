@@ -25,19 +25,25 @@
 #ifndef TACTILED_UTILS_SOURCE
 #define TACTILED_UTILS_SOURCE
 
-#include <tactiled_utils.h>
+#include "tactiled_utils.h"
 
 #include <fstream>
+
+#include "tactiled_exception.h"
 
 namespace tactiled::detail {
 
 TACTILED_DEF
 JSON parse_json(CZString file)
 {
-  JSON json;
-  std::ifstream stream{file};
-  stream >> json;
-  return json;
+  try {
+    JSON json;
+    std::ifstream stream{file};
+    stream >> json;
+    return json;
+  } catch (...) {
+    throw TactiledException{"Failed to parse JSON file!"};
+  }
 }
 
 }  // namespace tactiled::detail
