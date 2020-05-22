@@ -1,10 +1,10 @@
-#include <doctest.h>
+#include <catch.hpp>
 
 #include "tiled_map.h"
 
 using namespace tactiled;
 
-TEST_CASE("Tiled map")
+TEST_CASE("TiledMap::value", "[TiledMap]")
 {
   TiledMap map;
   CHECK(map.value() == 1);

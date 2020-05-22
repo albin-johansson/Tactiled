@@ -1,8 +1,9 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.12)
 project(TactiledSource)
 
 set(SOURCE_FILES
         ${TACTILED_INCLUDE_DIR}/tactiled_cfg.h
+        ${TACTILED_INCLUDE_DIR}/tactiled_types.h
         ${TACTILED_INCLUDE_DIR}/tiled_map.h
         tiled_map.cpp
 
@@ -13,7 +14,7 @@ if (WIN32)
     add_definitions(-DWIN_EXPORT)
 endif ()
 
-set_target_properties(${TACTILED_LIB_TARGET} PROPERTIES LINKER_LANGUAGE CXX)
+#set_target_properties(${TACTILED_LIB_TARGET} PROPERTIES LINKER_LANGUAGE CXX)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${TACTILED_LIB_TARGET} PRIVATE
@@ -39,6 +40,11 @@ set_target_properties(${TACTILED_LIB_TARGET} PROPERTIES
         CXX_EXTENSIONS OFF
         OUTPUT_NAME "Tactiled")
 
-target_include_directories(${TACTILED_LIB_TARGET} PRIVATE ${TACTILED_INCLUDE_DIR}
-        SYSTEM INTERFACE ${TACTILED_INCLUDE_DIR})
+#target_include_directories(${TACTILED_LIB_TARGET} PRIVATE ${TACTILED_INCLUDE_DIR}
+#        SYSTEM INTERFACE ${TACTILED_INCLUDE_DIR})
+
+target_include_directories(${TACTILED_LIB_TARGET} PUBLIC ${TACTILED_INCLUDE_DIR})
 target_include_directories(${TACTILED_LIB_TARGET} PUBLIC ${TACTILED_SOURCE_DIR})
+target_include_directories(${TACTILED_LIB_TARGET} SYSTEM PUBLIC ${TACTILED_LIBRARY_DIR})
+
+target_link_libraries(${TACTILED_LIB_TARGET})

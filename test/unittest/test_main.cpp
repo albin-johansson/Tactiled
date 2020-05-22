@@ -1,21 +1,7 @@
-#define DOCTEST_CONFIG_IMPLEMENT
-#include "doctest.h"
+#define CATCH_CONFIG_RUNNER
+#include <catch.hpp>
 
-int main(int argc, char **argv) {
-  doctest::Context context;
-
-  context.setOption("abort-after", 5);
-  context.setOption("order-by", "name");
-
-  context.applyCommandLine(argc, argv);
-
-  context.setOption("no-breaks", true);
-
-  int res = context.run();
-
-  if (context.shouldExit()) {
-    return res;
-  }
-
-  return res;
+int main(int argc, char** argv)
+{
+  return Catch::Session().run(argc, argv);
 }

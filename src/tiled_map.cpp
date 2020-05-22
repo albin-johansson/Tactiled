@@ -28,6 +28,12 @@
 #include "tiled_map.h"
 
 namespace tactiled {
+
+int TiledMap::value() const noexcept
+{
+  return 1;
+}
+
 }
 
 #endif  // TACTILED_TILED_MAP_SOURCE

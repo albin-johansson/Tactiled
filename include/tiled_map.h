@@ -29,7 +29,7 @@ namespace tactiled {
 
 class TiledMap final {
  public:
-  int value() { return 1; }
+  int value() const noexcept;
 };
 
 }  // namespace tactiled
