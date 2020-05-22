@@ -46,4 +46,7 @@
 #define TACTILED_DEF
 #endif
 
+// Used for getters that aren't inlined
+#define TACTILED_QUERY [[nodiscard]] TACTILED_API
+
 #endif  // TACTILED_API_HEADER
