@@ -8,7 +8,8 @@ set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resource)
 set(TEST_FILES
         unittest/test_main.cpp
         unittest/tactiled_map_test.cpp
-        unittest/tactiled_point_test.cpp)
+        unittest/tactiled_point_test.cpp
+        unittest/tactiled_utils_test.cpp)
 
 add_executable(${TACTILED_TEST_TARGET} ${TEST_FILES})
 add_dependencies(${TACTILED_TEST_TARGET} ${TACTILED_LIB_TARGET})
