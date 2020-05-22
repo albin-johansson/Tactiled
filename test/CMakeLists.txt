@@ -1,14 +1,13 @@
 cmake_minimum_required(VERSION 3.12)
 project(TactiledTest)
 
-# Prepare doctest for other targets to use
 set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/doctest)
 find_package(doctest REQUIRED)
 
 set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resources)
 set(TEST_FILES
         unittest/test_main.cpp
-        unittest/tiled_map_test.cpp
+        unittest/tactiled_map_test.cpp
         unittest/tactiled_point_test.cpp)
 
 add_executable(${TACTILED_TEST_TARGET} ${TEST_FILES})
