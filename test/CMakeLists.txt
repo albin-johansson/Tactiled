@@ -4,7 +4,7 @@ project(TactiledTest)
 set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/doctest)
 find_package(doctest REQUIRED)
 
-set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resources)
+set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resource)
 set(TEST_FILES
         unittest/test_main.cpp
         unittest/tactiled_map_test.cpp
