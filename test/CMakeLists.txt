@@ -25,6 +25,12 @@ include(doctest)
 add_test(NAME ${TACTILED_TEST_TARGET}
         COMMAND ${TACTILED_TEST_TARGET})
 
+if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
+    target_compile_options(${TACTILED_TEST_TARGET} PRIVATE
+            -Wno-unused-result
+            )
+endif ()
+
 target_include_directories(${TACTILED_TEST_TARGET} PUBLIC unittests)
 target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_LIBRARY_DIR})
 target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_INCLUDE_DIR})
@@ -37,7 +43,7 @@ target_link_libraries(${TACTILED_TEST_TARGET}
 copy_directory_post_build(
         ${TACTILED_TEST_TARGET}
         ${TACTILED_TEST_RESOURCES}
-        ${CMAKE_CURRENT_BINARY_DIR}/resources)
+        ${CMAKE_CURRENT_BINARY_DIR}/resource)
 
 if (WIN32)
     copy_file_post_build(
