@@ -21,8 +21,8 @@ target_include_directories(Doctest INTERFACE doctest)
 
 include(doctest)
 
-add_test(NAME ${TACTILED_TEST_TARGET}
-        COMMAND ${TACTILED_TEST_TARGET})
+#add_test(NAME ${TACTILED_TEST_TARGET}
+#        COMMAND ${TACTILED_TEST_TARGET})
 
 target_include_directories(${TACTILED_TEST_TARGET} PUBLIC unittests)
 target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_LIBRARY_DIR})
@@ -34,7 +34,7 @@ target_link_libraries(${TACTILED_TEST_TARGET}
         PUBLIC Catch
         PUBLIC Doctest)
 
-#doctest_discover_tests(${TACTILED_TEST_TARGET})
+doctest_discover_tests(${TACTILED_TEST_TARGET})
 
 copy_directory_post_build(
         ${TACTILED_TEST_TARGET}
