@@ -22,9 +22,22 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_CFG_HEADER
-#define TACTILED_CFG_HEADER
+#ifndef TACTILED_TILED_MAP_HEADER
+#define TACTILED_TILED_MAP_HEADER
 
-// #define TACTILED_HEADER_ONLY
+#include "tactiled_api.h"
 
-#endif  // TACTILED_CFG_HEADER
+namespace tactiled {
+
+class TiledMap final {
+ public:
+  TACTILED_API int value() const noexcept;
+};
+
+}  // namespace tactiled
+
+#ifdef TACTILED_HEADER_ONLY
+#include "tactiled_map.cpp"
+#endif  // TACTILED_HEADER_ONLY
+
+#endif  // TACTILED_TILED_MAP_HEADER

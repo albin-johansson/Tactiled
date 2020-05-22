@@ -1,6 +1,6 @@
-#include "tiled_map.h"
-
 #include <doctest.h>
+
+#include "tactiled_map.h"
 
 using namespace tactiled;
 

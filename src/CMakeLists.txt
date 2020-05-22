@@ -3,9 +3,18 @@ project(TactiledSource)
 
 set(SOURCE_FILES
         ${TACTILED_INCLUDE_DIR}/tactiled_cfg.h
+        ${TACTILED_INCLUDE_DIR}/tactiled_api.h
         ${TACTILED_INCLUDE_DIR}/tactiled_types.h
-        ${TACTILED_INCLUDE_DIR}/tiled_map.h
-        tiled_map.cpp)
+        ${TACTILED_INCLUDE_DIR}/tactiled_exception.h
+
+        ${TACTILED_INCLUDE_DIR}/tactiled_map.h
+        tactiled_map.cpp
+
+        ${TACTILED_INCLUDE_DIR}/tactiled_point.h
+        tactiled_point.cpp
+
+        ${TACTILED_INCLUDE_DIR}/tactiled_utils.h
+        tactiled_utils.cpp)
 
 add_library(${TACTILED_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

@@ -22,18 +22,55 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_TILED_MAP_SOURCE
-#define TACTILED_TILED_MAP_SOURCE
+#ifndef TACTILED_POINT_HEADER
+#define TACTILED_POINT_HEADER
 
-#include "tiled_map.h"
+#include "tactiled_api.h"
+#include "tactiled_types.h"
 
 namespace tactiled {
 
-int TiledMap::value() const noexcept
-{
-  return 1;
-}
+/**
+ * The Point class represents a simple coordinate in the plane.
+ *
+ * @since 0.1.0
+ */
+class Point final {
+ public:
+  /**
+   * Creates a point.
+   *
+   * @param json the JSON object that represents the point that will be parsed.
+   * @throws TactiledException if the point cannot be parsed.
+   * @since 0.1.0
+   */
+  TACTILED_API explicit Point(const JSONValue& json);
 
-}
+  /**
+   * Returns the x-coordinate associated with the point.
+   *
+   * @return the x-coordinate of the point.
+   * @since 0.1.0
+   */
+  [[nodiscard]] double x() const noexcept { return m_x; }
 
-#endif  // TACTILED_TILED_MAP_SOURCE
+  /**
+   * Returns the y-coordinate associated with the point.
+   *
+   * @return the y-coordinate of the point.
+   * @since 0.1.0
+   */
+  [[nodiscard]] double y() const noexcept { return m_y; }
+
+ private:
+  double m_x = 0;
+  double m_y = 0;
+};
+
+}  // namespace tactiled
+
+#ifdef TACTILED_HEADER_ONLY
+#include "tactiled_point.cpp"
+#endif  // TACTILED_HEADER_ONLY
+
+#endif  // TACTILED_POINT_HEADER

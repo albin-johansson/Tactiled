@@ -22,9 +22,26 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_CFG_HEADER
-#define TACTILED_CFG_HEADER
+#ifndef TACTILED_POINT_SOURCE
+#define TACTILED_POINT_SOURCE
 
-// #define TACTILED_HEADER_ONLY
+#include "tactiled_point.h"
 
-#endif  // TACTILED_CFG_HEADER
+#include "tactiled_exception.h"
+
+namespace tactiled {
+
+TACTILED_DEF
+Point::Point(const JSONValue& json)
+{
+  try {
+    m_x = json.at("x").get<double>();
+    m_y = json.at("y").get<double>();
+  } catch (...) {
+    throw TactiledException{""};
+  }
+}
+
+}  // namespace tactiled
+
+#endif  // TACTILED_POINT_SOURCE

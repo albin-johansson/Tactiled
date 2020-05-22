@@ -22,9 +22,24 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_CFG_HEADER
-#define TACTILED_CFG_HEADER
+#ifndef TACTILED_UTILS_SOURCE
+#define TACTILED_UTILS_SOURCE
 
-// #define TACTILED_HEADER_ONLY
+#include <tactiled_utils.h>
 
-#endif  // TACTILED_CFG_HEADER
+#include <fstream>
+
+namespace tactiled::detail {
+
+TACTILED_DEF
+JSON parse_json(CZString file)
+{
+  JSON json;
+  std::ifstream stream{file};
+  stream >> json;
+  return json;
+}
+
+}  // namespace tactiled::detail
+
+#endif  // TACTILED_UTILS_SOURCE

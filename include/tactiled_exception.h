@@ -22,9 +22,30 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_CFG_HEADER
-#define TACTILED_CFG_HEADER
+#ifndef TACTILED_EXCEPTION_HEADER
+#define TACTILED_EXCEPTION_HEADER
 
-// #define TACTILED_HEADER_ONLY
+#include <exception>
+#include <utility>
 
-#endif  // TACTILED_CFG_HEADER
+#include "tactiled_types.h"
+
+namespace tactiled {
+
+class TactiledException final : public std::exception {
+ public:
+  TactiledException() noexcept = default;
+
+  explicit TactiledException(std::string what) : m_what{std::move(what)} {}
+
+  ~TactiledException() noexcept override = default;
+
+  CZString what() const noexcept override { return m_what.c_str(); }
+
+ private:
+  std::string m_what;
+};
+
+}  // namespace tactiled
+
+#endif  // TACTILED_EXCEPTION_HEADER
