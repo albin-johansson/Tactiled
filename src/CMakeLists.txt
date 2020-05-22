@@ -15,6 +15,10 @@ set(SOURCE_FILES
 
         ${TACTILED_INCLUDE_DIR}/tactiled_utils.h
         tactiled_utils.cpp
+
+        ${TACTILED_INCLUDE_DIR}/tactiled_property.h
+        tactiled_property.cpp
+
         ${TACTILED_INCLUDE_DIR}/tactiled_color.h
         tactiled_color.cpp)
 
