@@ -52,10 +52,6 @@ if (DEFINED ENV{ENABLE_COVERAGE})
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O0 --coverage")
 endif ()
 
-# Prepare doctest for other targets to use
-set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/test/doctest)
-find_package(doctest REQUIRED)
-
 enable_testing()
 add_subdirectory(src)
 add_subdirectory(test)
