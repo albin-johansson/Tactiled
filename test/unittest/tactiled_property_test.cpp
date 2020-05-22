@@ -26,6 +26,11 @@ TEST_SUITE("String property")
     CHECK(property.is_string());
     CHECK(property.as_string());
     CHECK(*property.as_string() == "This is a string value");
+
+    CHECK(!property.as_int());
+    CHECK(!property.as_float());
+    CHECK(!property.as_bool());
+    CHECK(!property.as_color());
   }
 
   TEST_CASE("Bad value")
@@ -46,6 +51,11 @@ TEST_SUITE("Int property")
     CHECK(property.is_int());
     CHECK(property.as_int());
     CHECK(*property.as_int() == 1337);
+
+    CHECK(!property.as_string());
+    CHECK(!property.as_float());
+    CHECK(!property.as_bool());
+    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -65,6 +75,11 @@ TEST_SUITE("Float property")
     CHECK(property.is_float());
     CHECK(property.as_float());
     CHECK(*property.as_float() == 89.2f);
+
+    CHECK(!property.as_string());
+    CHECK(!property.as_int());
+    CHECK(!property.as_bool());
+    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -84,6 +99,11 @@ TEST_SUITE("Bool property")
     CHECK(property.is_bool());
     CHECK(property.as_bool());
     CHECK(!*property.as_bool());
+
+    CHECK(!property.as_string());
+    CHECK(!property.as_int());
+    CHECK(!property.as_float());
+    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -103,6 +123,11 @@ TEST_SUITE("Color property")
     CHECK(property.is_color());
     CHECK(property.as_color());
     CHECK(*property.as_color() == Color{"AA22BB33"});
+
+    CHECK(!property.as_string());
+    CHECK(!property.as_int());
+    CHECK(!property.as_float());
+    CHECK(!property.as_bool());
   }
   TEST_CASE("Bad value")
   {
@@ -122,6 +147,12 @@ TEST_SUITE("File property")
     CHECK(property.is_file());
     CHECK(property.as_string());
     CHECK(*property.as_string() == "path/to/something/nice");
+
+    CHECK(property.as_string());
+    CHECK(!property.as_int());
+    CHECK(!property.as_float());
+    CHECK(!property.as_bool());
+    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
