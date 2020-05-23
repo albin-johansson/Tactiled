@@ -20,7 +20,10 @@ set(SOURCE_FILES
         step_property.cpp
 
         ${STEP_INCLUDE_DIR}/step_color.h
-        step_color.cpp)
+        step_color.cpp
+
+        ${STEP_INCLUDE_DIR}/step_text.h
+        step_text.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

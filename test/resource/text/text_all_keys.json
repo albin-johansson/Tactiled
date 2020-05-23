@@ -1,0 +1,14 @@
+{
+  "text": "Elrond",
+  "fontfamily": "Consolas",
+  "color": "#aa0000",
+  "halign": "center",
+  "valign": "bottom",
+  "pixelsize": 24,
+  "bold": true,
+  "italic": true,
+  "kerning": false,
+  "strikeout": true,
+  "underline": true,
+  "wrap": true
+}

@@ -11,7 +11,8 @@ set(TEST_FILES
         unittest/step_point_test.cpp
         unittest/step_property_test.cpp
         unittest/step_color_test.cpp
-        unittest/step_utils_test.cpp)
+        unittest/step_utils_test.cpp
+        unittest/step_text_test.cpp)
 
 add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
 add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})
