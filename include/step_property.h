@@ -107,7 +107,8 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<float> as_float() const noexcept;
+  STEP_QUERY std::optional<float> as_float() const noexcept; // FIXME might
+                                                             //  be double
 
   /**
    * Returns the boolean value associated with the property, if there is one.
