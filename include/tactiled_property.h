@@ -69,7 +69,7 @@ class Property final {
    * @throws OutOfRange if an expected key isn't in the JSON object.
    * @since 0.1.0
    */
-  TACTILED_API explicit Property(const JSONValue& json);
+  STEP_API explicit Property(const JSONValue& json);
 
   /**
    * Returns the string value associated with the property, if there is one.
@@ -80,7 +80,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  TACTILED_QUERY std::optional<std::string> as_string() const noexcept;
+  STEP_QUERY std::optional<std::string> as_string() const noexcept;
 
   /**
    * Returns the color associated with the property, if there is one.
@@ -89,7 +89,7 @@ class Property final {
    * such color.
    * @since 0.1.0
    */
-  TACTILED_QUERY std::optional<Color> as_color() const noexcept;
+  STEP_QUERY std::optional<Color> as_color() const noexcept;
 
   /**
    * Returns the integer value associated with the property, if there is one.
@@ -98,7 +98,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  TACTILED_QUERY std::optional<int> as_int() const noexcept;
+  STEP_QUERY std::optional<int> as_int() const noexcept;
 
   /**
    * Returns the float value associated with the property, if there is one.
@@ -107,7 +107,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  TACTILED_QUERY std::optional<float> as_float() const noexcept;
+  STEP_QUERY std::optional<float> as_float() const noexcept;
 
   /**
    * Returns the boolean value associated with the property, if there is one.
@@ -116,7 +116,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  TACTILED_QUERY std::optional<bool> as_bool() const noexcept;
+  STEP_QUERY std::optional<bool> as_bool() const noexcept;
 
   /**
    * Indicates whether or not the property holds a string value.
@@ -201,8 +201,8 @@ STEP_SERIALIZE_ENUM(Property::Type,
 
 }  // namespace step
 
-#ifdef TACTILED_HEADER_ONLY
+#ifdef STEP_HEADER_ONLY
 #include "tactiled_property.cpp"
-#endif  // TACTILED_HEADER_ONLY
+#endif  // STEP_HEADER_ONLY
 
 #endif  // TACTILED_PROPERTY_HEADER

@@ -33,7 +33,7 @@
 
 namespace step {
 
-TACTILED_DEF
+STEP_DEF
 Property::Property(const JSONValue& json)
 {
   m_name = json.at("name").get<std::string>();
@@ -66,7 +66,7 @@ Property::Property(const JSONValue& json)
   }
 }
 
-TACTILED_DEF
+STEP_DEF
 std::optional<std::string> Property::as_string() const noexcept
 {
   if (std::holds_alternative<std::string>(m_value)) {
@@ -76,7 +76,7 @@ std::optional<std::string> Property::as_string() const noexcept
   }
 }
 
-TACTILED_DEF
+STEP_DEF
 std::optional<Color> Property::as_color() const noexcept
 {
   if (std::holds_alternative<Color>(m_value)) {
@@ -86,7 +86,7 @@ std::optional<Color> Property::as_color() const noexcept
   }
 }
 
-TACTILED_DEF
+STEP_DEF
 std::optional<int> Property::as_int() const noexcept
 {
   if (std::holds_alternative<int>(m_value)) {
@@ -96,7 +96,7 @@ std::optional<int> Property::as_int() const noexcept
   }
 }
 
-TACTILED_DEF
+STEP_DEF
 std::optional<float> Property::as_float() const noexcept
 {
   if (std::holds_alternative<float>(m_value)) {
@@ -106,7 +106,7 @@ std::optional<float> Property::as_float() const noexcept
   }
 }
 
-TACTILED_DEF
+STEP_DEF
 std::optional<bool> Property::as_bool() const noexcept
 {
   if (std::holds_alternative<bool>(m_value)) {

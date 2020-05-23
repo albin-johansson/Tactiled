@@ -33,7 +33,7 @@
 
 namespace step::detail {
 
-TACTILED_DEF
+STEP_DEF
 JSON parse_json(CZString file)
 {
   try {

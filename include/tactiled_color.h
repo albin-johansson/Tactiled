@@ -51,7 +51,7 @@ class Color final {
    * @throws TactiledException if the color cannot be created.
    * @since 0.1.0
    */
-  TACTILED_API explicit Color(const std::string& value);
+  STEP_API explicit Color(const std::string& value);
 
   /**
    * Returns the value of the red component of the color.
@@ -128,8 +128,8 @@ class Color final {
 
 }  // namespace step
 
-#ifdef TACTILED_HEADER_ONLY
+#ifdef STEP_HEADER_ONLY
 #include "tactiled_color.cpp"
-#endif  // TACTILED_HEADER_ONLY
+#endif  // STEP_HEADER_ONLY
 
 #endif  // TACTILED_COLOR_HEADER

@@ -43,7 +43,7 @@ uint8_t from_hex(const std::string& str)
 
 }  // namespace
 
-TACTILED_DEF
+STEP_DEF
 Color::Color(const std::string& value)
 {
   const auto len = value.length();

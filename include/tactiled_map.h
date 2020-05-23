@@ -31,13 +31,13 @@ namespace step {
 
 class TiledMap final {
  public:
-  TACTILED_API int value() const noexcept;
+  STEP_API int value() const noexcept;
 };
 
 }  // namespace step
 
-#ifdef TACTILED_HEADER_ONLY
+#ifdef STEP_HEADER_ONLY
 #include "tactiled_map.cpp"
-#endif  // TACTILED_HEADER_ONLY
+#endif  // STEP_HEADER_ONLY
 
 #endif  // TACTILED_TILED_MAP_HEADER

@@ -29,24 +29,24 @@
 
 // Define TACTILED_API for any platform
 // https://atomheartother.github.io/c++/2018/07/12/CPPDynLib.html
-#if defined(_WIN32) && !defined(TACTILED_API)
+#if defined(_WIN32) && !defined(STEP_API)
 #ifdef WIN_EXPORT
-#define TACTILED_API __declspec(dllexport)
+#define STEP_API __declspec(dllexport)
 #else
-#define TACTILED_API __declspec(dllimport)
+#define STEP_API __declspec(dllimport)
 #endif  // WIN_EXPORT
 #else
-#define TACTILED_API
-#endif  // defined(_WIN32) && !defined(TACTILED_API)
+#define STEP_API
+#endif  // defined(_WIN32) && !defined(STEP_API)
 
 // When header-only mode is enabled, definitions are specified as inline
-#if !defined(TACTILED_DEF) && defined(TACTILED_HEADER_ONLY)
-#define TACTILED_DEF inline
+#if !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
+#define STEP_DEF inline
 #else
-#define TACTILED_DEF
-#endif
+#define STEP_DEF
+#endif  // !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
 
 // Used for getters that aren't inlined
-#define TACTILED_QUERY [[nodiscard]] TACTILED_API
+#define STEP_QUERY [[nodiscard]] STEP_API
 
 #endif  // TACTILED_API_HEADER

@@ -39,12 +39,12 @@ namespace step::detail {
  * @throws TactiledException if the file cannot be parsed.
  * @since 0.1.0
  */
-[[nodiscard]] TACTILED_API JSON parse_json(CZString file);
+[[nodiscard]] STEP_API JSON parse_json(CZString file);
 
 }  // namespace step::detail
 
-#ifdef TACTILED_HEADER_ONLY
+#ifdef STEP_HEADER_ONLY
 #include "tactiled_utils.cpp"
-#endif  // TACTILED_HEADER_ONLY
+#endif  // STEP_HEADER_ONLY
 
 #endif  // TACTILED_UTILS_HEADER

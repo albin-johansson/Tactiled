@@ -29,7 +29,7 @@
 
 namespace step {
 
-TACTILED_DEF
+STEP_DEF
 int TiledMap::value() const noexcept
 {
   return 1;

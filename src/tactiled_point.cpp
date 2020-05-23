@@ -31,7 +31,7 @@
 
 namespace step {
 
-TACTILED_DEF
+STEP_DEF
 Point::Point(const JSONValue& json)
 {
   try {

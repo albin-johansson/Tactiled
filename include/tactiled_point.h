@@ -44,7 +44,7 @@ class Point final {
    * @throws TactiledException if the point cannot be parsed.
    * @since 0.1.0
    */
-  TACTILED_API explicit Point(const JSONValue& json);
+  STEP_API explicit Point(const JSONValue& json);
 
   /**
    * Returns the x-coordinate associated with the point.
@@ -69,8 +69,8 @@ class Point final {
 
 }  // namespace step
 
-#ifdef TACTILED_HEADER_ONLY
+#ifdef STEP_HEADER_ONLY
 #include "tactiled_point.cpp"
-#endif  // TACTILED_HEADER_ONLY
+#endif  // STEP_HEADER_ONLY
 
 #endif  // TACTILED_POINT_HEADER
