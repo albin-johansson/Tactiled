@@ -36,9 +36,15 @@ install:
       travis_retry wget --no-check-certificate --quiet -O - ${CMAKE_URL} | tar --strip-components=1 -xz -C ${DEPS_DIR}/cmake
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
-  - sudo apt-get install lcov
+#  - sudo apt-get install lcov
   #  - sudo apt-get install gcov
   - sudo apt-get update
+
+  - wget -c http://downloads.sourceforge.net/ltp/lcov-1.14.tar.gz
+  - tar -xf lcov-1.14.tar.gz
+  - cd lcov-1.14
+  - make install
+
   - lcov --version
   - gcov --version
 
