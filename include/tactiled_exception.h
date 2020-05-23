@@ -30,7 +30,7 @@
 
 #include "tactiled_types.h"
 
-namespace tactiled {
+namespace step {
 
 class TactiledException final : public std::exception {
  public:
@@ -46,6 +46,6 @@ class TactiledException final : public std::exception {
   std::string m_what;
 };
 
-}  // namespace tactiled
+}  // namespace step
 
 #endif  // TACTILED_EXCEPTION_HEADER

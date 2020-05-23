@@ -28,7 +28,7 @@
 #include "tactiled_api.h"
 #include "tactiled_types.h"
 
-namespace tactiled {
+namespace step {
 
 /**
  * The Point class represents a simple coordinate in the plane.
@@ -67,7 +67,7 @@ class Point final {
   double m_y = 0;
 };
 
-}  // namespace tactiled
+}  // namespace step
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_point.cpp"

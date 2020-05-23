@@ -30,7 +30,7 @@
 
 #include "tactiled_api.h"
 
-namespace tactiled {
+namespace step {
 
 using JSON = nlohmann::json;
 
@@ -47,6 +47,6 @@ using CZString = const char*;
 
 inline constexpr std::nullopt_t nothing = std::nullopt;
 
-}  // namespace tactiled
+}  // namespace step
 
 #endif  // TACTILED_TYPES_HEADER

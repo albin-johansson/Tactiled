@@ -5,7 +5,7 @@
 #include "tactiled_exception.h"
 #include "tactiled_utils.h"
 
-using namespace tactiled;
+using namespace step;
 
 TEST_SUITE("Point")
 {

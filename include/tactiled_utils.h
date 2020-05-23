@@ -28,7 +28,7 @@
 #include "tactiled_api.h"
 #include "tactiled_types.h"
 
-namespace tactiled::detail {
+namespace step::detail {
 
 /**
  * Parses the specified JSON file and returns the data associated with the
@@ -41,7 +41,7 @@ namespace tactiled::detail {
  */
 [[nodiscard]] TACTILED_API JSON parse_json(CZString file);
 
-}  // namespace tactiled::detail
+}  // namespace step::detail
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_utils.cpp"

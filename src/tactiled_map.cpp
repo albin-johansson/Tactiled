@@ -27,7 +27,7 @@
 
 #include "tactiled_map.h"
 
-namespace tactiled {
+namespace step {
 
 TACTILED_DEF
 int TiledMap::value() const noexcept
@@ -35,6 +35,6 @@ int TiledMap::value() const noexcept
   return 1;
 }
 
-}
+}  // namespace step
 
 #endif  // TACTILED_TILED_MAP_SOURCE

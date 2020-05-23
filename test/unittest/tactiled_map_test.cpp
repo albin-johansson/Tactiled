@@ -1,8 +1,8 @@
-#include <doctest.h>
-
 #include "tactiled_map.h"
 
-using namespace tactiled;
+#include <doctest.h>
+
+using namespace step;
 
 TEST_SUITE("TiledMap")
 {

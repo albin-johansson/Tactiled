@@ -4,7 +4,7 @@
 
 #include "tactiled_exception.h"
 
-using namespace tactiled;
+using namespace step;
 using namespace detail;
 
 TEST_SUITE("parse_json(CZString)")

@@ -31,7 +31,7 @@
 
 #include "tactiled_exception.h"
 
-namespace tactiled::detail {
+namespace step::detail {
 
 TACTILED_DEF
 JSON parse_json(CZString file)
@@ -46,6 +46,6 @@ JSON parse_json(CZString file)
   }
 }
 
-}  // namespace tactiled::detail
+}  // namespace step::detail
 
 #endif  // TACTILED_UTILS_SOURCE

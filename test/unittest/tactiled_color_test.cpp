@@ -4,7 +4,7 @@
 
 #include "tactiled_exception.h"
 
-using namespace tactiled;
+using namespace step;
 
 TEST_SUITE("Color")
 {

@@ -29,7 +29,7 @@
 
 #include "tactiled_exception.h"
 
-namespace tactiled {
+namespace step {
 
 TACTILED_DEF
 Point::Point(const JSONValue& json)
@@ -42,6 +42,6 @@ Point::Point(const JSONValue& json)
   }
 }
 
-}  // namespace tactiled
+}  // namespace step
 
 #endif  // TACTILED_POINT_SOURCE

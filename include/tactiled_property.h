@@ -31,7 +31,7 @@
 #include "tactiled_color.h"
 #include "tactiled_types.h"
 
-namespace tactiled {
+namespace step {
 
 /**
  * The Property class represents small objects that have a name, type and
@@ -199,7 +199,7 @@ TACTILED_SERIALIZE_ENUM(Property::Type,
                          {Property::Type::Color, "color"},
                          {Property::Type::File, "file"}})
 
-}  // namespace tactiled
+}  // namespace step
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_property.cpp"

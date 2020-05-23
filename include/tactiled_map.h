@@ -27,14 +27,14 @@
 
 #include "tactiled_api.h"
 
-namespace tactiled {
+namespace step {
 
 class TiledMap final {
  public:
   TACTILED_API int value() const noexcept;
 };
 
-}  // namespace tactiled
+}  // namespace step
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_map.cpp"

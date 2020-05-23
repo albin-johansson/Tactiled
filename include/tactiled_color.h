@@ -30,7 +30,7 @@
 #include "tactiled_api.h"
 #include "tactiled_types.h"
 
-namespace tactiled {
+namespace step {
 
 /**
  * The Color class represents a color with 8-bit components that can be
@@ -126,7 +126,7 @@ class Color final {
   return !(lhs == rhs);
 }
 
-}  // namespace tactiled
+}  // namespace step
 
 #ifdef TACTILED_HEADER_ONLY
 #include "tactiled_color.cpp"

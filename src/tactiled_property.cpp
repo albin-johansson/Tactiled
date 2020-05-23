@@ -31,7 +31,7 @@
 
 #include "tactiled_exception.h"
 
-namespace tactiled {
+namespace step {
 
 TACTILED_DEF
 Property::Property(const JSONValue& json)
@@ -116,6 +116,6 @@ std::optional<bool> Property::as_bool() const noexcept
   }
 }
 
-}  // namespace tactiled
+}  // namespace step
 
 #endif  // TACTILED_PROPERTY_SOURCE

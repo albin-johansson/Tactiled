@@ -29,7 +29,7 @@
 
 #include "tactiled_exception.h"
 
-namespace tactiled {
+namespace step {
 namespace {
 
 uint8_t from_hex(const std::string& str)
@@ -60,6 +60,6 @@ Color::Color(const std::string& value)
   }
 }
 
-}  // namespace tactiled
+}  // namespace step
 
 #endif  // TACTILED_COLOR_SOURCE

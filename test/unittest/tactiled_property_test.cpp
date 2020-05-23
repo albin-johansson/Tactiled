@@ -4,7 +4,7 @@
 
 #include "tactiled_utils.h"
 
-using namespace tactiled;
+using namespace step;
 
 TEST_SUITE("General Property stuff")
 {
