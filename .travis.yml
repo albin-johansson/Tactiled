@@ -38,9 +38,9 @@ install:
     fi
   - sudo apt-get install lcov
 #  - sudo apt-get install gcov
+  - sudo apt-get update
   - lcov --version
   - gcov --version
-  - sudo apt-get update
 
 before_script:
   - export CC=/usr/bin/gcc-8
