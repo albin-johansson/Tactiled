@@ -25,7 +25,7 @@
 #ifndef STEP_TEXT_SOURCE
 #define STEP_TEXT_SOURCE
 
-#include <step_text.h>
+#include "step_text.h"
 
 #include "step_exception.h"
 
