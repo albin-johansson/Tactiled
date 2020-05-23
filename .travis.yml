@@ -37,6 +37,7 @@ install:
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
   - sudo apt-get install lcov
+  - sudo apt-get install gcov
 
 before_script:
   - export CC=/usr/bin/gcc-8
