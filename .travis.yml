@@ -44,6 +44,7 @@ install:
   - tar -xf lcov-1.14.tar.gz
   - cd lcov-1.14
   - sudo make install
+  - cd
 
   - lcov --version
   - gcov --version
