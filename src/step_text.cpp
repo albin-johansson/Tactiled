@@ -27,8 +27,6 @@
 
 #include <step_text.h>
 
-#include <iostream>
-
 #include "step_exception.h"
 
 namespace step {

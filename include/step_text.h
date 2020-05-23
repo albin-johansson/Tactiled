@@ -34,11 +34,37 @@
 
 namespace step {
 
+/**
+ * The Text class represents objects that represent piece of text.
+ *
+ * @since 0.1.0
+ */
 class Text final {
  public:
+  /**
+   * The HAlign enum class provides values that represents the different
+   * possible horizontal alignment modes for text.
+   *
+   * @since 0.1.0
+   */
   enum class HAlign { Center, Right, Left, Justify };
+
+  /**
+   * The VAlign enum class provides values that represents the different
+   * possible vertical alignment modes for text.
+   *
+   * @since 0.1.0
+   */
   enum class VAlign { Center, Bottom, Top };
 
+  /**
+   * Creates a Text instance.
+   *
+   * @param json the JSON object that contains the data for a text object.
+   * @throws TactiledException if something goes wrong whilst parsing the
+   * JSON object.
+   * @since 0.1.0
+   */
   STEP_API explicit Text(const JSON& json);
 
   /**
