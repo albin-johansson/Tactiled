@@ -43,7 +43,7 @@ install:
   - wget -c http://downloads.sourceforge.net/ltp/lcov-1.14.tar.gz
   - tar -xf lcov-1.14.tar.gz
   - cd lcov-1.14
-  - make install
+  - sudo make install
 
   - lcov --version
   - gcov --version
