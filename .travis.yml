@@ -40,6 +40,7 @@ install:
 #  - sudo apt-get install gcov
   - lcov --version
   - gcov --version
+  - sudo apt-get update
 
 before_script:
   - export CC=/usr/bin/gcc-8
