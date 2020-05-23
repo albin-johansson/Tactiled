@@ -25,7 +25,8 @@
 #ifndef STEP_COLOR_HEADER
 #define STEP_COLOR_HEADER
 
-#include <string>
+#include <cstdint>
+#include <string_view>
 
 #include "step_api.h"
 #include "step_types.h"
@@ -34,13 +35,15 @@ namespace step {
 
 /**
  * The Color class represents a color with 8-bit components that can be
- * created from either ARGB or RGB format strings, e.g. "AABBCCDD" or
- * "AABBCC".
+ * created from either ARGB or RGB format strings, e.g. "#AABBCCDD" or
+ * "#AABBCC".
  *
  * @since 0.1.0
  */
 class Color final {
  public:
+  Color() noexcept = default;
+
   /**
    * Creates a color from the supplied string that is in either ARGB or RGB
    * format. If the supplied string is using the RGB format, then the alpha
@@ -51,7 +54,7 @@ class Color final {
    * @throws StepException if the color cannot be created.
    * @since 0.1.0
    */
-  STEP_API explicit Color(const std::string& value);
+  STEP_API explicit Color(std::string_view value);
 
   /**
    * Returns the value of the red component of the color.

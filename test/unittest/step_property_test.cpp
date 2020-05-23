@@ -122,7 +122,7 @@ TEST_SUITE("Color property")
     CHECK(property.type() == Property::Type::Color);
     CHECK(property.is_color());
     CHECK(property.as_color());
-    CHECK(*property.as_color() == Color{"AA22BB33"});
+    CHECK(*property.as_color() == Color{"#AA22BB33"});
 
     CHECK(!property.as_string());
     CHECK(!property.as_int());
