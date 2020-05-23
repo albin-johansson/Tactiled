@@ -21,6 +21,6 @@ TEST_SUITE("Point")
   TEST_CASE("Parsing invalid point")
   {
     JSON json = detail::parse_json("resource/point_invalid.json");
-    CHECK_THROWS_AS(Point{json}, TactiledException);
+    CHECK_THROWS_AS(Point{json}, StepException);
   }
 }

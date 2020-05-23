@@ -36,7 +36,7 @@ namespace step::detail {
  *
  * @param file the the JSON file that will be parsed.
  * @return a JSON object that contains the data from the parsed file.
- * @throws TactiledException if the file cannot be parsed.
+ * @throws StepException if the file cannot be parsed.
  * @since 0.1.0
  */
 [[nodiscard]] STEP_API JSON parse_json(CZString file);

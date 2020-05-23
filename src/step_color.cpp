@@ -37,7 +37,7 @@ uint8_t from_hex(const std::string& str)
   try {
     return static_cast<uint8_t>(std::stoul(str, nullptr, 16));
   } catch (...) {
-    throw TactiledException{"Failed to convert hex string to value!"};
+    throw StepException{"Failed to convert hex string to value!"};
   }
 }
 
@@ -56,7 +56,7 @@ Color::Color(const std::string& value)
       m_alpha = from_hex(value.substr(6, 2));
     }
   } else {
-    throw TactiledException{"Couldn't create color from color string!"};
+    throw StepException{"Couldn't create color from color string!"};
   }
 }
 

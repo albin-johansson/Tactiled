@@ -41,7 +41,7 @@ class Point final {
    * Creates a point.
    *
    * @param json the JSON object that represents the point that will be parsed.
-   * @throws TactiledException if the point cannot be parsed.
+   * @throws StepException if the point cannot be parsed.
    * @since 0.1.0
    */
   STEP_API explicit Point(const JSONValue& json);

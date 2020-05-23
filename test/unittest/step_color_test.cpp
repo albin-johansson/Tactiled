@@ -27,8 +27,8 @@ TEST_SUITE("Color")
   }
   TEST_CASE("Invalid string")
   {
-    CHECK_THROWS_AS(Color{""}, TactiledException);
-    CHECK_THROWS_AS(Color{"AABBCCDDD"}, TactiledException);  // too long
-    CHECK_THROWS_AS(Color{"GGBBCCDD"}, TactiledException);   // invalid hex
+    CHECK_THROWS_AS(Color{""}, StepException);
+    CHECK_THROWS_AS(Color{"AABBCCDDD"}, StepException);  // too long
+    CHECK_THROWS_AS(Color{"GGBBCCDD"}, StepException);   // invalid hex
   }
 }

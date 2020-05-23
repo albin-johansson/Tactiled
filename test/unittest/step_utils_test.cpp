@@ -11,8 +11,8 @@ TEST_SUITE("parse_json(CZString)")
 {
   TEST_CASE("Bad args")
   {
-    CHECK_THROWS_AS(parse_json(nullptr), TactiledException);
-    CHECK_THROWS_AS(parse_json("abc"), TactiledException);
+    CHECK_THROWS_AS(parse_json(nullptr), StepException);
+    CHECK_THROWS_AS(parse_json("abc"), StepException);
   }
   TEST_CASE("Valid JSON")
   {

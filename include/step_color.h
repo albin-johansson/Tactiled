@@ -48,7 +48,7 @@ class Color final {
    *
    * @param value the string that contains the color information, in ARGB or
    * RGB format.
-   * @throws TactiledException if the color cannot be created.
+   * @throws StepException if the color cannot be created.
    * @since 0.1.0
    */
   STEP_API explicit Color(const std::string& value);

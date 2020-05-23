@@ -32,13 +32,13 @@
 
 namespace step {
 
-class TactiledException final : public std::exception {
+class StepException final : public std::exception {
  public:
-  TactiledException() noexcept = default;
+  StepException() noexcept = default;
 
-  explicit TactiledException(std::string what) : m_what{std::move(what)} {}
+  explicit StepException(std::string what) : m_what{std::move(what)} {}
 
-  ~TactiledException() noexcept override = default;
+  ~StepException() noexcept override = default;
 
   CZString what() const noexcept override { return m_what.c_str(); }
 

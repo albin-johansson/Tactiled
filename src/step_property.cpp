@@ -62,7 +62,7 @@ Property::Property(const JSONValue& json)
       break;
     }
     default:
-      throw TactiledException{"Unknown property type!"};
+      throw StepException{"Unknown property type!"};
   }
 }
 

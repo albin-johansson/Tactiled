@@ -42,7 +42,7 @@ JSON parse_json(CZString file)
     stream >> json;
     return json;
   } catch (...) {
-    throw TactiledException{"Failed to parse JSON file!"};
+    throw StepException{"Failed to parse JSON file!"};
   }
 }
 
