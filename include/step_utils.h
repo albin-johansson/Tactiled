@@ -44,7 +44,7 @@ namespace step::detail {
 }  // namespace step::detail
 
 #ifdef STEP_HEADER_ONLY
-#include "tactiled_utils.cpp"
+#include "step_utils.cpp"
 #endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_UTILS_HEADER

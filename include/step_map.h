@@ -37,7 +37,7 @@ class TiledMap final {
 }  // namespace step
 
 #ifdef STEP_HEADER_ONLY
-#include "tactiled_map.cpp"
+#include "step_map.cpp"
 #endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_TILED_MAP_HEADER

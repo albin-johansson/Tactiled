@@ -129,7 +129,7 @@ class Color final {
 }  // namespace step
 
 #ifdef STEP_HEADER_ONLY
-#include "tactiled_color.cpp"
+#include "step_color.cpp"
 #endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_COLOR_HEADER

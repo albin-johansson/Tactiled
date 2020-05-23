@@ -70,7 +70,7 @@ class Point final {
 }  // namespace step
 
 #ifdef STEP_HEADER_ONLY
-#include "tactiled_point.cpp"
+#include "step_point.cpp"
 #endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_POINT_HEADER

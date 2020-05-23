@@ -202,7 +202,7 @@ STEP_SERIALIZE_ENUM(Property::Type,
 }  // namespace step
 
 #ifdef STEP_HEADER_ONLY
-#include "tactiled_property.cpp"
+#include "step_property.cpp"
 #endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_PROPERTY_HEADER
