@@ -58,6 +58,7 @@ before_script:
   - cmake --version
 
 script:
+  - dir
   - mkdir -p build
   - cd build
 
