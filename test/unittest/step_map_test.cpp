@@ -1,4 +1,4 @@
-#include "tactiled_map.h"
+#include "step_map.h"
 
 #include <doctest.h>
 

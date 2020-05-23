@@ -27,9 +27,9 @@
 
 #include <variant>
 
-#include "tactiled_api.h"
-#include "tactiled_color.h"
-#include "tactiled_types.h"
+#include "step_api.h"
+#include "step_color.h"
+#include "step_types.h"
 
 namespace step {
 

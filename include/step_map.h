@@ -22,31 +22,22 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_API_HEADER
-#define TACTILED_API_HEADER
+#ifndef TACTILED_TILED_MAP_HEADER
+#define TACTILED_TILED_MAP_HEADER
 
-#include "tactiled_cfg.h"
+#include "step_api.h"
 
-// Define TACTILED_API for any platform
-// https://atomheartother.github.io/c++/2018/07/12/CPPDynLib.html
-#if defined(_WIN32) && !defined(STEP_API)
-#ifdef WIN_EXPORT
-#define STEP_API __declspec(dllexport)
-#else
-#define STEP_API __declspec(dllimport)
-#endif  // WIN_EXPORT
-#else
-#define STEP_API
-#endif  // defined(_WIN32) && !defined(STEP_API)
+namespace step {
 
-// When header-only mode is enabled, definitions are specified as inline
-#if !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
-#define STEP_DEF inline
-#else
-#define STEP_DEF
-#endif  // !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
+class TiledMap final {
+ public:
+  STEP_API int value() const noexcept;
+};
 
-// Used for getters that aren't inlined
-#define STEP_QUERY [[nodiscard]] STEP_API
+}  // namespace step
 
-#endif  // TACTILED_API_HEADER
+#ifdef STEP_HEADER_ONLY
+#include "tactiled_map.cpp"
+#endif  // STEP_HEADER_ONLY
+
+#endif  // TACTILED_TILED_MAP_HEADER

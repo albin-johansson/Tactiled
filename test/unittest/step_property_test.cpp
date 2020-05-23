@@ -1,8 +1,8 @@
-#include "tactiled_property.h"
+#include "step_property.h"
 
 #include <doctest.h>
 
-#include "tactiled_utils.h"
+#include "step_utils.h"
 
 using namespace step;
 

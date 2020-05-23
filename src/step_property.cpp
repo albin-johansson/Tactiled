@@ -25,11 +25,11 @@
 #ifndef TACTILED_PROPERTY_SOURCE
 #define TACTILED_PROPERTY_SOURCE
 
-#include "tactiled_property.h"
+#include "step_property.h"
 
 #include <iostream>
 
-#include "tactiled_exception.h"
+#include "step_exception.h"
 
 namespace step {
 

@@ -22,22 +22,44 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_TILED_MAP_HEADER
-#define TACTILED_TILED_MAP_HEADER
+#ifndef TACTILED_COLOR_SOURCE
+#define TACTILED_COLOR_SOURCE
 
-#include "tactiled_api.h"
+#include "step_color.h"
+
+#include "step_exception.h"
 
 namespace step {
+namespace {
 
-class TiledMap final {
- public:
-  STEP_API int value() const noexcept;
-};
+uint8_t from_hex(const std::string& str)
+{
+  try {
+    return static_cast<uint8_t>(std::stoul(str, nullptr, 16));
+  } catch (...) {
+    throw TactiledException{"Failed to convert hex string to value!"};
+  }
+}
+
+}  // namespace
+
+STEP_DEF
+Color::Color(const std::string& value)
+{
+  const auto len = value.length();
+  if (len == 6 || len == 8) {
+    // TODO this feature could be added to CTN 4.1
+    m_red = from_hex(value.substr(0, 2));
+    m_green = from_hex(value.substr(2, 2));
+    m_blue = from_hex(value.substr(4, 2));
+    if (len == 8) {
+      m_alpha = from_hex(value.substr(6, 2));
+    }
+  } else {
+    throw TactiledException{"Couldn't create color from color string!"};
+  }
+}
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "tactiled_map.cpp"
-#endif  // STEP_HEADER_ONLY
-
-#endif  // TACTILED_TILED_MAP_HEADER
+#endif  // TACTILED_COLOR_SOURCE

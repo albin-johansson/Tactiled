@@ -22,30 +22,31 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_EXCEPTION_HEADER
-#define TACTILED_EXCEPTION_HEADER
+#ifndef TACTILED_TYPES_HEADER
+#define TACTILED_TYPES_HEADER
 
-#include <exception>
-#include <utility>
+#include <json.hpp>
+#include <optional>
 
-#include "tactiled_types.h"
+#include "step_api.h"
 
 namespace step {
 
-class TactiledException final : public std::exception {
- public:
-  TactiledException() noexcept = default;
+using JSON = nlohmann::json;
 
-  explicit TactiledException(std::string what) : m_what{std::move(what)} {}
+using JSONValue = nlohmann::json::value_type;
+using JSONValueType = nlohmann::json::value_t;
 
-  ~TactiledException() noexcept override = default;
+using TypeError = nlohmann::json::type_error;
+using ParseError = nlohmann::json::parse_error;
+using OutOfRange = nlohmann::json::out_of_range;
 
-  CZString what() const noexcept override { return m_what.c_str(); }
+#define STEP_SERIALIZE_ENUM NLOHMANN_JSON_SERIALIZE_ENUM
 
- private:
-  std::string m_what;
-};
+using CZString = const char*;
+
+inline constexpr std::nullopt_t nothing = std::nullopt;
 
 }  // namespace step
 
-#endif  // TACTILED_EXCEPTION_HEADER
+#endif  // TACTILED_TYPES_HEADER

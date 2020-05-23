@@ -27,8 +27,8 @@
 
 #include <string>
 
-#include "tactiled_api.h"
-#include "tactiled_types.h"
+#include "step_api.h"
+#include "step_types.h"
 
 namespace step {
 

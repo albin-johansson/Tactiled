@@ -1,8 +1,8 @@
-#include "tactiled_color.h"
+#include "step_color.h"
 
 #include <doctest.h>
 
-#include "tactiled_exception.h"
+#include "step_exception.h"
 
 using namespace step;
 

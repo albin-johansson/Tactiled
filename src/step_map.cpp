@@ -22,29 +22,19 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_UTILS_HEADER
-#define TACTILED_UTILS_HEADER
+#ifndef TACTILED_TILED_MAP_SOURCE
+#define TACTILED_TILED_MAP_SOURCE
 
-#include "tactiled_api.h"
-#include "tactiled_types.h"
+#include "step_map.h"
 
-namespace step::detail {
+namespace step {
 
-/**
- * Parses the specified JSON file and returns the data associated with the
- * file as a JSON object.
- *
- * @param file the the JSON file that will be parsed.
- * @return a JSON object that contains the data from the parsed file.
- * @throws TactiledException if the file cannot be parsed.
- * @since 0.1.0
- */
-[[nodiscard]] STEP_API JSON parse_json(CZString file);
+STEP_DEF
+int TiledMap::value() const noexcept
+{
+  return 1;
+}
 
-}  // namespace step::detail
+}  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "tactiled_utils.cpp"
-#endif  // STEP_HEADER_ONLY
-
-#endif  // TACTILED_UTILS_HEADER
+#endif  // TACTILED_TILED_MAP_SOURCE

@@ -1,9 +1,9 @@
-#include "tactiled_point.h"
+#include "step_point.h"
 
 #include <doctest.h>
 
-#include "tactiled_exception.h"
-#include "tactiled_utils.h"
+#include "step_exception.h"
+#include "step_utils.h"
 
 using namespace step;
 

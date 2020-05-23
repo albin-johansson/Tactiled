@@ -2,25 +2,25 @@ cmake_minimum_required(VERSION 3.12)
 project(TactiledSource)
 
 set(SOURCE_FILES
-        ${TACTILED_INCLUDE_DIR}/tactiled_cfg.h
-        ${TACTILED_INCLUDE_DIR}/tactiled_api.h
-        ${TACTILED_INCLUDE_DIR}/tactiled_types.h
-        ${TACTILED_INCLUDE_DIR}/tactiled_exception.h
+        ${TACTILED_INCLUDE_DIR}/step_cfg.h
+        ${TACTILED_INCLUDE_DIR}/step_api.h
+        ${TACTILED_INCLUDE_DIR}/step_types.h
+        ${TACTILED_INCLUDE_DIR}/step_exception.h
 
-        ${TACTILED_INCLUDE_DIR}/tactiled_map.h
-        tactiled_map.cpp
+        ${TACTILED_INCLUDE_DIR}/step_map.h
+        step_map.cpp
 
-        ${TACTILED_INCLUDE_DIR}/tactiled_point.h
-        tactiled_point.cpp
+        ${TACTILED_INCLUDE_DIR}/step_point.h
+        step_point.cpp
 
-        ${TACTILED_INCLUDE_DIR}/tactiled_utils.h
-        tactiled_utils.cpp
+        ${TACTILED_INCLUDE_DIR}/step_utils.h
+        step_utils.cpp
 
-        ${TACTILED_INCLUDE_DIR}/tactiled_property.h
-        tactiled_property.cpp
+        ${TACTILED_INCLUDE_DIR}/step_property.h
+        step_property.cpp
 
-        ${TACTILED_INCLUDE_DIR}/tactiled_color.h
-        tactiled_color.cpp)
+        ${TACTILED_INCLUDE_DIR}/step_color.h
+        step_color.cpp)
 
 add_library(${TACTILED_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

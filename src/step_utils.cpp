@@ -25,11 +25,11 @@
 #ifndef TACTILED_UTILS_SOURCE
 #define TACTILED_UTILS_SOURCE
 
-#include "tactiled_utils.h"
+#include "step_utils.h"
 
 #include <fstream>
 
-#include "tactiled_exception.h"
+#include "step_exception.h"
 
 namespace step::detail {
 
