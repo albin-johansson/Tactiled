@@ -37,7 +37,7 @@ install:
       export PATH=${DEPS_DIR}/cmake/bin:${PATH}
     fi
   - sudo apt-get install lcov
-#  - sudo apt-get install gcov
+  #  - sudo apt-get install gcov
   - sudo apt-get update
   - lcov --version
   - gcov --version
@@ -65,7 +65,7 @@ after_success:
   - lcov --directory . --capture --output-file coverage.info --gcov-tool gcov-9
   - lcov --remove coverage.info 'test/*' 'include/lib/*' '/usr/*' --output-file coverage.info
   - lcov --list coverage.info
-  - bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverage reports"
+  - bash <(curl -s https://codecov.io/bash) -X gcov || echo "Codecov did not collect coverage reports"
 
 # THIS IS THE OLD WAY
 #  - cd ${TRAVIS_BUILD_DIR}
