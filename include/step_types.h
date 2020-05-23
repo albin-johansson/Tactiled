@@ -33,8 +33,6 @@
 namespace step {
 
 using JSON = nlohmann::json;
-
-using JSONValue = nlohmann::json::value_type;
 using JSONValueType = nlohmann::json::value_t;
 
 using TypeError = nlohmann::json::type_error;

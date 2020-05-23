@@ -44,7 +44,7 @@ class Point final {
    * @throws StepException if the point cannot be parsed.
    * @since 0.1.0
    */
-  STEP_API explicit Point(const JSONValue& json);
+  STEP_API explicit Point(const JSON& json);
 
   /**
    * Returns the x-coordinate associated with the point.

@@ -34,7 +34,7 @@
 namespace step {
 
 STEP_DEF
-Property::Property(const JSONValue& json)
+Property::Property(const JSON& json)
 {
   m_name = json.at("name").get<std::string>();
   m_type = json.at("type").get<Property::Type>();

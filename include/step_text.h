@@ -39,33 +39,118 @@ class Text final {
   enum class HAlign { Center, Right, Left, Justify };
   enum class VAlign { Center, Bottom, Top };
 
-  STEP_API explicit Text(const JSONValue& json);
+  STEP_API explicit Text(const JSON& json);
 
+  /**
+   * Returns the text associated with the Text instance. This property has no
+   * default value since it is a required attribute.
+   *
+   * @return the text associated with the Text instance.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::string text() const { return m_text; };
 
+  /**
+   * Returns the name of the font family associated with the text. The default
+   * value of this property is <b>"sans-serif"</b>.
+   *
+   * @return the name of the font family associated with the text.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::string font_family() const { return m_fontFamily; }
 
+  /**
+   * Returns the color associated with the text. The default value of this
+   * property is <b>#000000</b>.
+   *
+   * @return the color associated with the text.
+   * @since 0.1.0
+   */
   [[nodiscard]] Color color() const noexcept { return m_color; }
 
+  /**
+   * Returns the horizontal alignment of the text. The default value of this
+   * property is <b>Left</b>.
+   *
+   * @return the horizontal alignment of the text.
+   * @since 0.1.0
+   */
   [[nodiscard]] HAlign horizontal_alignment() const noexcept
   {
     return m_halign;
   }
 
+  /**
+   * Returns the vertical alignment of the text. The default value of this
+   * property is <b>Top</b>.
+   *
+   * @return the vertical alignment of the text.
+   * @since 0.1.0
+   */
   [[nodiscard]] VAlign vertical_alignment() const noexcept { return m_valign; }
 
+  /**
+   * Returns the pixel size of the associated font that the text uses. The
+   * default value of this property is <b>16</b>.
+   *
+   * @return the pixel size of the associated font.
+   * @since 0.1.0
+   */
   [[nodiscard]] int pixel_size() const noexcept { return m_pixelSize; }
 
+  /**
+   * Indicates whether or not the text is bold. The default value of
+   * this property is <b>false</b>.
+   *
+   * @return true if the text is bold; false otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool bold() const noexcept { return m_bold; }
 
+  /**
+   * Indicates whether or not the text is italic. The default value of
+   * this property is <b>false</b>.
+   *
+   * @return true if the text is italic; false otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool italic() const noexcept { return m_italic; }
 
+  /**
+   * Indicates whether or not the text uses kerning. The default value of
+   * this property is <b>true</b>.
+   *
+   * @return true if the text used kerning; false otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool kerning() const noexcept { return m_kerning; }
 
+  /**
+   * Indicates whether or not the text is strikethrough. The default value of
+   * this property is <b>false</b>.
+   *
+   * @return true if the text is strikethrough; false otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool strikeout() const noexcept { return m_strikeout; }
 
+  /**
+   * Indicates whether or not the text is underlined. The default value of
+   * this property is <b>false</b>.
+   *
+   * @return true if the text is underlined; false otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool underline() const noexcept { return m_underline; }
 
+  /**
+   * Indicates whether or not the text is wrapped within the object bounds.
+   * The default value of this property is <b>false</b>.
+   *
+   * @return true if the text is wrapped within the object bounds; false
+   * otherwise.
+   * @since 0.1.0
+   */
   [[nodiscard]] bool wrap() const noexcept { return m_wrap; }
 
  private:

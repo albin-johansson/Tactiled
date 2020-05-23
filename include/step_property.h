@@ -69,7 +69,7 @@ class Property final {
    * @throws OutOfRange if an expected key isn't in the JSON object.
    * @since 0.1.0
    */
-  STEP_API explicit Property(const JSONValue& json);
+  STEP_API explicit Property(const JSON& json);
 
   /**
    * Returns the string value associated with the property, if there is one.

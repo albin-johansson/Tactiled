@@ -32,7 +32,7 @@
 namespace step {
 
 STEP_DEF
-Point::Point(const JSONValue& json)
+Point::Point(const JSON& json)
 {
   try {
     m_x = json.at("x").get<double>();

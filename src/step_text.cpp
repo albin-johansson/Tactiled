@@ -34,7 +34,7 @@
 namespace step {
 
 STEP_DEF
-Text::Text(const JSONValue& json)
+Text::Text(const JSON& json)
 {
   if (!json.count("text")) {
     throw StepException{"Text > Missing \"text\" attribute!"};
