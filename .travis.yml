@@ -58,6 +58,7 @@ before_script:
   - cmake --version
 
 script:
+  - cd ${TRAVIS_BUILD_DIR}
   - dir
   - mkdir -p build
   - cd build
