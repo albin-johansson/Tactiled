@@ -76,7 +76,7 @@ Color::Color(std::string_view value)
   const auto withoutHash = value.substr(1);
   const auto len = withoutHash.length();
 
-  if (len == 6 || len == 8) {
+  try {
     // TODO this feature could be added to CTN 4.1
     m_red = from_hex(withoutHash.substr(0, 2));
     m_green = from_hex(withoutHash.substr(2, 2));
@@ -84,7 +84,9 @@ Color::Color(std::string_view value)
     if (len == 8) {
       m_alpha = from_hex(withoutHash.substr(6, 2));
     }
-  } else {
+  } catch (const StepException& e) {
+    throw;
+  } catch (...) {
     throw StepException{"Couldn't create Color!"};
   }
 }
