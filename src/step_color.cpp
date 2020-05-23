@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_COLOR_SOURCE
-#define TACTILED_COLOR_SOURCE
+#ifndef STEP_COLOR_SOURCE
+#define STEP_COLOR_SOURCE
 
 #include "step_color.h"
 
@@ -62,4 +62,4 @@ Color::Color(const std::string& value)
 
 }  // namespace step
 
-#endif  // TACTILED_COLOR_SOURCE
+#endif  // STEP_COLOR_SOURCE

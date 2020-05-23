@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_PROPERTY_SOURCE
-#define TACTILED_PROPERTY_SOURCE
+#ifndef STEP_PROPERTY_SOURCE
+#define STEP_PROPERTY_SOURCE
 
 #include "step_property.h"
 
@@ -118,4 +118,4 @@ std::optional<bool> Property::as_bool() const noexcept
 
 }  // namespace step
 
-#endif  // TACTILED_PROPERTY_SOURCE
+#endif  // STEP_PROPERTY_SOURCE

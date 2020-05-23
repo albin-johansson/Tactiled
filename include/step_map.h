@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_TILED_MAP_HEADER
-#define TACTILED_TILED_MAP_HEADER
+#ifndef STEP_TILED_MAP_HEADER
+#define STEP_TILED_MAP_HEADER
 
 #include "step_api.h"
 
@@ -40,4 +40,4 @@ class TiledMap final {
 #include "tactiled_map.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // TACTILED_TILED_MAP_HEADER
+#endif  // STEP_TILED_MAP_HEADER

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(Tactiled)
+project(Step)
 
 # Copies a file.
 #   target: the associated target.
@@ -27,19 +27,19 @@ endfunction()
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
-set(TACTILED_ROOT ${PROJECT_SOURCE_DIR})
-set(TACTILED_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
-set(TACTILED_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
-set(TACTILED_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/include/lib)
+set(STEP_ROOT ${PROJECT_SOURCE_DIR})
+set(STEP_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
+set(STEP_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
+set(STEP_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/include/lib)
 
-set(TACTILED_LIB_TARGET libTactiled)
-set(TACTILED_TEST_TARGET testTactiled)
+set(STEP_LIB_TARGET libstep)
+set(STEP_TEST_TARGET teststep)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    set(TACTILED_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/libTactiled${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    set(TACTILED_LIBRARIES "${CMAKE_BINARY_DIR}/src/libTactiled${CMAKE_IMPORT_LIBRARY_SUFFIX}")
+    set(STEP_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX}")
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX}")
 elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR DEFINED ENV{TRAVIS})
-    set(TACTILED_LIBRARIES "${CMAKE_BINARY_DIR}/src/libTactiled.so")
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep.so")
 else ()
     message(FATAL_ERROR "Did not recognize the platform!")
 endif ()

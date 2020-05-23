@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_POINT_HEADER
-#define TACTILED_POINT_HEADER
+#ifndef STEP_POINT_HEADER
+#define STEP_POINT_HEADER
 
 #include "step_api.h"
 #include "step_types.h"
@@ -73,4 +73,4 @@ class Point final {
 #include "tactiled_point.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // TACTILED_POINT_HEADER
+#endif  // STEP_POINT_HEADER

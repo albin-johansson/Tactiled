@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_TILED_MAP_SOURCE
-#define TACTILED_TILED_MAP_SOURCE
+#ifndef STEP_TILED_MAP_SOURCE
+#define STEP_TILED_MAP_SOURCE
 
 #include "step_map.h"
 
@@ -37,4 +37,4 @@ int TiledMap::value() const noexcept
 
 }  // namespace step
 
-#endif  // TACTILED_TILED_MAP_SOURCE
+#endif  // STEP_TILED_MAP_SOURCE

@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_PROPERTY_HEADER
-#define TACTILED_PROPERTY_HEADER
+#ifndef STEP_PROPERTY_HEADER
+#define STEP_PROPERTY_HEADER
 
 #include <variant>
 
@@ -205,4 +205,4 @@ STEP_SERIALIZE_ENUM(Property::Type,
 #include "tactiled_property.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // TACTILED_PROPERTY_HEADER
+#endif  // STEP_PROPERTY_HEADER

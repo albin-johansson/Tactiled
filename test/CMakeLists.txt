@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.12)
-project(TactiledTest)
+project(StepTest)
 
 set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/doctest)
 find_package(doctest REQUIRED)
 
-set(TACTILED_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resource)
+set(STEP_TEST_RESOURCES ${PROJECT_SOURCE_DIR}/resource)
 set(TEST_FILES
         unittest/test_main.cpp
         unittest/step_map_test.cpp
@@ -13,10 +13,10 @@ set(TEST_FILES
         unittest/step_color_test.cpp
         unittest/step_utils_test.cpp)
 
-add_executable(${TACTILED_TEST_TARGET} ${TEST_FILES})
-add_dependencies(${TACTILED_TEST_TARGET} ${TACTILED_LIB_TARGET})
+add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
+add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})
 
-set_target_properties(${TACTILED_TEST_TARGET} PROPERTIES
+set_target_properties(${STEP_TEST_TARGET} PROPERTIES
         CXX_STANDARD 17
         CXX_STANDARD_REQUIRED ON)
 
@@ -25,32 +25,32 @@ target_include_directories(Doctest INTERFACE doctest)
 
 include(doctest)
 
-add_test(NAME ${TACTILED_TEST_TARGET}
-        COMMAND ${TACTILED_TEST_TARGET})
+add_test(NAME ${STEP_TEST_TARGET}
+        COMMAND ${STEP_TEST_TARGET})
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(${TACTILED_TEST_TARGET} PRIVATE
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE
             -Wno-unused-result
             )
 endif ()
 
-target_include_directories(${TACTILED_TEST_TARGET} PUBLIC unittests)
-target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_LIBRARY_DIR})
-target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_INCLUDE_DIR})
-target_include_directories(${TACTILED_TEST_TARGET} SYSTEM PUBLIC ${TACTILED_SOURCE_DIR})
+target_include_directories(${STEP_TEST_TARGET} PUBLIC unittest)
+target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR})
+target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_INCLUDE_DIR})
+target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_SOURCE_DIR})
 
-target_link_libraries(${TACTILED_TEST_TARGET}
-        PUBLIC ${TACTILED_LIBRARIES}
+target_link_libraries(${STEP_TEST_TARGET}
+        PUBLIC ${STEP_LIBRARIES}
         PUBLIC Doctest)
 
 copy_directory_post_build(
-        ${TACTILED_TEST_TARGET}
-        ${TACTILED_TEST_RESOURCES}
+        ${STEP_TEST_TARGET}
+        ${STEP_TEST_RESOURCES}
         ${CMAKE_CURRENT_BINARY_DIR}/resource)
 
 if (WIN32)
     copy_file_post_build(
-            ${TACTILED_TEST_TARGET}
-            ${TACTILED_DYNAMIC_LIB}
+            ${STEP_TEST_TARGET}
+            ${STEP_DYNAMIC_LIB}
             ${CMAKE_CURRENT_BINARY_DIR})
 endif ()

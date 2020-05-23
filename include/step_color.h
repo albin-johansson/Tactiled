@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_COLOR_HEADER
-#define TACTILED_COLOR_HEADER
+#ifndef STEP_COLOR_HEADER
+#define STEP_COLOR_HEADER
 
 #include <string>
 
@@ -132,4 +132,4 @@ class Color final {
 #include "tactiled_color.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // TACTILED_COLOR_HEADER
+#endif  // STEP_COLOR_HEADER

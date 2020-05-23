@@ -22,12 +22,12 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_API_HEADER
-#define TACTILED_API_HEADER
+#ifndef STEP_API_HEADER
+#define STEP_API_HEADER
 
 #include "step_cfg.h"
 
-// Define TACTILED_API for any platform
+// Define STEP_API for any platform
 // https://atomheartother.github.io/c++/2018/07/12/CPPDynLib.html
 #if defined(_WIN32) && !defined(STEP_API)
 #ifdef WIN_EXPORT
@@ -49,4 +49,4 @@
 // Used for getters that aren't inlined
 #define STEP_QUERY [[nodiscard]] STEP_API
 
-#endif  // TACTILED_API_HEADER
+#endif  // STEP_API_HEADER

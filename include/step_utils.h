@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_UTILS_HEADER
-#define TACTILED_UTILS_HEADER
+#ifndef STEP_UTILS_HEADER
+#define STEP_UTILS_HEADER
 
 #include "step_api.h"
 #include "step_types.h"
@@ -47,4 +47,4 @@ namespace step::detail {
 #include "tactiled_utils.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // TACTILED_UTILS_HEADER
+#endif  // STEP_UTILS_HEADER

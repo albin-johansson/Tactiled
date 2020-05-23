@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_POINT_SOURCE
-#define TACTILED_POINT_SOURCE
+#ifndef STEP_POINT_SOURCE
+#define STEP_POINT_SOURCE
 
 #include "step_point.h"
 
@@ -44,4 +44,4 @@ Point::Point(const JSONValue& json)
 
 }  // namespace step
 
-#endif  // TACTILED_POINT_SOURCE
+#endif  // STEP_POINT_SOURCE

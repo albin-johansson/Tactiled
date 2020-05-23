@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_UTILS_SOURCE
-#define TACTILED_UTILS_SOURCE
+#ifndef STEP_UTILS_SOURCE
+#define STEP_UTILS_SOURCE
 
 #include "step_utils.h"
 
@@ -48,4 +48,4 @@ JSON parse_json(CZString file)
 
 }  // namespace step::detail
 
-#endif  // TACTILED_UTILS_SOURCE
+#endif  // STEP_UTILS_SOURCE

@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_EXCEPTION_HEADER
-#define TACTILED_EXCEPTION_HEADER
+#ifndef STEP_EXCEPTION_HEADER
+#define STEP_EXCEPTION_HEADER
 
 #include <exception>
 #include <utility>
@@ -48,4 +48,4 @@ class StepException final : public std::exception {
 
 }  // namespace step
 
-#endif  // TACTILED_EXCEPTION_HEADER
+#endif  // STEP_EXCEPTION_HEADER

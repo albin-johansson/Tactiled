@@ -22,9 +22,9 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_CFG_HEADER
-#define TACTILED_CFG_HEADER
+#ifndef STEP_CFG_HEADER
+#define STEP_CFG_HEADER
 
 // #define STEP_HEADER_ONLY
 
-#endif  // TACTILED_CFG_HEADER
+#endif  // STEP_CFG_HEADER

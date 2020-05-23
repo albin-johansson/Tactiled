@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef TACTILED_TYPES_HEADER
-#define TACTILED_TYPES_HEADER
+#ifndef STEP_TYPES_HEADER
+#define STEP_TYPES_HEADER
 
 #include <json.hpp>
 #include <optional>
@@ -49,4 +49,4 @@ inline constexpr std::nullopt_t nothing = std::nullopt;
 
 }  // namespace step
 
-#endif  // TACTILED_TYPES_HEADER
+#endif  // STEP_TYPES_HEADER
