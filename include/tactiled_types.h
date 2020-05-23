@@ -41,7 +41,7 @@ using TypeError = nlohmann::json::type_error;
 using ParseError = nlohmann::json::parse_error;
 using OutOfRange = nlohmann::json::out_of_range;
 
-#define TACTILED_SERIALIZE_ENUM NLOHMANN_JSON_SERIALIZE_ENUM
+#define STEP_SERIALIZE_ENUM NLOHMANN_JSON_SERIALIZE_ENUM
 
 using CZString = const char*;
 

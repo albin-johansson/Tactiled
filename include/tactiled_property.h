@@ -191,13 +191,13 @@ class Property final {
   Type m_type;
 };
 
-TACTILED_SERIALIZE_ENUM(Property::Type,
-                        {{Property::Type::String, "string"},
-                         {Property::Type::Int, "int"},
-                         {Property::Type::Float, "float"},
-                         {Property::Type::Bool, "bool"},
-                         {Property::Type::Color, "color"},
-                         {Property::Type::File, "file"}})
+STEP_SERIALIZE_ENUM(Property::Type,
+                    {{Property::Type::String, "string"},
+                     {Property::Type::Int, "int"},
+                     {Property::Type::Float, "float"},
+                     {Property::Type::Bool, "bool"},
+                     {Property::Type::Color, "color"},
+                     {Property::Type::File, "file"}})
 
 }  // namespace step
 
