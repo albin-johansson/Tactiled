@@ -13,6 +13,7 @@ set(TEST_FILES
         unittest/step_color_test.cpp
         unittest/step_utils_test.cpp
         unittest/step_text_test.cpp
+        unittest/step_tileset_test.cpp
         unittest/step_tile_test.cpp
         unittest/step_frame_test.cpp
         unittest/step_animation_test.cpp
