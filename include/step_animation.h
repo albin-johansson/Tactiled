@@ -33,12 +33,29 @@
 
 namespace step {
 
+/**
+ * The Animation class represents a collection of frames, used to animate tiles.
+ *
+ * @since 0.1.0
+ */
 class Animation final {
  public:
   friend void from_json(const JSON&, Animation&);
 
+  /**
+   * Returns the frames associated with the animation.
+   *
+   * @return the frames associated with the animation.
+   * @since 0.1.0
+   */
   [[nodiscard]] const std::vector<Frame>& frames() const { return m_frames; }
 
+  /**
+   * Returns the amount of frames that constitute the animation.
+   *
+   * @return the amount of frames that constitute the animation.
+   * @since 0.1.0
+   */
   [[nodiscard]] int length() const noexcept
   {
     return static_cast<int>(m_frames.size());
