@@ -3,7 +3,7 @@
  "imageheight":1024,
  "imagewidth":1024,
  "margin":0,
- "name":"outside",
+ "name":"external_tileset",
  "spacing":0,
  "tilecount":1024,
  "tiledversion":"1.3.4",
