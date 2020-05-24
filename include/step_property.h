@@ -107,8 +107,8 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<float> as_float() const noexcept; // FIXME might
-                                                             //  be double
+  STEP_QUERY std::optional<float> as_float() const noexcept;  // FIXME might
+                                                              //  be double
 
   /**
    * Returns the boolean value associated with the property, if there is one.
@@ -189,7 +189,7 @@ class Property final {
  private:
   std::string m_name;
   std::variant<std::string, Color, int, float, bool> m_value;
-  Type m_type;
+  Type m_type = Type::String;
 };
 
 STEP_SERIALIZE_ENUM(Property::Type,
