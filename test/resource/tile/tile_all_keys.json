@@ -1,0 +1,38 @@
+{
+  "id": 74,
+  "type": "foo",
+  "probability": 0.4,
+  "image": "some_image.png",
+  "imagewidth": 1024,
+  "imageheight": 768,
+  "properties": [
+    {
+      "name": "Galadriel",
+      "type": "string",
+      "value": "Denethor sucks"
+    },
+    {
+      "name": "Gandalf",
+      "type": "int",
+      "value": 7
+    }
+  ],
+  "animation": [
+    {
+      "tileid": 23,
+      "duration": 384
+    },
+    {
+      "tileid": 174,
+      "duration": 159
+    }
+  ],
+  "terrain": [
+    8,
+    2,
+    5,
+    7
+  ],
+  "objectgroup": {
+  }
+}
