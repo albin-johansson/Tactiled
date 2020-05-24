@@ -1,0 +1,78 @@
+#include "step_tile.h"
+
+#include <doctest.h>
+
+#include "step_utils.h"
+
+using namespace step;
+
+TEST_SUITE("Tile")
+{
+  TEST_CASE("Parse tile with all keys")
+  {
+    // FIXME this does NOT include "objectgroup" key
+    const auto path = "resource/tile/tile_complete.json";
+    const auto json = detail::parse_json(path);
+    const auto tile = json.get<Tile>();
+
+    CHECK(tile.id() == 74);
+
+    CHECK(tile.type());
+    CHECK(*tile.type() == "foo");
+
+    CHECK(tile.probability());
+    CHECK(*tile.probability() == 0.4);
+
+    CHECK(tile.image());
+    CHECK(*tile.image() == "some_image.png");
+
+    CHECK(tile.image_width());
+    CHECK(*tile.image_width() == 1024);
+
+    CHECK(tile.image_height());
+    CHECK(*tile.image_height() == 768);
+
+    SUBCASE("Testing parsing of animation")
+    {
+      const auto animation = tile.animation();
+
+      CHECK(animation);
+      CHECK(animation->length() == 2);
+
+      const auto firstFrame = animation->frames().at(0);
+      CHECK(firstFrame.tile_id() == 23);
+      CHECK(firstFrame.duration() == 384);
+
+      const auto secondFrame = animation->frames().at(1);
+      CHECK(secondFrame.tile_id() == 174);
+      CHECK(secondFrame.duration() == 159);
+    }
+
+    SUBCASE("Testing parsing of properties")
+    {
+      const auto properties = tile.properties();
+
+      const auto first = properties.at(0);
+      CHECK(first.name() == "Galadriel");
+      CHECK(first.type() == Property::Type::String);
+      CHECK(first.as_string());
+      CHECK(*first.as_string() == "Denethor sucks");
+
+      const auto second = properties.at(1);
+      CHECK(second.name() == "Gandalf");
+      CHECK(second.type() == Property::Type::Int);
+      CHECK(second.as_int());
+      CHECK(*second.as_int() == 7);
+    }
+
+    SUBCASE("Testing parsing of terrain")
+    {
+      CHECK(tile.terrain_at(Tile::TerrainPos::TopLeft) == 8);
+      CHECK(tile.terrain_at(Tile::TerrainPos::TopRight) == 2);
+      CHECK(tile.terrain_at(Tile::TerrainPos::BottomLeft) == 5);
+      CHECK(tile.terrain_at(Tile::TerrainPos::BottomRight) == 7);
+    }
+
+    // TODO objectgroup
+  }
+}

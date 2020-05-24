@@ -24,8 +24,12 @@ set(SOURCE_FILES
 
         ${STEP_INCLUDE_DIR}/step_text.h
         step_text.cpp
+        ${STEP_INCLUDE_DIR}/step_tile.h
+        step_tile.cpp
+
         ${STEP_INCLUDE_DIR}/step_frame.h
         step_frame.cpp
+
         ${STEP_INCLUDE_DIR}/step_animation.h
         step_animation.cpp)
 

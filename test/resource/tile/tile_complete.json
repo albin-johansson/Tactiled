@@ -34,5 +34,26 @@
     7
   ],
   "objectgroup": {
+    "draworder": "index",
+    "id": 2,
+    "name": "",
+    "objects": [
+      {
+        "height": 11.5434654050858,
+        "id": 1,
+        "name": "",
+        "rotation": 0,
+        "type": "",
+        "visible": true,
+        "width": 20.9107037256062,
+        "x": 7.47486694263749,
+        "y": 16.274393849793
+      }
+    ],
+    "opacity": 1,
+    "type": "objectgroup",
+    "visible": true,
+    "x": 0,
+    "y": 0
   }
 }
