@@ -53,11 +53,8 @@ void load_from(const JSON& json, Tileset& set)
     json.at("firstgid").get_to(set.m_firstGID);
   }
 
-  // TODO properties
-
   if (json.contains("properties")) {
-    //    for (const auto& [key, value] : json.at("properties").items()) {
-    //    }
+    // TODO properties
   }
 
   if (json.contains("tiles")) {
@@ -95,9 +92,8 @@ STEP_DEF void from_json(const JSON& json, Tileset& set)
     json.at("firstgid").get_to(set.m_firstGID);
     json.at("source").get_to(set.m_source);
 
-    const auto* str = set.m_source.c_str();
-    const auto externalJson = detail::parse_json(str);
-    load_from(externalJson, set);
+    const auto external = detail::parse_json(set.m_source.c_str());
+    load_from(external, set);
   } else {
     load_from(json, set);
   }
