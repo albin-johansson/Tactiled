@@ -54,7 +54,9 @@ void load_from(const JSON& json, Tileset& set)
   }
 
   if (json.contains("properties")) {
-    // TODO properties
+    for (const auto& [key, value] : json.at("properties").items()) {
+      set.m_properties.emplace_back(value.get<Property>());
+    }
   }
 
   if (json.contains("tiles")) {
