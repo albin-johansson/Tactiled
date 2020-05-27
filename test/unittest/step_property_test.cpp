@@ -2,16 +2,30 @@
 
 #include <doctest.h>
 
+#include <string>
+#include <string_view>
+
 #include "step_utils.h"
 
 using namespace step;
+
+namespace {
+
+Property mk_property(std::string_view file)
+{
+  using namespace std::string_literals;
+  const auto actualPath = "resource/property/"s + file.data();
+  const auto json = detail::parse_json(actualPath);
+  return json.get<Property>();
+}
+
+}  // namespace
 
 TEST_SUITE("General Property stuff")
 {
   TEST_CASE("Bad name")
   {
-    const auto path = "resource/property/property_bad_name.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("property_bad_name.json"), TypeError);
   }
 }
 
@@ -19,8 +33,7 @@ TEST_SUITE("String property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/string_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("string_property_valid.json");
     CHECK(property.name() == "String property name");
     CHECK(property.type() == Property::Type::String);
     CHECK(property.is_string());
@@ -35,8 +48,7 @@ TEST_SUITE("String property")
 
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/string_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("string_property_bad_value.json"), TypeError);
   }
 }
 
@@ -44,8 +56,7 @@ TEST_SUITE("Int property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/int_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("int_property_valid.json");
     CHECK(property.name() == "Sauron");
     CHECK(property.type() == Property::Type::Int);
     CHECK(property.is_int());
@@ -59,8 +70,7 @@ TEST_SUITE("Int property")
   }
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/int_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("int_property_bad_value.json"), TypeError);
   }
 }
 
@@ -68,8 +78,7 @@ TEST_SUITE("Float property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/float_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("float_property_valid.json");
     CHECK(property.name() == "Erebor");
     CHECK(property.type() == Property::Type::Float);
     CHECK(property.is_float());
@@ -83,8 +92,7 @@ TEST_SUITE("Float property")
   }
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/float_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("float_property_bad_value.json"), TypeError);
   }
 }
 
@@ -92,8 +100,7 @@ TEST_SUITE("Bool property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/bool_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("bool_property_valid.json");
     CHECK(property.name() == "Blue mountains");
     CHECK(property.type() == Property::Type::Bool);
     CHECK(property.is_bool());
@@ -107,8 +114,7 @@ TEST_SUITE("Bool property")
   }
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/bool_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("bool_property_bad_value.json"), TypeError);
   }
 }
 
@@ -116,8 +122,7 @@ TEST_SUITE("Color property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/color_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("color_property_valid.json");
     CHECK(property.name() == "Rohan");
     CHECK(property.type() == Property::Type::Color);
     CHECK(property.is_color());
@@ -131,8 +136,7 @@ TEST_SUITE("Color property")
   }
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/color_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("color_property_bad_value.json"), TypeError);
   }
 }
 
@@ -140,8 +144,7 @@ TEST_SUITE("File property")
 {
   TEST_CASE("Valid")
   {
-    const auto path = "resource/property/file_property_valid.json";
-    Property property{detail::parse_json(path)};
+    const auto property = mk_property("file_property_valid.json");
     CHECK(property.name() == "Mirkwood");
     CHECK(property.type() == Property::Type::File);
     CHECK(property.is_file());
@@ -156,7 +159,6 @@ TEST_SUITE("File property")
   }
   TEST_CASE("Bad value")
   {
-    const auto path = "resource/property/file_property_bad_value.json";
-    CHECK_THROWS_AS(Property{detail::parse_json(path)}, TypeError);
+    CHECK_THROWS_AS(mk_property("file_property_bad_value.json"), TypeError);
   }
 }

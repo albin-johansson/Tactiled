@@ -59,17 +59,7 @@ class Property final {
    */
   enum class Type { String, Int, Float, Bool, Color, File };
 
-  /**
-   * Creates a property based on the supplied JSON object. The constructor
-   * will throw if the parsing fails.
-   *
-   * @param json the JSON object that contains the data of the property that
-   * will be created.
-   * @throws TypeError if there is a type-mismatch when parsing the JSON object.
-   * @throws OutOfRange if an expected key isn't in the JSON object.
-   * @since 0.1.0
-   */
-  STEP_API explicit Property(const JSON& json);
+  friend void from_json(const JSON&, Property&);
 
   /**
    * Returns the string value associated with the property, if there is one.
@@ -191,6 +181,8 @@ class Property final {
   std::variant<std::string, Color, int, float, bool> m_value;
   Type m_type = Type::String;
 };
+
+STEP_API void from_json(const JSON& json, Property& property);
 
 STEP_SERIALIZE_ENUM(Property::Type,
                     {{Property::Type::String, "string"},

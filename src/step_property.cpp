@@ -34,37 +34,71 @@
 namespace step {
 
 STEP_DEF
-Property::Property(const JSON& json)
+void from_json(const JSON& json, Property& property)
 {
-  m_name = json.at("name").get<std::string>();
-  m_type = json.at("type").get<Property::Type>();
-  switch (m_type) {
-    case Type::Int: {
-      m_value.emplace<int>(json.at("value").get<int>());
+  property.m_name = json.at("name").get<std::string>();
+  property.m_type = json.at("type").get<Property::Type>();
+  switch (property.m_type) {
+    case Property::Type::Int: {
+      property.m_value.emplace<int>(json.at("value").get<int>());
       break;
     }
-    case Type::Float: {
-      m_value.emplace<float>(json.at("value").get<float>());
+    case Property::Type::Float: {
+      property.m_value.emplace<float>(json.at("value").get<float>());
       break;
     }
-    case Type::Bool: {
-      m_value.emplace<bool>(json.at("value").get<bool>());
+    case Property::Type::Bool: {
+      property.m_value.emplace<bool>(json.at("value").get<bool>());
       break;
     }
-    case Type::Color: {
-      m_value.emplace<Color>(json.at("value").get<std::string>());
+    case Property::Type::Color: {
+      property.m_value.emplace<Color>(json.at("value").get<std::string>());
       break;
     }
-    case Type::File:
+    case Property::Type::File:
       [[fallthrough]];
-    case Type::String: {
-      m_value.emplace<std::string>(json.at("value").get<std::string>());
+    case Property::Type::String: {
+      property.m_value.emplace<std::string>(
+          json.at("value").get<std::string>());
       break;
     }
     default:
       throw StepException{"Unknown property type!"};
   }
 }
+
+// STEP_DEF
+// Property::Property(const JSON& json)
+//{
+//  m_name = json.at("name").get<std::string>();
+//  m_type = json.at("type").get<Property::Type>();
+//  switch (m_type) {
+//    case Type::Int: {
+//      m_value.emplace<int>(json.at("value").get<int>());
+//      break;
+//    }
+//    case Type::Float: {
+//      m_value.emplace<float>(json.at("value").get<float>());
+//      break;
+//    }
+//    case Type::Bool: {
+//      m_value.emplace<bool>(json.at("value").get<bool>());
+//      break;
+//    }
+//    case Type::Color: {
+//      m_value.emplace<Color>(json.at("value").get<std::string>());
+//      break;
+//    }
+//    case Type::File:
+//      [[fallthrough]];
+//    case Type::String: {
+//      m_value.emplace<std::string>(json.at("value").get<std::string>());
+//      break;
+//    }
+//    default:
+//      throw StepException{"Unknown property type!"};
+//  }
+//}
 
 STEP_DEF
 std::optional<std::string> Property::as_string() const noexcept
