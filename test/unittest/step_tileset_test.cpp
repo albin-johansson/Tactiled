@@ -2,6 +2,7 @@
 
 #include <doctest.h>
 
+#include "step_exception.h"
 #include "step_utils.h"
 
 using namespace step;
@@ -40,6 +41,7 @@ TEST_SUITE("Tileset")
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
   }
+
   TEST_CASE("Parsing embedded tileset")
   {
     const auto tileset = mk_tileset("embedded_tileset.json");
@@ -64,5 +66,12 @@ TEST_SUITE("Tileset")
   {
     const auto tileset = mk_tileset("embedded_tileset_no_gid.json");
     CHECK(tileset.first_gid() == 1);
+  }
+
+  TEST_CASE("Tileset missing type attribute")
+  {
+    CHECK_THROWS_WITH_AS(mk_tileset("tileset_wrong_type.json"),
+                         "Tileset > \"type\" must be \"tileset\"!",
+                         StepException);
   }
 }

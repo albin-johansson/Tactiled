@@ -1,0 +1,16 @@
+{
+  "firstgid": 7,
+  "columns": 48,
+  "image": "sam/is/the/hero.png",
+  "imageheight": 960,
+  "imagewidth": 1270,
+  "margin": 77,
+  "name": "embedded_tileset",
+  "spacing": 82,
+  "tilecount": 63,
+  "tiledversion": "1.3.4",
+  "tileheight": 27,
+  "tilewidth": 55,
+  "version": 1.2,
+  "type": "sometype"
+}
