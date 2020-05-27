@@ -25,6 +25,8 @@
 #ifndef STEP_UTILS_HEADER
 #define STEP_UTILS_HEADER
 
+#include <string_view>
+
 #include "step_api.h"
 #include "step_types.h"
 
@@ -39,7 +41,7 @@ namespace step::detail {
  * @throws StepException if the file cannot be parsed.
  * @since 0.1.0
  */
-[[nodiscard]] STEP_API JSON parse_json(CZString file);
+[[nodiscard]] STEP_API JSON parse_json(std::string_view file);
 
 template <typename T>
 void bind_opt(const JSON& json, CZString key, std::optional<T>& attribute)

@@ -34,14 +34,14 @@
 namespace step::detail {
 
 STEP_DEF
-JSON parse_json(CZString file)
+JSON parse_json(std::string_view file)
 {
   try {
     JSON json;
-    std::ifstream stream{file};
+    std::ifstream stream{file.data()};
     stream >> json;
     return json;
-  } catch (...) {
+  } catch (...) {  // TODO remove this try/catch
     throw StepException{"Failed to parse JSON file!"};
   }
 }

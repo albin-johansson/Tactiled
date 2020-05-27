@@ -35,11 +35,19 @@
 
 namespace step {
 
+class Tileset;
+
+/**
+ * The Tileset class represents a collection of tiles associated with an
+ * image. All tilesets have a global ID (GID) associated with them, that
+ * starts at 1 for the first tileset.
+ *
+ * @since 0.1.0
+ */
 class Tileset final {
  public:
-  STEP_API explicit Tileset(const JSON& json);
-
-  STEP_QUERY static std::unique_ptr<Tileset> unique(const JSON& json);
+  friend void from_json(const JSON&, Tileset&);
+  friend void load_from(const JSON&, Tileset&);
 
   /**
    * Returns the GID (Global ID) of the first tile in the tileset.
@@ -118,48 +126,86 @@ class Tileset final {
   [[nodiscard]] int spacing() const noexcept { return m_spacing; }
 
   /**
-   * Returns the path to the external
+   * Returns the path to the external file that holds the actual tileset
+   * data, if this tileset isn't embedded. This method will return the empty
+   * string if the tileset is embedded.
    *
-   * @return
+   * @return the path to the external file that holds the tileset data if the
+   * the tileset is external; the empty string is returned if the tileset is
+   * embedded.
+   * @since 0.1.0
    */
   [[nodiscard]] std::string source() const noexcept { return m_source; }
 
+  /**
+   * Returns the path to the image associated with the tileset.
+   *
+   * @return the path to the image associated with the tileset.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::string image() const noexcept { return m_image; }
 
   // TODO way to obtain properties
 
+  /**
+   * Returns the name associated with the tileset.
+   *
+   * @return the name associated with the tileset.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::string name() const noexcept { return m_name; }
 
+  /**
+   * Returns the background color of the tileset. This property is optional.
+   *
+   * @return the background color of the tileset; nothing if there is none.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::optional<Color> background_color() const noexcept
   {
     return m_backgroundColor;
   }
 
+  /**
+   * Returns the transparent color of the tileset. This property is optional.
+   *
+   * @return the transparent color of the tileset; nothing if there is none.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::optional<Color> transparent_color() const noexcept
   {
     return m_transparentColor;
   }
 
+  /**
+   * Returns the Tiled version associated with the tileset.
+   *
+   * @return the Tiled version associated with the tileset.
+   * @since 0.1.0
+   */
   [[nodiscard]] std::string tiled_version() const noexcept
   {
     return m_tiledVersion;
   }
 
-  [[nodiscard]] std::string json_version() const noexcept
-  {
-    return m_jsonVersion;
-  }
+  /**
+   * Returns the JSON format version associated with the tileset.
+   *
+   * @return the JSON format version associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] double json_version() const noexcept { return m_jsonVersion; }
 
  private:
-  int m_firstGID;
-  int m_tileWidth;
-  int m_tileHeight;
-  int m_tileCount;
-  int m_nColumns;
-  int m_imageWidth;
-  int m_imageHeight;
-  int m_margin;
-  int m_spacing;
+  int m_firstGID = 1;
+  int m_tileWidth = 0;
+  int m_tileHeight = 0;
+  int m_tileCount = 0;
+  int m_nColumns = 0;
+  int m_imageWidth = 0;
+  int m_imageHeight = 0;
+  int m_margin = 0;
+  int m_spacing = 0;
   std::vector<Tile> m_tiles;
   std::vector<Property> m_properties;
 
@@ -169,16 +215,18 @@ class Tileset final {
   std::optional<Color> m_backgroundColor;   // OPTIONAL
   std::optional<Color> m_transparentColor;  // OPTIONAL
   std::string m_tiledVersion;
-  std::string m_jsonVersion;
+  double m_jsonVersion = 0;
 
   // TODO Grid  // OPTIONAL
   // TODO std::vector<Terrain> m_terrains; // OPTIONAL
   // TODO TileOffset m_tileOffset; // OPTIONAL
   // TODO type which is always tileset?
   // TODO std::vector<WangSet> m_wangSets;
-
-  void load_from(const JSON& json);
 };
+
+STEP_API void from_json(const JSON& json, Tileset& set);
+
+STEP_API void load_from(const JSON& json, Tileset& set);
 
 }  // namespace step
 

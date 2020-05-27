@@ -32,76 +32,74 @@
 
 namespace step {
 
-// This is what a tileset looks like when it isn't embedded in a map
-//  "tilesets":[
-//  {
-//    "firstgid":1,
-//        "source":"terrain.json"
-//  }],
-
 STEP_DEF
-Tileset::Tileset(const JSON& json)
-{
-  if (json.contains("source")) {
-    m_firstGID = json.at("firstgid").get<int>();
-    m_source = json.at("source").get<std::string>();
-    load_from(detail::parse_json(m_source.c_str()));
-  } else {
-    load_from(json);
-  }
-}
-
-STEP_DEF
-std::unique_ptr<Tileset> Tileset::unique(const JSON& json)
-{
-  return std::make_unique<Tileset>(json);
-}
-
-STEP_DEF
-void Tileset::load_from(const JSON& json)
+void load_from(const JSON& json, Tileset& set)
 {
   if (json.at("type").get<std::string>() != "tileset") {
     throw StepException{"Tileset > \"type\" must be \"tileset\"!"};
   }
 
-  m_firstGID = json.at("firstgid").get<int>();
-  m_tileWidth = json.at("tilewidth").get<int>();
-  m_tileHeight = json.at("tileheight").get<int>();
-  m_tileCount = json.at("tilecount").get<int>();
-  m_nColumns = json.at("columns").get<int>();
-  m_imageWidth = json.at("imagewidth").get<int>();
-  m_imageHeight = json.at("imageheight").get<int>();
-  m_margin = json.at("margin").get<int>();
-  m_spacing = json.at("spacing").get<int>();
-  m_image = json.at("image").get<std::string>();
+  json.at("tilewidth").get_to(set.m_tileWidth);
+  json.at("tileheight").get_to(set.m_tileHeight);
+  json.at("tilecount").get_to(set.m_tileCount);
+  json.at("columns").get_to(set.m_nColumns);
+  json.at("imagewidth").get_to(set.m_imageWidth);
+  json.at("imageheight").get_to(set.m_imageHeight);
+  json.at("margin").get_to(set.m_margin);
+  json.at("spacing").get_to(set.m_spacing);
+  json.at("image").get_to(set.m_image);
+
+  if (json.contains("firstgid")) {
+    json.at("firstgid").get_to(set.m_firstGID);
+  }
 
   // TODO properties
 
-  //  if (json.count("properties")) {
-  //    for (const auto& [key, value] : json.at("properties").items()) {
-  //    }
-  //  }
-
-  for (const auto& [key, value] : json.at("tiles").items()) {
-    m_tiles.push_back(value.get<Tile>());
+  if (json.contains("properties")) {
+    //    for (const auto& [key, value] : json.at("properties").items()) {
+    //    }
   }
 
-  m_name = json.at("name").get<std::string>();
+  if (json.contains("tiles")) {
+    for (const auto& [key, value] : json.at("tiles").items()) {
+      set.m_tiles.push_back(value.get<Tile>());
+    }
+  }
+
+  json.at("name").get_to(set.m_name);
 
   if (json.count("backgroundcolor")) {
-    m_backgroundColor = Color{json.at("backgroundcolor").get<std::string>()};
+    // TODO add color from_json
+    set.m_backgroundColor =
+        Color{json.at("backgroundcolor").get<std::string>()};
   }
 
   if (json.count("transparentcolor")) {
-    m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
+    // TODO add color from_json
+    set.m_transparentColor =
+        Color{json.at("transparentcolor").get<std::string>()};
   }
 
   if (json.count("tiledversion")) {
-    m_tiledVersion = json.at("tiledversion").get<std::string>();
+    json.at("tiledversion").get_to(set.m_tiledVersion);
   }
 
   if (json.count("version")) {
-    m_jsonVersion = json.at("version").get<std::string>();
+    json.at("version").get_to(set.m_jsonVersion);
+  }
+}
+
+STEP_DEF void from_json(const JSON& json, Tileset& set)
+{
+  if (json.contains("source")) {
+    json.at("firstgid").get_to(set.m_firstGID);
+    json.at("source").get_to(set.m_source);
+
+    const auto* str = set.m_source.c_str();
+    const auto externalJson = detail::parse_json(str);
+    load_from(externalJson, set);
+  } else {
+    load_from(json, set);
   }
 }
 
