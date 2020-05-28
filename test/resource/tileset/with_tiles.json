@@ -40,7 +40,7 @@
                  "value":9000
                 }, 
                 {
-                 "name":"name",
+                 "name":"frodo",
                  "type":"string",
                  "value":"sandTile"
                 }]

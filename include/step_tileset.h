@@ -125,6 +125,26 @@ class Tileset final {
    */
   [[nodiscard]] int spacing() const noexcept { return m_spacing; }
 
+  /**
+   * Returns the tiles associated with the tileset that have custom
+   * properties. This property is optional.
+   *
+   * @return the tiles associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] const std::vector<Tile>& tiles() const noexcept
+  {
+    return m_tiles;
+  }
+
+  /**
+   * Returns the tiles associated with the tileset that have custom
+   * properties. This property is optional.
+   *
+   * @return the tiles associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] std::vector<Tile>& tiles() noexcept { return m_tiles; }
 
   /**
    * Returns the properties associated with the tileset.

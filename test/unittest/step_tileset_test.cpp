@@ -7,8 +7,6 @@
 
 using namespace step;
 
-// TODO test tiles
-
 namespace {
 
 Tileset mk_tileset(std::string_view path)
@@ -93,6 +91,72 @@ TEST_SUITE("Tileset")
       CHECK(secondProperty.type() == Property::Type::String);
       REQUIRE(secondProperty.as_string());
       CHECK(secondProperty.as_string() == "Hello");
+    }
+  }
+
+  TEST_CASE("Tileset with tiles")
+  {
+    SUBCASE("Check first tile")
+    {
+      const auto tileset = mk_tileset("with_tiles.json");
+      const auto& tiles = tileset.tiles();
+
+      REQUIRE(tiles.size() == 2);
+      const auto tile = tiles.at(0);
+
+      CHECK(tile.id() == 187);
+
+      SUBCASE("Animation")
+      {
+        const auto animation = tile.animation();
+        REQUIRE(animation);
+        CHECK(animation->length() == 3);
+
+        const auto& frames = animation->frames();
+        for (int i = 0; i < 3; ++i) {
+          CHECK(frames.at(i).duration() == 900);
+          CHECK(frames.at(i).tile_id() == 187 + i);
+        }
+      }
+
+      SUBCASE("Properties")
+      {
+        const auto properties = tile.properties();  // TODO change to const&
+        REQUIRE(properties.size() == 1);
+
+        const auto property = properties.at(0);
+        CHECK(property.name() == "name");
+        CHECK(property.type() == Property::Type::String);
+        REQUIRE(property.as_string());
+        CHECK(property.as_string() == "waterTile");
+      }
+    }
+
+    SUBCASE("Check second tile")
+    {
+      auto tileset = mk_tileset("with_tiles.json");
+      auto& tiles = tileset.tiles();
+
+      REQUIRE(tiles.size() == 2);
+      const auto tile = tiles.at(1);
+
+      CHECK(tile.id() == 370);
+
+      SUBCASE("Properties")
+      {
+        const auto properties = tile.properties();
+        REQUIRE(properties.size() == 2);
+
+        const auto firstProperty = properties.at(0);
+        CHECK(firstProperty.name() == "coolness");
+        REQUIRE(firstProperty.type() == Property::Type::Int);
+        CHECK(*firstProperty.as_int() == 9000);
+
+        const auto secondProperty = properties.at(1);
+        CHECK(secondProperty.name() == "frodo");
+        REQUIRE(secondProperty.type() == Property::Type::String);
+        CHECK(*secondProperty.as_string() == "sandTile");
+      }
     }
   }
 
