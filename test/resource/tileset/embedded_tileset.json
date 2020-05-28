@@ -23,5 +23,26 @@
   "tileoffset": {
     "x": 1574,
     "y": 753
-  }
+  },
+  "terrains": [
+    {
+      "name": "ground",
+      "properties": [
+        {
+          "name": "foo",
+          "type": "bool",
+          "value": true
+        }
+      ],
+      "tile": 4
+    },
+    {
+      "name": "chasm",
+      "tile": 12
+    },
+    {
+      "name": "cliff",
+      "tile": 36
+    }
+  ]
 }

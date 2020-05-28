@@ -81,6 +81,32 @@ TEST_SUITE("Tileset")
       CHECK(tileOffset->x() == 1574);
       CHECK(tileOffset->y() == 753);
     }
+
+    SUBCASE("Parsing terrains")
+    {
+      const auto& terrains = tileset.terrains();
+      REQUIRE(terrains.size() == 3);
+
+      const auto firstTerrain = terrains.at(0);
+      CHECK(firstTerrain.name() == "ground");
+      CHECK(firstTerrain.tile() == 4);
+
+      {
+        REQUIRE(!firstTerrain.properties().empty());
+        const auto property = firstTerrain.properties().at(0);
+        CHECK(property.name() == "foo");
+        REQUIRE(property.type() == Property::Type::Bool);
+        CHECK(*property.as_bool());
+      }
+
+      const auto secondTerrain = terrains.at(1);
+      CHECK(secondTerrain.name() == "chasm");
+      CHECK(secondTerrain.tile() == 12);
+
+      const auto thirdTerrain = terrains.at(2);
+      CHECK(thirdTerrain.name() == "cliff");
+      CHECK(thirdTerrain.tile() == 36);
+    }
   }
 
   TEST_CASE("Tileset with properties")

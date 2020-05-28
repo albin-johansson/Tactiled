@@ -1,0 +1,11 @@
+{
+  "tile": 64,
+  "name": "water",
+  "properties": [
+    {
+      "name": "health",
+      "type": "int",
+      "value": 87
+    }
+  ]
+}

@@ -25,10 +25,13 @@
 #ifndef STEP_TILESET_HEADER
 #define STEP_TILESET_HEADER
 
+#include <vector>
+
 #include "step_api.h"
 #include "step_color.h"
 #include "step_grid.h"
 #include "step_property.h"
+#include "step_terrain.h"
 #include "step_tile.h"
 #include "step_tile_offset.h"
 #include "step_types.h"
@@ -169,6 +172,27 @@ class Tileset final {
   }
 
   /**
+   * Returns the terrains associated with the tileset. This property is
+   * optional.
+   *
+   * @return the terrains associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] const std::vector<Terrain>& terrains() const noexcept
+  {
+    return m_terrains;
+  }
+
+  /**
+   * Returns the terrains associated with the tileset. This property is
+   * optional.
+   *
+   * @return the terrains associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] std::vector<Terrain>& terrains() noexcept { return m_terrains; }
+
+  /**
    * Returns the path to the external file that holds the actual tileset
    * data, if this tileset isn't embedded. This method will return the empty
    * string if the tileset is embedded.
@@ -269,6 +293,7 @@ class Tileset final {
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
   std::vector<Property> m_properties;  // TODO consider changing this
+  std::vector<Terrain> m_terrains;
 
   std::string m_image;
   std::string m_source;
@@ -281,7 +306,6 @@ class Tileset final {
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
 
-  // TODO std::vector<Terrain> m_terrains; // OPTIONAL
   // TODO std::vector<WangSet> m_wangSets;
 };
 

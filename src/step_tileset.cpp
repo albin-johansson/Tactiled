@@ -65,6 +65,12 @@ void load_from(const JSON& json, Tileset& set)
     }
   }
 
+  if (json.contains("terrains")) {
+    for (const auto& [key, value] : json.at("terrains").items()) {
+      set.m_terrains.emplace_back(value.get<Terrain>());
+    }
+  }
+
   json.at("name").get_to(set.m_name);
 
   if (json.count("backgroundcolor")) {

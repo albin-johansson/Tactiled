@@ -17,7 +17,9 @@ set(TEST_FILES
         unittest/step_tile_test.cpp
         unittest/step_frame_test.cpp
         unittest/step_animation_test.cpp
-        unittest/step_grid_test.cpp unittest/step_tile_offset_test.cpp)
+        unittest/step_grid_test.cpp
+        unittest/step_tile_offset_test.cpp
+        unittest/step_terrain_test.cpp)
 
 add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
 add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})
