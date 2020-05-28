@@ -41,6 +41,7 @@ TEST_SUITE("Tileset")
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
     CHECK(!tileset.grid());
+    CHECK(!tileset.tile_offset());
   }
 
   TEST_CASE("Parsing embedded tileset")
@@ -64,12 +65,21 @@ TEST_SUITE("Tileset")
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
 
-    SUBCASE("Parsing grid") {
+    SUBCASE("Parsing grid")
+    {
       const auto grid = tileset.grid();
       REQUIRE(grid);
       CHECK(grid->orientation() == Grid::Orientation::Isometric);
       CHECK(grid->width() == 48);
       CHECK(grid->height() == 64);
+    }
+
+    SUBCASE("Parsing tile offset")
+    {
+      const auto tileOffset = tileset.tile_offset();
+      REQUIRE(tileOffset);
+      CHECK(tileOffset->x() == 1574);
+      CHECK(tileOffset->y() == 753);
     }
   }
 

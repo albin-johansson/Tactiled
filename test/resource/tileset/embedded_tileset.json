@@ -19,5 +19,9 @@
     "orientation": "isometric",
     "height": 64,
     "width": 48
+  },
+  "tileoffset": {
+    "x": 1574,
+    "y": 753
   }
 }

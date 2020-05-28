@@ -30,6 +30,7 @@
 #include "step_grid.h"
 #include "step_property.h"
 #include "step_tile.h"
+#include "step_tile_offset.h"
 #include "step_types.h"
 
 namespace step {
@@ -226,6 +227,18 @@ class Tileset final {
   [[nodiscard]] std::optional<Grid> grid() const noexcept { return m_grid; }
 
   /**
+   * Returns the tile offset associated with the tileset. This property is
+   * optional.
+   *
+   * @return the tile offset associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] std::optional<TileOffset> tile_offset() const noexcept
+  {
+    return m_tileOffset;
+  }
+
+  /**
    * Returns the Tiled version associated with the tileset.
    *
    * @return the Tiled version associated with the tileset.
@@ -263,6 +276,7 @@ class Tileset final {
   std::optional<Color> m_backgroundColor;
   std::optional<Color> m_transparentColor;
   std::optional<Grid> m_grid;
+  std::optional<TileOffset> m_tileOffset;
 
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
@@ -278,5 +292,9 @@ STEP_API void from_json(const JSON& json, Tileset& set);
 STEP_API void load_from(const JSON& json, Tileset& set);
 
 }  // namespace step
+
+#ifdef STEP_HEADER_ONLY
+#include "step_tileset.cpp"
+#endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_TILESET_HEADER

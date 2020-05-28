@@ -80,6 +80,7 @@ void load_from(const JSON& json, Tileset& set)
   }
 
   detail::bind_opt(json, "grid", set.m_grid);
+  detail::bind_opt(json, "tileoffset", set.m_tileOffset);
 
   if (json.count("tiledversion")) {
     json.at("tiledversion").get_to(set.m_tiledVersion);
