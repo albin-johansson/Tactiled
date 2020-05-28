@@ -35,7 +35,10 @@ set(SOURCE_FILES
         step_frame.cpp
 
         ${STEP_INCLUDE_DIR}/step_animation.h
-        step_animation.cpp)
+        step_animation.cpp
+
+        ${STEP_INCLUDE_DIR}/step_grid.h
+        step_grid.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
