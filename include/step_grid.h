@@ -25,6 +25,7 @@
 #ifndef STEP_GRID_HEADER
 #define STEP_GRID_HEADER
 
+#include "step_api.h"
 #include "step_types.h"
 
 namespace step {
@@ -87,5 +88,9 @@ STEP_SERIALIZE_ENUM(Grid::Orientation,
                      {Grid::Orientation::Isometric, "isometric"}})
 
 }  // namespace step
+
+#ifdef STEP_HEADER_ONLY
+#include "step_grid.cpp"
+#endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_GRID_HEADER
