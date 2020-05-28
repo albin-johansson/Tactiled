@@ -7,8 +7,6 @@
 
 using namespace step;
 
-// TODO test properties
-
 namespace {
 
 Tileset mk_tileset(std::string_view path)
@@ -62,6 +60,36 @@ TEST_SUITE("Tileset")
     CHECK(tileset.tile_height() == 27);
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
+  }
+
+  TEST_CASE("Tileset with properties")
+  {
+    SUBCASE("Const properties")
+    {
+      const auto tileset = mk_tileset("with_properties.json");
+      const auto& properties = tileset.properties();
+
+      REQUIRE(properties.size() == 2);
+
+      const auto firstProperty = properties.at(0);
+      CHECK(firstProperty.name() == "aFloat");
+      CHECK(firstProperty.type() == Property::Type::Float);
+      REQUIRE(firstProperty.as_float());
+      CHECK(firstProperty.as_float() == 7.5f);
+    }
+
+    SUBCASE("Non-const properties")
+    {
+      auto tileset = mk_tileset("with_properties.json");
+      auto& properties = tileset.properties();
+
+      const auto secondProperty = properties.at(1);
+
+      CHECK(secondProperty.name() == "aString");
+      CHECK(secondProperty.type() == Property::Type::String);
+      REQUIRE(secondProperty.as_string());
+      CHECK(secondProperty.as_string() == "Hello");
+    }
   }
 
   TEST_CASE("Embedded tileset without explicit first GID")

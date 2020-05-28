@@ -125,6 +125,29 @@ class Tileset final {
    */
   [[nodiscard]] int spacing() const noexcept { return m_spacing; }
 
+
+  /**
+   * Returns the properties associated with the tileset.
+   *
+   * @return the properties associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] const std::vector<Property>& properties() const noexcept
+  {
+    return m_properties;
+  }
+
+  /**
+   * Returns the properties associated with the tileset.
+   *
+   * @return the properties associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] std::vector<Property>& properties() noexcept
+  {
+    return m_properties;
+  }
+
   /**
    * Returns the path to the external file that holds the actual tileset
    * data, if this tileset isn't embedded. This method will return the empty
@@ -144,8 +167,6 @@ class Tileset final {
    * @since 0.1.0
    */
   [[nodiscard]] std::string image() const noexcept { return m_image; }
-
-  // TODO way to obtain properties
 
   /**
    * Returns the name associated with the tileset.
