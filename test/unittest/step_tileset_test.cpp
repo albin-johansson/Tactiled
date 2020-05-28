@@ -7,6 +7,8 @@
 
 using namespace step;
 
+// TODO test tiles
+
 namespace {
 
 Tileset mk_tileset(std::string_view path)
