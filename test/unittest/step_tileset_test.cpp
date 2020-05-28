@@ -58,6 +58,8 @@ TEST_SUITE("Tileset")
     CHECK(tileset.spacing() == 82);
     CHECK(tileset.tile_width() == 55);
     CHECK(tileset.tile_height() == 27);
+    CHECK(tileset.background_color() == Color{"#12345678"});
+    CHECK(tileset.transparent_color() == Color{"#CCDDEEFF"});
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
   }
