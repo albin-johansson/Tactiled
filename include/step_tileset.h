@@ -202,7 +202,7 @@ class Tileset final {
    * @return the background color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  [[nodiscard]] std::optional<Color> background_color() const noexcept
+  [[nodiscard]] Maybe<Color> background_color() const noexcept
   {
     return m_backgroundColor;
   }
@@ -213,7 +213,7 @@ class Tileset final {
    * @return the transparent color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  [[nodiscard]] std::optional<Color> transparent_color() const noexcept
+  [[nodiscard]] Maybe<Color> transparent_color() const noexcept
   {
     return m_transparentColor;
   }
@@ -224,7 +224,7 @@ class Tileset final {
    * @return the grid associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::optional<Grid> grid() const noexcept { return m_grid; }
+  [[nodiscard]] Maybe<Grid> grid() const noexcept { return m_grid; }
 
   /**
    * Returns the tile offset associated with the tileset. This property is
@@ -233,7 +233,7 @@ class Tileset final {
    * @return the tile offset associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::optional<TileOffset> tile_offset() const noexcept
+  [[nodiscard]] Maybe<TileOffset> tile_offset() const noexcept
   {
     return m_tileOffset;
   }
@@ -273,10 +273,10 @@ class Tileset final {
   std::string m_image;
   std::string m_source;
   std::string m_name;
-  std::optional<Color> m_backgroundColor;
-  std::optional<Color> m_transparentColor;
-  std::optional<Grid> m_grid;
-  std::optional<TileOffset> m_tileOffset;
+  Maybe<Color> m_backgroundColor;
+  Maybe<Color> m_transparentColor;
+  Maybe<Grid> m_grid;
+  Maybe<TileOffset> m_tileOffset;
 
   std::string m_tiledVersion;
   double m_jsonVersion = 0;

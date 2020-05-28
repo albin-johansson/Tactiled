@@ -70,7 +70,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<std::string> as_string() const noexcept;
+  STEP_QUERY Maybe<std::string> as_string() const noexcept;
 
   /**
    * Returns the color associated with the property, if there is one.
@@ -79,7 +79,7 @@ class Property final {
    * such color.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> as_color() const noexcept;
+  STEP_QUERY Maybe<Color> as_color() const noexcept;
 
   /**
    * Returns the integer value associated with the property, if there is one.
@@ -88,7 +88,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<int> as_int() const noexcept;
+  STEP_QUERY Maybe<int> as_int() const noexcept;
 
   /**
    * Returns the float value associated with the property, if there is one.
@@ -97,8 +97,8 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<float> as_float() const noexcept;  // FIXME might
-                                                              //  be double
+  STEP_QUERY Maybe<float> as_float() const noexcept;  // FIXME might
+                                                      //  be double
 
   /**
    * Returns the boolean value associated with the property, if there is one.
@@ -107,7 +107,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<bool> as_bool() const noexcept;
+  STEP_QUERY Maybe<bool> as_bool() const noexcept;
 
   /**
    * Indicates whether or not the property holds a string value.

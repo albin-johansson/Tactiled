@@ -37,6 +37,6 @@ void from_json(const JSON& json, Grid& grid)
   json.at("orientation").get_to(grid.m_orientation);
 }
 
-}
+}  // namespace step
 
 #endif  // STEP_GRID_SOURCE

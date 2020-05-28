@@ -60,12 +60,12 @@ void from_json(const JSON& json, Tile& tile)
     }
   }
 
-  detail::bind_opt(json, "animation", tile.m_animation);
-  detail::bind_opt(json, "type", tile.m_type);
-  detail::bind_opt(json, "image", tile.m_image);
-  detail::bind_opt(json, "imagewidth", tile.m_imageWidth);
-  detail::bind_opt(json, "imageheight", tile.m_imageHeight);
-  detail::bind_opt(json, "probability", tile.m_probability);
+  detail::bind_maybe(json, "animation", tile.m_animation);
+  detail::bind_maybe(json, "type", tile.m_type);
+  detail::bind_maybe(json, "image", tile.m_image);
+  detail::bind_maybe(json, "imagewidth", tile.m_imageWidth);
+  detail::bind_maybe(json, "imageheight", tile.m_imageHeight);
+  detail::bind_maybe(json, "probability", tile.m_probability);
 }
 
 }  // namespace step
