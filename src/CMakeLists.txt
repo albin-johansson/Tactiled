@@ -44,7 +44,10 @@ set(SOURCE_FILES
         step_tile_offset.cpp
 
         ${STEP_INCLUDE_DIR}/step_terrain.h
-        step_terrain.cpp)
+        step_terrain.cpp
+
+        ${STEP_INCLUDE_DIR}/step_layer.h
+        step_layer.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

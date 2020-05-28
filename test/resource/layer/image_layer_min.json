@@ -1,0 +1,10 @@
+{
+  "id": 2,
+  "image": "balrog.png",
+  "name": "image_layer",
+  "opacity": 1,
+  "type": "imagelayer",
+  "visible": true,
+  "x": 0,
+  "y": 0
+}

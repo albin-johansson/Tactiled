@@ -51,6 +51,14 @@ void bind_maybe(const JSON& json, std::string_view key, Maybe<T>& attribute)
   }
 }
 
+template <typename T>
+void safe_bind(const JSON& json, std::string_view key, T& value)
+{
+  if (json.contains(key)) {
+    json.at(key.data()).get_to(value);
+  }
+}
+
 }  // namespace step::detail
 
 #ifdef STEP_HEADER_ONLY
