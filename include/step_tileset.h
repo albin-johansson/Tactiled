@@ -248,7 +248,7 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
-  std::vector<Property> m_properties;
+  std::vector<Property> m_properties; // TODO consider changing this
 
   std::string m_image;
   std::string m_source;  // source of the tileset data
