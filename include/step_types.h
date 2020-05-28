@@ -35,6 +35,7 @@ namespace step {
 using JSON = nlohmann::json;
 using JSONValueType = nlohmann::json::value_t;
 
+// TODO remove the error aliases
 using TypeError = nlohmann::json::type_error;
 using ParseError = nlohmann::json::parse_error;
 using OutOfRange = nlohmann::json::out_of_range;
