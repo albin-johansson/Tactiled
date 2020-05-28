@@ -282,8 +282,6 @@ class Tileset final {
   double m_jsonVersion = 0;
 
   // TODO std::vector<Terrain> m_terrains; // OPTIONAL
-  // TODO TileOffset m_tileOffset; // OPTIONAL
-
   // TODO std::vector<WangSet> m_wangSets;
 };
 
