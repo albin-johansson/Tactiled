@@ -25,8 +25,6 @@
 #ifndef STEP_TILESET_HEADER
 #define STEP_TILESET_HEADER
 
-#include <memory>
-
 #include "step_api.h"
 #include "step_color.h"
 #include "step_property.h"
@@ -248,13 +246,13 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
-  std::vector<Property> m_properties; // TODO consider changing this
+  std::vector<Property> m_properties;  // TODO consider changing this
 
   std::string m_image;
-  std::string m_source;  // source of the tileset data
+  std::string m_source;
   std::string m_name;
-  std::optional<Color> m_backgroundColor;   // OPTIONAL
-  std::optional<Color> m_transparentColor;  // OPTIONAL
+  std::optional<Color> m_backgroundColor;
+  std::optional<Color> m_transparentColor;
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
 
