@@ -27,6 +27,7 @@
 
 #include "step_api.h"
 #include "step_color.h"
+#include "step_grid.h"
 #include "step_property.h"
 #include "step_tile.h"
 #include "step_types.h"
@@ -217,6 +218,14 @@ class Tileset final {
   }
 
   /**
+   * Returns the grid associated with the tileset. This property is optional.
+   *
+   * @return the grid associated with the tileset.
+   * @since 0.1.0
+   */
+  [[nodiscard]] std::optional<Grid> grid() const noexcept { return m_grid; }
+
+  /**
    * Returns the Tiled version associated with the tileset.
    *
    * @return the Tiled version associated with the tileset.
@@ -253,13 +262,14 @@ class Tileset final {
   std::string m_name;
   std::optional<Color> m_backgroundColor;
   std::optional<Color> m_transparentColor;
+  std::optional<Grid> m_grid;
+
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
 
-  // TODO Grid  // OPTIONAL
   // TODO std::vector<Terrain> m_terrains; // OPTIONAL
   // TODO TileOffset m_tileOffset; // OPTIONAL
-  // TODO type which is always tileset?
+
   // TODO std::vector<WangSet> m_wangSets;
 };
 

@@ -14,5 +14,10 @@
   "backgroundcolor": "#12345678",
   "transparentcolor": "#CCDDEEFF",
   "type": "tileset",
-  "version": 1.2
+  "version": 1.2,
+  "grid": {
+    "orientation": "isometric",
+    "height": 64,
+    "width": 48
+  }
 }

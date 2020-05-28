@@ -40,6 +40,7 @@ TEST_SUITE("Tileset")
     CHECK(tileset.tile_height() == 32);
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
+    CHECK(!tileset.grid());
   }
 
   TEST_CASE("Parsing embedded tileset")
@@ -62,6 +63,14 @@ TEST_SUITE("Tileset")
     CHECK(tileset.transparent_color() == Color{"#CCDDEEFF"});
     CHECK(tileset.json_version() == 1.2);
     CHECK(tileset.tiled_version() == "1.3.4");
+
+    SUBCASE("Parsing grid") {
+      const auto grid = tileset.grid();
+      REQUIRE(grid);
+      CHECK(grid->orientation() == Grid::Orientation::Isometric);
+      CHECK(grid->width() == 48);
+      CHECK(grid->height() == 64);
+    }
   }
 
   TEST_CASE("Tileset with properties")

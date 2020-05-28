@@ -79,6 +79,8 @@ void load_from(const JSON& json, Tileset& set)
         Color{json.at("transparentcolor").get<std::string>()};
   }
 
+  detail::bind_opt(json, "grid", set.m_grid);
+
   if (json.count("tiledversion")) {
     json.at("tiledversion").get_to(set.m_tiledVersion);
   }
