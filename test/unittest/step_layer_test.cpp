@@ -83,9 +83,9 @@ TEST_SUITE("Layer")
     CHECK(chunks.size() == 4);
   }
 
-  TEST_CASE("Parsing minimum object group")
+  TEST_CASE("Parsing object group")
   {
-    const auto layer = test::make<Layer>(prefix, "object_group_min.json");
+    const auto layer = test::make<Layer>(prefix, "object_group.json");
 
     SUBCASE("Layer type indicators")
     {
@@ -120,9 +120,9 @@ TEST_SUITE("Layer")
     CHECK(layer.offset_y() == 173);
   }
 
-  TEST_CASE("Parsing minimum image layer")
+  TEST_CASE("Parsing image layer")
   {
-    const auto layer = test::make<Layer>(prefix, "image_layer_min.json");
+    const auto layer = test::make<Layer>(prefix, "image_layer.json");
 
     SUBCASE("Layer type indicators")
     {
@@ -143,7 +143,7 @@ TEST_SUITE("Layer")
     {
       const auto& imageLayer = layer.as_image_layer();
       CHECK(imageLayer.image() == "balrog.png");
-      CHECK(!imageLayer.transparent_color());  // Optional property
+      CHECK(*imageLayer.transparent_color() == Color{"#214365"});
     }
 
     CHECK(layer.id() == 2);
@@ -157,9 +157,9 @@ TEST_SUITE("Layer")
     CHECK(layer.offset_y() == 0);
   }
 
-  TEST_CASE("Parsing minimum group")
+  TEST_CASE("Parsing group")
   {
-    const auto layer = test::make<Layer>(prefix, "group_min.json");
+    const auto layer = test::make<Layer>(prefix, "group.json");
 
     SUBCASE("Layer type indicators")
     {

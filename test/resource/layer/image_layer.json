@@ -8,5 +8,6 @@
   "x": 0,
   "y": 0,
   "startx": 82,
-  "starty": 37
+  "starty": 37,
+  "transparentcolor": "#214365"
 }
