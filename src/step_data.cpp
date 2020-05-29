@@ -22,40 +22,50 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TYPES_HEADER
-#define STEP_TYPES_HEADER
+#ifndef STEP_DATA_SOURCE
+#define STEP_DATA_SOURCE
 
-#include <json.hpp>
-#include <optional>
+#include "step_data.h"
 
-#include "step_api.h"
+#include "step_exception.h"
 
-namespace step {
+namespace step::detail {
 
-using JSON = nlohmann::json;
-using JSONValueType = nlohmann::json::value_t;
+STEP_DEF
+const Data::GIDData& Data::data_gid() const
+{
+  if (std::holds_alternative<GIDData>(m_data)) {
+    return std::get<GIDData>(m_data);
+  } else {
+    throw StepException{"Data > Couldn't obtain GID data!"};
+  }
+}
 
-// TODO remove the error aliases
-using TypeError = nlohmann::json::type_error;
-using ParseError = nlohmann::json::parse_error;
-using OutOfRange = nlohmann::json::out_of_range;
+STEP_DEF
+const Data::Base64Data& Data::data_base64() const
+{
+  if (std::holds_alternative<Base64Data>(m_data)) {
+    return std::get<Base64Data>(m_data);
+  } else {
+    throw StepException{"Data > Couldn't obtain Base64 data!"};
+  }
+}
 
-/**
- * The type used for global IDs (GIDs).
- *
- * @since 0.1.0
- */
-using GID = unsigned int;
+STEP_DEF
+void from_json(const JSON& json, Data& data)
+{
+  if (json.is_array()) {
+    auto& gidData = data.m_data.emplace<Data::GIDData>();
+    for (const auto& [key, value] : json.items()) {
+      gidData.emplace_back(value.get<GID>());
+    }
+  } else if (json.is_string()) {
+    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
+  } else {
+    throw StepException{"Data > Failed to determine the kind of data!"};
+  }
+}
 
-#define STEP_SERIALIZE_ENUM NLOHMANN_JSON_SERIALIZE_ENUM
+}  // namespace step::detail
 
-using CZString = const char*;
-
-template <typename T>
-using Maybe = std::optional<T>;
-
-inline constexpr std::nullopt_t nothing = std::nullopt;
-
-}  // namespace step
-
-#endif  // STEP_TYPES_HEADER
+#endif  // STEP_DATA_SOURCE

@@ -47,10 +47,13 @@ set(SOURCE_FILES
         step_terrain.cpp
 
         ${STEP_INCLUDE_DIR}/step_layer.h
-        step_layer.cpp)
+        step_layer.cpp
+
         ${STEP_INCLUDE_DIR}/step_chunk.h
         step_chunk.cpp
-        )
+
+        ${STEP_INCLUDE_DIR}/step_data.h
+        step_data.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
