@@ -60,9 +60,7 @@ void from_json(const JSON& json, TileLayer& layer)
 {
   detail::safe_bind(json, "compression", layer.m_compression);
   detail::safe_bind(json, "encoding", layer.m_encoding);
-  if (json.contains("data")) {
-    json.at("data").get_to(layer.m_data);
-  }
+  detail::safe_bind(json, "data", layer.m_data);
   if (json.contains("chunks") && json.at("chunks").is_array()) {
     for (const auto& [key, value] : json.at("chunks").items()) {
       layer.m_chunks.emplace_back(value);
