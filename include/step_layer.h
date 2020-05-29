@@ -30,8 +30,11 @@
 #include <vector>
 
 #include "step_api.h"
-#include "step_data.h"
+#include "step_group.h"
+#include "step_image_layer.h"
+#include "step_object_group.h"
 #include "step_property.h"
+#include "step_tile_layer.h"
 #include "step_types.h"
 
 namespace step {
@@ -43,10 +46,6 @@ namespace step {
  */
 class Layer final {
  public:
-  using Data = std::vector<unsigned int>;
-
-  STEP_API friend void from_json(const JSON&, Layer&);
-
   /**
    * The Type enum class provides identifiers for all of the different
    * possible layer types.
@@ -55,37 +54,7 @@ class Layer final {
    */
   enum class Type { TileLayer, ObjectGroup, ImageLayer, Group };
 
-  /**
-   * The Compression enum class provides values for the different kinds of
-   * compression used by layers.
-   *
-   * @since 0.1.0
-   */
-  enum class Compression { ZLib, GZip, None };
-
-  /**
-   * The DrawOrder enum class provides hints for how rendering should be
-   * performed of layers.
-   *
-   * @since 0.1.0
-   */
-  enum class DrawOrder { TopDown, Index };
-
-  /**
-   * The Encoding enum class provides identifiers for the different encodings
-   * used by layers.
-   *
-   * @since 0.1.0
-   */
-  enum class Encoding { CSV, Base64 };
-
-  /**
-   * Returns the unique integer ID associated with the layer.
-   *
-   * @return the unique integer ID associated with the layer.
-   * @since 0.1.0
-   */
-  STEP_QUERY int id() const noexcept;
+  STEP_API friend void from_json(const JSON&, Layer&);
 
   /**
    * Indicates whether or not the layer is a tile layer.
@@ -128,6 +97,54 @@ class Layer final {
   STEP_QUERY Type type() const noexcept;
 
   /**
+   * Returns the unique integer ID associated with the layer.
+   *
+   * @return the unique integer ID associated with the layer.
+   * @since 0.1.0
+   */
+  STEP_QUERY int id() const noexcept;
+
+  /**
+   * Returns the tile layer information associated with the layer. This
+   * method will throw an exception if the layer isn't a tile layer.
+   *
+   * @return the tile layer information associated with the layer.
+   * @throws StepException if the layer isn't actually a tile layer.
+   * @since 0.1.0
+   */
+  STEP_QUERY const TileLayer& as_tile_layer() const;
+
+  /**
+   * Returns the image layer information associated with the layer. This
+   * method will throw an exception if the layer isn't an image layer.
+   *
+   * @return the image layer information associated with the layer.
+   * @throws StepException if the layer isn't actually an image layer.
+   * @since 0.1.0
+   */
+  STEP_QUERY const ImageLayer& as_image_layer() const;
+
+  /**
+   * Returns the object group information associated with the layer. This
+   * method will throw an exception if the layer isn't an object group.
+   *
+   * @return the object group information associated with the layer.
+   * @throws StepException if the layer isn't actually an object group.
+   * @since 0.1.0
+   */
+  STEP_QUERY const ObjectGroup& as_object_group() const;
+
+  /**
+   * Returns the group information associated with the layer. This
+   * method will throw an exception if the layer isn't a group.
+   *
+   * @return the group information associated with the layer.
+   * @throws StepException if the layer isn't actually a group.
+   * @since 0.1.0
+   */
+  STEP_QUERY const Group& as_group() const;
+
+  /**
    * Returns the amount of columns in the layer.
    *
    * @return the amount of columns in the layer.
@@ -142,6 +159,14 @@ class Layer final {
    * @since 0.1.0
    */
   STEP_QUERY int height() const noexcept;
+
+  /**
+   * Returns the properties associated with the layer.
+   *
+   * @return the properties associated with the layer.
+   * @since 0.1.0
+   */
+  STEP_QUERY const std::vector<Property>& properties() const noexcept;
 
   /**
    * Returns the x-coordinate of where the layer content begins. This is used by
@@ -160,22 +185,6 @@ class Layer final {
    * @since 0.1.0
    */
   STEP_QUERY int start_y() const noexcept;
-
-  /**
-   * Indicates whether or not the layer is visible.
-   *
-   * @return true if the layer is visible; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY bool visible() const noexcept;
-
-  /**
-   * Returns the name associated with the layer.
-   *
-   * @return the name associated with the layer.
-   * @since 0.1.0
-   */
-  STEP_QUERY std::string name() const;
 
   /**
    * Returns the horizontal offset of the layer. The default value of
@@ -204,133 +213,46 @@ class Layer final {
   STEP_QUERY double opacity() const noexcept;
 
   /**
-   * Returns the properties associated with the layer.
+   * Returns the name associated with the layer.
    *
-   * @return the properties associated with the layer.
+   * @return the name associated with the layer.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Property>& properties() const noexcept;
+  STEP_QUERY std::string name() const;
 
   /**
-   * Returns the encoding used by the layer. This method is only applicable
-   * on tile layers.
+   * Indicates whether or not the layer is visible.
    *
-   * @return the encoding used by the layer; nothing if the encoding couldn't
-   * be determined.
+   * @return true if the layer is visible; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Encoding> encoding() const noexcept;
-
-  /**
-   * Returns the compression used by the layer. This method is only
-   * applicable on tile layers.
-   *
-   * @return the compression used by the layer; nothing if the compression
-   * couldn't be determined.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<Compression> compression() const noexcept;
-
-  /**
-   * Returns the tile data associated with the layer. Only applicable
-   * on tile layers.
-   *
-   * @return the tile data associated with the layer.
-   * @since 0.1.0
-   */
-  STEP_QUERY const detail::Data& data() const noexcept;
-
-  /**
-   * Returns the image used by the layer. This method is only applicable on
-   * image layers.
-   *
-   * @return the image used by the layer; nothing if there is no such image.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<std::string> image() const;
-
-  /**
-   * Returns the transparent color used by the layer. This property is
-   * optional and only applicable on image layers.
-   *
-   * @return the transparent color used by the layer; nothing if there is none.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<Color> transparent_color() const noexcept;
-
-  /**
-   * Returns the draw order used by the layer. This method is only applicable
-   * on object groups.
-   *
-   * @return the draw order used by the layer; nothing if there is none.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<DrawOrder> draw_order() const noexcept;
-
-  // TODO layers
+  STEP_QUERY bool visible() const noexcept;
 
  private:
-  int m_id = 0;
   Type m_type;
-
-  // TODO std::vector<Chunk> m_chunks;
-
-  Encoding m_encoding = Encoding::CSV;            // TILE LAYER ONLY
-  Compression m_compression = Compression::None;  // TILE LAYER ONLY
-  detail::Data m_data;                            // TILE LAYER ONLY
-
+  int m_id{0};
+  std::variant<TileLayer, ImageLayer, ObjectGroup, Group> m_layerData;
+  std::vector<Property> m_properties;
   int m_width{0};
   int m_height{0};
-
-  std::string m_image;              // IMAGE LAYER ONLY
-  Maybe<Color> m_transparentColor;  // IMAGE LAYER ONLY
-
-  // TODO std::vector<Layer // GROUP ONLY
+  int m_startX{0};
+  int m_startY{0};
+  double m_offsetX{0};
+  double m_offsetY{0};
+  double m_opacity{1};
   std::string m_name;
-
-  // TODO std::vector<Object> m_objects;       // OBJECT GROUP ONLY
-  DrawOrder m_drawOrder = DrawOrder::TopDown;  // OBJECT GROUP ONLY
-
-  double m_offsetX = 0;
-  double m_offsetY = 0;
-  double m_opacity;
-  std::vector<Property> m_properties;
-  int m_startX = 0;  // for infinite maps
-  int m_startY = 0;  // for infinite maps
-
-  bool m_visible;
+  bool m_visible{true};
 
   void init_common(const JSON& json);
-
-  void init_tile_layer(const JSON& json);
-
-  void init_image_layer(const JSON& json);
-
-  void init_image_group(const JSON& json);
-
-  void init_group(const JSON& json);
 };
 
-void from_json(const JSON& json, Layer& layer);
+STEP_API void from_json(const JSON& json, Layer& layer);
 
 STEP_SERIALIZE_ENUM(Layer::Type,
                     {{Layer::Type::TileLayer, "tilelayer"},
                      {Layer::Type::ImageLayer, "imagelayer"},
                      {Layer::Type::ObjectGroup, "objectgroup"},
                      {Layer::Type::Group, "group"}})
-
-STEP_SERIALIZE_ENUM(Layer::Compression,
-                    {{Layer::Compression::None, ""},
-                     {Layer::Compression::GZip, "gzip"},
-                     {Layer::Compression::ZLib, "zlib"}})
-
-STEP_SERIALIZE_ENUM(Layer::DrawOrder,
-                    {{Layer::DrawOrder::Index, "index"},
-                     {Layer::DrawOrder::TopDown, "topdown"}})
-
-STEP_SERIALIZE_ENUM(Layer::Encoding,
-                    {{Layer::Encoding::CSV, "csv"},
-                     {Layer::Encoding::Base64, "base64"}})
 
 }  // namespace step
 

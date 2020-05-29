@@ -25,49 +25,27 @@ TEST_SUITE("Layer")
       CHECK(!layer.is_group());
     }
 
+    SUBCASE("Conversions")
+    {
+      CHECK_THROWS(layer.as_object_group());
+      CHECK_THROWS(layer.as_image_layer());
+      CHECK_THROWS(layer.as_group());
+    }
+
     SUBCASE("Tile layer exclusive properties")
     {
-      SUBCASE("Check default encoding")
-      {
-        const auto encoding = layer.encoding();
-        REQUIRE(encoding);
-        CHECK(encoding == Layer::Encoding::CSV);
-      }
+      const auto& tileLayer = layer.as_tile_layer();
 
-      SUBCASE("Check default compression")
-      {
-        const auto compression = layer.compression();
-        REQUIRE(compression);
-        CHECK(compression == Layer::Compression::None);
-      }
+      CHECK(tileLayer.encoding() == TileLayer::Encoding::CSV);
+      CHECK(tileLayer.compression() == TileLayer::Compression::None);
+      CHECK(tileLayer.chunks().empty());
 
       SUBCASE("Check data")
       {
-        const auto& data = layer.data();
-        CHECK_NOTHROW(data.data_gid());
-
-        const auto& tiles = data.data_gid();
-        CHECK(tiles.size() == 1024);
-
-        CHECK_THROWS(data.data_base64());
+        CHECK_NOTHROW(tileLayer.data().as_gid());
+        CHECK(tileLayer.data().as_gid().size() == 1024);
+        CHECK_THROWS(tileLayer.data().as_base64());
       }
-    }
-
-    SUBCASE("Object group exclusive properties")
-    {
-      // TODO test objects as well
-      CHECK(!layer.draw_order());
-    }
-
-    SUBCASE("Image layer exclusive properties")
-    {
-      CHECK(!layer.image());
-      CHECK(!layer.transparent_color());
-    }
-
-    SUBCASE("Group exclusive properties")
-    {
-      // TODO test layers here
     }
 
     CHECK(layer.id() == 1);
@@ -77,6 +55,17 @@ TEST_SUITE("Layer")
     CHECK(layer.opacity() == 0.7);
     CHECK(layer.type() == Layer::Type::TileLayer);
     CHECK(layer.visible());
+    CHECK(layer.start_x() == 0);
+    CHECK(layer.start_y() == 0);
+    CHECK(layer.offset_x() == 0);
+    CHECK(layer.offset_y() == 0);
+  }
+
+  TEST_CASE("Parse tile layer chunks")
+  {
+    const auto layer = test::make<Layer>(prefix, "chunks.json");
+    const auto& chunks = layer.as_tile_layer().chunks();
+    CHECK(chunks.size() == 4);
   }
 
   TEST_CASE("Parsing minimum object group")
@@ -91,32 +80,18 @@ TEST_SUITE("Layer")
       CHECK(!layer.is_group());
     }
 
-    SUBCASE("Tile layer exclusive properties")
+    SUBCASE("Conversions")
     {
-      CHECK(!layer.encoding());
-      CHECK(!layer.compression());
-      const auto& data = layer.data();
-      CHECK_NOTHROW(data.data_gid());
-      CHECK_THROWS_AS(data.data_base64(), StepException);
+      CHECK_THROWS(layer.as_tile_layer());
+      CHECK_THROWS(layer.as_image_layer());
+      CHECK_THROWS(layer.as_group());
     }
 
     SUBCASE("Object group exclusive properties")
     {
       // TODO test objects as well
-      const auto drawOrder = layer.draw_order();
-      REQUIRE(drawOrder);
-      CHECK(drawOrder == Layer::DrawOrder::TopDown);
-    }
-
-    SUBCASE("Image layer exclusive properties")
-    {
-      CHECK(!layer.image());
-      CHECK(!layer.transparent_color());
-    }
-
-    SUBCASE("Group exclusive properties")
-    {
-      // TODO test layers here
+      const auto& objectGroup = layer.as_object_group();
+      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::TopDown);
     }
 
     CHECK(layer.id() == 3);
@@ -124,6 +99,10 @@ TEST_SUITE("Layer")
     CHECK(layer.opacity() == 0.4);
     CHECK(layer.type() == Layer::Type::ObjectGroup);
     CHECK(!layer.visible());
+    CHECK(layer.start_x() == 0);
+    CHECK(layer.start_y() == 0);
+    CHECK(layer.offset_x() == 65);
+    CHECK(layer.offset_y() == 173);
   }
 
   TEST_CASE("Parsing minimum image layer")
@@ -138,36 +117,18 @@ TEST_SUITE("Layer")
       CHECK(!layer.is_group());
     }
 
-    SUBCASE("Tile layer exclusive properties")
+    SUBCASE("Conversions")
     {
-      CHECK(!layer.encoding());
-      CHECK(!layer.compression());
-      const auto& data = layer.data();
-      CHECK_NOTHROW(data.data_gid());
-      CHECK_THROWS_AS(data.data_base64(), StepException);
-    }
-
-    SUBCASE("Object group exclusive properties")
-    {
-      // TODO test objects as well
-      CHECK(!layer.draw_order());
+      CHECK_THROWS(layer.as_tile_layer());
+      CHECK_THROWS(layer.as_object_group());
+      CHECK_THROWS(layer.as_group());
     }
 
     SUBCASE("Image layer exclusive properties")
     {
-      SUBCASE("Test image")
-      {
-        const auto image = layer.image();
-        REQUIRE(image);
-        CHECK(*image == "balrog.png");
-      }
-
-      CHECK(!layer.transparent_color());  // Optional property
-    }
-
-    SUBCASE("Group exclusive properties")
-    {
-      // TODO test layers here
+      const auto& imageLayer = layer.as_image_layer();
+      CHECK(imageLayer.image() == "balrog.png");
+      CHECK(!imageLayer.transparent_color());  // Optional property
     }
 
     CHECK(layer.id() == 2);
@@ -175,6 +136,10 @@ TEST_SUITE("Layer")
     CHECK(layer.opacity() == 1);
     CHECK(layer.type() == Layer::Type::ImageLayer);
     CHECK(layer.visible());
+    CHECK(layer.start_x() == 82);
+    CHECK(layer.start_y() == 37);
+    CHECK(layer.offset_x() == 0);
+    CHECK(layer.offset_y() == 0);
   }
 
   TEST_CASE("Parsing minimum group")
@@ -189,25 +154,11 @@ TEST_SUITE("Layer")
       CHECK(!layer.is_tile_layer());
     }
 
-    SUBCASE("Tile layer exclusive properties")
+    SUBCASE("Conversions")
     {
-      CHECK(!layer.encoding());
-      CHECK(!layer.compression());
-      const auto& data = layer.data();
-      CHECK_NOTHROW(data.data_gid());
-      CHECK_THROWS_AS(data.data_base64(), StepException);
-    }
-
-    SUBCASE("Object group exclusive properties")
-    {
-      // TODO test objects as well
-      CHECK(!layer.draw_order());
-    }
-
-    SUBCASE("Image layer exclusive properties")
-    {
-      CHECK(!layer.image());
-      CHECK(!layer.transparent_color());
+      CHECK_THROWS(layer.as_tile_layer());
+      CHECK_THROWS(layer.as_image_layer());
+      CHECK_THROWS(layer.as_object_group());
     }
 
     SUBCASE("Group exclusive properties")

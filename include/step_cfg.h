@@ -25,6 +25,6 @@
 #ifndef STEP_CFG_HEADER
 #define STEP_CFG_HEADER
 
-// #define STEP_HEADER_ONLY
+// #define STEP_HEADER_ONLY // FIXME doesn't work
 
 #endif  // STEP_CFG_HEADER

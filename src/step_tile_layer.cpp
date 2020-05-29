@@ -22,50 +22,54 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_SOURCE
-#define STEP_DATA_SOURCE
+#ifndef STEP_TILE_LAYER_SOURCE
+#define STEP_TILE_LAYER_SOURCE
 
-#include "step_data.h"
+#include "step_tile_layer.h"
 
-#include "step_exception.h"
+#include "step_utils.h"
 
-namespace step::detail {
+namespace step {
 
 STEP_DEF
-const Data::GIDData& Data::as_gid() const
+TileLayer::Encoding TileLayer::encoding() const noexcept
 {
-  if (std::holds_alternative<GIDData>(m_data)) {
-    return std::get<GIDData>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
-  }
+  return m_encoding;
 }
 
 STEP_DEF
-const Data::Base64Data& Data::as_base64() const
+TileLayer::Compression TileLayer::compression() const noexcept
 {
-  if (std::holds_alternative<Base64Data>(m_data)) {
-    return std::get<Base64Data>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
+  return m_compression;
 }
 
 STEP_DEF
-void from_json(const JSON& json, Data& data)
+const detail::Data& TileLayer::data() const noexcept
 {
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
+  return m_data;
+}
+
+STEP_DEF
+const std::vector<Chunk>& TileLayer::chunks() const noexcept
+{
+  return m_chunks;
+}
+
+STEP_DEF
+void from_json(const JSON& json, TileLayer& layer)
+{
+  detail::safe_bind(json, "compression", layer.m_compression);
+  detail::safe_bind(json, "encoding", layer.m_encoding);
+  if (json.contains("data")) {
+    json.at("data").get_to(layer.m_data);
+  }
+  if (json.contains("chunks") && json.at("chunks").is_array()) {
+    for (const auto& [key, value] : json.at("chunks").items()) {
+      layer.m_chunks.emplace_back(value);
     }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
   }
 }
 
-}  // namespace step::detail
+}  // namespace step
 
-#endif  // STEP_DATA_SOURCE
+#endif  // STEP_TILE_LAYER_SOURCE

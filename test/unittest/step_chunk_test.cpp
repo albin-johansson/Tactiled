@@ -17,8 +17,8 @@ TEST_SUITE("Chunk")
     SUBCASE("Test obtaining data")
     {
       const auto& data = chunk.data();
-      CHECK_NOTHROW(data.data_gid());
-      CHECK_THROWS(data.data_base64());
+      CHECK_NOTHROW(data.as_gid());
+      CHECK_THROWS(data.as_base64());
     }
     CHECK(chunk.x() == 7);
     CHECK(chunk.y() == -18);
@@ -33,8 +33,8 @@ TEST_SUITE("Chunk")
     SUBCASE("Test obtaining data")
     {
       const auto& data = chunk.data();
-      CHECK_NOTHROW(data.data_base64());
-      CHECK_THROWS(data.data_gid());
+      CHECK_NOTHROW(data.as_base64());
+      CHECK_THROWS(data.as_gid());
     }
     CHECK(chunk.x() == 45);
     CHECK(chunk.y() == 77);

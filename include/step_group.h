@@ -22,50 +22,35 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_SOURCE
-#define STEP_DATA_SOURCE
+#ifndef STEP_GROUP_HEADER
+#define STEP_GROUP_HEADER
 
-#include "step_data.h"
+#include <memory>
+#include <vector>
 
-#include "step_exception.h"
+#include "step_api.h"
+#include "step_types.h"
 
-namespace step::detail {
+namespace step {
 
-STEP_DEF
-const Data::GIDData& Data::as_gid() const
-{
-  if (std::holds_alternative<GIDData>(m_data)) {
-    return std::get<GIDData>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
-  }
-}
+class Layer;
 
-STEP_DEF
-const Data::Base64Data& Data::as_base64() const
-{
-  if (std::holds_alternative<Base64Data>(m_data)) {
-    return std::get<Base64Data>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
-}
+/**
+ * The Group class represents the API for layers that represent "groups", that
+ * in turn contain zero or more layers.
+ *
+ * @since 0.1.0
+ */
+class Group final {
+ public:
+  STEP_API friend void from_json(const JSON&, Group&);
 
-STEP_DEF
-void from_json(const JSON& json, Data& data)
-{
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
-    }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
-  }
-}
+ private:
+  std::vector<std::unique_ptr<Layer>> m_layers;
+};
 
-}  // namespace step::detail
+STEP_API void from_json(const JSON& json, Group& group);
 
-#endif  // STEP_DATA_SOURCE
+}  // namespace step
+
+#endif  // STEP_GROUP_HEADER

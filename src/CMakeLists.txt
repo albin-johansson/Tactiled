@@ -53,7 +53,19 @@ set(SOURCE_FILES
         step_chunk.cpp
 
         ${STEP_INCLUDE_DIR}/step_data.h
-        step_data.cpp)
+        step_data.cpp
+
+        ${STEP_INCLUDE_DIR}/step_tile_layer.h
+        step_tile_layer.cpp
+
+        ${STEP_INCLUDE_DIR}/step_image_layer.h
+        step_image_layer.cpp
+
+        ${STEP_INCLUDE_DIR}/step_object_group.h
+        step_object_group.cpp
+
+        ${STEP_INCLUDE_DIR}/step_group.h
+        step_group.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

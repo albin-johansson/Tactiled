@@ -39,6 +39,46 @@ int Layer::id() const noexcept
 }
 
 STEP_DEF
+const TileLayer& Layer::as_tile_layer() const
+{
+  if (std::holds_alternative<TileLayer>(m_layerData)) {
+    return std::get<TileLayer>(m_layerData);
+  } else {
+    throw StepException{"Layer > The layer isn't a tile layer!"};
+  }
+}
+
+STEP_DEF
+const ImageLayer& Layer::as_image_layer() const
+{
+  if (std::holds_alternative<ImageLayer>(m_layerData)) {
+    return std::get<ImageLayer>(m_layerData);
+  } else {
+    throw StepException{"Layer > The layer isn't an image layer!"};
+  }
+}
+
+STEP_DEF
+const ObjectGroup& Layer::as_object_group() const
+{
+  if (std::holds_alternative<ObjectGroup>(m_layerData)) {
+    return std::get<ObjectGroup>(m_layerData);
+  } else {
+    throw StepException{"Layer > The layer isn't an object group!"};
+  }
+}
+
+STEP_DEF
+const Group& Layer::as_group() const
+{
+  if (std::holds_alternative<Group>(m_layerData)) {
+    return std::get<Group>(m_layerData);
+  } else {
+    throw StepException{"Layer > The layer isn't a group!"};
+  }
+}
+
+STEP_DEF
 bool Layer::is_tile_layer() const noexcept
 {
   return m_type == Type::TileLayer;
@@ -129,65 +169,13 @@ const std::vector<Property>& Layer::properties() const noexcept
 }
 
 STEP_DEF
-Maybe<Layer::Encoding> Layer::encoding() const noexcept
-{
-  if (is_tile_layer()) {
-    return m_encoding;
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-Maybe<Layer::Compression> Layer::compression() const noexcept
-{
-  if (is_tile_layer()) {
-    return m_compression;
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-const detail::Data& Layer::data() const noexcept
-{
-  return m_data;
-}
-
-STEP_DEF
-Maybe<std::string> Layer::image() const
-{
-  if (is_image_layer()) {
-    return m_image;
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-Maybe<Color> Layer::transparent_color() const noexcept
-{
-  return m_transparentColor;
-}
-
-STEP_DEF
-Maybe<Layer::DrawOrder> Layer::draw_order() const noexcept
-{
-  if (is_object_group()) {
-    return m_drawOrder;
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
 void Layer::init_common(const JSON& json)
 {
   json.at("type").get_to(m_type);
-  json.at("name").get_to(m_name);
-  json.at("opacity").get_to(m_opacity);
-  json.at("visible").get_to(m_visible);
 
+  detail::safe_bind(json, "name", m_name);
+  detail::safe_bind(json, "opacity", m_opacity);
+  detail::safe_bind(json, "visible", m_visible);
   detail::safe_bind(json, "id", m_id);
   detail::safe_bind(json, "width", m_width);
   detail::safe_bind(json, "height", m_height);
@@ -204,60 +192,30 @@ void Layer::init_common(const JSON& json)
 }
 
 STEP_DEF
-void Layer::init_tile_layer(const JSON& json)
-{
-  detail::safe_bind(json, "compression", m_compression);
-  detail::safe_bind(json, "encoding", m_encoding);
-  if (json.contains("data")) {
-    json.at("data").get_to(m_data);
-  }
-}
-
-STEP_DEF
-void Layer::init_image_layer(const JSON& json)
-{
-  json.at("image").get_to(m_image);
-  if (json.count("transparentcolor")) {
-    m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
-  }
-}
-
-STEP_DEF
-void Layer::init_image_group(const JSON& json)
-{
-  json.at("draworder").get_to(m_drawOrder);
-  // TODO objects
-}
-
-STEP_DEF
-void Layer::init_group(const JSON&)
-{
-  // TODO layers
-}
-
-STEP_DEF
 void from_json(const JSON& json, Layer& layer)
 {
   layer.init_common(json);
   switch (layer.type()) {
     case Layer::Type::TileLayer: {
-      layer.init_tile_layer(json);
+      layer.m_layerData.emplace<TileLayer>(json.get<TileLayer>());
       break;
     }
     case Layer::Type::ObjectGroup: {
-      layer.init_image_group(json);
+      layer.m_layerData.emplace<ObjectGroup>(json.get<ObjectGroup>());
       break;
     }
     case Layer::Type::ImageLayer: {
-      layer.init_image_layer(json);
+      layer.m_layerData.emplace<ImageLayer>(json.get<ImageLayer>());
       break;
     }
     case Layer::Type::Group: {
-      layer.init_group(json);
+      layer.m_layerData.emplace<Group>(json.get<Group>());
       break;
     }
-    default:
-      throw StepException{"Layer > Unknown layer type!"};
+    default: {
+      const auto type = std::to_string(static_cast<int>(layer.type()));
+      throw StepException{"Layer > Unknown layer type: " + type};
+    }
   }
 }
 

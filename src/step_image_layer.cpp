@@ -22,50 +22,35 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_SOURCE
-#define STEP_DATA_SOURCE
+#ifndef STEP_IMAGE_LAYER_SOURCE
+#define STEP_IMAGE_LAYER_SOURCE
 
-#include "step_data.h"
+#include "step_image_layer.h"
 
-#include "step_exception.h"
-
-namespace step::detail {
+namespace step {
 
 STEP_DEF
-const Data::GIDData& Data::as_gid() const
+std::string ImageLayer::image() const
 {
-  if (std::holds_alternative<GIDData>(m_data)) {
-    return std::get<GIDData>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
-  }
+  return m_image;
 }
 
 STEP_DEF
-const Data::Base64Data& Data::as_base64() const
+Maybe<Color> ImageLayer::transparent_color() const noexcept
 {
-  if (std::holds_alternative<Base64Data>(m_data)) {
-    return std::get<Base64Data>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
+  return m_transparentColor;
 }
 
 STEP_DEF
-void from_json(const JSON& json, Data& data)
+void from_json(const JSON& json, ImageLayer& layer)
 {
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
-    }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
+  json.at("image").get_to(layer.m_image);
+  if (json.count("transparentcolor")) {
+    layer.m_transparentColor =
+        Color{json.at("transparentcolor").get<std::string>()};
   }
 }
 
-}  // namespace step::detail
+}  // namespace step
 
-#endif  // STEP_DATA_SOURCE
+#endif  // STEP_IMAGE_LAYER_SOURCE

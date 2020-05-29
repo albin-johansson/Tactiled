@@ -22,60 +22,52 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_HEADER
-#define STEP_DATA_HEADER
-
-#include <string>
-#include <variant>
-#include <vector>
+#ifndef STEP_OBJECT_GROUP_HEADER
+#define STEP_OBJECT_GROUP_HEADER
 
 #include "step_api.h"
 #include "step_types.h"
 
-namespace step::detail {
+namespace step {
 
 /**
- * The Data class is a helper that represents either GID or Base64 tile data.
+ * The ObjectGroup class represents the API for layers that represent "object
+ * groups", that hold data about various objects in a tilemap.
  *
  * @since 0.1.0
  */
-class Data final {
+class ObjectGroup final {
  public:
-  using GIDData = std::vector<GID>;
-  using Base64Data = std::string;
-
-  STEP_API friend void from_json(const JSON&, Data&);
-
   /**
-   * Returns the GID data associated with the Data instance. This method
-   * throws an exception if the internal data isn't actually GID data.
+   * The DrawOrder enum class provides hints for how rendering should be
+   * performed of layers.
    *
-   * @return the GID data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY const GIDData& as_gid() const;
+  enum class DrawOrder { TopDown, Index };
+
+  STEP_API friend void from_json(const JSON&, ObjectGroup&);
 
   /**
-   * Returns the Base64 data associated with the Data instance. This method
-   * throws an exception if the internal data isn't actually Base64 data.
+   * Returns the draw order used by the object group. The default value of
+   * this property is <code>TopDown</code>.
    *
-   * @return the Base64 data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
+   * @return the draw order used by the object group.
    * @since 0.1.0
    */
-  STEP_QUERY const Base64Data& as_base64() const;
+  STEP_QUERY DrawOrder draw_order() const noexcept;
 
  private:
-  std::variant<GIDData, Base64Data> m_data;
+  DrawOrder m_drawOrder{DrawOrder::TopDown};
+  // TODO std::vector<Object> m_objects;
 };
 
-STEP_API void from_json(const JSON& json, Data& data);
+STEP_API void from_json(const JSON& json, ObjectGroup& group);
 
-}  // namespace step::detail
+STEP_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
+                    {{ObjectGroup::DrawOrder::Index, "index"},
+                     {ObjectGroup::DrawOrder::TopDown, "topdown"}})
 
-#ifdef STEP_HEADER_ONLY
-#include "step_data.cpp"
-#endif  // STEP_HEADER_ONLY
+}  // namespace step
 
-#endif  // STEP_DATA_HEADER
+#endif  // STEP_OBJECT_GROUP_HEADER

@@ -22,50 +22,26 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_SOURCE
-#define STEP_DATA_SOURCE
+#ifndef STEP_OBJECT_GROUP_SOURCE
+#define STEP_OBJECT_GROUP_SOURCE
 
-#include "step_data.h"
+#include "step_object_group.h"
 
-#include "step_exception.h"
-
-namespace step::detail {
+namespace step {
 
 STEP_DEF
-const Data::GIDData& Data::as_gid() const
+ObjectGroup::DrawOrder ObjectGroup::draw_order() const noexcept
 {
-  if (std::holds_alternative<GIDData>(m_data)) {
-    return std::get<GIDData>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
-  }
+  return m_drawOrder;
 }
 
 STEP_DEF
-const Data::Base64Data& Data::as_base64() const
+void from_json(const JSON& json, ObjectGroup& group)
 {
-  if (std::holds_alternative<Base64Data>(m_data)) {
-    return std::get<Base64Data>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
+  json.at("draworder").get_to(group.m_drawOrder);
+  // TODO objects
 }
 
-STEP_DEF
-void from_json(const JSON& json, Data& data)
-{
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
-    }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
-  }
-}
+}  // namespace step
 
-}  // namespace step::detail
-
-#endif  // STEP_DATA_SOURCE
+#endif  // STEP_OBJECT_GROUP_SOURCE

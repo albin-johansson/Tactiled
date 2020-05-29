@@ -22,50 +22,52 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_SOURCE
-#define STEP_DATA_SOURCE
+#ifndef STEP_IMAGE_LAYER_HEADER
+#define STEP_IMAGE_LAYER_HEADER
 
-#include "step_data.h"
+#include <string>
 
-#include "step_exception.h"
+#include "step_api.h"
+#include "step_color.h"
+#include "step_types.h"
 
-namespace step::detail {
+namespace step {
 
-STEP_DEF
-const Data::GIDData& Data::as_gid() const
-{
-  if (std::holds_alternative<GIDData>(m_data)) {
-    return std::get<GIDData>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
-  }
-}
+/**
+ * The ImageLayer class represents the API for layers that represent "image
+ * layers", that is layers that are represented by an image.
+ *
+ * @since 0.1.0
+ */
+class ImageLayer final {
+ public:
+  STEP_API friend void from_json(const JSON&, ImageLayer&);
 
-STEP_DEF
-const Data::Base64Data& Data::as_base64() const
-{
-  if (std::holds_alternative<Base64Data>(m_data)) {
-    return std::get<Base64Data>(m_data);
-  } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
-}
+  /**
+   * Returns the image used by the image layer.
+   *
+   * @return the image associated with the image layer.
+   * @since 0.1.0
+   */
+  STEP_QUERY std::string image() const;
 
-STEP_DEF
-void from_json(const JSON& json, Data& data)
-{
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
-    }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
-  }
-}
+  /**
+   * Returns the transparent color used by the image layer. This property is
+   * optional.
+   *
+   * @return the transparent color used by the image layer; nothing if there is
+   * none.
+   * @since 0.1.0
+   */
+  STEP_QUERY Maybe<Color> transparent_color() const noexcept;
 
-}  // namespace step::detail
+ private:
+  std::string m_image;
+  Maybe<Color> m_transparentColor;
+};
 
-#endif  // STEP_DATA_SOURCE
+STEP_API void from_json(const JSON& json, ImageLayer& layer);
+
+}  // namespace step
+
+#endif  // STEP_IMAGE_LAYER_HEADER
