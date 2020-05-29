@@ -1033,5 +1033,17 @@
   "visible": true,
   "width": 32,
   "x": 0,
-  "y": 0
+  "y": 0,
+  "properties": [
+    {
+      "name": "foo",
+      "type": "int",
+      "value": 79
+    },
+    {
+      "name": "bar",
+      "type": "bool",
+      "value": false
+    }
+  ]
 }

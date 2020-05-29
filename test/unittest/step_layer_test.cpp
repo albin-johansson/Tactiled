@@ -13,9 +13,9 @@ inline static const std::string prefix = "resource/layer/";
 
 TEST_SUITE("Layer")
 {
-  TEST_CASE("Parsing minimum tile layer")
+  TEST_CASE("Parsing tile layer")
   {
-    const auto layer = test::make<Layer>(prefix, "tile_layer_min.json");
+    const auto layer = test::make<Layer>(prefix, "tile_layer.json");
 
     SUBCASE("Layer type indicators")
     {
@@ -59,6 +59,21 @@ TEST_SUITE("Layer")
     CHECK(layer.start_y() == 0);
     CHECK(layer.offset_x() == 0);
     CHECK(layer.offset_y() == 0);
+
+    SUBCASE("General properties test")
+    {
+      REQUIRE(layer.properties().size() == 2);
+
+      const auto first = layer.properties().at(0);
+      CHECK(first.name() == "foo");
+      CHECK(first.is_int());
+      CHECK(*first.as_int() == 79);
+
+      const auto second = layer.properties().at(1);
+      CHECK(second.name() == "bar");
+      CHECK(second.as_bool());
+      CHECK(!*second.as_bool());
+    }
   }
 
   TEST_CASE("Parse tile layer chunks")
