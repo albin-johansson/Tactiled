@@ -49,8 +49,8 @@ class Tileset;
  */
 class Tileset final {
  public:
-  friend void from_json(const JSON&, Tileset&);
-  friend void load_from(const JSON&, Tileset&);
+  STEP_API friend void from_json(const JSON&, Tileset&);
+  STEP_API friend void load_from(const JSON&, Tileset&);
 
   /**
    * Returns the GID (Global ID) of the first tile in the tileset.
@@ -309,9 +309,9 @@ class Tileset final {
   // TODO std::vector<WangSet> m_wangSets;
 };
 
-STEP_API void from_json(const JSON& json, Tileset& set);
+void from_json(const JSON& json, Tileset& set);
 
-STEP_API void load_from(const JSON& json, Tileset& set);
+void load_from(const JSON& json, Tileset& set);
 
 }  // namespace step
 

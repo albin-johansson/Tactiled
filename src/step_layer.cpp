@@ -195,55 +195,91 @@ Maybe<Layer::DrawOrder> Layer::draw_order() const noexcept
 }
 
 STEP_DEF
-void from_json(const JSON& json, Layer& layer)
+void Layer::init_common(const JSON& json)
 {
-  // Common across all kinds of layers
-  json.at("type").get_to(layer.m_type);
-  json.at("name").get_to(layer.m_name);
+  json.at("type").get_to(m_type);
+  json.at("name").get_to(m_name);
+  json.at("opacity").get_to(m_opacity);
+  json.at("visible").get_to(m_visible);
 
-  json.at("opacity").get_to(layer.m_opacity);
-  json.at("visible").get_to(layer.m_visible);
-
-  detail::safe_bind(json, "id", layer.m_id);
-  detail::safe_bind(json, "width", layer.m_width);
-  detail::safe_bind(json, "height", layer.m_height);
-  detail::safe_bind(json, "startx", layer.m_startX);
-  detail::safe_bind(json, "starty", layer.m_startY);
-  detail::safe_bind(json, "offsetx", layer.m_offsetX);
-  detail::safe_bind(json, "offsety", layer.m_offsetY);
+  detail::safe_bind(json, "id", m_id);
+  detail::safe_bind(json, "width", m_width);
+  detail::safe_bind(json, "height", m_height);
+  detail::safe_bind(json, "startx", m_startX);
+  detail::safe_bind(json, "starty", m_startY);
+  detail::safe_bind(json, "offsetx", m_offsetX);
+  detail::safe_bind(json, "offsety", m_offsetY);
 
   if (json.contains("properties")) {
     for (const auto& [key, value] : json.at("properties").items()) {
-      layer.m_properties.emplace_back(value);
+      m_properties.emplace_back(value);
     }
   }
+}
 
-  if (layer.is_tile_layer()) {
-    detail::safe_bind(json, "compression", layer.m_compression);
-    detail::safe_bind(json, "encoding", layer.m_encoding);
-    if (json.contains("data")) {
-      if (layer.m_encoding == Layer::Encoding::CSV) {
-        layer.m_data.emplace<Layer::Data>();
-        for (const auto& [key, value] : json.at("data").items()) {
-          std::get<Layer::Data>(layer.m_data).emplace_back(value.get<int>());
-        }
-
-      } else if (layer.m_encoding == Layer::Encoding::Base64) {
-        // FIXME no idea if this works, might just not support Base64
-        layer.m_data.emplace<std::string>(json.at("data").get<std::string>());
+STEP_DEF
+void Layer::init_tile_layer(const JSON& json)
+{
+  detail::safe_bind(json, "compression", m_compression);
+  detail::safe_bind(json, "encoding", m_encoding);
+  if (json.contains("data")) {
+    if (m_encoding == Layer::Encoding::CSV) {
+      auto& data = m_data.emplace<Layer::Data>();
+      for (const auto& [key, value] : json.at("data").items()) {
+        data.emplace_back(value.get<int>());
       }
+    } else if (m_encoding == Layer::Encoding::Base64) {
+      // FIXME no idea if this works, might just not support Base64
+      m_data.emplace<std::string>(json.at("data").get<std::string>());
     }
-  } else if (layer.is_image_layer()) {
-    json.at("image").get_to(layer.m_image);
-    if (json.count("transparentcolor")) {
-      layer.m_transparentColor =
-          Color{json.at("transparentcolor").get<std::string>()};
-    } else if (layer.is_object_group()) {
-      json.at("draworder").get_to(layer.m_drawOrder);
-      // TODO objects
-    } else if (layer.is_group()) {
-      // TODO layers
+  }
+}
+
+STEP_DEF
+void Layer::init_image_layer(const JSON& json)
+{
+  json.at("image").get_to(m_image);
+  if (json.count("transparentcolor")) {
+    m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
+  }
+}
+
+STEP_DEF
+void Layer::init_image_group(const JSON& json)
+{
+  json.at("draworder").get_to(m_drawOrder);
+  // TODO objects
+}
+
+STEP_DEF
+void Layer::init_group(const JSON& json)
+{
+  // TODO layers
+}
+
+STEP_DEF
+void from_json(const JSON& json, Layer& layer)
+{
+  layer.init_common(json);
+  switch (layer.type()) {
+    case Layer::Type::TileLayer: {
+      layer.init_tile_layer(json);
+      break;
     }
+    case Layer::Type::ObjectGroup: {
+      layer.init_image_group(json);
+      break;
+    }
+    case Layer::Type::ImageLayer: {
+      layer.init_image_layer(json);
+      break;
+    }
+    case Layer::Type::Group: {
+      layer.init_group(json);
+      break;
+    }
+    default:
+      throw StepException{"Layer > Unknown layer type!"};
   }
 }
 

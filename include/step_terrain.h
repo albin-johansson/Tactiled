@@ -40,7 +40,7 @@ namespace step {
  */
 class Terrain final {
  public:
-  friend void from_json(const JSON&, Terrain&);
+  STEP_API friend void from_json(const JSON&, Terrain&);
 
   /**
    * Returns the local GID of the tile associated with the terrain.
@@ -88,7 +88,7 @@ class Terrain final {
   std::vector<Property> m_properties;
 };
 
-STEP_API void from_json(const JSON& json, Terrain& terrain);
+void from_json(const JSON& json, Terrain& terrain);
 
 }  // namespace step
 

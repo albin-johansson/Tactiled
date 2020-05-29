@@ -37,7 +37,7 @@ namespace step {
  */
 class Frame final {
  public:
-  friend void from_json(const JSON&, Frame&);
+  STEP_API friend void from_json(const JSON&, Frame&);
 
   /**
    * Returns the local tile ID that is associated with the frame.
@@ -60,7 +60,7 @@ class Frame final {
   int m_duration = 0;
 };
 
-STEP_API void from_json(const JSON& json, Frame& frame);
+void from_json(const JSON& json, Frame& frame);
 
 }  // namespace step
 

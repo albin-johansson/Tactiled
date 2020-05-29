@@ -38,7 +38,7 @@ namespace step {
  */
 class TileOffset final {
  public:
-  friend void from_json(const JSON&, TileOffset&);
+  STEP_API friend void from_json(const JSON&, TileOffset&);
 
   /**
    * Returns the offset in the x-axis associated with the tile offset instance.
@@ -61,7 +61,7 @@ class TileOffset final {
   int m_y;
 };
 
-STEP_API void from_json(const JSON& json, TileOffset& offset);
+void from_json(const JSON& json, TileOffset& offset);
 
 }  // namespace step
 

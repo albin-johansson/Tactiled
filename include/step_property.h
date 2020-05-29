@@ -59,7 +59,7 @@ class Property final {
    */
   enum class Type { String, Int, Float, Bool, Color, File };
 
-  friend void from_json(const JSON&, Property&);
+  STEP_API friend void from_json(const JSON&, Property&);
 
   /**
    * Returns the string value associated with the property, if there is one.
@@ -182,7 +182,7 @@ class Property final {
   Type m_type = Type::String;
 };
 
-STEP_API void from_json(const JSON& json, Property& property);
+void from_json(const JSON& json, Property& property);
 
 STEP_SERIALIZE_ENUM(Property::Type,
                     {{Property::Type::String, "string"},

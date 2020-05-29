@@ -66,7 +66,7 @@ class Tile final {
   STEP_QUERY
   Maybe<int> terrain_at(TerrainPos position) const noexcept;
 
-  friend void from_json(const JSON&, Tile&);
+  STEP_API friend void from_json(const JSON&, Tile&);
 
   /**
    * Returns the local ID associated with the tile.
@@ -160,7 +160,7 @@ class Tile final {
   Maybe<double> m_probability;
 };
 
-STEP_API void from_json(const JSON& json, Tile& tile);
+void from_json(const JSON& json, Tile& tile);
 
 }  // namespace step
 

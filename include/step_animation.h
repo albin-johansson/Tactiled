@@ -40,7 +40,7 @@ namespace step {
  */
 class Animation final {
  public:
-  friend void from_json(const JSON&, Animation&);
+  STEP_API friend void from_json(const JSON&, Animation&);
 
   /**
    * Returns the frames associated with the animation.
@@ -65,7 +65,7 @@ class Animation final {
   std::vector<Frame> m_frames;
 };
 
-STEP_API void from_json(const JSON& json, Animation& animation);
+void from_json(const JSON& json, Animation& animation);
 
 #ifdef STEP_HEADER_ONLY
 #include "step_animation.cpp"

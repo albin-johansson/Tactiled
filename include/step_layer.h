@@ -44,7 +44,7 @@ class Layer final {
  public:
   using Data = std::vector<unsigned int>;
 
-  friend void from_json(const JSON&, Layer&);
+  STEP_API friend void from_json(const JSON&, Layer&);
 
   /**
    * The Type enum class provides identifiers for all of the different
@@ -311,9 +311,19 @@ class Layer final {
   int m_startY = 0;  // for infinite maps
 
   bool m_visible;
+
+  void init_common(const JSON& json);
+
+  void init_tile_layer(const JSON& json);
+
+  void init_image_layer(const JSON& json);
+
+  void init_image_group(const JSON& json);
+
+  void init_group(const JSON& json);
 };
 
-STEP_API void from_json(const JSON& json, Layer& layer);
+void from_json(const JSON& json, Layer& layer);
 
 STEP_SERIALIZE_ENUM(Layer::Type,
                     {{Layer::Type::TileLayer, "tilelayer"},
