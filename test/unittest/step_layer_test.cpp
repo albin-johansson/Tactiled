@@ -43,8 +43,13 @@ TEST_SUITE("Layer")
 
       SUBCASE("Check data")
       {
-        CHECK_NOTHROW(layer.data());
-        CHECK_THROWS(layer.base64_data());
+        const auto& data = layer.data();
+        CHECK_NOTHROW(data.data_gid());
+
+        const auto& tiles = data.data_gid();
+        CHECK(tiles.size() == 1024);
+
+        CHECK_THROWS(data.data_base64());
       }
     }
 
@@ -90,13 +95,9 @@ TEST_SUITE("Layer")
     {
       CHECK(!layer.encoding());
       CHECK(!layer.compression());
-
-      CHECK_THROWS_WITH_AS(
-          layer.data(), "Layer > Failed to obtain GID data!", StepException);
-
-      CHECK_THROWS_WITH_AS(layer.base64_data(),
-                           "Layer > Failed to obtain Base64 data!",
-                           StepException);
+      const auto& data = layer.data();
+      CHECK_NOTHROW(data.data_gid());
+      CHECK_THROWS_AS(data.data_base64(), StepException);
     }
 
     SUBCASE("Object group exclusive properties")
@@ -141,8 +142,9 @@ TEST_SUITE("Layer")
     {
       CHECK(!layer.encoding());
       CHECK(!layer.compression());
-      CHECK_THROWS(layer.data());
-      CHECK_THROWS(layer.base64_data());
+      const auto& data = layer.data();
+      CHECK_NOTHROW(data.data_gid());
+      CHECK_THROWS_AS(data.data_base64(), StepException);
     }
 
     SUBCASE("Object group exclusive properties")
@@ -191,8 +193,9 @@ TEST_SUITE("Layer")
     {
       CHECK(!layer.encoding());
       CHECK(!layer.compression());
-      CHECK_THROWS(layer.data());
-      CHECK_THROWS(layer.base64_data());
+      const auto& data = layer.data();
+      CHECK_NOTHROW(data.data_gid());
+      CHECK_THROWS_AS(data.data_base64(), StepException);
     }
 
     SUBCASE("Object group exclusive properties")

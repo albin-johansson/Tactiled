@@ -149,23 +149,9 @@ Maybe<Layer::Compression> Layer::compression() const noexcept
 }
 
 STEP_DEF
-const Layer::Data& Layer::data() const
+const detail::Data& Layer::data() const noexcept
 {
-  if (is_tile_layer() && std::holds_alternative<Data>(m_data)) {
-    return std::get<Data>(m_data);
-  } else {
-    throw StepException{"Layer > Failed to obtain GID data!"};
-  }
-}
-
-STEP_DEF
-const std::string& Layer::base64_data() const
-{
-  if (is_tile_layer() && std::holds_alternative<std::string>(m_data)) {
-    return std::get<std::string>(m_data);
-  } else {
-    throw StepException{"Layer > Failed to obtain Base64 data!"};
-  }
+  return m_data;
 }
 
 STEP_DEF
@@ -223,15 +209,7 @@ void Layer::init_tile_layer(const JSON& json)
   detail::safe_bind(json, "compression", m_compression);
   detail::safe_bind(json, "encoding", m_encoding);
   if (json.contains("data")) {
-    if (m_encoding == Layer::Encoding::CSV) {
-      auto& data = m_data.emplace<Layer::Data>();
-      for (const auto& [key, value] : json.at("data").items()) {
-        data.emplace_back(value.get<int>());
-      }
-    } else if (m_encoding == Layer::Encoding::Base64) {
-      // FIXME no idea if this works, might just not support Base64
-      m_data.emplace<std::string>(json.at("data").get<std::string>());
-    }
+    json.at("data").get_to(m_data);
   }
 }
 
@@ -252,7 +230,7 @@ void Layer::init_image_group(const JSON& json)
 }
 
 STEP_DEF
-void Layer::init_group(const JSON& json)
+void Layer::init_group(const JSON&)
 {
   // TODO layers
 }

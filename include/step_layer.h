@@ -30,6 +30,7 @@
 #include <vector>
 
 #include "step_api.h"
+#include "step_data.h"
 #include "step_property.h"
 #include "step_types.h"
 
@@ -231,26 +232,13 @@ class Layer final {
   STEP_QUERY Maybe<Compression> compression() const noexcept;
 
   /**
-   * Returns the tile data associated with the layer. This method will throw
-   * an exception if the layer doesn't hold the desired data. Only applicable
+   * Returns the tile data associated with the layer. Only applicable
    * on tile layers.
    *
    * @return the tile data associated with the layer.
-   * @throws StepException if the data couldn't be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY const Data& data() const;
-
-  /**
-   * Returns the Base64-encoded tile data associated with the layer. This
-   * method will throw an exception if the layer doesn't hold the desired data.
-   * Only applicable on tile layers.
-   *
-   * @return the tile data associated with the layer.
-   * @throws StepException if the data couldn't be obtained.
-   * @since 0.1.0
-   */
-  STEP_QUERY const std::string& base64_data() const;
+  STEP_QUERY const detail::Data& data() const noexcept;
 
   /**
    * Returns the image used by the layer. This method is only applicable on
@@ -289,7 +277,7 @@ class Layer final {
 
   Encoding m_encoding = Encoding::CSV;            // TILE LAYER ONLY
   Compression m_compression = Compression::None;  // TILE LAYER ONLY
-  std::variant<Data, std::string> m_data;         // TILE LAYER ONLY
+  detail::Data m_data;                            // TILE LAYER ONLY
 
   int m_width{0};
   int m_height{0};
