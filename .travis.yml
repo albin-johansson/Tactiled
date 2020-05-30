@@ -10,7 +10,7 @@ env:
   global:
     - DEPS_DIR=${TRAVIS_BUILD_DIR}/deps
     - ENABLE_COVERAGE=true
-    - CODECOV_TOKEN="be5150b2-1f9d-4d38-9d82-549ab50ccc6b"
+    - CODECOV_TOKEN="ec1cf399-75c2-4c64-9130-c49a2ad084fe"
 
 addons:
   apt:
