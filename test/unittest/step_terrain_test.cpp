@@ -2,29 +2,17 @@
 
 #include <doctest.h>
 
-#include <string_view>
-
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
 
-namespace {
-
-[[nodiscard]] Terrain mk_terrain(std::string_view file)
-{
-  using namespace std::string_literals;
-  const auto path = "resource/terrain/"s + file.data();
-  const auto json = detail::parse_json(path);
-  return json.get<Terrain>();
-}
-
-}  // namespace
+inline static const std::string prefix = "resource/terrain/";
 
 TEST_SUITE("Terrain")
 {
   TEST_CASE("Parsing complete terrain")
   {
-    const auto terrain = mk_terrain("complete.json");
+    const auto terrain = test::make<Terrain>(prefix, "complete.json");
     CHECK(terrain.tile() == 64);
     CHECK(terrain.name() == "water");
     REQUIRE(!terrain.properties().empty());
@@ -37,7 +25,7 @@ TEST_SUITE("Terrain")
 
   TEST_CASE("Parsing terrain with no properties")
   {
-    const auto terrain = mk_terrain("no_properties.json");
+    const auto terrain = test::make<Terrain>(prefix, "no_properties.json");
     CHECK(terrain.tile() == 77);
     CHECK(terrain.name() == "lava");
     CHECK(terrain.properties().empty());
