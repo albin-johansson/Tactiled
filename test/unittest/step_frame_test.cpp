@@ -2,9 +2,11 @@
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
+
+inline static const std::string prefix = "resource/frame/";
 
 TEST_SUITE("Frame")
 {
@@ -17,8 +19,7 @@ TEST_SUITE("Frame")
 
   TEST_CASE("Parsing valid frame object")
   {
-    const auto json = detail::parse_json("resource/frame/frame_complete.json");
-    const auto frame = json.get<Frame>();
+    const auto frame = test::make<Frame>(prefix, "frame_complete.json");
 
     CHECK(frame.tile_id() == 6227);
     CHECK(frame.duration() == 598);
