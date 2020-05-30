@@ -3,27 +3,17 @@
 #include <doctest.h>
 
 #include "step_exception.h"
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
 
-namespace {
-
-Tileset mk_tileset(std::string_view path)
-{
-  using namespace std::string_literals;
-  const std::string actualPath = "resource/tileset/"s + path.data();
-  const auto json = detail::parse_json(actualPath.c_str());
-  return json.get<Tileset>();
-}
-
-}  // namespace
+inline static const std::string prefix = "resource/tileset/";
 
 TEST_SUITE("Tileset")
 {
   TEST_CASE("Parsing external tileset")
   {
-    const auto tileset = mk_tileset("external_tileset.json");
+    const auto tileset = test::make<Tileset>(prefix, "external_tileset.json");
 
     CHECK(tileset.columns() == 32);
     CHECK(tileset.first_gid() == 4);
@@ -46,7 +36,7 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Parsing embedded tileset")
   {
-    const auto tileset = mk_tileset("embedded_tileset.json");
+    const auto tileset = test::make<Tileset>(prefix, "embedded_tileset.json");
 
     CHECK(tileset.first_gid() == 7);
     CHECK(tileset.columns() == 48);
@@ -111,7 +101,7 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Tileset with properties")
   {
-    const auto tileset = mk_tileset("with_properties.json");
+    const auto tileset = test::make<Tileset>(prefix, "with_properties.json");
     const auto& properties = tileset.properties();
 
     REQUIRE(properties.amount() == 2);
@@ -133,7 +123,7 @@ TEST_SUITE("Tileset")
   {
     SUBCASE("Check first tile")
     {
-      const auto tileset = mk_tileset("with_tiles.json");
+      const auto tileset = test::make<Tileset>(prefix, "with_tiles.json");
       const auto& tiles = tileset.tiles();
 
       REQUIRE(tiles.size() == 2);
@@ -169,7 +159,7 @@ TEST_SUITE("Tileset")
 
     SUBCASE("Check second tile")
     {
-      auto tileset = mk_tileset("with_tiles.json");
+      const auto tileset = test::make<Tileset>(prefix, "with_tiles.json");
       auto& tiles = tileset.tiles();
 
       REQUIRE(tiles.size() == 2);
@@ -197,13 +187,14 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Embedded tileset without explicit first GID")
   {
-    const auto tileset = mk_tileset("embedded_tileset_no_gid.json");
+    const auto tileset =
+        test::make<Tileset>(prefix, "embedded_tileset_no_gid.json");
     CHECK(tileset.first_gid() == 1);
   }
 
   TEST_CASE("Tileset missing type attribute")
   {
-    CHECK_THROWS_WITH_AS(mk_tileset("tileset_wrong_type.json"),
+    CHECK_THROWS_WITH_AS(test::make<Tileset>(prefix, "tileset_wrong_type.json"),
                          "Tileset > \"type\" must be \"tileset\"!",
                          StepException);
   }
