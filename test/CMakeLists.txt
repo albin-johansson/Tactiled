@@ -24,7 +24,8 @@ set(TEST_FILES
         unittest/step_test_utils.h
         unittest/step_chunk_test.cpp
         unittest/step_data_test.cpp
-        unittest/step_properties_test.cpp unittest/step_object_test.cpp)
+        unittest/step_properties_test.cpp
+        unittest/step_object_test.cpp)
 
 add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
 add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})
