@@ -2,18 +2,18 @@
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
+
+inline static const std::string prefix = "resource/tile/";
 
 TEST_SUITE("Tile")
 {
   TEST_CASE("Parse tile with all keys")
   {
     // FIXME this does NOT include "objectgroup" key
-    const auto path = "resource/tile/tile_complete.json";
-    const auto json = detail::parse_json(path);
-    const auto tile = json.get<Tile>();
+    const auto tile = test::make<Tile>(prefix, "tile_complete.json");
 
     CHECK(tile.id() == 74);
 
