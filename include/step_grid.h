@@ -81,7 +81,7 @@ class Grid final {
   int m_height;
 };
 
-void from_json(const JSON& json, Grid& grid);
+STEP_API void from_json(const JSON& json, Grid& grid);
 
 STEP_SERIALIZE_ENUM(Grid::Orientation,
                     {{Grid::Orientation::Orthogonal, "orthogonal"},

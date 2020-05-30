@@ -27,6 +27,8 @@
 
 #include "step_terrain.h"
 
+#include "step_utils.h"
+
 namespace step {
 
 STEP_DEF
@@ -34,11 +36,7 @@ void from_json(const JSON& json, Terrain& terrain)
 {
   json.at("tile").get_to(terrain.m_tile);
   json.at("name").get_to(terrain.m_name);
-  if (json.contains("properties")) {
-    for (const auto& [key, value] : json.at("properties").items()) {
-      terrain.m_properties.emplace_back(value);
-    }
-  }
+  detail::safe_bind(json, "properties", terrain.m_properties);
 }
 
 }  // namespace step

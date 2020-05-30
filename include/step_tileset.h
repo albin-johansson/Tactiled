@@ -30,7 +30,7 @@
 #include "step_api.h"
 #include "step_color.h"
 #include "step_grid.h"
-#include "step_property.h"
+#include "step_properties.h"
 #include "step_terrain.h"
 #include "step_tile.h"
 #include "step_tile_offset.h"
@@ -155,18 +155,7 @@ class Tileset final {
    * @return the properties associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] const std::vector<Property>& properties() const noexcept
-  {
-    return m_properties;
-  }
-
-  /**
-   * Returns the properties associated with the tileset.
-   *
-   * @return the properties associated with the tileset.
-   * @since 0.1.0
-   */
-  [[nodiscard]] std::vector<Property>& properties() noexcept
+  [[nodiscard]] const Properties& properties() const noexcept
   {
     return m_properties;
   }
@@ -292,7 +281,7 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
-  std::vector<Property> m_properties;  // TODO consider changing this
+  Properties m_properties;  // TODO consider changing this
   std::vector<Terrain> m_terrains;
 
   std::string m_image;
@@ -309,9 +298,9 @@ class Tileset final {
   // TODO std::vector<WangSet> m_wangSets;
 };
 
-void from_json(const JSON& json, Tileset& set);
+STEP_API void from_json(const JSON& json, Tileset& set);
 
-void load_from(const JSON& json, Tileset& set);
+STEP_API void load_from(const JSON& json, Tileset& set);
 
 }  // namespace step
 

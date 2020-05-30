@@ -29,7 +29,7 @@ TEST_SUITE("Terrain")
     CHECK(terrain.name() == "water");
     REQUIRE(!terrain.properties().empty());
 
-    const auto property = terrain.properties().at(0);
+    const auto property = terrain.properties().get("health");
     CHECK(property.name() == "health");
     REQUIRE(property.type() == Property::Type::Int);
     CHECK(*property.as_int() == 87);

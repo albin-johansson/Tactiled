@@ -3,16 +3,17 @@
 #include <doctest.h>
 
 #include "step_exception.h"
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
+
+inline static const std::string prefix = "resource/text/";
 
 TEST_SUITE("Text")
 {
   TEST_CASE("Text object with all keys")
   {
-    const auto path = "resource/text/text_all_keys.json";
-    Text text{detail::parse_json(path)};
+    const auto text = test::make<Text>(prefix, "text_all_keys.json");
 
     CHECK(text.text() == "Elrond");
     CHECK(text.font_family() == "Consolas");
@@ -30,8 +31,7 @@ TEST_SUITE("Text")
 
   TEST_CASE("Text object from bare minimum JSON")
   {
-    const auto path = "resource/text/text_minimum.json";
-    const Text text{detail::parse_json(path)};
+    const auto text = test::make<Text>(prefix, "text_minimum.json");
 
     CHECK(text.text() == "Smaug");
 

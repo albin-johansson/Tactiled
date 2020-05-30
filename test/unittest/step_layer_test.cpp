@@ -62,14 +62,15 @@ TEST_SUITE("Layer")
 
     SUBCASE("General properties test")
     {
-      REQUIRE(layer.properties().size() == 2);
+      const auto& properties = layer.properties();
+      REQUIRE(properties.amount() == 2);
 
-      const auto first = layer.properties().at(0);
+      const auto first = properties.get("foo");
       CHECK(first.name() == "foo");
       CHECK(first.is_int());
       CHECK(*first.as_int() == 79);
 
-      const auto second = layer.properties().at(1);
+      const auto second = properties.get("bar");
       CHECK(second.name() == "bar");
       CHECK(second.as_bool());
       CHECK(!*second.as_bool());

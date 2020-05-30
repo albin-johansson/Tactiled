@@ -29,7 +29,7 @@
 #include <vector>
 
 #include "step_api.h"
-#include "step_property.h"
+#include "step_properties.h"
 
 namespace step {
 
@@ -65,19 +65,7 @@ class Terrain final {
    * @return the properties associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] std::vector<Property>& properties() noexcept
-  {
-    return m_properties;
-  }
-
-  /**
-   * Returns the properties associated with the terrain. This property is
-   * optional.
-   *
-   * @return the properties associated with the terrain.
-   * @since 0.1.0
-   */
-  [[nodiscard]] const std::vector<Property>& properties() const noexcept
+  [[nodiscard]] const Properties& properties() const noexcept
   {
     return m_properties;
   }
@@ -85,7 +73,7 @@ class Terrain final {
  private:
   int m_tile;
   std::string m_name;
-  std::vector<Property> m_properties;
+  Properties m_properties;
 };
 
 void from_json(const JSON& json, Terrain& terrain);

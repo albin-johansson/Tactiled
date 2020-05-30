@@ -46,11 +46,7 @@ void from_json(const JSON& json, Tile& tile)
 {
   json.at("id").get_to(tile.m_id);
 
-  if (json.contains("properties")) {
-    for (const auto& [key, value] : json.at("properties").items()) {
-      tile.m_properties.emplace_back(value);
-    }
-  }
+  detail::safe_bind(json, "properties", tile.m_properties);
 
   if (json.contains("terrain")) {
     tile.m_terrain.emplace();  // TODO test this terrain stuff

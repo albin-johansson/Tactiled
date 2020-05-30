@@ -27,19 +27,13 @@
 
 #include "step_point.h"
 
-#include "step_exception.h"
-
 namespace step {
 
 STEP_DEF
-Point::Point(const JSON& json)
+void from_json(const JSON& json, Point& point)
 {
-  try {
-    m_x = json.at("x").get<double>();
-    m_y = json.at("y").get<double>();
-  } catch (...) {
-    throw StepException{""};
-  }
+  json.at("x").get_to(point.m_x);
+  json.at("y").get_to(point.m_y);
 }
 
 }  // namespace step

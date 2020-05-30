@@ -65,7 +65,13 @@ set(SOURCE_FILES
         step_object_group.cpp
 
         ${STEP_INCLUDE_DIR}/step_group.h
-        step_group.cpp)
+        step_group.cpp
+
+        ${STEP_INCLUDE_DIR}/step_object.h
+        step_object.cpp
+
+        ${STEP_INCLUDE_DIR}/step_properties.h
+        step_properties.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

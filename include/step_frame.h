@@ -60,7 +60,7 @@ class Frame final {
   int m_duration = 0;
 };
 
-void from_json(const JSON& json, Frame& frame);
+STEP_API void from_json(const JSON& json, Frame& frame);
 
 }  // namespace step
 

@@ -57,15 +57,7 @@ class Text final {
    */
   enum class VAlign { Center, Bottom, Top };
 
-  /**
-   * Creates a Text instance.
-   *
-   * @param json the JSON object that contains the data for a text object.
-   * @throws TactiledException if something goes wrong whilst parsing the
-   * JSON object.
-   * @since 0.1.0
-   */
-  STEP_API explicit Text(const JSON& json);
+  STEP_API friend void from_json(const JSON&, Text&);
 
   /**
    * Returns the text associated with the Text instance. This property has no
@@ -193,6 +185,8 @@ class Text final {
   bool m_underline = false;
   bool m_wrap = false;
 };
+
+STEP_API void from_json(const JSON& json, Text& text);
 
 STEP_SERIALIZE_ENUM(Text::HAlign,
                     {{Text::HAlign::Center, "center"},

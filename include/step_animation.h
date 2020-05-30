@@ -65,12 +65,12 @@ class Animation final {
   std::vector<Frame> m_frames;
 };
 
-void from_json(const JSON& json, Animation& animation);
+STEP_API void from_json(const JSON& json, Animation& animation);
+
+}  // namespace step
 
 #ifdef STEP_HEADER_ONLY
 #include "step_animation.cpp"
 #endif  // STEP_HEADER_ONLY
-
-}  // namespace step
 
 #endif  // STEP_ANIMATION_HEADER

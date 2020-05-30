@@ -1,6 +1,6 @@
 # step [![version](https://img.shields.io/badge/version-0.1.0-red.svg)](https://semver.org) [![Build Status](https://travis-ci.org/albin-johansson/Centurion.svg?branch=master)](https://travis-ci.org/albin-johansson/step) [![codecov](https://codecov.io/gh/albin-johansson/step/branch/master/graph/badge.svg)](https://codecov.io/gh/albin-johansson/step) [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/albin-johansson/step) ![GitHub repo size](https://img.shields.io/github/repo-size/albin-johansson/step)  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17. It can be used both as a shared library ~~or in a pseudo-"header-only" mode where you also include the source files~~.
+***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17. It can be used both as a shared library or in a pseudo-"header-only" mode where you also include the source files.
 
 This library *should* be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows (with GCC 8.1.0) and is tested on Windows and Linux (Ubuntu).
 

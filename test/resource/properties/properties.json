@@ -1,0 +1,17 @@
+[
+  {
+    "name": "a",
+    "type": "int",
+    "value": 67
+  },
+  {
+    "name": "b",
+    "type": "int",
+    "value": 24
+  },
+  {
+    "name": "c",
+    "type": "int",
+    "value": 31
+  }
+]

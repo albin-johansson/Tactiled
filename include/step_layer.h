@@ -33,7 +33,7 @@
 #include "step_group.h"
 #include "step_image_layer.h"
 #include "step_object_group.h"
-#include "step_property.h"
+#include "step_properties.h"
 #include "step_tile_layer.h"
 #include "step_types.h"
 
@@ -166,7 +166,7 @@ class Layer final {
    * @return the properties associated with the layer.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Property>& properties() const noexcept;
+  STEP_QUERY const Properties& properties() const noexcept;
 
   /**
    * Returns the x-coordinate of where the layer content begins. This is used by
@@ -232,7 +232,7 @@ class Layer final {
   Type m_type;
   int m_id{0};
   std::variant<TileLayer, ImageLayer, ObjectGroup, Group> m_layerData;
-  std::vector<Property> m_properties;
+  Properties m_properties;
   int m_width{0};
   int m_height{0};
   int m_startX{0};

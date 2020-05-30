@@ -22,20 +22,52 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_OFFSET_SOURCE
-#define STEP_TILE_OFFSET_SOURCE
+#ifndef STEP_PROPERTIES_SOURCE
+#define STEP_PROPERTIES_SOURCE
 
-#include "step_tile_offset.h"
+#include "step_properties.h"
+
+#include "step_exception.h"
 
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, TileOffset& offset)
+bool Properties::has(const std::string& name) const
 {
-  json.at("x").get_to(offset.m_x);
-  json.at("y").get_to(offset.m_y);
+  return m_properties.count(name);
+}
+
+STEP_DEF
+const Property& Properties::get(const std::string& name) const
+{
+  try {
+    return m_properties.at(name);
+  } catch (...) {
+    throw StepException{"Properties > Couldn't lookup property: " + name};
+  }
+}
+
+STEP_DEF
+int Properties::amount() const noexcept
+{
+  return static_cast<int>(m_properties.size());
+}
+
+STEP_DEF
+bool Properties::empty() const noexcept
+{
+  return m_properties.empty();
+}
+
+STEP_DEF
+void from_json(const JSON& json, Properties& props)
+{
+  for (const auto& [key, value] : json.items()) {
+    const auto property = value.get<Property>();
+    props.m_properties.emplace(property.name(), property);
+  }
 }
 
 }  // namespace step
 
-#endif  // STEP_TILE_OFFSET_SOURCE
+#endif  // STEP_PROPERTIES_SOURCE

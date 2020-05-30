@@ -61,7 +61,7 @@ class TileOffset final {
   int m_y;
 };
 
-void from_json(const JSON& json, TileOffset& offset);
+STEP_API void from_json(const JSON& json, TileOffset& offset);
 
 }  // namespace step
 

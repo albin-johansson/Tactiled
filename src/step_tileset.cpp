@@ -49,15 +49,8 @@ void load_from(const JSON& json, Tileset& set)
   json.at("spacing").get_to(set.m_spacing);
   json.at("image").get_to(set.m_image);
 
-  if (json.contains("firstgid")) {
-    json.at("firstgid").get_to(set.m_firstGID);
-  }
-
-  if (json.contains("properties")) {
-    for (const auto& [key, value] : json.at("properties").items()) {
-      set.m_properties.emplace_back(value.get<Property>());
-    }
-  }
+  detail::safe_bind(json, "firstgid", set.m_firstGID);
+  detail::safe_bind(json, "properties", set.m_properties);
 
   if (json.contains("tiles")) {
     for (const auto& [key, value] : json.at("tiles").items()) {
@@ -97,7 +90,8 @@ void load_from(const JSON& json, Tileset& set)
   }
 }
 
-STEP_DEF void from_json(const JSON& json, Tileset& set)
+STEP_DEF
+void from_json(const JSON& json, Tileset& set)
 {
   if (json.contains("source")) {
     json.at("firstgid").get_to(set.m_firstGID);

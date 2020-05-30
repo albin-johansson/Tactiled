@@ -182,7 +182,7 @@ class Property final {
   Type m_type = Type::String;
 };
 
-void from_json(const JSON& json, Property& property);
+STEP_API void from_json(const JSON& json, Property& property);
 
 STEP_SERIALIZE_ENUM(Property::Type,
                     {{Property::Type::String, "string"},

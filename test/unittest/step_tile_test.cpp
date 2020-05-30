@@ -52,13 +52,13 @@ TEST_SUITE("Tile")
     {
       const auto properties = tile.properties();
 
-      const auto first = properties.at(0);
+      const auto first = properties.get("Galadriel");
       CHECK(first.name() == "Galadriel");
       CHECK(first.type() == Property::Type::String);
       CHECK(first.as_string());
       CHECK(*first.as_string() == "Denethor sucks");
 
-      const auto second = properties.at(1);
+      const auto second = properties.get("Gandalf");
       CHECK(second.name() == "Gandalf");
       CHECK(second.type() == Property::Type::Int);
       CHECK(second.as_int());

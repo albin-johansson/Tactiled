@@ -77,7 +77,6 @@ Color::Color(std::string_view value)
   const auto len = withoutHash.length();
 
   try {
-    // TODO this feature could be added to CTN 4.1
     m_red = from_hex(withoutHash.substr(0, 2));
     m_green = from_hex(withoutHash.substr(2, 2));
     m_blue = from_hex(withoutHash.substr(4, 2));

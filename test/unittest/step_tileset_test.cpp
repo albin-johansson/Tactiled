@@ -92,8 +92,8 @@ TEST_SUITE("Tileset")
       CHECK(firstTerrain.tile() == 4);
 
       {
-        REQUIRE(!firstTerrain.properties().empty());
-        const auto property = firstTerrain.properties().at(0);
+        REQUIRE(firstTerrain.properties().amount() != 0);
+        const auto property = firstTerrain.properties().get("foo");
         CHECK(property.name() == "foo");
         REQUIRE(property.type() == Property::Type::Bool);
         CHECK(*property.as_bool());
@@ -111,32 +111,22 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Tileset with properties")
   {
-    SUBCASE("Const properties")
-    {
-      const auto tileset = mk_tileset("with_properties.json");
-      const auto& properties = tileset.properties();
+    const auto tileset = mk_tileset("with_properties.json");
+    const auto& properties = tileset.properties();
 
-      REQUIRE(properties.size() == 2);
+    REQUIRE(properties.amount() == 2);
 
-      const auto firstProperty = properties.at(0);
-      CHECK(firstProperty.name() == "aFloat");
-      CHECK(firstProperty.type() == Property::Type::Float);
-      REQUIRE(firstProperty.as_float());
-      CHECK(firstProperty.as_float() == 7.5f);
-    }
+    const auto firstProperty = properties.get("aFloat");
+    CHECK(firstProperty.name() == "aFloat");
+    CHECK(firstProperty.type() == Property::Type::Float);
+    REQUIRE(firstProperty.as_float());
+    CHECK(firstProperty.as_float() == 7.5f);
 
-    SUBCASE("Non-const properties")
-    {
-      auto tileset = mk_tileset("with_properties.json");
-      auto& properties = tileset.properties();
-
-      const auto secondProperty = properties.at(1);
-
-      CHECK(secondProperty.name() == "aString");
-      CHECK(secondProperty.type() == Property::Type::String);
-      REQUIRE(secondProperty.as_string());
-      CHECK(secondProperty.as_string() == "Hello");
-    }
+    const auto secondProperty = properties.get("aString");
+    CHECK(secondProperty.name() == "aString");
+    CHECK(secondProperty.type() == Property::Type::String);
+    REQUIRE(secondProperty.as_string());
+    CHECK(secondProperty.as_string() == "Hello");
   }
 
   TEST_CASE("Tileset with tiles")
@@ -166,10 +156,10 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Properties")
       {
-        const auto properties = tile.properties();  // TODO change to const&
-        REQUIRE(properties.size() == 1);
+        const auto& properties = tile.properties();
+        REQUIRE(properties.amount() == 1);
 
-        const auto property = properties.at(0);
+        const auto property = properties.get("name");
         CHECK(property.name() == "name");
         CHECK(property.type() == Property::Type::String);
         REQUIRE(property.as_string());
@@ -190,14 +180,14 @@ TEST_SUITE("Tileset")
       SUBCASE("Properties")
       {
         const auto properties = tile.properties();
-        REQUIRE(properties.size() == 2);
+        REQUIRE(properties.amount() == 2);
 
-        const auto firstProperty = properties.at(0);
+        const auto firstProperty = properties.get("coolness");
         CHECK(firstProperty.name() == "coolness");
         REQUIRE(firstProperty.type() == Property::Type::Int);
         CHECK(*firstProperty.as_int() == 9000);
 
-        const auto secondProperty = properties.at(1);
+        const auto secondProperty = properties.get("frodo");
         CHECK(secondProperty.name() == "frodo");
         REQUIRE(secondProperty.type() == Property::Type::String);
         CHECK(*secondProperty.as_string() == "sandTile");

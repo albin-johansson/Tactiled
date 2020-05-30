@@ -29,7 +29,7 @@
 
 #include "step_animation.h"
 #include "step_api.h"
-#include "step_property.h"
+#include "step_properties.h"
 #include "step_types.h"
 
 namespace step {
@@ -94,10 +94,7 @@ class Tile final {
    * @return the properties associated with the tile.
    * @since 0.1.0
    */
-  [[nodiscard]] std::vector<Property> properties() const
-  {
-    return m_properties;
-  }
+  [[nodiscard]] const Properties& properties() const { return m_properties; }
 
   /**
    * Returns the type of the tile.
@@ -150,7 +147,7 @@ class Tile final {
  private:
   int m_id = 0;
   Maybe<Animation> m_animation;
-  std::vector<Property> m_properties;
+  Properties m_properties;
   // TODO Maybe<Layer> m_objectGroup;
   Maybe<std::array<int, 4>> m_terrain;
   Maybe<std::string> m_type;
@@ -160,7 +157,7 @@ class Tile final {
   Maybe<double> m_probability;
 };
 
-void from_json(const JSON& json, Tile& tile);
+STEP_API void from_json(const JSON& json, Tile& tile);
 
 }  // namespace step
 

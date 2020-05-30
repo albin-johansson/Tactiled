@@ -26,6 +26,7 @@
 #define STEP_UTILS_HEADER
 
 #include <string_view>
+#include <vector>
 
 #include "step_api.h"
 #include "step_types.h"

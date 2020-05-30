@@ -37,14 +37,7 @@ namespace step {
  */
 class Point final {
  public:
-  /**
-   * Creates a point.
-   *
-   * @param json the JSON object that represents the point that will be parsed.
-   * @throws StepException if the point cannot be parsed.
-   * @since 0.1.0
-   */
-  STEP_API explicit Point(const JSON& json);
+  STEP_API friend void from_json(const JSON&, Point&);
 
   /**
    * Returns the x-coordinate associated with the point.
@@ -66,6 +59,8 @@ class Point final {
   double m_x = 0;
   double m_y = 0;
 };
+
+STEP_API void from_json(const JSON& json, Point& point);
 
 }  // namespace step
 

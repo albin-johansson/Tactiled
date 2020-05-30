@@ -1,0 +1,19 @@
+{
+  "gid": 5,
+  "height": 92,
+  "id": 1,
+  "name": "villager",
+  "properties": [
+    {
+      "name": "hp",
+      "type": "int",
+      "value": 12
+    }
+  ],
+  "rotation": 5,
+  "type": "npc",
+  "visible": true,
+  "width": 88,
+  "x": 56,
+  "y": 32
+}
