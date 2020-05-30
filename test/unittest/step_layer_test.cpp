@@ -4,7 +4,6 @@
 
 #include <string>
 
-#include "step_exception.h"
 #include "step_test_utils.h"
 
 using namespace step;
