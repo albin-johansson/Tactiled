@@ -1,16 +1,14 @@
-{
-  "animation": [
-    {
-      "tileid": 77,
-      "duration": 321
-    },
-    {
-      "tileid": 485,
-      "duration": 8375
-    },
-    {
-      "tileid": 346,
-      "duration": 31
-    }
-  ]
-}
+[
+  {
+    "tileid": 77,
+    "duration": 321
+  },
+  {
+    "tileid": 485,
+    "duration": 8375
+  },
+  {
+    "tileid": 346,
+    "duration": 31
+  }
+]

@@ -2,17 +2,18 @@
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_test_utils.h"
 
 using namespace step;
+
+inline static const std::string prefix = "resource/animation/";
 
 TEST_SUITE("Animation")
 {
   TEST_CASE("Parsing valid animation")
   {
-    const auto path = "resource/animation/animation_valid.json";
-    const auto json = detail::parse_json(path);
-    const auto animation = json.at("animation").get<Animation>();
+    const auto animation =
+        test::make<Animation>(prefix, "animation_valid.json");
 
     CHECK(animation.length() == 3);
 
