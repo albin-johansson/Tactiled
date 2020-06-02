@@ -7,6 +7,9 @@ set(SOURCE_FILES
         ${STEP_INCLUDE_DIR}/step_types.h
         ${STEP_INCLUDE_DIR}/step_exception.h
 
+        ${STEP_INCLUDE_DIR}/step.h
+        step.cpp
+
         ${STEP_INCLUDE_DIR}/step_map.h
         step_map.cpp
 

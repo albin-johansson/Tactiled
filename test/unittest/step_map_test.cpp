@@ -4,11 +4,5 @@
 
 using namespace step;
 
-TEST_SUITE("TiledMap")
-{
-  TEST_CASE("TiledMap::value")
-  {
-    TiledMap map;
-    CHECK(map.value() == 1);
-  }
-}
+TEST_SUITE("Map")
+{}

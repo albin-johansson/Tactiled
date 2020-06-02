@@ -22,19 +22,21 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILED_MAP_SOURCE
-#define STEP_TILED_MAP_SOURCE
+#ifndef STEP_HEADER
+#define STEP_HEADER
 
+// TODO add all includes here
+#include <string_view>
+
+#include "step_api.h"
+#include "step_cfg.h"
 #include "step_map.h"
+#include "step_types.h"
 
 namespace step {
 
-STEP_DEF
-void from_json(const JSON& json, Map& map)
-{
-  // TODO ...
+STEP_QUERY std::unique_ptr<Map> parse(std::string_view file);
+
 }
 
-}  // namespace step
-
-#endif  // STEP_TILED_MAP_SOURCE
+#endif  // STEP_HEADER

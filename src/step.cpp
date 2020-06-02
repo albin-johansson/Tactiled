@@ -22,19 +22,24 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILED_MAP_SOURCE
-#define STEP_TILED_MAP_SOURCE
+#ifndef STEP_SOURCE
+#define STEP_SOURCE
 
-#include "step_map.h"
+#include "step.h"
+
+#include "step_utils.h"
 
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Map& map)
+std::unique_ptr<Map> parse(std::string_view file)
 {
-  // TODO ...
+  const auto json{detail::parse_json(file)};
+  auto map{std::make_unique<Map>()};
+  json.get_to(*map);
+  return map;
 }
 
 }  // namespace step
 
-#endif  // STEP_TILED_MAP_SOURCE
+#endif  // STEP_SOURCE

@@ -26,13 +26,16 @@
 #define STEP_TILED_MAP_HEADER
 
 #include "step_api.h"
+#include "step_types.h"
 
 namespace step {
 
-class TiledMap final {
+class Map final {
  public:
-  STEP_API int value() const noexcept;
+  STEP_API friend void from_json(const JSON&, Map&);
 };
+
+STEP_API void from_json(const JSON& json, Map& map);
 
 }  // namespace step
 
