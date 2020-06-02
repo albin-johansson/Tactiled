@@ -136,6 +136,12 @@ Maybe<Text> Object::text() const
 }
 
 STEP_DEF
+bool Object::visible() const noexcept
+{
+  return m_visible;
+}
+
+STEP_DEF
 bool Object::is_ellipse() const noexcept
 {
   return m_ellipse;
@@ -148,9 +154,33 @@ bool Object::is_point() const noexcept
 }
 
 STEP_DEF
-bool Object::visible() const noexcept
+bool Object::is_polygon() const noexcept
 {
-  return m_visible;
+  return std::holds_alternative<Polygon>(m_typeData);
+}
+
+STEP_DEF
+bool Object::is_polyline() const noexcept
+{
+  return std::holds_alternative<Polyline>(m_typeData);
+}
+
+STEP_DEF
+bool Object::is_text() const noexcept
+{
+  return std::holds_alternative<Text>(m_typeData);
+}
+
+STEP_DEF
+bool Object::is_template() const noexcept
+{
+  return std::holds_alternative<Template>(m_typeData);
+}
+
+STEP_DEF
+bool Object::is_tile() const noexcept
+{
+  return std::holds_alternative<GID>(m_typeData);
 }
 
 STEP_DEF
@@ -181,8 +211,6 @@ void from_json(const JSON& json, Object& object)
     json.at("template").get_to(templ.templateFile);
   }
 
-  //  detail::bind_maybe(json, "gid", object.m_tileGID);
-  //  detail::bind_maybe(json, "text", object.m_text);
   detail::safe_bind(json, "properties", object.m_properties);
   detail::safe_bind(json, "ellipse", object.m_ellipse);
   detail::safe_bind(json, "point", object.m_point);

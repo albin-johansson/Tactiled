@@ -47,7 +47,7 @@ namespace {
  */
 uint8_t from_hex(std::string_view view)
 {
-  uint8_t result;
+  uint8_t result{};
   if (const auto [ptr, error] =
           std::from_chars(view.data(), view.data() + view.size(), result, 16);
       error != std::errc::invalid_argument &&
