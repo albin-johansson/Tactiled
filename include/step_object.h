@@ -266,6 +266,8 @@ class Object final {
   bool m_ellipse{false};
   bool m_point{false};
   bool m_visible{true};
+
+  // TODO improve template object support
 };
 
 STEP_API void from_json(const JSON& json, Object& object);
