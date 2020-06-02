@@ -28,6 +28,14 @@ TEST_SUITE("Object")
 
     CHECK(object.tile_gid() == 5);
 
+    CHECK(object.is_tile());
+    CHECK(!object.is_ellipse());
+    CHECK(!object.is_point());
+    CHECK(!object.is_polygon());
+    CHECK(!object.is_polyline());
+    CHECK(!object.is_template());
+    CHECK(!object.is_text());
+
     SUBCASE("Check properties")
     {
       const auto& props = object.properties();
@@ -53,6 +61,14 @@ TEST_SUITE("Object")
     CHECK(ellipseObject.name().empty());
     CHECK(ellipseObject.type().empty());
     CHECK(ellipseObject.visible());
+
+    CHECK(ellipseObject.is_ellipse());
+    CHECK(!ellipseObject.is_point());
+    CHECK(!ellipseObject.is_polygon());
+    CHECK(!ellipseObject.is_polyline());
+    CHECK(!ellipseObject.is_template());
+    CHECK(!ellipseObject.is_text());
+    CHECK(!ellipseObject.is_tile());
   }
 
   TEST_CASE("Parsing rectangle object")
@@ -68,6 +84,14 @@ TEST_SUITE("Object")
     CHECK(rectObject.name().empty());
     CHECK(rectObject.type().empty());
     CHECK(rectObject.visible());
+
+    CHECK(!rectObject.is_point());
+    CHECK(!rectObject.is_polygon());
+    CHECK(!rectObject.is_polyline());
+    CHECK(!rectObject.is_ellipse());
+    CHECK(!rectObject.is_template());
+    CHECK(!rectObject.is_text());
+    CHECK(!rectObject.is_tile());
   }
 
   TEST_CASE("Parsing point object")
@@ -83,6 +107,14 @@ TEST_SUITE("Object")
     CHECK(pointObject.name().empty());
     CHECK(pointObject.type().empty());
     CHECK(pointObject.visible());
+
+    CHECK(pointObject.is_point());
+    CHECK(!pointObject.is_polygon());
+    CHECK(!pointObject.is_polyline());
+    CHECK(!pointObject.is_ellipse());
+    CHECK(!pointObject.is_template());
+    CHECK(!pointObject.is_text());
+    CHECK(!pointObject.is_tile());
   }
 
   TEST_CASE("Parsing polygon object")
@@ -98,6 +130,14 @@ TEST_SUITE("Object")
     CHECK(polygonObject.name().empty());
     CHECK(polygonObject.type().empty());
     CHECK(polygonObject.visible());
+
+    CHECK(polygonObject.is_polygon());
+    CHECK(!polygonObject.is_polyline());
+    CHECK(!polygonObject.is_ellipse());
+    CHECK(!polygonObject.is_point());
+    CHECK(!polygonObject.is_template());
+    CHECK(!polygonObject.is_text());
+    CHECK(!polygonObject.is_tile());
 
     SUBCASE("Check polygon stuff")
     {
@@ -136,6 +176,14 @@ TEST_SUITE("Object")
     CHECK(polylineObject.name().empty());
     CHECK(polylineObject.type().empty());
     CHECK(polylineObject.visible());
+
+    CHECK(polylineObject.is_polyline());
+    CHECK(!polylineObject.is_tile());
+    CHECK(!polylineObject.is_ellipse());
+    CHECK(!polylineObject.is_point());
+    CHECK(!polylineObject.is_polygon());
+    CHECK(!polylineObject.is_template());
+    CHECK(!polylineObject.is_text());
 
     SUBCASE("Check polyline stuff")
     {
@@ -177,6 +225,14 @@ TEST_SUITE("Object")
     CHECK(textObject.name().empty());
     CHECK(textObject.type().empty());
     CHECK(textObject.visible());
+
+    CHECK(textObject.is_text());
+    CHECK(!textObject.is_polyline());
+    CHECK(!textObject.is_tile());
+    CHECK(!textObject.is_ellipse());
+    CHECK(!textObject.is_point());
+    CHECK(!textObject.is_polygon());
+    CHECK(!textObject.is_template());
 
     SUBCASE("Text related properties")
     {

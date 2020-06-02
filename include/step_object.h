@@ -261,7 +261,8 @@ class Object final {
   std::string m_name;
   std::string m_type;
   Properties m_properties;
-  std::variant<Polygon, Polyline, Text, Template, GID> m_typeData;
+  std::variant<std::monostate, Polygon, Polyline, Text, Template, GID>
+      m_specificData;
   bool m_ellipse{false};
   bool m_point{false};
   bool m_visible{true};

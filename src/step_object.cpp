@@ -88,8 +88,8 @@ const Properties& Object::properties() const noexcept
 STEP_DEF
 Maybe<Polygon> Object::polygon() const noexcept
 {
-  if (std::holds_alternative<Polygon>(m_typeData)) {
-    return std::get<Polygon>(m_typeData);
+  if (std::holds_alternative<Polygon>(m_specificData)) {
+    return std::get<Polygon>(m_specificData);
   } else {
     return nothing;
   }
@@ -98,8 +98,8 @@ Maybe<Polygon> Object::polygon() const noexcept
 STEP_DEF
 Maybe<Polyline> Object::polyline() const noexcept
 {
-  if (std::holds_alternative<Polyline>(m_typeData)) {
-    return std::get<Polyline>(m_typeData);
+  if (std::holds_alternative<Polyline>(m_specificData)) {
+    return std::get<Polyline>(m_specificData);
   } else {
     return nothing;
   }
@@ -108,8 +108,8 @@ Maybe<Polyline> Object::polyline() const noexcept
 STEP_DEF
 Maybe<GID> Object::tile_gid() const noexcept
 {
-  if (std::holds_alternative<GID>(m_typeData)) {
-    return std::get<GID>(m_typeData);
+  if (std::holds_alternative<GID>(m_specificData)) {
+    return std::get<GID>(m_specificData);
   } else {
     return nothing;
   }
@@ -118,8 +118,8 @@ Maybe<GID> Object::tile_gid() const noexcept
 STEP_DEF
 Maybe<Template> Object::template_data() const
 {
-  if (std::holds_alternative<Template>(m_typeData)) {
-    return std::get<Template>(m_typeData);
+  if (std::holds_alternative<Template>(m_specificData)) {
+    return std::get<Template>(m_specificData);
   } else {
     return nothing;
   }
@@ -128,8 +128,8 @@ Maybe<Template> Object::template_data() const
 STEP_DEF
 Maybe<Text> Object::text() const
 {
-  if (std::holds_alternative<Text>(m_typeData)) {
-    return std::get<Text>(m_typeData);
+  if (std::holds_alternative<Text>(m_specificData)) {
+    return std::get<Text>(m_specificData);
   } else {
     return nothing;
   }
@@ -156,31 +156,31 @@ bool Object::is_point() const noexcept
 STEP_DEF
 bool Object::is_polygon() const noexcept
 {
-  return std::holds_alternative<Polygon>(m_typeData);
+  return std::holds_alternative<Polygon>(m_specificData);
 }
 
 STEP_DEF
 bool Object::is_polyline() const noexcept
 {
-  return std::holds_alternative<Polyline>(m_typeData);
+  return std::holds_alternative<Polyline>(m_specificData);
 }
 
 STEP_DEF
 bool Object::is_text() const noexcept
 {
-  return std::holds_alternative<Text>(m_typeData);
+  return std::holds_alternative<Text>(m_specificData);
 }
 
 STEP_DEF
 bool Object::is_template() const noexcept
 {
-  return std::holds_alternative<Template>(m_typeData);
+  return std::holds_alternative<Template>(m_specificData);
 }
 
 STEP_DEF
 bool Object::is_tile() const noexcept
 {
-  return std::holds_alternative<GID>(m_typeData);
+  return std::holds_alternative<GID>(m_specificData);
 }
 
 STEP_DEF
@@ -197,17 +197,17 @@ void from_json(const JSON& json, Object& object)
   json.at("type").get_to(object.m_type);
 
   if (json.contains("gid")) {
-    object.m_typeData.emplace<GID>(json.at("gid").get<GID>());
+    object.m_specificData.emplace<GID>(json.at("gid").get<GID>());
   } else if (json.contains("text")) {
-    object.m_typeData.emplace<Text>(json.at("text").get<Text>());
+    object.m_specificData.emplace<Text>(json.at("text").get<Text>());
   } else if (json.contains("polygon")) {
-    auto& polygon = object.m_typeData.emplace<Polygon>();
+    auto& polygon = object.m_specificData.emplace<Polygon>();
     json.at("polygon").get_to(polygon.points);
   } else if (json.contains("polyline")) {
-    auto& polyline = object.m_typeData.emplace<Polyline>();
+    auto& polyline = object.m_specificData.emplace<Polyline>();
     json.at("polyline").get_to(polyline.points);
   } else if (json.contains("template")) {
-    auto& templ = object.m_typeData.emplace<Template>();
+    auto& templ = object.m_specificData.emplace<Template>();
     json.at("template").get_to(templ.templateFile);
   }
 
