@@ -30,7 +30,7 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Map& map)
+void from_json(const JSON&, Map&)
 {
   // TODO ...
 }

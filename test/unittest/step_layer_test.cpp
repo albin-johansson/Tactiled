@@ -104,9 +104,22 @@ TEST_SUITE("Layer")
 
     SUBCASE("Object group exclusive properties")
     {
-      // TODO test objects as well
       const auto& objectGroup = layer.as_object_group();
       CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::TopDown);
+
+      const auto& objects = objectGroup.objects();
+      REQUIRE(objects.size() == 1);
+
+      const auto object = objects.at(0);
+      CHECK(object.id() == 36);
+      CHECK(object.x() == 234);
+      CHECK(object.y() == 584);
+      CHECK(object.width() == 118);
+      CHECK(object.height() == 77);
+      CHECK(object.rotation() == 3);
+      CHECK(object.visible());
+      CHECK(object.name() == "legolas");
+      CHECK(object.type() == "boss");
     }
 
     CHECK(layer.id() == 3);

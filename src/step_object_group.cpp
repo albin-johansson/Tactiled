@@ -36,10 +36,16 @@ ObjectGroup::DrawOrder ObjectGroup::draw_order() const noexcept
 }
 
 STEP_DEF
+const std::vector<Object>& ObjectGroup::objects() const
+{
+  return m_objects;
+}
+
+STEP_DEF
 void from_json(const JSON& json, ObjectGroup& group)
 {
   json.at("draworder").get_to(group.m_drawOrder);
-  // TODO objects
+  json.at("objects").get_to(group.m_objects);
 }
 
 }  // namespace step

@@ -67,13 +67,11 @@ void load_from(const JSON& json, Tileset& set)
   json.at("name").get_to(set.m_name);
 
   if (json.count("backgroundcolor")) {
-    // TODO add color from_json
     set.m_backgroundColor =
         Color{json.at("backgroundcolor").get<std::string>()};
   }
 
   if (json.count("transparentcolor")) {
-    // TODO add color from_json
     set.m_transparentColor =
         Color{json.at("transparentcolor").get<std::string>()};
   }

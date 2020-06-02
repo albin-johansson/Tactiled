@@ -281,7 +281,7 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
-  Properties m_properties;  // TODO consider changing this
+  Properties m_properties;
   std::vector<Terrain> m_terrains;
 
   std::string m_image;

@@ -26,6 +26,7 @@
 #define STEP_OBJECT_GROUP_HEADER
 
 #include "step_api.h"
+#include "step_object.h"
 #include "step_types.h"
 
 namespace step {
@@ -57,9 +58,17 @@ class ObjectGroup final {
    */
   STEP_QUERY DrawOrder draw_order() const noexcept;
 
+  /**
+   * Returns the objects contained in the object group.
+   *
+   * @return the objects contained in the object group.
+   * @since 0.1.0
+   */
+  STEP_QUERY const std::vector<Object>& objects() const;
+
  private:
   DrawOrder m_drawOrder{DrawOrder::TopDown};
-  // TODO std::vector<Object> m_objects;
+  std::vector<Object> m_objects;
 };
 
 STEP_API void from_json(const JSON& json, ObjectGroup& group);
