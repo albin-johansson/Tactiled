@@ -30,6 +30,12 @@
 namespace step {
 
 STEP_DEF
+bool Map::infinite() const noexcept
+{
+  return m_infinite;
+}
+
+STEP_DEF
 void from_json(const JSON&, Map&)
 {
   // TODO ...

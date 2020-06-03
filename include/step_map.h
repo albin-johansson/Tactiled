@@ -25,14 +25,60 @@
 #ifndef STEP_TILED_MAP_HEADER
 #define STEP_TILED_MAP_HEADER
 
+#include <string>
+#include <vector>
+
 #include "step_api.h"
+#include "step_color.h"
+#include "step_layer.h"
+#include "step_properties.h"
 #include "step_types.h"
 
 namespace step {
 
+class StepComponent final {
+ public:
+ private:
+  std::string m_tiledVersion;
+  double m_jsonVersion{0};
+};
+
 class Map final {
  public:
+  enum class RenderOrder { RightDown, RightUp, LeftDown, LeftUp };
+  enum class Orientation { Orthogonal, Isometric, Staggered, Hexagonal };
+  enum class StaggerAxis { X, Y };
+  enum class StaggerIndex { Odd, Even };
+
   STEP_API friend void from_json(const JSON&, Map&);
+
+  STEP_QUERY bool infinite() const noexcept;
+
+ private:
+  int m_width{0};
+  int m_height{0};
+  int m_tileWidth{0};
+  int m_tileHeight{0};
+  int m_nextLayerID{0};
+  int m_nextObjectID{0};
+
+  Orientation m_orientation{Orientation::Orthogonal};
+  RenderOrder m_renderOrder{RenderOrder::RightDown};  // ONLY ORTHOGONAL
+  StaggerAxis m_staggerAxis{StaggerAxis::X};  // (only staggered & hexagonal)
+  StaggerIndex m_staggerIndex{StaggerIndex::Odd};  // ONLY STAGGERED/HEXAGONAL
+  int m_hexSideLength{0};                          // ONLY HEXAGONAL
+
+  Properties m_properties;
+
+  Maybe<Color> m_backgroundColor;
+
+  bool m_infinite{false};
+
+  std::string m_tiledVersion;
+  double m_jsonVersion{0};
+
+  // TODO std::vector<Layer> m_layers;
+  // TODO std::vector<Tileset> m_tilesets;
 };
 
 STEP_API void from_json(const JSON& json, Map& map);
