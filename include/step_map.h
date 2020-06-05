@@ -26,6 +26,7 @@
 #define STEP_TILED_MAP_HEADER
 
 #include <string>
+#include <string_view>
 #include <vector>
 
 #include "step_api.h"
@@ -37,13 +38,6 @@
 
 namespace step {
 
-// class StepComponent final {
-// public:
-// private:
-//  std::string m_tiledVersion;
-//  double m_jsonVersion{0};
-//};
-
 class Map final {
  public:
   enum class RenderOrder { RightDown, RightUp, LeftDown, LeftUp };
@@ -51,9 +45,43 @@ class Map final {
   enum class StaggerAxis { X, Y };
   enum class StaggerIndex { Odd, Even };
 
-  STEP_API friend void from_json(const JSON&, Map&);
+  STEP_API Map(std::string_view root, std::string_view file);
+
+  STEP_QUERY int width() const noexcept;
+
+  STEP_QUERY int height() const noexcept;
+
+  STEP_QUERY int tile_width() const noexcept;
+
+  STEP_QUERY int tile_height() const noexcept;
+
+  STEP_QUERY int next_layer_id() const noexcept;
+
+  STEP_QUERY int next_object_id() const noexcept;
+
+  STEP_QUERY const std::vector<Layer>& layers() const noexcept;
+
+  STEP_QUERY const std::vector<Tileset>& tilesets() const noexcept;
+
+  STEP_QUERY const Properties& properties() const noexcept;
+
+  STEP_QUERY Orientation orientation() const noexcept;
+
+  STEP_QUERY RenderOrder render_order() const noexcept;
+
+  STEP_QUERY StaggerAxis stagger_axis() const noexcept;
+
+  STEP_QUERY StaggerIndex stagger_index() const noexcept;
 
   STEP_QUERY bool infinite() const noexcept;
+
+  STEP_QUERY int hex_side_length() const noexcept;
+
+  STEP_QUERY Maybe<Color> background_color() const noexcept;
+
+  STEP_QUERY double json_version() const noexcept;
+
+  STEP_QUERY std::string tiled_version() const;
 
  private:
   int m_width{0};
@@ -74,9 +102,9 @@ class Map final {
   std::string m_tiledVersion;
   double m_jsonVersion{0};
   bool m_infinite{false};
-};
 
-STEP_API void from_json(const JSON& json, Map& map);
+  void parse(std::string_view root, const JSON& json);
+};
 
 STEP_SERIALIZE_ENUM(Map::RenderOrder,
                     {{Map::RenderOrder::RightDown, "right-down"},

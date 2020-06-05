@@ -36,13 +36,18 @@ namespace step::detail {
 STEP_DEF
 JSON parse_json(std::string_view file)
 {
+  if (!file.data()) {
+    throw StepException{"Cannot parse JSON from null file!"};
+  }
+
   try {
     JSON json;
     std::ifstream stream{file.data()};
     stream >> json;
     return json;
-  } catch (...) {  // TODO remove this try/catch
-    throw StepException{"Failed to parse JSON file!"};
+  } catch (const std::exception& e) {
+    using namespace std::string_literals;
+    throw StepException{e.what() ? e.what() : "Failed to parse JSON!"s};
   }
 }
 

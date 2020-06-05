@@ -22,73 +22,22 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_SOURCE
-#define STEP_TILE_SOURCE
+#ifndef STEP_TILE_PARSER_HEADER
+#define STEP_TILE_PARSER_HEADER
 
-#include "step_tile.h"
-
-#include "step_utils.h"
+#include "step_api.h"
+#include "step_types.h"
 
 namespace step {
 
-STEP_DEF
-int Tile::id() const noexcept
-{
-  return m_id;
+class Tile;
+
+STEP_API void from_json(const JSON& json, Tile& tile);
+
 }
 
-STEP_DEF
-Maybe<Animation> Tile::animation() const noexcept
-{
-  return m_animation;
-}
+#ifdef STEP_HEADER_ONLY
+#include "step_tiler_parser.cpp"
+#endif  // STEP_HEADER_ONLY
 
-STEP_DEF
-const Properties& Tile::properties() const
-{
-  return m_properties;
-}
-
-STEP_DEF
-Maybe<std::string> Tile::type() const
-{
-  return m_type;
-}
-
-STEP_DEF
-Maybe<std::string> Tile::image() const
-{
-  return m_image;
-}
-
-STEP_DEF
-Maybe<int> Tile::image_width() const noexcept
-{
-  return m_imageWidth;
-}
-
-STEP_DEF
-Maybe<int> Tile::image_height() const noexcept
-{
-  return m_imageHeight;
-}
-
-STEP_DEF
-Maybe<double> Tile::probability() const noexcept
-{
-  return m_probability;
-}
-
-STEP_DEF
-Maybe<int> Tile::terrain_at(TerrainPos position) const noexcept
-{
-  if (m_terrain) {
-    return m_terrain->at(static_cast<std::size_t>(position));
-  } else {
-    return nothing;
-  }
-}
-
-}  // namespace step
-
-#endif  // STEP_TILE_SOURCE
+#endif  // STEP_TILE_PARSER_HEADER

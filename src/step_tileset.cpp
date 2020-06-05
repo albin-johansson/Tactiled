@@ -33,73 +33,203 @@
 namespace step {
 
 STEP_DEF
-void load_from(const JSON& json, Tileset& set)
+Tileset::Tileset(std::string_view root, int id, std::string_view path)
+    : m_firstGID{id}, m_source{path.data()}
+{
+  std::string fullPath{root.data()};
+  fullPath += path.data();
+  parse(detail::parse_json(fullPath));
+}
+
+STEP_DEF
+Tileset::Tileset(const JSON& json)
+{
+  parse(json);
+}
+
+STEP_DEF
+Tileset Tileset::embedded(const JSON& json)
+{
+  return Tileset{json};
+}
+
+STEP_DEF
+Tileset Tileset::external(std::string_view root, int id, std::string_view src)
+{
+  return {root, id, src};
+}
+
+STEP_DEF
+void Tileset::parse(const JSON& json)
 {
   if (json.at("type").get<std::string>() != "tileset") {
     throw StepException{"Tileset > \"type\" must be \"tileset\"!"};
   }
 
-  json.at("tilewidth").get_to(set.m_tileWidth);
-  json.at("tileheight").get_to(set.m_tileHeight);
-  json.at("tilecount").get_to(set.m_tileCount);
-  json.at("columns").get_to(set.m_nColumns);
-  json.at("imagewidth").get_to(set.m_imageWidth);
-  json.at("imageheight").get_to(set.m_imageHeight);
-  json.at("margin").get_to(set.m_margin);
-  json.at("spacing").get_to(set.m_spacing);
-  json.at("image").get_to(set.m_image);
+  json.at("tilewidth").get_to(m_tileWidth);
+  json.at("tileheight").get_to(m_tileHeight);
+  json.at("tilecount").get_to(m_tileCount);
+  json.at("columns").get_to(m_nColumns);
+  json.at("imagewidth").get_to(m_imageWidth);
+  json.at("imageheight").get_to(m_imageHeight);
+  json.at("margin").get_to(m_margin);
+  json.at("spacing").get_to(m_spacing);
+  json.at("image").get_to(m_image);
+  json.at("name").get_to(m_name);
 
-  detail::safe_bind(json, "firstgid", set.m_firstGID);
-  detail::safe_bind(json, "properties", set.m_properties);
+  detail::safe_bind(json, "firstgid", m_firstGID);
+  detail::safe_bind(json, "properties", m_properties);
+  detail::safe_bind(json, "tiledversion", m_tiledVersion);
+  detail::safe_bind(json, "version", m_jsonVersion);
 
-  if (json.contains("tiles")) {
+  detail::bind_maybe(json, "grid", m_grid);
+  detail::bind_maybe(json, "tileoffset", m_tileOffset);
+
+  if (json.contains("tiles") && json.at("tiles").is_array()) {
     for (const auto& [key, value] : json.at("tiles").items()) {
-      set.m_tiles.push_back(value.get<Tile>());
+      m_tiles.push_back(value.get<Tile>());
     }
   }
 
-  if (json.contains("terrains")) {
+  if (json.contains("terrains") && json.at("terrains").is_array()) {
     for (const auto& [key, value] : json.at("terrains").items()) {
-      set.m_terrains.emplace_back(value.get<Terrain>());
+      m_terrains.emplace_back(value.get<Terrain>());
     }
   }
-
-  json.at("name").get_to(set.m_name);
 
   if (json.count("backgroundcolor")) {
-    set.m_backgroundColor =
-        Color{json.at("backgroundcolor").get<std::string>()};
+    m_backgroundColor = Color{json.at("backgroundcolor").get<std::string>()};
   }
 
   if (json.count("transparentcolor")) {
-    set.m_transparentColor =
-        Color{json.at("transparentcolor").get<std::string>()};
-  }
-
-  detail::bind_maybe(json, "grid", set.m_grid);
-  detail::bind_maybe(json, "tileoffset", set.m_tileOffset);
-
-  if (json.count("tiledversion")) {
-    json.at("tiledversion").get_to(set.m_tiledVersion);
-  }
-
-  if (json.count("version")) {
-    json.at("version").get_to(set.m_jsonVersion);
+    m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
   }
 }
 
 STEP_DEF
-void from_json(const JSON& json, Tileset& set)
+int Tileset::first_gid() const noexcept
 {
-  if (json.contains("source")) {
-    json.at("firstgid").get_to(set.m_firstGID);
-    json.at("source").get_to(set.m_source);
+  return m_firstGID;
+}
 
-    const auto external = detail::parse_json(set.m_source.c_str());
-    load_from(external, set);
-  } else {
-    load_from(json, set);
-  }
+STEP_DEF
+int Tileset::tile_width() const noexcept
+{
+  return m_tileWidth;
+}
+
+STEP_DEF
+int Tileset::tile_height() const noexcept
+{
+  return m_tileHeight;
+}
+
+STEP_DEF
+int Tileset::tile_count() const noexcept
+{
+  return m_tileCount;
+}
+
+STEP_DEF
+int Tileset::columns() const noexcept
+{
+  return m_nColumns;
+}
+
+STEP_DEF
+int Tileset::image_width() const noexcept
+{
+  return m_imageWidth;
+}
+
+STEP_DEF
+int Tileset::image_height() const noexcept
+{
+  return m_imageHeight;
+}
+
+STEP_DEF
+int Tileset::margin() const noexcept
+{
+  return m_margin;
+}
+
+STEP_DEF
+int Tileset::spacing() const noexcept
+{
+  return m_spacing;
+}
+
+STEP_DEF
+const std::vector<Tile>& Tileset::tiles() const noexcept
+{
+  return m_tiles;
+}
+
+STEP_DEF
+const Properties& Tileset::properties() const noexcept
+{
+  return m_properties;
+}
+
+STEP_DEF
+const std::vector<Terrain>& Tileset::terrains() const noexcept
+{
+  return m_terrains;
+}
+
+STEP_DEF
+std::string Tileset::source() const
+{
+  return m_source;
+}
+
+STEP_DEF
+std::string Tileset::image() const
+{
+  return m_image;
+}
+
+STEP_DEF
+std::string Tileset::name() const
+{
+  return m_name;
+}
+
+STEP_DEF
+Maybe<Color> Tileset::background_color() const noexcept
+{
+  return m_backgroundColor;
+}
+
+STEP_DEF
+Maybe<Color> Tileset::transparent_color() const noexcept
+{
+  return m_transparentColor;
+}
+
+STEP_DEF
+Maybe<Grid> Tileset::grid() const noexcept
+{
+  return m_grid;
+}
+
+STEP_DEF
+Maybe<TileOffset> Tileset::tile_offset() const noexcept
+{
+  return m_tileOffset;
+}
+
+STEP_DEF
+std::string Tileset::tiled_version() const
+{
+  return m_tiledVersion;
+}
+
+STEP_DEF
+double Tileset::json_version() const noexcept
+{
+  return m_jsonVersion;
 }
 
 }  // namespace step

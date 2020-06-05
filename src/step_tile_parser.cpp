@@ -22,73 +22,45 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_SOURCE
-#define STEP_TILE_SOURCE
+#ifndef STEP_TILE_PARSER_SOURCE
+#define STEP_TILE_PARSER_SOURCE
 
+#include "step_api.h"
+#include "step_layer.h"
 #include "step_tile.h"
-
 #include "step_utils.h"
 
 namespace step {
 
 STEP_DEF
-int Tile::id() const noexcept
+void from_json(const JSON& json, Tile& tile)
 {
-  return m_id;
-}
+  json.at("id").get_to(tile.m_id);
 
-STEP_DEF
-Maybe<Animation> Tile::animation() const noexcept
-{
-  return m_animation;
-}
+  detail::safe_bind(json, "properties", tile.m_properties);
 
-STEP_DEF
-const Properties& Tile::properties() const
-{
-  return m_properties;
-}
-
-STEP_DEF
-Maybe<std::string> Tile::type() const
-{
-  return m_type;
-}
-
-STEP_DEF
-Maybe<std::string> Tile::image() const
-{
-  return m_image;
-}
-
-STEP_DEF
-Maybe<int> Tile::image_width() const noexcept
-{
-  return m_imageWidth;
-}
-
-STEP_DEF
-Maybe<int> Tile::image_height() const noexcept
-{
-  return m_imageHeight;
-}
-
-STEP_DEF
-Maybe<double> Tile::probability() const noexcept
-{
-  return m_probability;
-}
-
-STEP_DEF
-Maybe<int> Tile::terrain_at(TerrainPos position) const noexcept
-{
-  if (m_terrain) {
-    return m_terrain->at(static_cast<std::size_t>(position));
-  } else {
-    return nothing;
+  if (json.contains("terrain")) {
+    tile.m_terrain.emplace();  // TODO test this terrain stuff
+    for (const auto& [key, value] : json.at("terrain").items()) {
+      const auto index = static_cast<size_t>(std::stoi(key));
+      tile.m_terrain->at(index) = value.get<int>();
+    }
   }
+
+  if (json.contains("objectgroup")) {
+    // TODO ...
+    //    tile.m_objectGroup = std::make_unique<Layer>();
+    //    json.at("objectgroup").get_to(*tile.m_objectGroup);
+  }
+
+  detail::bind_maybe(json, "animation", tile.m_animation);
+  detail::bind_maybe(json, "type", tile.m_type);
+  detail::bind_maybe(json, "image", tile.m_image);
+  detail::bind_maybe(json, "imagewidth", tile.m_imageWidth);
+  detail::bind_maybe(json, "imageheight", tile.m_imageHeight);
+  detail::bind_maybe(json, "probability", tile.m_probability);
 }
 
 }  // namespace step
 
-#endif  // STEP_TILE_SOURCE
+#endif  // STEP_TILE_PARSER_SOURCE

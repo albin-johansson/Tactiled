@@ -25,6 +25,7 @@
 #ifndef STEP_TILESET_HEADER
 #define STEP_TILESET_HEADER
 
+#include <string_view>
 #include <vector>
 
 #include "step_api.h"
@@ -49,8 +50,11 @@ class Tileset;
  */
 class Tileset final {
  public:
-  STEP_API friend void from_json(const JSON&, Tileset&);
-  STEP_API friend void load_from(const JSON&, Tileset&);
+  STEP_API static Tileset embedded(const JSON& json);
+
+  STEP_API static Tileset external(std::string_view root,
+                                   int id,
+                                   std::string_view src);
 
   /**
    * Returns the GID (Global ID) of the first tile in the tileset.
@@ -58,7 +62,7 @@ class Tileset final {
    * @return the GID (Global ID) of the first tile in the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] int first_gid() const noexcept { return m_firstGID; }
+  STEP_QUERY int first_gid() const noexcept;
 
   /**
    * Returns the maximum width of tiles in the tileset.
@@ -66,7 +70,7 @@ class Tileset final {
    * @return the maximum width of tiles in the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] int tile_width() const noexcept { return m_tileWidth; }
+  STEP_QUERY int tile_width() const noexcept;
 
   /**
    * Returns the maximum height of tiles in the tileset.
@@ -74,7 +78,7 @@ class Tileset final {
    * @return the maximum height of tiles in the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] int tile_height() const noexcept { return m_tileHeight; }
+  STEP_QUERY int tile_height() const noexcept;
 
   /**
    * Returns the number of tiles in the tileset.
@@ -82,7 +86,7 @@ class Tileset final {
    * @return the number of tiles in the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] int tile_count() const noexcept { return m_tileCount; }
+  STEP_QUERY int tile_count() const noexcept;
 
   /**
    * Returns the number of columns in the tileset.
@@ -90,7 +94,7 @@ class Tileset final {
    * @return the number of columns in the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] int columns() const noexcept { return m_nColumns; }
+  STEP_QUERY int columns() const noexcept;
 
   /**
    * Returns the width of the source image in pixels.
@@ -98,7 +102,7 @@ class Tileset final {
    * @return the width of the source image in pixels.
    * @since 0.1.0
    */
-  [[nodiscard]] int image_width() const noexcept { return m_imageWidth; }
+  STEP_QUERY int image_width() const noexcept;
 
   /**
    * Returns the height of the source image in pixels.
@@ -106,7 +110,7 @@ class Tileset final {
    * @return the height of the source image in pixels.
    * @since 0.1.0
    */
-  [[nodiscard]] int image_height() const noexcept { return m_imageHeight; }
+  STEP_QUERY int image_height() const noexcept;
 
   /**
    * Returns the buffer amount between the image edge and the first tile, in
@@ -116,7 +120,7 @@ class Tileset final {
    * pixels.
    * @since 0.1.0
    */
-  [[nodiscard]] int margin() const noexcept { return m_margin; }
+  STEP_QUERY int margin() const noexcept;
 
   /**
    * Returns the amount of spacing between adjacent tiles in the tileset, in
@@ -126,7 +130,7 @@ class Tileset final {
    * pixels.
    * @since 0.1.0
    */
-  [[nodiscard]] int spacing() const noexcept { return m_spacing; }
+  STEP_QUERY int spacing() const noexcept;
 
   /**
    * Returns the tiles associated with the tileset that have custom
@@ -135,19 +139,7 @@ class Tileset final {
    * @return the tiles associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] const std::vector<Tile>& tiles() const noexcept
-  {
-    return m_tiles;
-  }
-
-  /**
-   * Returns the tiles associated with the tileset that have custom
-   * properties. This property is optional.
-   *
-   * @return the tiles associated with the tileset.
-   * @since 0.1.0
-   */
-  [[nodiscard]] std::vector<Tile>& tiles() noexcept { return m_tiles; }
+  STEP_QUERY const std::vector<Tile>& tiles() const noexcept;
 
   /**
    * Returns the properties associated with the tileset.
@@ -155,10 +147,7 @@ class Tileset final {
    * @return the properties associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] const Properties& properties() const noexcept
-  {
-    return m_properties;
-  }
+  STEP_QUERY const Properties& properties() const noexcept;
 
   /**
    * Returns the terrains associated with the tileset. This property is
@@ -167,19 +156,7 @@ class Tileset final {
    * @return the terrains associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] const std::vector<Terrain>& terrains() const noexcept
-  {
-    return m_terrains;
-  }
-
-  /**
-   * Returns the terrains associated with the tileset. This property is
-   * optional.
-   *
-   * @return the terrains associated with the tileset.
-   * @since 0.1.0
-   */
-  [[nodiscard]] std::vector<Terrain>& terrains() noexcept { return m_terrains; }
+  STEP_QUERY const std::vector<Terrain>& terrains() const noexcept;
 
   /**
    * Returns the path to the external file that holds the actual tileset
@@ -191,7 +168,7 @@ class Tileset final {
    * embedded.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string source() const { return m_source; }
+  STEP_QUERY std::string source() const;
 
   /**
    * Returns the path to the image associated with the tileset.
@@ -199,7 +176,7 @@ class Tileset final {
    * @return the path to the image associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string image() const { return m_image; }
+  STEP_QUERY std::string image() const;
 
   /**
    * Returns the name associated with the tileset.
@@ -207,7 +184,7 @@ class Tileset final {
    * @return the name associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string name() const { return m_name; }
+  STEP_QUERY std::string name() const;
 
   /**
    * Returns the background color of the tileset. This property is optional.
@@ -215,10 +192,7 @@ class Tileset final {
    * @return the background color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  [[nodiscard]] Maybe<Color> background_color() const noexcept
-  {
-    return m_backgroundColor;
-  }
+  STEP_QUERY Maybe<Color> background_color() const noexcept;
 
   /**
    * Returns the transparent color of the tileset. This property is optional.
@@ -226,10 +200,7 @@ class Tileset final {
    * @return the transparent color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  [[nodiscard]] Maybe<Color> transparent_color() const noexcept
-  {
-    return m_transparentColor;
-  }
+  STEP_QUERY Maybe<Color> transparent_color() const noexcept;
 
   /**
    * Returns the grid associated with the tileset. This property is optional.
@@ -237,7 +208,7 @@ class Tileset final {
    * @return the grid associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] Maybe<Grid> grid() const noexcept { return m_grid; }
+  STEP_QUERY Maybe<Grid> grid() const noexcept;
 
   /**
    * Returns the tile offset associated with the tileset. This property is
@@ -246,10 +217,7 @@ class Tileset final {
    * @return the tile offset associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] Maybe<TileOffset> tile_offset() const noexcept
-  {
-    return m_tileOffset;
-  }
+  STEP_QUERY Maybe<TileOffset> tile_offset() const noexcept;
 
   /**
    * Returns the Tiled version associated with the tileset.
@@ -257,10 +225,7 @@ class Tileset final {
    * @return the Tiled version associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string tiled_version() const
-  {
-    return m_tiledVersion;
-  }
+  STEP_QUERY std::string tiled_version() const;
 
   /**
    * Returns the JSON format version associated with the tileset.
@@ -268,7 +233,7 @@ class Tileset final {
    * @return the JSON format version associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] double json_version() const noexcept { return m_jsonVersion; }
+  STEP_QUERY double json_version() const noexcept;
 
  private:
   int m_firstGID = 1;
@@ -281,9 +246,8 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
-  Properties m_properties;
   std::vector<Terrain> m_terrains;
-
+  Properties m_properties;
   std::string m_image;
   std::string m_source;
   std::string m_name;
@@ -296,11 +260,13 @@ class Tileset final {
   double m_jsonVersion = 0;
 
   // TODO std::vector<WangSet> m_wangSets;
+
+  Tileset(std::string_view root, int id, std::string_view src);
+
+  explicit Tileset(const JSON& json);
+
+  void parse(const JSON& json);
 };
-
-STEP_API void from_json(const JSON& json, Tileset& set);
-
-STEP_API void load_from(const JSON& json, Tileset& set);
 
 }  // namespace step
 

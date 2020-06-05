@@ -74,7 +74,7 @@ set(SOURCE_FILES
         step_object.cpp
 
         ${STEP_INCLUDE_DIR}/step_properties.h
-        step_properties.cpp)
+        step_properties.cpp ../include/step_tile_parser.h step_tile_parser.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

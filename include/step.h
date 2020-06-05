@@ -42,12 +42,14 @@ namespace step {
  * This method will throw an exception if the map cannot be parsed for some
  * reason.
  *
+ * @param root the file path of the directory that contains the map file.
  * @param file the location of the Tiled JSON map file.
  * @return a unique pointer to a map that represents the map file.
  * @throws StepException if the map cannot be parsed.
  * @since 0.1.0
  */
-STEP_QUERY std::unique_ptr<Map> parse(std::string_view file);
+STEP_QUERY std::unique_ptr<Map> parse(std::string_view root,
+                                      std::string_view file);
 
 }  // namespace step
 
