@@ -4,7 +4,6 @@
 
 #include "step_exception.h"
 #include "step_test_utils.h"
-#include "step_utils.h"
 
 using namespace step;
 
@@ -12,36 +11,33 @@ inline static const std::string prefix = "resource/tileset/";
 
 TEST_SUITE("Tileset")
 {
-  //  TEST_CASE("Parsing external tileset")
-  //  {
-  //    const auto tileset =
-  //        Tileset::external(prefix, 4,
-  //        "tileset_data_for_external_tileset.json");
-  //
-  //    CHECK(tileset.columns() == 32);
-  //    CHECK(tileset.first_gid() == 4);
-  //    CHECK(tileset.source() == "tileset_data_for_external_tileset.json");
-  //    CHECK(tileset.image() == "../terrain.png");
-  //    CHECK(tileset.image_width() == 1024);
-  //    CHECK(tileset.image_height() == 768);
-  //    CHECK(tileset.margin() == 18);
-  //    CHECK(tileset.name() == "external_tileset");
-  //    CHECK(tileset.spacing() == 7);
-  //    CHECK(tileset.tile_count() == 1024);
-  //    CHECK(tileset.tile_width() == 64);
-  //    CHECK(tileset.tile_height() == 32);
-  //    CHECK(tileset.json_version() == 1.2);
-  //    CHECK(tileset.tiled_version() == "1.3.4");
-  //    CHECK(!tileset.grid());
-  //    CHECK(!tileset.tile_offset());
-  //  }
+  TEST_CASE("Parsing external tileset")
+  {
+    const auto tileset =
+        Tileset::external(prefix, 4, "tileset_data_for_external_tileset.json");
+
+    CHECK(tileset.columns() == 32);
+    CHECK(tileset.first_gid() == 4);
+    CHECK(tileset.source() == "tileset_data_for_external_tileset.json");
+    CHECK(tileset.image() == "../terrain.png");
+    CHECK(tileset.image_width() == 1024);
+    CHECK(tileset.image_height() == 768);
+    CHECK(tileset.margin() == 18);
+    CHECK(tileset.name() == "external_tileset");
+    CHECK(tileset.spacing() == 7);
+    CHECK(tileset.tile_count() == 1024);
+    CHECK(tileset.tile_width() == 64);
+    CHECK(tileset.tile_height() == 32);
+    CHECK(tileset.json_version() == 1.2);
+    CHECK(tileset.tiled_version() == "1.3.4");
+    CHECK(!tileset.grid());
+    CHECK(!tileset.tile_offset());
+  }
 
   TEST_CASE("Parsing embedded tileset")
   {
-    const auto json =
-        detail::parse_json("resource/tileset/embedded_tileset.json");
-
-    const auto tileset = Tileset::embedded(json);
+    const auto tileset = Tileset::embedded(
+        detail::parse_json("resource/tileset/embedded_tileset.json"));
 
     CHECK(tileset.first_gid() == 7);
     CHECK(tileset.columns() == 48);
