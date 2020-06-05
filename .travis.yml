@@ -62,10 +62,9 @@ script:
   - cd build
   - cmake ${CMAKE_OPTIONS} --DCMAKE_CXX_FLAGS=${CXX_FLAGS} -DCMAKE_BUILD_TYPE=Debug ..
   - make
-  - dir
   - cd test
-  - dir
-  - ctest
+  - ./teststep
+#  - ctest
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}
