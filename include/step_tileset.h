@@ -191,7 +191,7 @@ class Tileset final {
    * embedded.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string source() const noexcept { return m_source; }
+  [[nodiscard]] std::string source() const { return m_source; }
 
   /**
    * Returns the path to the image associated with the tileset.
@@ -199,7 +199,7 @@ class Tileset final {
    * @return the path to the image associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string image() const noexcept { return m_image; }
+  [[nodiscard]] std::string image() const { return m_image; }
 
   /**
    * Returns the name associated with the tileset.
@@ -207,7 +207,7 @@ class Tileset final {
    * @return the name associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string name() const noexcept { return m_name; }
+  [[nodiscard]] std::string name() const { return m_name; }
 
   /**
    * Returns the background color of the tileset. This property is optional.
@@ -257,7 +257,7 @@ class Tileset final {
    * @return the Tiled version associated with the tileset.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string tiled_version() const noexcept
+  [[nodiscard]] std::string tiled_version() const
   {
     return m_tiledVersion;
   }
