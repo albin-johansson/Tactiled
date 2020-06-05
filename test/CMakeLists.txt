@@ -39,9 +39,6 @@ target_include_directories(Doctest INTERFACE doctest)
 
 include(doctest)
 
-add_test(NAME ${STEP_TEST_TARGET}
-        COMMAND ${STEP_TEST_TARGET})
-
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     target_compile_options(${STEP_TEST_TARGET} PRIVATE
             -Wno-unused-result
@@ -56,6 +53,8 @@ target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_SOURCE_DIR})
 target_link_libraries(${STEP_TEST_TARGET}
         PUBLIC ${STEP_LIBRARIES}
         PUBLIC Doctest)
+
+#doctest_discover_tests(${STEP_TEST_TARGET})
 
 copy_directory_post_build(
         ${STEP_TEST_TARGET}
