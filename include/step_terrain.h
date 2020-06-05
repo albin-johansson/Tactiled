@@ -56,7 +56,7 @@ class Terrain final {
    * @return the name associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string name() const noexcept { return m_name; }
+  [[nodiscard]] std::string name() const { return m_name; }
 
   /**
    * Returns the properties associated with the terrain. This property is
