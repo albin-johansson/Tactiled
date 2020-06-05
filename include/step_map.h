@@ -32,16 +32,17 @@
 #include "step_color.h"
 #include "step_layer.h"
 #include "step_properties.h"
+#include "step_tileset.h"
 #include "step_types.h"
 
 namespace step {
 
-class StepComponent final {
- public:
- private:
-  std::string m_tiledVersion;
-  double m_jsonVersion{0};
-};
+// class StepComponent final {
+// public:
+// private:
+//  std::string m_tiledVersion;
+//  double m_jsonVersion{0};
+//};
 
 class Map final {
  public:
@@ -61,27 +62,40 @@ class Map final {
   int m_tileHeight{0};
   int m_nextLayerID{0};
   int m_nextObjectID{0};
-
+  std::vector<Layer> m_layers;
+  std::vector<Tileset> m_tilesets;
+  Properties m_properties;
   Orientation m_orientation{Orientation::Orthogonal};
   RenderOrder m_renderOrder{RenderOrder::RightDown};  // ONLY ORTHOGONAL
   StaggerAxis m_staggerAxis{StaggerAxis::X};  // (only staggered & hexagonal)
   StaggerIndex m_staggerIndex{StaggerIndex::Odd};  // ONLY STAGGERED/HEXAGONAL
   int m_hexSideLength{0};                          // ONLY HEXAGONAL
-
-  Properties m_properties;
-
   Maybe<Color> m_backgroundColor;
-
-  bool m_infinite{false};
-
   std::string m_tiledVersion;
   double m_jsonVersion{0};
-
-  // TODO std::vector<Layer> m_layers;
-  // TODO std::vector<Tileset> m_tilesets;
+  bool m_infinite{false};
 };
 
 STEP_API void from_json(const JSON& json, Map& map);
+
+STEP_SERIALIZE_ENUM(Map::RenderOrder,
+                    {{Map::RenderOrder::RightDown, "right-down"},
+                     {Map::RenderOrder::RightUp, "right-up"},
+                     {Map::RenderOrder::LeftDown, "left-down"},
+                     {Map::RenderOrder::LeftUp, "left-up"}})
+
+STEP_SERIALIZE_ENUM(Map::Orientation,
+                    {{Map::Orientation::Orthogonal, "orthogonal"},
+                     {Map::Orientation::Isometric, "isometric"},
+                     {Map::Orientation::Staggered, "staggered"},
+                     {Map::Orientation::Hexagonal, "hexagonal"}})
+
+STEP_SERIALIZE_ENUM(Map::StaggerAxis,
+                    {{Map::StaggerAxis::X, "x"}, {Map::StaggerAxis::Y, "y"}})
+
+STEP_SERIALIZE_ENUM(Map::StaggerIndex,
+                    {{Map::StaggerIndex::Odd, "odd"},
+                     {Map::StaggerIndex::Even, "even"}})
 
 }  // namespace step
 
