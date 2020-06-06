@@ -17,9 +17,7 @@ TEST_SUITE("Data")
     const auto data = test::make<Data>(prefix, "csv.json");
     CHECK_NOTHROW(data.as_gid());
     CHECK_THROWS_WITH_AS(
-        data.as_base64(),
-                         "Data > Couldn't obtain Base64 data!",
-                         StepException);
+        data.as_base64(), "Data > Couldn't obtain Base64 data!", StepException);
   }
 
   TEST_CASE("Base64")

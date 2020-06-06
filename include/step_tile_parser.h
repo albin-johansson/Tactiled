@@ -34,7 +34,7 @@ class Tile;
 
 STEP_API void from_json(const JSON& json, Tile& tile);
 
-}
+}  // namespace step
 
 #ifdef STEP_HEADER_ONLY
 #include "step_tiler_parser.cpp"
