@@ -32,6 +32,7 @@
 #include <string>
 
 #include "step_exception.h"
+#include "step_utils.h"
 
 namespace step {
 namespace {
@@ -47,13 +48,9 @@ namespace {
  */
 uint8_t from_hex(std::string_view view)
 {
-  uint8_t result{};
-  if (const auto [ptr, error] =
-          std::from_chars(view.data(), view.data() + view.size(), result, 16);
-      error != std::errc::invalid_argument &&
-      error != std::errc::result_out_of_range) {
-    return result;
-  } else {
+  try {
+    return detail::convert<uint8_t>(view, 16);
+  } catch (...) {
     using namespace std::string_literals;
     throw StepException{"Color > Failed to parse hex string: "s.append(view)};
   }

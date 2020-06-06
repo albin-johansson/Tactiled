@@ -39,10 +39,9 @@ Tile::Tile(const JSON& json)
   detail::safe_bind(json, "properties", m_properties);
 
   if (json.contains("terrain")) {
-    m_terrain.emplace();  // TODO test this terrain stuff
+    m_terrain.emplace();
     for (const auto& [key, value] : json.at("terrain").items()) {
-      const auto index = static_cast<size_t>(std::stoi(key));
-      m_terrain->at(index) = value.get<int>();
+      m_terrain->at(detail::convert<std::size_t>(key)) = value.get<int>();
     }
   }
 

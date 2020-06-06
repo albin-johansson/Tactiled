@@ -25,10 +25,12 @@
 #ifndef STEP_UTILS_HEADER
 #define STEP_UTILS_HEADER
 
+#include <charconv>
 #include <string_view>
 #include <vector>
 
 #include "step_api.h"
+#include "step_exception.h"
 #include "step_types.h"
 
 namespace step::detail {
@@ -57,6 +59,30 @@ void safe_bind(const JSON& json, std::string_view key, T& value)
 {
   if (json.contains(key)) {
     json.at(key.data()).get_to(value);
+  }
+}
+
+/**
+ * Attempts to convert a string to an integral value.
+ *
+ * @tparam T the integral type that will be used.
+ * @param str the string that represents the integer.
+ * @param base the base that will be used, defaults to 10.
+ * @return the integral value.
+ * @throws StepException if the string cannot be converted.
+ * @since 0.1.0
+ */
+template <typename T>
+T convert(std::string_view str, int base = 10)
+{
+  T result{};
+  if (const auto [ptr, error] =
+          std::from_chars(str.data(), str.data() + str.size(), result, base);
+      error != std::errc::invalid_argument &&
+      error != std::errc::result_out_of_range) {
+    return result;
+  } else {
+    throw StepException{"Failed to convert string to integral!"};
   }
 }
 
