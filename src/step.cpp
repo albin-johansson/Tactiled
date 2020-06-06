@@ -31,14 +31,9 @@
 
 namespace step {
 
-// TODO solve problem with relative paths
-
 STEP_DEF
 std::unique_ptr<Map> parse(std::string_view root, std::string_view file)
 {
-  //  const auto json{detail::parse_json(file)};
-  //  auto map{std::make_unique<Map>()};
-  //  json.get_to(*map);
   return std::make_unique<Map>(root, file);
 }
 
