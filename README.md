@@ -8,21 +8,23 @@ Refer to the in-source documentation and official Tiled documentation for detail
 
 Happy coding! :heart:
 
-# Usage
+## Usage
 
 ```C++
 #include <step.h>
 
-int main(int, char**)
+int main()
 {
   auto map = step::parse("my_tiled_map.json");
 }
 ```
 
-# Tools, API:s and dependencies
+## Tools, API:s and dependencies
+
 * [**nlohmann/json**](https://github.com/nlohmann/json) - An awesome modern C++ library for parsing JSON. This library is bundled in the repository.
 * [**doctest**](https://github.com/onqtam/doctest) - Simple and fast header-only testing framework that is used for the unit tests.
 
-# See also
+## See also
+
 * [**Tiled**](https://github.com/bjorn/tiled) - The amazing tile map editor that produces the maps that step parses.
 * [**Tiled documentation**](https://doc.mapeditor.org/en/stable/) - The reference used for developing the library, along with the Tiled editor itself.
