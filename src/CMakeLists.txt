@@ -74,7 +74,9 @@ set(SOURCE_FILES
         step_object.cpp
 
         ${STEP_INCLUDE_DIR}/step_properties.h
-        step_properties.cpp ../include/step_tile_parser.h step_tile_parser.cpp)
+        step_properties.cpp
+
+        )
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
@@ -90,12 +92,14 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             -Wswitch-default
             -Wswitch-enum
             -Wunused
-            -Wuninitialized
             -Wsuggest-final-types
             -Wsuggest-final-methods
             -Wsuggest-override
             -Wduplicated-cond
-            -Wconversion)
+            -Wconversion
+            -Wno-c++14-compat
+            -Wno-c++11-compat
+            -Wno-c++98-compat)
 endif ()
 
 set_target_properties(${STEP_LIB_TARGET} PROPERTIES

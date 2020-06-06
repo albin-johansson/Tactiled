@@ -2,6 +2,7 @@
 
 #include <doctest.h>
 
+#include "step_exception.h"
 #include "step_test_utils.h"
 
 using namespace step;
@@ -12,7 +13,7 @@ TEST_SUITE("Map")
 {
   TEST_CASE("Parsing map")
   {
-    const Map map{"resource/map/", "basic_map.json"};
+    const Map map{prefix, "basic_map.json"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
@@ -42,5 +43,12 @@ TEST_SUITE("Map")
       CHECK(layer.type() == Layer::Type::TileLayer);
       CHECK(layer.visible());
     }
+  }
+
+  TEST_CASE("No type attribute")
+  {
+    CHECK_THROWS_WITH_AS(Map(prefix, "no_type.json"),
+                         "Map > \"type\" attribute must be \"map\"!",
+                         StepException);
   }
 }

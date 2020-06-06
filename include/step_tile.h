@@ -24,7 +24,6 @@
 #ifndef STEP_TILE_HEADER
 #define STEP_TILE_HEADER
 
-//#include <memory>
 #include <vector>
 
 #include "step_animation.h"
@@ -33,8 +32,6 @@
 #include "step_types.h"
 
 namespace step {
-
-// class Layer;
 
 /**
  * The Tile class provides information about a tile in a tileset.
@@ -56,7 +53,7 @@ class Tile final {
     BottomRight = 3
   };
 
-  STEP_API friend void from_json(const JSON&, Tile&);
+  STEP_API explicit Tile(const JSON& json);
 
   /**
    * Returns the local ID associated with the tile.
@@ -148,8 +145,6 @@ class Tile final {
   Maybe<int> m_imageHeight;
   Maybe<double> m_probability;
 };
-
-// STEP_API void from_json(const JSON& json, Tile& tile);
 
 }  // namespace step
 

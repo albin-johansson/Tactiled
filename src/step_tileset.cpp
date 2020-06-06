@@ -87,7 +87,7 @@ void Tileset::parse(const JSON& json)
 
   if (json.contains("tiles") && json.at("tiles").is_array()) {
     for (const auto& [key, value] : json.at("tiles").items()) {
-      m_tiles.push_back(value.get<Tile>());
+      m_tiles.emplace_back(value);
     }
   }
 

@@ -45,7 +45,7 @@ Map::Map(std::string_view root, std::string_view file)
 STEP_DEF
 void Map::parse(std::string_view root, const JSON& json)
 {
-  if (json.at("type") != "map") {
+  if (!json.contains("type") || json.at("type") != "map") {
     throw StepException{"Map > \"type\" attribute must be \"map\"!"};
   }
 

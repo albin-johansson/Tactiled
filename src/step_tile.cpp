@@ -32,6 +32,35 @@
 namespace step {
 
 STEP_DEF
+Tile::Tile(const JSON& json)
+{
+  json.at("id").get_to(m_id);
+
+  detail::safe_bind(json, "properties", m_properties);
+
+  if (json.contains("terrain")) {
+    m_terrain.emplace();  // TODO test this terrain stuff
+    for (const auto& [key, value] : json.at("terrain").items()) {
+      const auto index = static_cast<size_t>(std::stoi(key));
+      m_terrain->at(index) = value.get<int>();
+    }
+  }
+
+  if (json.contains("objectgroup")) {
+    // TODO ...
+    //    tile.m_objectGroup = std::make_unique<Layer>();
+    //    json.at("objectgroup").get_to(*tile.m_objectGroup);
+  }
+
+  detail::bind_maybe(json, "animation", m_animation);
+  detail::bind_maybe(json, "type", m_type);
+  detail::bind_maybe(json, "image", m_image);
+  detail::bind_maybe(json, "imagewidth", m_imageWidth);
+  detail::bind_maybe(json, "imageheight", m_imageHeight);
+  detail::bind_maybe(json, "probability", m_probability);
+}
+
+STEP_DEF
 int Tile::id() const noexcept
 {
   return m_id;
