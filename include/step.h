@@ -56,8 +56,6 @@
 
 namespace step {
 
-// TODO check "noexcept" usage overall
-
 /**
  * Attempts to parse a Tiled JSON map file located at the specified path.
  * This method will throw an exception if the map cannot be parsed for some
