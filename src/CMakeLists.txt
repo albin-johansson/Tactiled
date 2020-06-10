@@ -76,7 +76,9 @@ set(SOURCE_FILES
         ${STEP_INCLUDE_DIR}/step_properties.h
         step_properties.cpp
 
-        )
+
+        ${STEP_INCLUDE_DIR}/step_wang_color.h
+        step_wang_color.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
@@ -98,8 +100,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             -Wduplicated-cond
             -Wconversion
             -Wno-c++14-compat
-            -Wno-c++11-compat
-            -Wno-c++98-compat)
+            -Wno-c++11-compat)
 endif ()
 
 set_target_properties(${STEP_LIB_TARGET} PROPERTIES
