@@ -78,7 +78,10 @@ set(SOURCE_FILES
 
 
         ${STEP_INCLUDE_DIR}/step_wang_color.h
-        step_wang_color.cpp)
+        step_wang_color.cpp
+
+        ${STEP_INCLUDE_DIR}/step_wang_tile.h
+        step_wang_tile.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)
