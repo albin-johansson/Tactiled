@@ -97,8 +97,7 @@ class Property final {
    * is no such value.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<float> as_float() const noexcept;  // FIXME might
-                                                      //  be double
+  STEP_QUERY Maybe<float> as_float() const noexcept;
 
   /**
    * Returns the boolean value associated with the property, if there is one.
