@@ -27,6 +27,7 @@
 
 #include "step_tile.h"
 
+#include "step_layer.h"
 #include "step_utils.h"
 
 namespace step {
@@ -46,9 +47,7 @@ Tile::Tile(const JSON& json)
   }
 
   if (json.contains("objectgroup")) {
-    // TODO ...
-    //    tile.m_objectGroup = std::make_unique<Layer>();
-    //    json.at("objectgroup").get_to(*tile.m_objectGroup);
+    m_objectGroup = std::make_shared<Layer>(json.at("objectgroup"));
   }
 
   detail::bind_maybe(json, "animation", m_animation);
@@ -75,6 +74,12 @@ STEP_DEF
 const Properties& Tile::properties() const
 {
   return m_properties;
+}
+
+STEP_DEF
+std::shared_ptr<Layer> Tile::object_group() const noexcept
+{
+  return m_objectGroup;
 }
 
 STEP_DEF

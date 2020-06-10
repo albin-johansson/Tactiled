@@ -2,6 +2,7 @@
 
 #include <doctest.h>
 
+#include "step_layer.h"
 #include "step_utils.h"
 
 using namespace step;
@@ -10,7 +11,6 @@ TEST_SUITE("Tile")
 {
   TEST_CASE("Parse tile with all keys")
   {
-    // FIXME this does NOT include "objectgroup" key
     const Tile tile{detail::parse_json("resource/tile/tile_complete.json")};
 
     CHECK(tile.id() == 74);
@@ -71,6 +71,19 @@ TEST_SUITE("Tile")
       CHECK(tile.terrain_at(Tile::TerrainPos::BottomRight) == 7);
     }
 
-    // TODO objectgroup
+    SUBCASE("Testing object group")
+    {
+      const auto objectGroupLayer = tile.object_group();
+      REQUIRE(objectGroupLayer);
+      REQUIRE(objectGroupLayer->is_object_group());
+      CHECK(objectGroupLayer->id() == 2);
+      CHECK(objectGroupLayer->name() == "wizard");
+      CHECK(objectGroupLayer->opacity() == 1);
+      CHECK(objectGroupLayer->visible());
+
+      const auto& objectGroup = objectGroupLayer->as_object_group();
+      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::Index);
+      CHECK(objectGroup.objects().size() == 1);
+    }
   }
 }

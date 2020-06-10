@@ -36,7 +36,7 @@
   "objectgroup": {
     "draworder": "index",
     "id": 2,
-    "name": "",
+    "name": "wizard",
     "objects": [
       {
         "height": 11.5434654050858,

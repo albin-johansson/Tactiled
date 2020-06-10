@@ -24,6 +24,7 @@
 #ifndef STEP_TILE_HEADER
 #define STEP_TILE_HEADER
 
+#include <memory>
 #include <vector>
 
 #include "step_animation.h"
@@ -32,6 +33,8 @@
 #include "step_types.h"
 
 namespace step {
+
+class Layer;
 
 /**
  * The Tile class provides information about a tile in a tileset.
@@ -79,6 +82,18 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY const Properties& properties() const;
+
+  /**
+   * Returns the object group layer associated with the tile. This property
+   * is optional. You'll need to include the <code>step_layer.h</code> header
+   * if you want to use the returned pointer, since it is forward-declared in
+   * the tile header.
+   *
+   * @return a shared pointer to the object group associated with the tile;
+   * null if there is none.
+   * @since 0.1.0
+   */
+  STEP_QUERY std::shared_ptr<Layer> object_group() const noexcept;
 
   /**
    * Returns the type of the tile.
@@ -137,7 +152,7 @@ class Tile final {
   int m_id = 0;
   Maybe<Animation> m_animation;
   Properties m_properties;
-  // FIXME std::shared_ptr<Layer> m_objectGroup;
+  std::shared_ptr<Layer> m_objectGroup;
   Maybe<std::array<int, 4>> m_terrain;
   Maybe<std::string> m_type;
   Maybe<std::string> m_image;
