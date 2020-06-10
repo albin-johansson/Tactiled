@@ -15,7 +15,7 @@ Happy coding! :heart:
 
 int main()
 {
-  auto map = step::parse("my_tiled_map.json");
+  auto map = step::parse("maps/", "my_tiled_map.json");
 }
 ```
 
