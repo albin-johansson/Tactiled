@@ -25,6 +25,13 @@
 #ifndef STEP_CFG_HEADER
 #define STEP_CFG_HEADER
 
+/**
+ * Defining this macro will put the library into a pseudo-"header-only" mode
+ * where you'll need to include the headers AND source files in order to use
+ * the library.
+ *
+ * @since 0.1.0
+ */
 //#define STEP_HEADER_ONLY
 
 #endif  // STEP_CFG_HEADER
