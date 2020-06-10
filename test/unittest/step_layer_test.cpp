@@ -191,7 +191,12 @@ TEST_SUITE("Layer")
 
     SUBCASE("Group exclusive properties")
     {
-      // TODO test layers here
+      const auto& group = layer.as_group();
+      REQUIRE(group.layers() == 1);
+
+      group.each([](const Layer& layer) { CHECK(layer.name() == "dawkins"); });
+
+      CHECK(group.at(0).name() == "dawkins");
     }
 
     CHECK(layer.id() == 7);

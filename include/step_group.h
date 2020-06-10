@@ -45,6 +45,40 @@ class Group final {
  public:
   STEP_API friend void from_json(const JSON&, Group&);
 
+  /**
+   * Iterates over all of the layers store in this group.
+   *
+   * @tparam Lambda the type of the lambda object.
+   * @param lambda the lambda that takes one argument, <code>const
+   * Layer&</code>.
+   * @since 0.1.0
+   */
+  template <typename Lambda>
+  void each(Lambda&& lambda) const
+  {
+    for (const auto& layer : m_layers) {
+      lambda(*layer);
+    }
+  }
+
+  /**
+   * Returns the layer at the specified index. This method will throw an
+   * exception if the index is out-of-bounds.
+   *
+   * @param index the index of the desired layer.
+   * @return the layer at the specified index.
+   * @since 0.1.0
+   */
+  STEP_QUERY const Layer& at(int index) const;
+
+  /**
+   * Returns the amount of layers that are in the group.
+   *
+   * @return the amount of layers that are in the group.
+   * @since 0.1.0
+   */
+  STEP_QUERY int layers() const noexcept;
+
  private:
   std::vector<std::unique_ptr<Layer>> m_layers;
 };

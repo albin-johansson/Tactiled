@@ -8,8 +8,6 @@ using namespace step;
 
 inline static const std::string prefix = "resource/chunk/";
 
-// TODO investigate why this fails on Travis
-
 TEST_SUITE("Chunk")
 {
   TEST_CASE("Parse chunk with CSV data" *

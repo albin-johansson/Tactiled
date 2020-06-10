@@ -32,11 +32,24 @@
 namespace step {
 
 STEP_DEF
+const Layer& Group::at(int index) const
+{
+  return *m_layers.at(static_cast<std::size_t>(index));
+}
+
+STEP_DEF
+int Group::layers() const noexcept
+{
+  return static_cast<int>(m_layers.size());
+}
+
+STEP_DEF
 void from_json(const JSON& json, Group& group)
 {
   for (const auto& [key, value] : json.at("layers").items()) {
-    auto& layer = group.m_layers.emplace_back();
+    auto layer = std::make_unique<Layer>();
     from_json(value, *layer);
+    group.m_layers.push_back(std::move(layer));
   }
 }
 
