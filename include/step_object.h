@@ -62,6 +62,8 @@ struct Polyline {
  */
 struct Template {
   std::string templateFile;
+  // TODO std::shared_ptr<Tileset>
+  // TODO std::shared_ptr<Object>
 };
 
 /**
