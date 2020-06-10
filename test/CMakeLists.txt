@@ -28,7 +28,8 @@ set(TEST_FILES
         unittest/step_object_test.cpp
         unittest/step_test.cpp
         unittest/step_wang_color_test.cpp
-        unittest/step_wang_tile_test.cpp)
+        unittest/step_wang_tile_test.cpp
+        unittest/step_wang_set_test.cpp)
 
 add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
 add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})

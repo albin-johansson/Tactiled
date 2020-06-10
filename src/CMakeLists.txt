@@ -76,6 +76,8 @@ set(SOURCE_FILES
         ${STEP_INCLUDE_DIR}/step_properties.h
         step_properties.cpp
 
+        ${STEP_INCLUDE_DIR}/step_wang_set.h
+        step_wang_set.cpp
 
         ${STEP_INCLUDE_DIR}/step_wang_color.h
         step_wang_color.cpp

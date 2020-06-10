@@ -44,6 +44,8 @@ class Color final {
  public:
   Color() noexcept = default;
 
+  // TODO consider adding Color(const JSON& json)
+
   /**
    * Creates a color from the supplied string that is in either ARGB or RGB
    * format. If the supplied string is using the RGB format, then the alpha
