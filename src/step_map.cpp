@@ -37,7 +37,7 @@ namespace step {
 STEP_DEF
 Map::Map(std::string_view root, std::string_view file)
 {
-  std::string map = root.data();
+  std::string map{root.data()};
   map += file;
   parse(root, detail::parse_json(map));
 }
