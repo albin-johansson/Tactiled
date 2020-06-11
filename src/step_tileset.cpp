@@ -97,11 +97,17 @@ void Tileset::parse(const JSON& json)
     }
   }
 
-  if (json.count("backgroundcolor")) {
+  if (json.contains("wangsets") && json.at("wangsets").is_array()) {
+    for (const auto& [key, value] : json.at("wangsets").items()) {
+      m_wangSets.emplace_back(value);
+    }
+  }
+
+  if (json.contains("backgroundcolor")) {
     m_backgroundColor = Color{json.at("backgroundcolor").get<std::string>()};
   }
 
-  if (json.count("transparentcolor")) {
+  if (json.contains("transparentcolor")) {
     m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
   }
 }
@@ -164,6 +170,12 @@ STEP_DEF
 const std::vector<Tile>& Tileset::tiles() const noexcept
 {
   return m_tiles;
+}
+
+STEP_DEF
+const std::vector<WangSet>& Tileset::wang_sets() const
+{
+  return m_wangSets;
 }
 
 STEP_DEF

@@ -36,6 +36,7 @@
 #include "step_tile.h"
 #include "step_tile_offset.h"
 #include "step_types.h"
+#include "step_wang_set.h"
 
 namespace step {
 
@@ -140,6 +141,14 @@ class Tileset final {
    * @since 0.1.0
    */
   STEP_QUERY const std::vector<Tile>& tiles() const noexcept;
+
+  /**
+   * Returns all of the Wang sets that are associated with the tileset.
+   *
+   * @return the Wang sets associated with the tileset.
+   * @since 0.1.0
+   */
+  STEP_QUERY const std::vector<WangSet>& wang_sets() const;
 
   /**
    * Returns the properties associated with the tileset.
@@ -247,6 +256,7 @@ class Tileset final {
   int m_spacing = 0;
   std::vector<Tile> m_tiles;
   std::vector<Terrain> m_terrains;
+  std::vector<WangSet> m_wangSets;
   Properties m_properties;
   std::string m_image;
   std::string m_source;
@@ -258,8 +268,6 @@ class Tileset final {
 
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
-
-  // TODO std::vector<WangSet> m_wangSets;
 
   Tileset(std::string_view root, int id, std::string_view src);
 
