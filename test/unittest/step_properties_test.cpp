@@ -39,6 +39,8 @@ TEST_SUITE("Properties")
 
     SUBCASE("Testing the is-method")
     {
+      CHECK(!props.is("x", 812)); // doesn't exist
+
       CHECK(props.is("a", 67));
       CHECK(props.is("b", 24));
       CHECK(props.is("c", 31));
