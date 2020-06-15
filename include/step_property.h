@@ -79,7 +79,7 @@ class Property final {
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
-  [[nodiscard]] T get() const
+  [[nodiscard]] const T& get() const
   {
     return std::get<T>(m_value);
   }
