@@ -29,6 +29,24 @@ TEST_SUITE("String property")
     CHECK(property.as_string());
     CHECK(*property.as_string() == "This is a string value");
 
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<std::string>() == "This is a string value");
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<Color>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(property.get_or<std::string>("foo") == "This is a string value");
+      CHECK(property.get_or(7) == 7);
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+    }
+
     CHECK(!property.as_int());
     CHECK(!property.as_float());
     CHECK(!property.as_bool());
@@ -55,6 +73,24 @@ TEST_SUITE("Int property")
     CHECK(property.as_int());
     CHECK(*property.as_int() == 1337);
 
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<int>() == 1337);
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<Color>());
+      CHECK_THROWS(property.get<std::string>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(property.get_or(7) == 1337);
+      CHECK(property.get_or<std::string>("foo") == "foo");
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+    }
+
     CHECK(!property.as_string());
     CHECK(!property.as_float());
     CHECK(!property.as_bool());
@@ -78,6 +114,24 @@ TEST_SUITE("Float property")
     CHECK(property.is_float());
     CHECK(property.as_float());
     CHECK(*property.as_float() == 89.2f);
+
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<float>() == 89.2f);
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<Color>());
+      CHECK_THROWS(property.get<std::string>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(property.get_or(42.5f) == 89.2f);
+      CHECK(property.get_or(7) == 7);
+      CHECK(property.get_or<std::string>("foo") == "foo");
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+    }
 
     CHECK(!property.as_string());
     CHECK(!property.as_int());
@@ -104,6 +158,24 @@ TEST_SUITE("Bool property")
     CHECK(property.as_bool());
     CHECK(!*property.as_bool());
 
+    SUBCASE("Property::get")
+    {
+      CHECK(!property.get<bool>());
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<Color>());
+      CHECK_THROWS(property.get<std::string>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(!property.get_or(true));
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(7) == 7);
+      CHECK(property.get_or<std::string>("foo") == "foo");
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+    }
+
     CHECK(!property.as_string());
     CHECK(!property.as_int());
     CHECK(!property.as_float());
@@ -129,8 +201,26 @@ TEST_SUITE("Color property")
     CHECK(property.as_color());
     CHECK(*property.as_color() == Color{"#AA22BB33"});
 
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<Color>() == Color{"#AA22BB33"});
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<std::string>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AA22BB33"});
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(7) == 7);
+      CHECK(property.get_or<std::string>("foo") == "foo");
+    }
+
     CHECK(!property.as_string());
-    CHECK(!property.as_int());
+    CHECK(!property.as_int());Property p;
     CHECK(!property.as_float());
     CHECK(!property.as_bool());
   }
@@ -153,6 +243,24 @@ TEST_SUITE("File property")
     CHECK(property.is_file());
     CHECK(property.as_string());
     CHECK(*property.as_string() == "path/to/something/nice");
+
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<std::string>() == "path/to/something/nice");
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<Color>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      CHECK(property.get_or<std::string>("foo") == "path/to/something/nice");
+      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(7) == 7);
+    }
 
     CHECK(property.as_string());
     CHECK(!property.as_int());
