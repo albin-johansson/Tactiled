@@ -33,8 +33,8 @@ TEST_SUITE("Properties")
 
       const auto& property = props.get("a");
       CHECK(property.name() == "a");
-      REQUIRE(property.is_int());
-      CHECK(*property.as_int() == 67);
+      REQUIRE(property.is<int>());
+      CHECK(property.get<int>() == 67);
     }
 
     SUBCASE("Testing the is-method")

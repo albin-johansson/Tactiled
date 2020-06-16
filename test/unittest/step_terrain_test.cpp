@@ -20,7 +20,7 @@ TEST_SUITE("Terrain")
     const auto property = terrain.properties().get("health");
     CHECK(property.name() == "health");
     REQUIRE(property.type() == Property::Type::Int);
-    CHECK(*property.as_int() == 87);
+    CHECK(property.get<int>() == 87);
   }
 
   TEST_CASE("Parsing terrain with no properties")

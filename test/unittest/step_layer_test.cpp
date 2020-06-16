@@ -66,13 +66,12 @@ TEST_SUITE("Layer")
 
       const auto first = properties.get("foo");
       CHECK(first.name() == "foo");
-      CHECK(first.is_int());
-      CHECK(*first.as_int() == 79);
+      CHECK(first.is<int>());
+      CHECK(first.get<int>() == 79);
 
       const auto second = properties.get("bar");
       CHECK(second.name() == "bar");
-      CHECK(second.as_bool());
-      CHECK(!*second.as_bool());
+      CHECK(!second.get<bool>());
     }
   }
 

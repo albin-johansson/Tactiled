@@ -67,56 +67,6 @@ void from_json(const JSON& json, Property& property)
   }
 }
 
-STEP_DEF
-std::optional<std::string> Property::as_string() const noexcept
-{
-  if (std::holds_alternative<std::string>(m_value)) {
-    return std::get<std::string>(m_value);
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-std::optional<Color> Property::as_color() const noexcept
-{
-  if (std::holds_alternative<Color>(m_value)) {
-    return std::get<Color>(m_value);
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-std::optional<int> Property::as_int() const noexcept
-{
-  if (std::holds_alternative<int>(m_value)) {
-    return std::get<int>(m_value);
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-std::optional<float> Property::as_float() const noexcept
-{
-  if (std::holds_alternative<float>(m_value)) {
-    return std::get<float>(m_value);
-  } else {
-    return nothing;
-  }
-}
-
-STEP_DEF
-std::optional<bool> Property::as_bool() const noexcept
-{
-  if (std::holds_alternative<bool>(m_value)) {
-    return std::get<bool>(m_value);
-  } else {
-    return nothing;
-  }
-}
-
 }  // namespace step
 
 #endif  // STEP_PROPERTY_SOURCE

@@ -25,9 +25,9 @@ TEST_SUITE("String property")
         test::make<Property>(prefix, "string_property_valid.json");
     CHECK(property.name() == "String property name");
     CHECK(property.type() == Property::Type::String);
-    CHECK(property.is_string());
-    CHECK(property.as_string());
-    CHECK(*property.as_string() == "This is a string value");
+    CHECK(property.is<std::string>());
+    CHECK(property.is<Property::Type::String>());
+    CHECK(property.get<std::string>() == "This is a string value");
 
     SUBCASE("Property::get")
     {
@@ -46,11 +46,6 @@ TEST_SUITE("String property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
     }
-
-    CHECK(!property.as_int());
-    CHECK(!property.as_float());
-    CHECK(!property.as_bool());
-    CHECK(!property.as_color());
   }
 
   TEST_CASE("Bad value")
@@ -69,9 +64,9 @@ TEST_SUITE("Int property")
         test::make<Property>(prefix, "int_property_valid.json");
     CHECK(property.name() == "Sauron");
     CHECK(property.type() == Property::Type::Int);
-    CHECK(property.is_int());
-    CHECK(property.as_int());
-    CHECK(*property.as_int() == 1337);
+    CHECK(property.is<int>());
+    CHECK(property.is<Property::Type::Int>());
+    CHECK(property.get<int>() == 1337);
 
     SUBCASE("Property::get")
     {
@@ -90,11 +85,6 @@ TEST_SUITE("Int property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
     }
-
-    CHECK(!property.as_string());
-    CHECK(!property.as_float());
-    CHECK(!property.as_bool());
-    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -111,9 +101,9 @@ TEST_SUITE("Float property")
         test::make<Property>(prefix, "float_property_valid.json");
     CHECK(property.name() == "Erebor");
     CHECK(property.type() == Property::Type::Float);
-    CHECK(property.is_float());
-    CHECK(property.as_float());
-    CHECK(*property.as_float() == 89.2f);
+    CHECK(property.is<float>());
+    CHECK(property.is<Property::Type::Float>());
+    CHECK(property.get<float>() == 89.2f);
 
     SUBCASE("Property::get")
     {
@@ -132,11 +122,6 @@ TEST_SUITE("Float property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
     }
-
-    CHECK(!property.as_string());
-    CHECK(!property.as_int());
-    CHECK(!property.as_bool());
-    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -154,9 +139,9 @@ TEST_SUITE("Bool property")
         test::make<Property>(prefix, "bool_property_valid.json");
     CHECK(property.name() == "Blue mountains");
     CHECK(property.type() == Property::Type::Bool);
-    CHECK(property.is_bool());
-    CHECK(property.as_bool());
-    CHECK(!*property.as_bool());
+    CHECK(property.is<bool>());
+    CHECK(property.is<Property::Type::Bool>());
+    CHECK(!property.get<bool>());
 
     SUBCASE("Property::get")
     {
@@ -175,11 +160,6 @@ TEST_SUITE("Bool property")
       CHECK(property.get_or<std::string>("foo") == "foo");
       CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
     }
-
-    CHECK(!property.as_string());
-    CHECK(!property.as_int());
-    CHECK(!property.as_float());
-    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {
@@ -197,9 +177,9 @@ TEST_SUITE("Color property")
         test::make<Property>(prefix, "color_property_valid.json");
     CHECK(property.name() == "Rohan");
     CHECK(property.type() == Property::Type::Color);
-    CHECK(property.is_color());
-    CHECK(property.as_color());
-    CHECK(*property.as_color() == Color{"#AA22BB33"});
+    CHECK(property.is<Color>());
+    CHECK(property.is<Property::Type::Color>());
+    CHECK(property.get<Color>() == Color{"#AA22BB33"});
 
     SUBCASE("Property::get")
     {
@@ -218,11 +198,6 @@ TEST_SUITE("Color property")
       CHECK(property.get_or(7) == 7);
       CHECK(property.get_or<std::string>("foo") == "foo");
     }
-
-    CHECK(!property.as_string());
-    CHECK(!property.as_int());Property p;
-    CHECK(!property.as_float());
-    CHECK(!property.as_bool());
   }
   TEST_CASE("Bad value")
   {
@@ -240,9 +215,9 @@ TEST_SUITE("File property")
         test::make<Property>(prefix, "file_property_valid.json");
     CHECK(property.name() == "Mirkwood");
     CHECK(property.type() == Property::Type::File);
-    CHECK(property.is_file());
-    CHECK(property.as_string());
-    CHECK(*property.as_string() == "path/to/something/nice");
+    CHECK(property.is<std::string>());
+    CHECK(property.is<Property::Type::File>());
+    CHECK(property.get<std::string>() == "path/to/something/nice");
 
     SUBCASE("Property::get")
     {
@@ -261,12 +236,6 @@ TEST_SUITE("File property")
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);
     }
-
-    CHECK(property.as_string());
-    CHECK(!property.as_int());
-    CHECK(!property.as_float());
-    CHECK(!property.as_bool());
-    CHECK(!property.as_color());
   }
   TEST_CASE("Bad value")
   {

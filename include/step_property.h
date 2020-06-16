@@ -105,120 +105,83 @@ class Property final {
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
   [[nodiscard]] T get_or(const T& defaultValue) const
   {
-    if constexpr (std::is_same_v<T, bool>) {
-      return is_bool() ? as_bool().value() : defaultValue;
-
-    } else if constexpr (std::is_same_v<T, int>) {
-      return is_int() ? as_int().value() : defaultValue;
-
-    } else if constexpr (std::is_same_v<T, float>) {
-      return is_float() ? as_float().value() : defaultValue;
-
-    } else if constexpr (std::is_same_v<T, Color>) {
-      return is_color() ? as_color().value() : defaultValue;
-
-    } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
-      return (is_string() || is_file()) ? as_string().value() : defaultValue;
+    if (is<T>()) {
+      return get<T>();
+    } else {
+      return defaultValue;
     }
   }
 
   /**
-   * Returns the string value associated with the property, if there is one.
-   * Note that this method is also used for obtaining the file path
-   * associated with a Property instance of the <code>File</code> type.
+   * Indicates whether or not the property holds a value of the specified
+   * type. A compile-time error will be raised if the type
+   * of the supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
+   * <b>Color</b> or <b>std::string</b> (accepts anything that is convertible
+   * to <b>std::string</b>). Note, it's impossible to tell a difference
+   * between string and file properties with this method, if that is what you
+   * want to do, see the other <code>is()</code>-method.
    *
-   * @return the string value associated with the property; nothing if there
-   * is no such value.
+   * @tparam T the type to compare with the type of the stored value. An
+   * unsupported type will cause a compile-time error.
+   * @return true if the property holds a value of the specified type; false
+   * otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<std::string> as_string() const noexcept;
-
-  /**
-   * Returns the color associated with the property, if there is one.
-   *
-   * @return the color associated with the property; nothing if there is no
-   * such color.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<Color> as_color() const noexcept;
-
-  /**
-   * Returns the integer value associated with the property, if there is one.
-   *
-   * @return the integer value associated with the property; nothing if there
-   * is no such value.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<int> as_int() const noexcept;
-
-  /**
-   * Returns the float value associated with the property, if there is one.
-   *
-   * @return the float value associated with the property; nothing if there
-   * is no such value.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<float> as_float() const noexcept;
-
-  /**
-   * Returns the boolean value associated with the property, if there is one.
-   *
-   * @return the boolean value associated with the property; nothing if there
-   * is no such value.
-   * @since 0.1.0
-   */
-  STEP_QUERY Maybe<bool> as_bool() const noexcept;
-
-  /**
-   * Indicates whether or not the property holds a string value.
-   *
-   * @return true if the property holds a string value; false otherwise.
-   * @since 0.1.0
-   */
-  [[nodiscard]] bool is_string() const noexcept
+  template <typename T,
+            typename = std::enable_if_t<detail::valid_property_type<T>()>>
+  [[nodiscard]] bool is() const noexcept
   {
-    return m_type == Type::String;
+    if constexpr (std::is_same_v<T, bool>) {
+      return is<Type::Bool>();
+
+    } else if constexpr (std::is_same_v<T, int>) {
+      return is<Type::Int>();
+
+    } else if constexpr (std::is_same_v<T, float>) {
+      return is<Type::Float>();
+
+    } else if constexpr (std::is_same_v<T, Color>) {
+      return is<Type::Color>();
+
+    } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
+      return is<Type::String>() || is<Type::File>();
+    }
   }
 
   /**
-   * Indicates whether or not the property holds a color value.
+   * Indicates whether or not the property holds a value of the specified
+   * type. This method is especially useful for distinguishing between string
+   * and file properties, which isn't possible with the other
+   * <code>is()</code>-method.
    *
-   * @return true if the property holds a color value; false otherwise.
+   * @tparam T the <code>Property::Type</code> value that represents the type
+   * that will be checked.
+   * @return true if the property holds a value of the specified type; false
+   * otherwise.
    * @since 0.1.0
    */
-  [[nodiscard]] bool is_color() const noexcept { return m_type == Type::Color; }
+  template <Type T>
+  [[nodiscard]] bool is() const noexcept
+  {
+    if constexpr (T == Type::Bool) {
+      return m_type == Type::Bool;
 
-  /**
-   * Indicates whether or not the property holds an int value.
-   *
-   * @return true if the property holds an int value; false otherwise.
-   * @since 0.1.0
-   */
-  [[nodiscard]] bool is_int() const noexcept { return m_type == Type::Int; }
+    } else if constexpr (T == Type::Int) {
+      return m_type == Type::Int;
 
-  /**
-   * Indicates whether or not the property holds a float value.
-   *
-   * @return true if the property holds a float value; false otherwise.
-   * @since 0.1.0
-   */
-  [[nodiscard]] bool is_float() const noexcept { return m_type == Type::Float; }
+    } else if constexpr (T == Type::Float) {
+      return m_type == Type::Float;
 
-  /**
-   * Indicates whether or not the property holds a boolean value.
-   *
-   * @return true if the property holds a boolean value; false otherwise.
-   * @since 0.1.0
-   */
-  [[nodiscard]] bool is_bool() const noexcept { return m_type == Type::Bool; }
+    } else if constexpr (T == Type::Color) {
+      return m_type == Type::Color;
 
-  /**
-   * Indicates whether or not the property contains a file path.
-   *
-   * @return true if the property contains a file path; false otherwise.
-   * @since 0.1.0
-   */
-  [[nodiscard]] bool is_file() const noexcept { return m_type == Type::File; }
+    } else if constexpr (T == Type::String) {
+      return m_type == Type::String;
+
+    } else /*if constexpr (T == Type::File)*/ {
+      return m_type == Type::File;
+    }
+  }
 
   /**
    * Returns the name associated with the property.

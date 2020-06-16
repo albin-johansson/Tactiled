@@ -87,7 +87,7 @@ TEST_SUITE("Tileset")
         const auto property = firstTerrain.properties().get("foo");
         CHECK(property.name() == "foo");
         REQUIRE(property.type() == Property::Type::Bool);
-        CHECK(*property.as_bool());
+        CHECK(property.get<bool>());
       }
 
       const auto secondTerrain = terrains.at(1);
@@ -111,14 +111,12 @@ TEST_SUITE("Tileset")
     const auto firstProperty = properties.get("aFloat");
     CHECK(firstProperty.name() == "aFloat");
     CHECK(firstProperty.type() == Property::Type::Float);
-    REQUIRE(firstProperty.as_float());
-    CHECK(firstProperty.as_float() == 7.5f);
+    CHECK(firstProperty.get<float>() == 7.5f);
 
     const auto secondProperty = properties.get("aString");
     CHECK(secondProperty.name() == "aString");
     CHECK(secondProperty.type() == Property::Type::String);
-    REQUIRE(secondProperty.as_string());
-    CHECK(secondProperty.as_string() == "Hello");
+    CHECK(secondProperty.get<std::string>() == "Hello");
   }
 
   TEST_CASE("Tileset with tiles")
@@ -155,8 +153,7 @@ TEST_SUITE("Tileset")
         const auto property = properties.get("name");
         CHECK(property.name() == "name");
         CHECK(property.type() == Property::Type::String);
-        REQUIRE(property.as_string());
-        CHECK(property.as_string() == "waterTile");
+        CHECK(property.get<std::string>() == "waterTile");
       }
     }
 
@@ -179,12 +176,12 @@ TEST_SUITE("Tileset")
         const auto firstProperty = properties.get("coolness");
         CHECK(firstProperty.name() == "coolness");
         REQUIRE(firstProperty.type() == Property::Type::Int);
-        CHECK(*firstProperty.as_int() == 9000);
+        CHECK(firstProperty.get<int>() == 9000);
 
         const auto secondProperty = properties.get("frodo");
         CHECK(secondProperty.name() == "frodo");
         REQUIRE(secondProperty.type() == Property::Type::String);
-        CHECK(*secondProperty.as_string() == "sandTile");
+        CHECK(secondProperty.get<std::string>() == "sandTile");
       }
     }
   }

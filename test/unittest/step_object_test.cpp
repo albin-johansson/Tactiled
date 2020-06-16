@@ -41,8 +41,8 @@ TEST_SUITE("Object")
       const auto& props = object.properties();
       REQUIRE(props.has("hp"));
       const auto prop = props.get("hp");
-      CHECK(prop.is_int());
-      CHECK(*prop.as_int() == 12);
+      CHECK(prop.is<int>());
+      CHECK(prop.get<int>() == 12);
     }
   }
 

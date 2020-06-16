@@ -53,14 +53,12 @@ TEST_SUITE("Tile")
       const auto first = properties.get("Galadriel");
       CHECK(first.name() == "Galadriel");
       CHECK(first.type() == Property::Type::String);
-      CHECK(first.as_string());
-      CHECK(*first.as_string() == "Denethor sucks");
+      CHECK(first.get<std::string>() == "Denethor sucks");
 
       const auto second = properties.get("Gandalf");
       CHECK(second.name() == "Gandalf");
       CHECK(second.type() == Property::Type::Int);
-      CHECK(second.as_int());
-      CHECK(*second.as_int() == 7);
+      CHECK(second.get<int>() == 7);
     }
 
     SUBCASE("Testing parsing of terrain")

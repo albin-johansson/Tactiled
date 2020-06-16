@@ -111,26 +111,8 @@ class Properties final {
     if (!has(name)) {
       return false;
     }
-
     const auto& property = get(name);
-
-    if constexpr (std::is_same_v<T, bool>) {
-      return property.as_bool().value_or(false);
-
-    } else if constexpr (std::is_same_v<T, int>) {
-      return property.is_int() && property.as_int().value() == value;
-
-    } else if constexpr (std::is_same_v<T, float>) {
-      return property.is_float() && property.as_float().value() == value;
-
-    } else if constexpr (std::is_same_v<T, Color>) {
-      return property.is_color() && property.as_color().value() == value;
-
-    } else if constexpr (std::is_convertible_v<T, std::string>) {
-      return property.is_string() && property.as_string().value() == value;
-    }
-
-    return false;
+    return property.is<T>();
   }
 
   /**
