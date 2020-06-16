@@ -32,7 +32,7 @@ namespace step {
 STEP_DEF
 void from_json(const JSON& json, Frame& frame)
 {
-  json.at("tileid").get_to(frame.m_tileID);
+  frame.m_tileID = LocalID{json.at("tileid").get<int>()};
   json.at("duration").get_to(frame.m_duration);
 }
 

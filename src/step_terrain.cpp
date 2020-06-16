@@ -34,7 +34,7 @@ namespace step {
 STEP_DEF
 void from_json(const JSON& json, Terrain& terrain)
 {
-  json.at("tile").get_to(terrain.m_tile);
+  terrain.m_tile = LocalID{json.at("tile").get<int>()};
   json.at("name").get_to(terrain.m_name);
   detail::safe_bind(json, "properties", terrain.m_properties);
 }

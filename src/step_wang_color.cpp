@@ -31,12 +31,11 @@ namespace step {
 
 STEP_DEF
 WangColor::WangColor(const JSON& json)
-{
-  json.at("name").get_to(m_name);
-  m_color = Color{json.at("color").get<std::string>()};
-  json.at("tile").get_to(m_tile);
-  json.at("probability").get_to(m_probability);
-}
+    : m_name{json.at("name").get<std::string>()},
+      m_color{json.at("color").get<std::string>()},
+      m_tile{json.at("tile").get<int>()},
+      m_probability{json.at("probability").get<double>()}
+{}
 
 STEP_DEF
 const std::string& WangColor::name() const
@@ -51,7 +50,7 @@ const Color& WangColor::color() const noexcept
 }
 
 STEP_DEF
-int WangColor::tile() const noexcept
+LocalID WangColor::tile() const noexcept
 {
   return m_tile;
 }

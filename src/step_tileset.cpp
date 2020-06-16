@@ -113,7 +113,7 @@ void Tileset::parse(const JSON& json)
 }
 
 STEP_DEF
-int Tileset::first_gid() const noexcept
+GID Tileset::first_gid() const noexcept
 {
   return m_firstGID;
 }

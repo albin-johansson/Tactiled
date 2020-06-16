@@ -15,6 +15,6 @@ TEST_SUITE("WangColor")
     CHECK(wangColor.color() == Color{"#d31313"});
     CHECK(wangColor.name() == "Rails");
     CHECK(wangColor.probability() == 0.75);
-    CHECK(wangColor.tile() == 18);
+    CHECK(wangColor.tile() == 18_lid);
   }
 }

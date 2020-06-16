@@ -30,9 +30,8 @@
 namespace step {
 
 STEP_DEF
-WangTile::WangTile(const JSON& json)
+WangTile::WangTile(const JSON& json) : m_tileID{json.at("tileid").get<int>()}
 {
-  json.at("tileid").get_to(m_tileID);
   json.at("wangid").get_to(m_wangColorIndices);
   json.at("dflip").get_to(m_flippedDiagonally);
   json.at("hflip").get_to(m_flippedHorizontally);
@@ -40,7 +39,7 @@ WangTile::WangTile(const JSON& json)
 }
 
 STEP_DEF
-int WangTile::tile_id() const noexcept
+LocalID WangTile::tile_id() const noexcept
 {
   return m_tileID;
 }

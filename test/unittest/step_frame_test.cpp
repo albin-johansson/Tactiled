@@ -13,7 +13,7 @@ TEST_SUITE("Frame")
   TEST_CASE("Defaults")
   {
     Frame frame;
-    CHECK(frame.tile_id() == 0);
+    CHECK(frame.tile_id() == 0_lid);
     CHECK(frame.duration() == 0);
   }
 
@@ -21,7 +21,7 @@ TEST_SUITE("Frame")
   {
     const auto frame = test::make<Frame>(prefix, "frame_complete.json");
 
-    CHECK(frame.tile_id() == 6227);
+    CHECK(frame.tile_id() == 6227_lid);
     CHECK(frame.duration() == 598);
   }
 }

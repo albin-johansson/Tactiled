@@ -48,7 +48,7 @@ class Terrain final {
    * @return the local GID of the tile associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] int tile() const noexcept { return m_tile; }
+  [[nodiscard]] LocalID tile() const noexcept { return m_tile; }
 
   /**
    * Returns the name associated with the terrain.
@@ -71,7 +71,7 @@ class Terrain final {
   }
 
  private:
-  int m_tile;
+  LocalID m_tile{0};
   std::string m_name;
   Properties m_properties;
 };

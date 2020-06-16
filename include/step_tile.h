@@ -65,7 +65,7 @@ class Tile final {
    * @return the local ID associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY int id() const noexcept;
+  STEP_QUERY LocalID id() const noexcept;
 
   /**
    * Returns the animation associated with the tile.
@@ -150,7 +150,7 @@ class Tile final {
   STEP_QUERY Maybe<int> terrain_at(TerrainPos position) const noexcept;
 
  private:
-  int m_id = 0;
+  LocalID m_id{0};
   Maybe<Animation> m_animation;
   Properties m_properties;
   std::shared_ptr<Layer> m_objectGroup;

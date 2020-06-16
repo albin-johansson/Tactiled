@@ -12,8 +12,7 @@ TEST_SUITE("General Property stuff")
 {
   TEST_CASE("Bad name")
   {
-    CHECK_THROWS_AS(Property{"resource/property/property_bad_name.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/property_bad_name.json"});
   }
 }
 
@@ -86,8 +85,7 @@ TEST_SUITE("Int property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(Property{"resource/property/int_property_bad_value.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/int_property_bad_value.json"});
   }
 }
 
@@ -123,8 +121,7 @@ TEST_SUITE("Float property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(Property{"resource/property/float_property_bad_value.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/float_property_bad_value.json"});
   }
 }
 
@@ -159,8 +156,7 @@ TEST_SUITE("Bool property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(Property{"resource/property/bool_property_bad_value.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/bool_property_bad_value.json"});
   }
 }
 
@@ -195,8 +191,7 @@ TEST_SUITE("Color property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(Property{"resource/property/color_property_bad_value.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/color_property_bad_value.json"});
   }
 }
 
@@ -236,7 +231,6 @@ TEST_SUITE("File property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(Property{"resource/property/file_property_bad_value.json"},
-                    TypeError);
+    CHECK_THROWS(Property{"resource/property/file_property_bad_value.json"});
   }
 }

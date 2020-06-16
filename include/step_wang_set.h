@@ -90,7 +90,7 @@ class WangSet final {
    * @return the local ID of the tile that represents the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_id() const noexcept;
+  STEP_QUERY LocalID tile_id() const noexcept;
 
  private:
   std::vector<WangColor> m_cornerColors;
@@ -98,7 +98,7 @@ class WangSet final {
   std::vector<WangTile> m_wangTiles;
   Properties m_properties;
   std::string m_name;
-  int m_tile{};
+  LocalID m_tile{0};
 };
 
 }  // namespace step

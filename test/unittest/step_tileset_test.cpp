@@ -80,7 +80,7 @@ TEST_SUITE("Tileset")
 
       const auto firstTerrain = terrains.at(0);
       CHECK(firstTerrain.name() == "ground");
-      CHECK(firstTerrain.tile() == 4);
+      CHECK(firstTerrain.tile() == 4_lid);
 
       {
         REQUIRE(firstTerrain.properties().amount() != 0);
@@ -92,11 +92,11 @@ TEST_SUITE("Tileset")
 
       const auto secondTerrain = terrains.at(1);
       CHECK(secondTerrain.name() == "chasm");
-      CHECK(secondTerrain.tile() == 12);
+      CHECK(secondTerrain.tile() == 12_lid);
 
       const auto thirdTerrain = terrains.at(2);
       CHECK(thirdTerrain.name() == "cliff");
-      CHECK(thirdTerrain.tile() == 36);
+      CHECK(thirdTerrain.tile() == 36_lid);
     }
   }
 
@@ -130,7 +130,7 @@ TEST_SUITE("Tileset")
       REQUIRE(tiles.size() == 2);
       const auto tile = tiles.at(0);
 
-      CHECK(tile.id() == 187);
+      CHECK(tile.id() == 187_lid);
 
       SUBCASE("Animation")
       {
@@ -141,7 +141,7 @@ TEST_SUITE("Tileset")
         const auto& frames = animation->frames();
         for (int i = 0; i < 3; ++i) {
           CHECK(frames.at(i).duration() == 900);
-          CHECK(frames.at(i).tile_id() == 187 + i);
+          CHECK(frames.at(i).tile_id() == 187_lid + LocalID{i});
         }
       }
 
@@ -166,7 +166,7 @@ TEST_SUITE("Tileset")
       REQUIRE(tiles.size() == 2);
       const auto tile = tiles.at(1);
 
-      CHECK(tile.id() == 370);
+      CHECK(tile.id() == 370_lid);
 
       SUBCASE("Properties")
       {

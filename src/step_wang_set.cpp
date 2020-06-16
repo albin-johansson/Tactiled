@@ -28,25 +28,22 @@
 #include "step_wang_set.h"
 
 namespace step {
+namespace {
+
+using WangColors = std::vector<WangColor>;
+using WangTiles = std::vector<WangTile>;
+
+}  // namespace
 
 STEP_DEF
 WangSet::WangSet(const JSON& json)
+    : m_cornerColors{detail::fill<WangColors>(json, "cornercolors")},
+      m_edgeColors{detail::fill<WangColors>(json, "edgecolors")},
+      m_wangTiles{detail::fill<WangTiles>(json, "wangtiles")},
+      m_name{json.at("name").get<std::string>()},
+      m_tile{json.at("tile").get<int>()}
 {
-  json.at("name").get_to(m_name);
-  json.at("tile").get_to(m_tile);
   json.at("properties").get_to(m_properties);
-
-  for (const auto& [key, value] : json.at("cornercolors").items()) {
-    m_cornerColors.emplace_back(value);
-  }
-
-  for (const auto& [key, value] : json.at("edgecolors").items()) {
-    m_edgeColors.emplace_back(value);
-  }
-
-  for (const auto& [key, value] : json.at("wangtiles").items()) {
-    m_wangTiles.emplace_back(value);
-  }
 }
 
 STEP_DEF
@@ -80,7 +77,7 @@ const std::string& WangSet::name() const
 }
 
 STEP_DEF
-int WangSet::tile_id() const noexcept
+LocalID WangSet::tile_id() const noexcept
 {
   return m_tile;
 }

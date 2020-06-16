@@ -33,10 +33,8 @@
 namespace step {
 
 STEP_DEF
-Tile::Tile(const JSON& json)
+Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
 {
-  json.at("id").get_to(m_id);
-
   detail::safe_bind(json, "properties", m_properties);
 
   if (json.contains("terrain")) {
@@ -59,7 +57,7 @@ Tile::Tile(const JSON& json)
 }
 
 STEP_DEF
-int Tile::id() const noexcept
+LocalID Tile::id() const noexcept
 {
   return m_id;
 }

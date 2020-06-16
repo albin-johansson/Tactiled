@@ -12,7 +12,7 @@ TEST_SUITE("WangTile")
   {
     const auto json = detail::parse_json("resource/wangtile/valid.json");
     const WangTile wangTile{json};
-    CHECK(wangTile.tile_id() == 7);
+    CHECK(wangTile.tile_id() == 7_lid);
     CHECK(!wangTile.flipped_diagonally());
     CHECK(wangTile.flipped_horizontally());
     CHECK(wangTile.flipped_vertically());

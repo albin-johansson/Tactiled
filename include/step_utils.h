@@ -66,6 +66,16 @@ void safe_bind(const JSON& json, std::string_view key, T& value)
   }
 }
 
+template <typename Container>
+[[nodiscard]] Container fill(const JSON& json, const std::string& key)
+{
+  Container container;
+  for (const auto& [key, value] : json.at(key).items()) {
+    container.emplace_back(value);
+  }
+  return container;
+}
+
 /**
  * Attempts to convert a string to an integral value.
  *

@@ -14,7 +14,7 @@ TEST_SUITE("WangSet")
     const WangSet wangSet{json};
 
     CHECK(wangSet.name() == "candyAppleRed");
-    CHECK(wangSet.tile_id() == 4);
+    CHECK(wangSet.tile_id() == 4_lid);
 
     SUBCASE("Check corner colors")
     {
@@ -24,7 +24,7 @@ TEST_SUITE("WangSet")
       CHECK(color.color() == Color{"#CDEA34"});
       CHECK(color.name() == "CornerColor");
       CHECK(color.probability() == 0.23);
-      CHECK(color.tile() == 9);
+      CHECK(color.tile() == 9_lid);
     }
 
     SUBCASE("Check edge colors")
@@ -35,7 +35,7 @@ TEST_SUITE("WangSet")
       CHECK(color.color() == Color{"#A5BDCE"});
       CHECK(color.name() == "EdgeColor");
       CHECK(color.probability() == 0.55);
-      CHECK(color.tile() == 4);
+      CHECK(color.tile() == 4_lid);
     }
 
     SUBCASE("Check Wang tiles")
@@ -46,7 +46,7 @@ TEST_SUITE("WangSet")
       REQUIRE(wangTiles.size() == 1);
 
       const auto& tile = wangTiles.at(0);
-      CHECK(tile.tile_id() == 3);
+      CHECK(tile.tile_id() == 3_lid);
       CHECK(!tile.flipped_diagonally());
       CHECK(!tile.flipped_horizontally());
       CHECK(!tile.flipped_vertically());

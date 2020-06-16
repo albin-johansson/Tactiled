@@ -45,7 +45,7 @@ class Frame final {
    * @return the local tile ID that is associated with the frame.
    * @since 0.1.0
    */
-  [[nodiscard]] int tile_id() const noexcept { return m_tileID; }
+  [[nodiscard]] LocalID tile_id() const noexcept { return m_tileID; }
 
   /**
    * Returns the duration of this frame, in milliseconds.
@@ -56,8 +56,8 @@ class Frame final {
   [[nodiscard]] int duration() const noexcept { return m_duration; }
 
  private:
-  int m_tileID = 0;
-  int m_duration = 0;
+  LocalID m_tileID{0};
+  int m_duration{0};
 };
 
 STEP_API void from_json(const JSON& json, Frame& frame);

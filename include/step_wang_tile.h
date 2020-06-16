@@ -28,6 +28,7 @@
 #include <array>
 
 #include "step_api.h"
+#include "step_types.h"
 #include "step_utils.h"
 
 namespace step {
@@ -46,7 +47,7 @@ class WangTile final {
    * @return the local ID associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_id() const noexcept;
+  STEP_QUERY LocalID tile_id() const noexcept;
 
   /**
    * Returns the Wang color indices associated with the Wang tile.
@@ -84,7 +85,7 @@ class WangTile final {
   STEP_QUERY bool flipped_vertically() const noexcept;
 
  private:
-  int m_tileID{};
+  LocalID m_tileID{0};
   std::array<int, 8> m_wangColorIndices;
   bool m_flippedDiagonally{false};
   bool m_flippedHorizontally{false};

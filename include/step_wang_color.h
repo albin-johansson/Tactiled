@@ -29,6 +29,7 @@
 
 #include "step_api.h"
 #include "step_color.h"
+#include "step_types.h"
 #include "step_utils.h"
 
 namespace step {
@@ -63,7 +64,7 @@ class WangColor final {
    * @return the local ID of the tile that represents the Wang color.
    * @since 0.1.0
    */
-  STEP_QUERY int tile() const noexcept;
+  STEP_QUERY LocalID tile() const noexcept;
 
   /**
    * Returns the probability associated with the Wang color.
@@ -76,7 +77,7 @@ class WangColor final {
  private:
   std::string m_name;
   Color m_color;
-  int m_tile{};
+  LocalID m_tile{0};
   double m_probability{};
 };
 

@@ -13,7 +13,7 @@ TEST_SUITE("Tile")
   {
     const Tile tile{detail::parse_json("resource/tile/tile_complete.json")};
 
-    CHECK(tile.id() == 74);
+    CHECK(tile.id() == 74_lid);
 
     CHECK(tile.type());
     CHECK(*tile.type() == "foo");
@@ -38,11 +38,11 @@ TEST_SUITE("Tile")
       CHECK(animation->length() == 2);
 
       const auto firstFrame = animation->frames().at(0);
-      CHECK(firstFrame.tile_id() == 23);
+      CHECK(firstFrame.tile_id() == 23_lid);
       CHECK(firstFrame.duration() == 384);
 
       const auto secondFrame = animation->frames().at(1);
-      CHECK(secondFrame.tile_id() == 174);
+      CHECK(secondFrame.tile_id() == 174_lid);
       CHECK(secondFrame.duration() == 159);
     }
 

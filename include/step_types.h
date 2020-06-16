@@ -47,12 +47,31 @@ using File = fluent::NamedType<std::string,
  */
 using GID = unsigned int;
 
+using LocalID = fluent::NamedType<int,
+                                  struct LocalIDTag,
+                                  fluent::Comparable,
+                                  fluent::Addable,
+                                  fluent::Subtractable,
+                                  fluent::Printable>;
+
+// using GlobalID = fluent::NamedType<unsigned,
+//                                   struct GlobalIDTag,
+//                                   fluent::Comparable,
+//                                   fluent::Addable,
+//                                   fluent::Subtractable,
+//                                   fluent::Printable>;
+
 using CZString = const char*;
 
 template <typename T>
 using Maybe = std::optional<T>;
 
 inline constexpr std::nullopt_t nothing = std::nullopt;
+
+[[nodiscard]] inline LocalID operator"" _lid(std::size_t value) noexcept
+{
+  return LocalID{static_cast<int>(value)};
+}
 
 /**
  * Constructs a File instance from a string literal.

@@ -63,7 +63,7 @@ class Tileset final {
    * @return the GID (Global ID) of the first tile in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY int first_gid() const noexcept;
+  STEP_QUERY GID first_gid() const noexcept;
 
   /**
    * Returns the maximum width of tiles in the tileset.
@@ -245,7 +245,7 @@ class Tileset final {
   STEP_QUERY double json_version() const noexcept;
 
  private:
-  int m_firstGID = 1;
+  GID m_firstGID = 1;
   int m_tileWidth = 0;
   int m_tileHeight = 0;
   int m_tileCount = 0;
