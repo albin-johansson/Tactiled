@@ -149,39 +149,6 @@ class Property final {
     }
   }
 
-//  /**
-//   * Indicates whether or not the property holds a value of the specified
-//   * type.
-//   *
-//   * @tparam T the <code>Property::Type</code> value that represents the type
-//   * that will be checked.
-//   * @return true if the property holds a value of the specified type; false
-//   * otherwise.
-//   * @since 0.1.0
-//   */
-//  template <Type T>
-//  [[nodiscard]] bool is() const noexcept
-//  {
-//    if constexpr (T == Type::Bool) {
-//      return m_type == Type::Bool;
-//
-//    } else if constexpr (T == Type::Int) {
-//      return m_type == Type::Int;
-//
-//    } else if constexpr (T == Type::Float) {
-//      return m_type == Type::Float;
-//
-//    } else if constexpr (T == Type::Color) {
-//      return m_type == Type::Color;
-//
-//    } else if constexpr (T == Type::String) {
-//      return m_type == Type::String;
-//
-//    } else /*if constexpr (T == Type::File)*/ {
-//      return m_type == Type::File;
-//    }
-//  }
-
   /**
    * Returns the name associated with the property.
    *
