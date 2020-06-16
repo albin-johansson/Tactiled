@@ -22,7 +22,10 @@ int main()
 ## Tools, API:s and dependencies
 
 * [**nlohmann/json**](https://github.com/nlohmann/json) - An awesome modern C++ library for parsing JSON. This library is bundled in the repository.
-* [**doctest**](https://github.com/onqtam/doctest) - Simple and fast header-only testing framework that is used for the unit tests.
+* [**joboccara/NamedType**](https://github.com/joboccara/NamedType) - A great library for
+ creating strong types to increase type safety and code clarity.
+* [**doctest**](https://github.com/onqtam/doctest) - Simple and fast header-only testing
+ framework that is used for the unit tests.
 
 ## See also
 

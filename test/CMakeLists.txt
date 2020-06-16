@@ -51,6 +51,7 @@ endif ()
 
 target_include_directories(${STEP_TEST_TARGET} PUBLIC unittest)
 target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR})
+target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
 target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_INCLUDE_DIR})
 target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_SOURCE_DIR})
 

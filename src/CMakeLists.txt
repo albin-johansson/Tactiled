@@ -118,5 +118,6 @@ set_target_properties(${STEP_LIB_TARGET} PROPERTIES
 target_include_directories(${STEP_LIB_TARGET} PUBLIC ${STEP_INCLUDE_DIR})
 target_include_directories(${STEP_LIB_TARGET} PUBLIC ${STEP_SOURCE_DIR})
 target_include_directories(${STEP_LIB_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR})
+target_include_directories(${STEP_LIB_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
 
 target_link_libraries(${STEP_LIB_TARGET})
