@@ -40,7 +40,7 @@ namespace step {
  */
 class Terrain final {
  public:
-  STEP_API friend void from_json(const JSON&, Terrain&);
+  STEP_API explicit Terrain(const JSON& json);
 
   /**
    * Returns the local GID of the tile associated with the terrain.
@@ -48,7 +48,7 @@ class Terrain final {
    * @return the local GID of the tile associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] LocalID tile() const noexcept { return m_tile; }
+  STEP_QUERY LocalID tile() const noexcept;
 
   /**
    * Returns the name associated with the terrain.
@@ -56,7 +56,7 @@ class Terrain final {
    * @return the name associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] std::string name() const { return m_name; }
+  STEP_QUERY std::string name() const;
 
   /**
    * Returns the properties associated with the terrain. This property is
@@ -65,18 +65,13 @@ class Terrain final {
    * @return the properties associated with the terrain.
    * @since 0.1.0
    */
-  [[nodiscard]] const Properties& properties() const noexcept
-  {
-    return m_properties;
-  }
+  STEP_QUERY const Properties& properties() const noexcept;
 
  private:
   LocalID m_tile{0};
   std::string m_name;
   Properties m_properties;
 };
-
-void from_json(const JSON& json, Terrain& terrain);
 
 }  // namespace step
 

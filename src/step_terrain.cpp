@@ -32,11 +32,29 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Terrain& terrain)
+Terrain::Terrain(const JSON& json)
+    : m_tile{json.at("tile").get<int>()},
+      m_name{json.at("name").get<std::string>()}
 {
-  terrain.m_tile = LocalID{json.at("tile").get<int>()};
-  json.at("name").get_to(terrain.m_name);
-  detail::safe_bind(json, "properties", terrain.m_properties);
+  detail::safe_bind(json, "properties", m_properties);
+}
+
+STEP_DEF
+LocalID Terrain::tile() const noexcept
+{
+  return m_tile;
+}
+
+STEP_DEF
+std::string Terrain::name() const
+{
+  return m_name;
+}
+
+STEP_DEF
+const Properties& Terrain::properties() const noexcept
+{
+  return m_properties;
 }
 
 }  // namespace step

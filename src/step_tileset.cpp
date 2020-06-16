@@ -94,9 +94,7 @@ void Tileset::parse(const JSON& json)
   }
 
   if (json.contains("terrains") && json.at("terrains").is_array()) {
-    for (const auto& [key, value] : json.at("terrains").items()) {
-      m_terrains.emplace_back(value.get<Terrain>());
-    }
+    m_terrains = detail::fill<std::vector<Terrain>>(json, "terrains");
   }
 
   if (json.contains("wangsets") && json.at("wangsets").is_array()) {

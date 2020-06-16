@@ -2,17 +2,15 @@
 
 #include <doctest.h>
 
-#include "step_test_utils.h"
+#include "step_utils.h"
 
 using namespace step;
-
-inline static const std::string prefix = "resource/terrain/";
 
 TEST_SUITE("Terrain")
 {
   TEST_CASE("Parsing complete terrain")
   {
-    const auto terrain = test::make<Terrain>(prefix, "complete.json");
+    const Terrain terrain{detail::parse_json("resource/terrain/complete.json")};
     CHECK(terrain.tile() == 64_lid);
     CHECK(terrain.name() == "water");
     REQUIRE(!terrain.properties().empty());
@@ -25,7 +23,8 @@ TEST_SUITE("Terrain")
 
   TEST_CASE("Parsing terrain with no properties")
   {
-    const auto terrain = test::make<Terrain>(prefix, "no_properties.json");
+    const Terrain terrain{
+        detail::parse_json("resource/terrain/no_properties.json")};
     CHECK(terrain.tile() == 77_lid);
     CHECK(terrain.name() == "lava");
     CHECK(terrain.properties().empty());
