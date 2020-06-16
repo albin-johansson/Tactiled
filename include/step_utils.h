@@ -51,7 +51,9 @@ namespace step::detail {
 [[nodiscard]] STEP_API JSON parse_json(std::string_view file);
 
 template <typename T>
-void bind_maybe(const JSON& json, std::string_view key, Maybe<T>& attribute)
+void bind_opt(const JSON& json,
+              std::string_view key,
+              std::optional<T>& attribute)
 {
   if (json.contains(key)) {
     attribute = json.at(key.data()).get<T>();

@@ -191,7 +191,7 @@ class Map final {
    * @return the background color of the map.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Color> background_color() const noexcept;
+  STEP_QUERY std::optional<Color> background_color() const noexcept;
 
   /**
    * Returns the JSON format version associated with the map.
@@ -224,7 +224,7 @@ class Map final {
   StaggerAxis m_staggerAxis{StaggerAxis::X};
   StaggerIndex m_staggerIndex{StaggerIndex::Odd};
   int m_hexSideLength{0};
-  Maybe<Color> m_backgroundColor;
+  std::optional<Color> m_backgroundColor;
   std::string m_tiledVersion;
   double m_jsonVersion{0};
   bool m_infinite{false};

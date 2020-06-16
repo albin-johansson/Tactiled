@@ -201,7 +201,7 @@ class Tileset final {
    * @return the background color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Color> background_color() const noexcept;
+  STEP_QUERY std::optional<Color> background_color() const noexcept;
 
   /**
    * Returns the transparent color of the tileset. This property is optional.
@@ -209,7 +209,7 @@ class Tileset final {
    * @return the transparent color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Color> transparent_color() const noexcept;
+  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
 
   /**
    * Returns the grid associated with the tileset. This property is optional.
@@ -217,7 +217,7 @@ class Tileset final {
    * @return the grid associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Grid> grid() const noexcept;
+  STEP_QUERY std::optional<Grid> grid() const noexcept;
 
   /**
    * Returns the tile offset associated with the tileset. This property is
@@ -226,7 +226,7 @@ class Tileset final {
    * @return the tile offset associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<TileOffset> tile_offset() const noexcept;
+  STEP_QUERY std::optional<TileOffset> tile_offset() const noexcept;
 
   /**
    * Returns the Tiled version associated with the tileset.
@@ -261,10 +261,10 @@ class Tileset final {
   std::string m_image;
   std::string m_source;
   std::string m_name;
-  Maybe<Color> m_backgroundColor;
-  Maybe<Color> m_transparentColor;
-  Maybe<Grid> m_grid;
-  Maybe<TileOffset> m_tileOffset;
+  std::optional<Color> m_backgroundColor;
+  std::optional<Color> m_transparentColor;
+  std::optional<Grid> m_grid;
+  std::optional<TileOffset> m_tileOffset;
 
   std::string m_tiledVersion;
   double m_jsonVersion = 0;

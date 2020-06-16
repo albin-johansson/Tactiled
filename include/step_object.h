@@ -154,7 +154,7 @@ class Object final {
    * @return the polygon associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Polygon> polygon() const noexcept;
+  STEP_QUERY std::optional<Polygon> polygon() const noexcept;
 
   /**
    * Returns the polyline associated with the object.
@@ -162,7 +162,7 @@ class Object final {
    * @return the polyline associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Polyline> polyline() const noexcept;
+  STEP_QUERY std::optional<Polyline> polyline() const noexcept;
 
   /**
    * Returns the tile GID associated with the object.
@@ -170,7 +170,7 @@ class Object final {
    * @return the tile GID associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<GlobalID> tile_gid() const noexcept;
+  STEP_QUERY std::optional<GlobalID> tile_gid() const noexcept;
 
   /**
    * Returns the template data associated with the object.
@@ -179,7 +179,7 @@ class Object final {
    * none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Template> template_data() const;
+  STEP_QUERY std::optional<Template> template_data() const;
 
   /**
    * Returns the text associated with the object.
@@ -187,7 +187,7 @@ class Object final {
    * @return the text associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Text> text() const;
+  STEP_QUERY std::optional<Text> text() const;
 
   /**
    * Indicates whether or not the object is visible.

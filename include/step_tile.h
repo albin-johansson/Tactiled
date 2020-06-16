@@ -74,7 +74,7 @@ class Tile final {
    * animation associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Animation> animation() const noexcept;
+  STEP_QUERY std::optional<Animation> animation() const noexcept;
 
   /**
    * Returns the properties associated with the tile.
@@ -102,7 +102,7 @@ class Tile final {
    * @return the type of the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<std::string> type() const;
+  STEP_QUERY std::optional<std::string> type() const;
 
   /**
    * Returns the image associated with the tile.
@@ -110,7 +110,7 @@ class Tile final {
    * @return the image associated with the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<std::string> image() const;
+  STEP_QUERY std::optional<std::string> image() const;
 
   /**
    * Returns the width of the image associated with the tile.
@@ -119,7 +119,7 @@ class Tile final {
    * there is no image associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<int> image_width() const noexcept;
+  STEP_QUERY std::optional<int> image_width() const noexcept;
 
   /**
    * Returns the height of the image associated with the tile.
@@ -128,7 +128,7 @@ class Tile final {
    * there is no image associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<int> image_height() const noexcept;
+  STEP_QUERY std::optional<int> image_height() const noexcept;
 
   /**
    * Returns the probability associated with the tile.
@@ -136,7 +136,7 @@ class Tile final {
    * @return the probability associated with the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<double> probability() const noexcept;
+  STEP_QUERY std::optional<double> probability() const noexcept;
 
   /**
    * Returns the ID of the terrain at the specified position, in relation to
@@ -147,19 +147,19 @@ class Tile final {
    * if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<int> terrain_at(TerrainPos position) const noexcept;
+  STEP_QUERY std::optional<int> terrain_at(TerrainPos position) const noexcept;
 
  private:
   LocalID m_id{0};
-  Maybe<Animation> m_animation;
+  std::optional<Animation> m_animation;
   Properties m_properties;
   std::shared_ptr<Layer> m_objectGroup;
-  Maybe<std::array<int, 4>> m_terrain;
-  Maybe<std::string> m_type;
-  Maybe<std::string> m_image;
-  Maybe<int> m_imageWidth;
-  Maybe<int> m_imageHeight;
-  Maybe<double> m_probability;
+  std::optional<std::array<int, 4>> m_terrain;
+  std::optional<std::string> m_type;
+  std::optional<std::string> m_image;
+  std::optional<int> m_imageWidth;
+  std::optional<int> m_imageHeight;
+  std::optional<double> m_probability;
 };
 
 }  // namespace step

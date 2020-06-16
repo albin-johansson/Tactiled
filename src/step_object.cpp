@@ -86,52 +86,52 @@ const Properties& Object::properties() const noexcept
 }
 
 STEP_DEF
-Maybe<Polygon> Object::polygon() const noexcept
+std::optional<Polygon> Object::polygon() const noexcept
 {
   if (std::holds_alternative<Polygon>(m_specificData)) {
     return std::get<Polygon>(m_specificData);
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 
 STEP_DEF
-Maybe<Polyline> Object::polyline() const noexcept
+std::optional<Polyline> Object::polyline() const noexcept
 {
   if (std::holds_alternative<Polyline>(m_specificData)) {
     return std::get<Polyline>(m_specificData);
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 
 STEP_DEF
-Maybe<GlobalID> Object::tile_gid() const noexcept
+std::optional<GlobalID> Object::tile_gid() const noexcept
 {
   if (std::holds_alternative<GlobalID>(m_specificData)) {
     return std::get<GlobalID>(m_specificData);
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 
 STEP_DEF
-Maybe<Template> Object::template_data() const
+std::optional<Template> Object::template_data() const
 {
   if (std::holds_alternative<Template>(m_specificData)) {
     return std::get<Template>(m_specificData);
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 
 STEP_DEF
-Maybe<Text> Object::text() const
+std::optional<Text> Object::text() const
 {
   if (std::holds_alternative<Text>(m_specificData)) {
     return std::get<Text>(m_specificData);
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 

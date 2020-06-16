@@ -59,11 +59,11 @@ class ImageLayer final {
    * none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<Color> transparent_color() const noexcept;
+  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
 
  private:
   std::string m_image;
-  Maybe<Color> m_transparentColor;
+  std::optional<Color> m_transparentColor;
 };
 
 STEP_API void from_json(const JSON& json, ImageLayer& layer);

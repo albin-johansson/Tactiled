@@ -175,7 +175,7 @@ int Map::hex_side_length() const noexcept
 }
 
 STEP_DEF
-Maybe<Color> Map::background_color() const noexcept
+std::optional<Color> Map::background_color() const noexcept
 {
   return m_backgroundColor;
 }

@@ -36,7 +36,7 @@ std::string ImageLayer::image() const
 }
 
 STEP_DEF
-Maybe<Color> ImageLayer::transparent_color() const noexcept
+std::optional<Color> ImageLayer::transparent_color() const noexcept
 {
   return m_transparentColor;
 }

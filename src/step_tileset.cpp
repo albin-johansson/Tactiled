@@ -84,8 +84,8 @@ void Tileset::parse(const JSON& json)
   detail::safe_bind(json, "tiledversion", m_tiledVersion);
   detail::safe_bind(json, "version", m_jsonVersion);
 
-  detail::bind_maybe(json, "grid", m_grid);
-  detail::bind_maybe(json, "tileoffset", m_tileOffset);
+  detail::bind_opt(json, "grid", m_grid);
+  detail::bind_opt(json, "tileoffset", m_tileOffset);
 
   if (json.contains("tiles") && json.at("tiles").is_array()) {
     for (const auto& [key, value] : json.at("tiles").items()) {
@@ -211,25 +211,25 @@ std::string Tileset::name() const
 }
 
 STEP_DEF
-Maybe<Color> Tileset::background_color() const noexcept
+std::optional<Color> Tileset::background_color() const noexcept
 {
   return m_backgroundColor;
 }
 
 STEP_DEF
-Maybe<Color> Tileset::transparent_color() const noexcept
+std::optional<Color> Tileset::transparent_color() const noexcept
 {
   return m_transparentColor;
 }
 
 STEP_DEF
-Maybe<Grid> Tileset::grid() const noexcept
+std::optional<Grid> Tileset::grid() const noexcept
 {
   return m_grid;
 }
 
 STEP_DEF
-Maybe<TileOffset> Tileset::tile_offset() const noexcept
+std::optional<TileOffset> Tileset::tile_offset() const noexcept
 {
   return m_tileOffset;
 }

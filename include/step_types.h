@@ -71,11 +71,6 @@ using LocalID = fluent::NamedType<int,
 
 using CZString = const char*;
 
-template <typename T>
-using Maybe = std::optional<T>;
-
-inline constexpr std::nullopt_t nothing = std::nullopt;
-
 /**
  * Constructs a global ID from an integer literal.
  *

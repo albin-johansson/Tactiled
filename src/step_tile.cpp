@@ -48,12 +48,12 @@ Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
     m_objectGroup = std::make_shared<Layer>(json.at("objectgroup"));
   }
 
-  detail::bind_maybe(json, "animation", m_animation);
-  detail::bind_maybe(json, "type", m_type);
-  detail::bind_maybe(json, "image", m_image);
-  detail::bind_maybe(json, "imagewidth", m_imageWidth);
-  detail::bind_maybe(json, "imageheight", m_imageHeight);
-  detail::bind_maybe(json, "probability", m_probability);
+  detail::bind_opt(json, "animation", m_animation);
+  detail::bind_opt(json, "type", m_type);
+  detail::bind_opt(json, "image", m_image);
+  detail::bind_opt(json, "imagewidth", m_imageWidth);
+  detail::bind_opt(json, "imageheight", m_imageHeight);
+  detail::bind_opt(json, "probability", m_probability);
 }
 
 STEP_DEF
@@ -63,7 +63,7 @@ LocalID Tile::id() const noexcept
 }
 
 STEP_DEF
-Maybe<Animation> Tile::animation() const noexcept
+std::optional<Animation> Tile::animation() const noexcept
 {
   return m_animation;
 }
@@ -81,42 +81,42 @@ std::shared_ptr<Layer> Tile::object_group() const noexcept
 }
 
 STEP_DEF
-Maybe<std::string> Tile::type() const
+std::optional<std::string> Tile::type() const
 {
   return m_type;
 }
 
 STEP_DEF
-Maybe<std::string> Tile::image() const
+std::optional<std::string> Tile::image() const
 {
   return m_image;
 }
 
 STEP_DEF
-Maybe<int> Tile::image_width() const noexcept
+std::optional<int> Tile::image_width() const noexcept
 {
   return m_imageWidth;
 }
 
 STEP_DEF
-Maybe<int> Tile::image_height() const noexcept
+std::optional<int> Tile::image_height() const noexcept
 {
   return m_imageHeight;
 }
 
 STEP_DEF
-Maybe<double> Tile::probability() const noexcept
+std::optional<double> Tile::probability() const noexcept
 {
   return m_probability;
 }
 
 STEP_DEF
-Maybe<int> Tile::terrain_at(TerrainPos position) const noexcept
+std::optional<int> Tile::terrain_at(TerrainPos position) const noexcept
 {
   if (m_terrain) {
     return m_terrain->at(static_cast<std::size_t>(position));
   } else {
-    return nothing;
+    return std::nullopt;
   }
 }
 
