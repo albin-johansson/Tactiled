@@ -63,8 +63,8 @@ STEP_DEF
 void from_json(const JSON& json, Properties& props)
 {
   for (const auto& [key, value] : json.items()) {
-    const auto property = value.get<Property>();
-    props.m_properties.emplace(property.name(), property);
+    const Property property{value};
+    props.m_properties.emplace(property.name(), value);
   }
 }
 

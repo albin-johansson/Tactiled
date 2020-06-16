@@ -32,34 +32,33 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Property& property)
+Property::Property(const JSON& json)
 {
-  property.m_name = json.at("name").get<std::string>();
-  property.m_type = json.at("type").get<Property::Type>();
-  switch (property.m_type) {
+  m_name = json.at("name").get<std::string>();
+  m_type = json.at("type").get<Property::Type>();
+  switch (m_type) {
     case Property::Type::Int: {
-      property.m_value.emplace<int>(json.at("value").get<int>());
+      m_value.emplace<int>(json.at("value").get<int>());
       break;
     }
     case Property::Type::Float: {
-      property.m_value.emplace<float>(json.at("value").get<float>());
+      m_value.emplace<float>(json.at("value").get<float>());
       break;
     }
     case Property::Type::Bool: {
-      property.m_value.emplace<bool>(json.at("value").get<bool>());
+      m_value.emplace<bool>(json.at("value").get<bool>());
       break;
     }
     case Property::Type::Color: {
-      property.m_value.emplace<Color>(json.at("value").get<std::string>());
+      m_value.emplace<Color>(json.at("value").get<std::string>());
       break;
     }
     case Property::Type::File: {
-      property.m_value.emplace<File>(json.at("value").get<std::string>());
+      m_value.emplace<File>(json.at("value").get<std::string>());
       break;
     }
     case Property::Type::String: {
-      property.m_value.emplace<std::string>(
-          json.at("value").get<std::string>());
+      m_value.emplace<std::string>(json.at("value").get<std::string>());
       break;
     }
     default:
