@@ -101,6 +101,18 @@ class Color final {
 };
 
 /**
+ * Constructs a Color instance from a string literal.
+ *
+ * @param str the string that will be parsed to a Color instance.
+ * @return a Color instance.
+ * @since 0.1.0
+ */
+[[nodiscard]] inline Color operator"" _color(const char* str, std::size_t)
+{
+  return Color{str};
+}
+
+/**
  * Indicates whether or not two colors are the same. Two colors are
  * considered to be equal if all of their respective color components are
  * exactly the same.
