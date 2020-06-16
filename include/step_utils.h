@@ -78,6 +78,14 @@ void safe_bind(const JSON& json, std::string_view key, T& value)
   }
 }
 
+template <typename T>
+void emplace(const JSON& json, const std::string& key, T& value)
+{
+  if (json.contains(key)) {
+    value = json.at(key);
+  }
+}
+
 template <typename Container>
 [[nodiscard]] Container fill(const JSON& json, const std::string& key)
 {

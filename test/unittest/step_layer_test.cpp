@@ -4,17 +4,15 @@
 
 #include <string>
 
-#include "step_test_utils.h"
+#include "step_utils.h"
 
 using namespace step;
-
-inline static const std::string prefix = "resource/layer/";
 
 TEST_SUITE("Layer")
 {
   TEST_CASE("Parsing tile layer")
   {
-    const auto layer = test::make<Layer>(prefix, "tile_layer.json");
+    const Layer layer{detail::parse_json("resource/layer/tile_layer.json")};
 
     SUBCASE("Layer type indicators")
     {
@@ -41,9 +39,10 @@ TEST_SUITE("Layer")
 
       SUBCASE("Check data")
       {
-        CHECK_NOTHROW(tileLayer.data().as_gid());
-        CHECK(tileLayer.data().as_gid().size() == 1024);
-        CHECK_THROWS(tileLayer.data().as_base64());
+        CHECK(tileLayer.data());
+        CHECK_NOTHROW(tileLayer.data()->as_gid());
+        CHECK(tileLayer.data()->as_gid().size() == 1024);
+        CHECK_THROWS(tileLayer.data()->as_base64());
       }
     }
 
@@ -77,14 +76,15 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parse tile layer chunks")
   {
-    const auto layer = test::make<Layer>(prefix, "chunks.json");
+    const auto json = detail::parse_json("resource/layer/chunks.json");
+    const Layer layer{json};
     const auto& chunks = layer.as_tile_layer().chunks();
     CHECK(chunks.size() == 4);
   }
 
   TEST_CASE("Parsing object group")
   {
-    const auto layer = test::make<Layer>(prefix, "object_group.json");
+    const Layer layer{detail::parse_json("resource/layer/object_group.json")};
 
     SUBCASE("Layer type indicators")
     {
@@ -134,7 +134,7 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parsing image layer")
   {
-    const auto layer = test::make<Layer>(prefix, "image_layer.json");
+    const Layer layer{detail::parse_json("resource/layer/image_layer.json")};
 
     SUBCASE("Layer type indicators")
     {
@@ -171,7 +171,7 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parsing group")
   {
-    const auto layer = test::make<Layer>(prefix, "group.json");
+    const Layer layer{detail::parse_json("resource/layer/group.json")};
 
     SUBCASE("Layer type indicators")
     {

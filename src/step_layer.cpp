@@ -33,6 +33,34 @@
 namespace step {
 
 STEP_DEF
+Layer::Layer(const JSON& json)
+{
+  init_common(json);
+  switch (type()) {
+    case Layer::Type::TileLayer: {
+      m_layerData.emplace<TileLayer>(json);
+      break;
+    }
+    case Layer::Type::ObjectGroup: {
+      m_layerData.emplace<ObjectGroup>(json.get<ObjectGroup>());
+      break;
+    }
+    case Layer::Type::ImageLayer: {
+      m_layerData.emplace<ImageLayer>(json.get<ImageLayer>());
+      break;
+    }
+    case Layer::Type::Group: {
+      m_layerData.emplace<Group>(json.get<Group>());
+      break;
+    }
+    default: {
+      const auto id = std::to_string(static_cast<int>(type()));
+      throw StepException{"Layer > Unknown layer type: " + id};
+    }
+  }
+}
+
+STEP_DEF
 int Layer::id() const noexcept
 {
   return m_id;
@@ -184,34 +212,6 @@ void Layer::init_common(const JSON& json)
   detail::safe_bind(json, "offsetx", m_offsetX);
   detail::safe_bind(json, "offsety", m_offsetY);
   detail::safe_bind(json, "properties", m_properties);
-}
-
-STEP_DEF
-void from_json(const JSON& json, Layer& layer)
-{
-  layer.init_common(json);
-  switch (layer.type()) {
-    case Layer::Type::TileLayer: {
-      layer.m_layerData.emplace<TileLayer>(json.get<TileLayer>());
-      break;
-    }
-    case Layer::Type::ObjectGroup: {
-      layer.m_layerData.emplace<ObjectGroup>(json.get<ObjectGroup>());
-      break;
-    }
-    case Layer::Type::ImageLayer: {
-      layer.m_layerData.emplace<ImageLayer>(json.get<ImageLayer>());
-      break;
-    }
-    case Layer::Type::Group: {
-      layer.m_layerData.emplace<Group>(json.get<Group>());
-      break;
-    }
-    default: {
-      const auto type = std::to_string(static_cast<int>(layer.type()));
-      throw StepException{"Layer > Unknown layer type: " + type};
-    }
-  }
 }
 
 }  // namespace step

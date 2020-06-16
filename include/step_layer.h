@@ -54,7 +54,7 @@ class Layer final {
    */
   enum class Type { TileLayer, ObjectGroup, ImageLayer, Group };
 
-  STEP_API friend void from_json(const JSON&, Layer&);
+  STEP_API explicit Layer(const JSON& json);
 
   /**
    * Indicates whether or not the layer is a tile layer.
@@ -231,7 +231,8 @@ class Layer final {
  private:
   Type m_type;
   int m_id{0};
-  std::variant<TileLayer, ImageLayer, ObjectGroup, Group> m_layerData;
+  std::variant<std::monostate, TileLayer, ImageLayer, ObjectGroup, Group>
+      m_layerData;
   Properties m_properties;
   int m_width{0};
   int m_height{0};
@@ -245,8 +246,6 @@ class Layer final {
 
   void init_common(const JSON& json);
 };
-
-STEP_API void from_json(const JSON& json, Layer& layer);
 
 NLOHMANN_JSON_SERIALIZE_ENUM(Layer::Type,
                              {{Layer::Type::TileLayer, "tilelayer"},

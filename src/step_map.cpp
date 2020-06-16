@@ -69,8 +69,7 @@ void Map::parse(std::string_view root, const JSON& json)
   }
 
   for (const auto& [key, value] : json.at("layers").items()) {
-    auto& layer = m_layers.emplace_back();
-    value.get_to(layer);
+    m_layers.emplace_back(value);
   }
 
   for (const auto& [key, value] : json.at("tilesets").items()) {

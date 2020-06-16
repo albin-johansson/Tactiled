@@ -28,8 +28,25 @@
 #include "step_data.h"
 
 #include "step_exception.h"
+#include "step_utils.h"
 
 namespace step::detail {
+
+STEP_DEF
+Data::Data(const JSON& json)
+{
+  if (json.is_array()) {
+    //    m_data = detail::fill<GIDData>(json);
+    auto& gidData = m_data.emplace<GIDData>();
+    for (const auto& [key, value] : json.items()) {
+      gidData.emplace_back(value.get<unsigned>());
+    }
+  } else if (json.is_string()) {
+    m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
+  } else {
+    throw StepException{"Data > Failed to determine the kind of data!"};
+  }
+}
 
 STEP_DEF
 const Data::GIDData& Data::as_gid() const
@@ -48,21 +65,6 @@ const Data::Base64Data& Data::as_base64() const
     return std::get<Base64Data>(m_data);
   } else {
     throw StepException{"Data > Couldn't obtain Base64 data!"};
-  }
-}
-
-STEP_DEF
-void from_json(const JSON& json, Data& data)
-{
-  if (json.is_array()) {
-    auto& gidData = data.m_data.emplace<Data::GIDData>();
-    for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<unsigned>());
-    }
-  } else if (json.is_string()) {
-    data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
-  } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
   }
 }
 

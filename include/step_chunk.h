@@ -39,7 +39,7 @@ namespace step {
  */
 class Chunk final {
  public:
-  STEP_API friend void from_json(const JSON&, Chunk&);
+  STEP_API explicit Chunk(const JSON& json);
 
   /**
    * Returns the x-coordinate of the chunk.
@@ -88,8 +88,6 @@ class Chunk final {
   int m_height;
   detail::Data m_data;
 };
-
-STEP_API void from_json(const JSON& json, Chunk& chunk);
 
 }  // namespace step
 

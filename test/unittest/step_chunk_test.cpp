@@ -2,18 +2,16 @@
 
 #include <doctest.h>
 
-#include "step_test_utils.h"
+#include "step_utils.h"
 
 using namespace step;
-
-inline static const std::string prefix = "resource/chunk/";
 
 TEST_SUITE("Chunk")
 {
   TEST_CASE("Parse chunk with CSV data" *
             doctest::may_fail{"Failed to parse Chunk with CSV data!"})
   {
-    const auto chunk = test::make<Chunk>(prefix, "chunk_csv.json");
+    const Chunk chunk{detail::parse_json("resource/chunk/chunk_csv.json")};
 
     SUBCASE("Test obtaining data")
     {
@@ -30,7 +28,7 @@ TEST_SUITE("Chunk")
   TEST_CASE("Parse chunk with Base64 data" *
             doctest::may_fail{"Failed to parse Chunk with Base64 data!"})
   {
-    const auto chunk = test::make<Chunk>(prefix, "chunk_base64.json");
+    const Chunk chunk{detail::parse_json("resource/chunk/chunk_base64.json")};
 
     SUBCASE("Test obtaining data")
     {

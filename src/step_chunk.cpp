@@ -30,6 +30,15 @@
 namespace step {
 
 STEP_DEF
+Chunk::Chunk(const JSON& json)
+    : m_x{json.at("x").get<int>()},
+      m_y{json.at("y").get<int>()},
+      m_width{json.at("width").get<int>()},
+      m_height{json.at("height").get<int>()},
+      m_data{json.at("data")}
+{}
+
+STEP_DEF
 int Chunk::x() const noexcept
 {
   return m_x;
@@ -57,16 +66,6 @@ STEP_DEF
 const detail::Data& Chunk::data() const noexcept
 {
   return m_data;
-}
-
-STEP_DEF
-void from_json(const JSON& json, Chunk& chunk)
-{
-  json.at("x").get_to(chunk.m_x);
-  json.at("y").get_to(chunk.m_y);
-  json.at("width").get_to(chunk.m_width);
-  json.at("height").get_to(chunk.m_height);
-  json.at("data").get_to(chunk.m_data);
 }
 
 }  // namespace step

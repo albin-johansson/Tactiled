@@ -32,6 +32,21 @@
 namespace step {
 
 STEP_DEF
+TileLayer::TileLayer(const JSON& json)
+{
+  detail::safe_bind(json, "compression", m_compression);
+  detail::safe_bind(json, "encoding", m_encoding);
+
+  if (json.contains("chunks")) {
+    m_chunks = detail::fill<std::vector<Chunk>>(json, "chunks");
+  }
+
+  if (json.contains("data")) {
+    m_data = std::make_unique<detail::Data>(json.at("data"));
+  }
+}
+
+STEP_DEF
 TileLayer::Encoding TileLayer::encoding() const noexcept
 {
   return m_encoding;
@@ -44,28 +59,15 @@ TileLayer::Compression TileLayer::compression() const noexcept
 }
 
 STEP_DEF
-const detail::Data& TileLayer::data() const noexcept
+const detail::Data* TileLayer::data() const
 {
-  return m_data;
+  return m_data.get();
 }
 
 STEP_DEF
 const std::vector<Chunk>& TileLayer::chunks() const noexcept
 {
   return m_chunks;
-}
-
-STEP_DEF
-void from_json(const JSON& json, TileLayer& layer)
-{
-  detail::safe_bind(json, "compression", layer.m_compression);
-  detail::safe_bind(json, "encoding", layer.m_encoding);
-  detail::safe_bind(json, "data", layer.m_data);
-  if (json.contains("chunks") && json.at("chunks").is_array()) {
-    for (const auto& [key, value] : json.at("chunks").items()) {
-      layer.m_chunks.emplace_back(value);
-    }
-  }
 }
 
 }  // namespace step

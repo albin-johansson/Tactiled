@@ -44,7 +44,7 @@ class Data final {
   using GIDData = std::vector<GlobalID>;
   using Base64Data = std::string;
 
-  STEP_API friend void from_json(const JSON&, Data&);
+  STEP_API explicit Data(const JSON& json);
 
   /**
    * Returns the GID data associated with the Data instance. This method
@@ -69,8 +69,6 @@ class Data final {
  private:
   std::variant<GIDData, Base64Data> m_data;
 };
-
-STEP_API void from_json(const JSON& json, Data& data);
 
 }  // namespace step::detail
 

@@ -25,6 +25,8 @@
 #ifndef STEP_TILE_LAYER_HEADER
 #define STEP_TILE_LAYER_HEADER
 
+#include <memory>
+
 #include "step_api.h"
 #include "step_chunk.h"
 #include "step_data.h"
@@ -56,7 +58,7 @@ class TileLayer final {
    */
   enum class Encoding { CSV, Base64 };
 
-  STEP_API friend void from_json(const JSON&, TileLayer&);
+  STEP_API explicit TileLayer(const JSON& json);
 
   /**
    * Returns the encoding used by the tile layer. The default value of this
@@ -77,12 +79,14 @@ class TileLayer final {
   STEP_QUERY Compression compression() const noexcept;
 
   /**
-   * Returns the tile data associated with the tile layer.
+   * Returns a pointer to the tile data associated with the tile layer. This
+   * property is optional. Do not claim ownership of the returned pointer.
    *
-   * @return the tile data associated with the tile layer.
+   * @return the tile data associated with the tile layer; null if there is
+   * no such data.
    * @since 0.1.0
    */
-  STEP_QUERY const detail::Data& data() const noexcept;
+  STEP_QUERY const detail::Data* data() const;
 
   /**
    * Returns the chunks associated with the tile layer.
@@ -95,11 +99,9 @@ class TileLayer final {
  private:
   Encoding m_encoding{Encoding::CSV};
   Compression m_compression{Compression::None};
-  detail::Data m_data;
+  std::unique_ptr<detail::Data> m_data;
   std::vector<Chunk> m_chunks;
 };
-
-STEP_API void from_json(const JSON& json, TileLayer& layer);
 
 NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Compression,
                              {{TileLayer::Compression::None, ""},
