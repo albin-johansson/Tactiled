@@ -232,24 +232,25 @@ class Map final {
   void parse(std::string_view root, const JSON& json);
 };
 
-STEP_SERIALIZE_ENUM(Map::RenderOrder,
-                    {{Map::RenderOrder::RightDown, "right-down"},
-                     {Map::RenderOrder::RightUp, "right-up"},
-                     {Map::RenderOrder::LeftDown, "left-down"},
-                     {Map::RenderOrder::LeftUp, "left-up"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Map::RenderOrder,
+                             {{Map::RenderOrder::RightDown, "right-down"},
+                              {Map::RenderOrder::RightUp, "right-up"},
+                              {Map::RenderOrder::LeftDown, "left-down"},
+                              {Map::RenderOrder::LeftUp, "left-up"}})
 
-STEP_SERIALIZE_ENUM(Map::Orientation,
-                    {{Map::Orientation::Orthogonal, "orthogonal"},
-                     {Map::Orientation::Isometric, "isometric"},
-                     {Map::Orientation::Staggered, "staggered"},
-                     {Map::Orientation::Hexagonal, "hexagonal"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Map::Orientation,
+                             {{Map::Orientation::Orthogonal, "orthogonal"},
+                              {Map::Orientation::Isometric, "isometric"},
+                              {Map::Orientation::Staggered, "staggered"},
+                              {Map::Orientation::Hexagonal, "hexagonal"}})
 
-STEP_SERIALIZE_ENUM(Map::StaggerAxis,
-                    {{Map::StaggerAxis::X, "x"}, {Map::StaggerAxis::Y, "y"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Map::StaggerAxis,
+                             {{Map::StaggerAxis::X, "x"},
+                              {Map::StaggerAxis::Y, "y"}})
 
-STEP_SERIALIZE_ENUM(Map::StaggerIndex,
-                    {{Map::StaggerIndex::Odd, "odd"},
-                     {Map::StaggerIndex::Even, "even"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Map::StaggerIndex,
+                             {{Map::StaggerIndex::Odd, "odd"},
+                              {Map::StaggerIndex::Even, "even"}})
 
 }  // namespace step
 

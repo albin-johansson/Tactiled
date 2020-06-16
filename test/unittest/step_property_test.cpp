@@ -50,9 +50,7 @@ TEST_SUITE("String property")
 
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS_AS(
-        Property{"resource/property/string_property_bad_value.json"},
-        TypeError);
+    CHECK_THROWS(Property{"resource/property/string_property_bad_value.json"});
   }
 }
 

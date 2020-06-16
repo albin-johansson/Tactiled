@@ -73,9 +73,9 @@ class ObjectGroup final {
 
 STEP_API void from_json(const JSON& json, ObjectGroup& group);
 
-STEP_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
-                    {{ObjectGroup::DrawOrder::Index, "index"},
-                     {ObjectGroup::DrawOrder::TopDown, "topdown"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
+                             {{ObjectGroup::DrawOrder::Index, "index"},
+                              {ObjectGroup::DrawOrder::TopDown, "topdown"}})
 
 }  // namespace step
 

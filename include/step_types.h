@@ -26,6 +26,7 @@
 #define STEP_TYPES_HEADER
 
 #include <json.hpp>
+#include <named_type.hpp>
 #include <optional>
 
 #include "step_api.h"
@@ -33,12 +34,11 @@
 namespace step {
 
 using JSON = nlohmann::json;
-using JSONValueType = nlohmann::json::value_t;
 
-// TODO remove the error aliases
-using TypeError = nlohmann::json::type_error;
-using ParseError = nlohmann::json::parse_error;
-using OutOfRange = nlohmann::json::out_of_range;
+using File = fluent::NamedType<std::string,
+                               struct FileTag,
+                               fluent::Comparable,
+                               fluent::Printable>;
 
 /**
  * The type used for global IDs (GIDs).
@@ -47,14 +47,24 @@ using OutOfRange = nlohmann::json::out_of_range;
  */
 using GID = unsigned int;
 
-#define STEP_SERIALIZE_ENUM NLOHMANN_JSON_SERIALIZE_ENUM
-
 using CZString = const char*;
 
 template <typename T>
 using Maybe = std::optional<T>;
 
 inline constexpr std::nullopt_t nothing = std::nullopt;
+
+/**
+ * Constructs a File instance from a string literal.
+ *
+ * @param str the string that will be converted to a File instance.
+ * @return a File instance.
+ * @since 0.1.0
+ */
+[[nodiscard]] inline File operator"" _file(const char* str, std::size_t)
+{
+  return File{str};
+}
 
 }  // namespace step
 

@@ -83,9 +83,9 @@ class Grid final {
 
 STEP_API void from_json(const JSON& json, Grid& grid);
 
-STEP_SERIALIZE_ENUM(Grid::Orientation,
-                    {{Grid::Orientation::Orthogonal, "orthogonal"},
-                     {Grid::Orientation::Isometric, "isometric"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Grid::Orientation,
+                             {{Grid::Orientation::Orthogonal, "orthogonal"},
+                              {Grid::Orientation::Isometric, "isometric"}})
 
 }  // namespace step
 

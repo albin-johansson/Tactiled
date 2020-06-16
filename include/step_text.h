@@ -188,16 +188,16 @@ class Text final {
 
 STEP_API void from_json(const JSON& json, Text& text);
 
-STEP_SERIALIZE_ENUM(Text::HAlign,
-                    {{Text::HAlign::Center, "center"},
-                     {Text::HAlign::Right, "right"},
-                     {Text::HAlign::Left, "left"},
-                     {Text::HAlign::Justify, "justify"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Text::HAlign,
+                             {{Text::HAlign::Center, "center"},
+                              {Text::HAlign::Right, "right"},
+                              {Text::HAlign::Left, "left"},
+                              {Text::HAlign::Justify, "justify"}})
 
-STEP_SERIALIZE_ENUM(Text::VAlign,
-                    {{Text::VAlign::Center, "center"},
-                     {Text::VAlign::Top, "top"},
-                     {Text::VAlign::Bottom, "bottom"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Text::VAlign,
+                             {{Text::VAlign::Center, "center"},
+                              {Text::VAlign::Top, "top"},
+                              {Text::VAlign::Bottom, "bottom"}})
 }  // namespace step
 
 #ifdef STEP_HEADER_ONLY

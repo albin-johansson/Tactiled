@@ -248,11 +248,11 @@ class Layer final {
 
 STEP_API void from_json(const JSON& json, Layer& layer);
 
-STEP_SERIALIZE_ENUM(Layer::Type,
-                    {{Layer::Type::TileLayer, "tilelayer"},
-                     {Layer::Type::ImageLayer, "imagelayer"},
-                     {Layer::Type::ObjectGroup, "objectgroup"},
-                     {Layer::Type::Group, "group"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(Layer::Type,
+                             {{Layer::Type::TileLayer, "tilelayer"},
+                              {Layer::Type::ImageLayer, "imagelayer"},
+                              {Layer::Type::ObjectGroup, "objectgroup"},
+                              {Layer::Type::Group, "group"}})
 
 }  // namespace step
 

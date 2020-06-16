@@ -101,14 +101,14 @@ class TileLayer final {
 
 STEP_API void from_json(const JSON& json, TileLayer& layer);
 
-STEP_SERIALIZE_ENUM(TileLayer::Compression,
-                    {{TileLayer::Compression::None, ""},
-                     {TileLayer::Compression::GZip, "gzip"},
-                     {TileLayer::Compression::ZLib, "zlib"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Compression,
+                             {{TileLayer::Compression::None, ""},
+                              {TileLayer::Compression::GZip, "gzip"},
+                              {TileLayer::Compression::ZLib, "zlib"}})
 
-STEP_SERIALIZE_ENUM(TileLayer::Encoding,
-                    {{TileLayer::Encoding::CSV, "csv"},
-                     {TileLayer::Encoding::Base64, "base64"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Encoding,
+                             {{TileLayer::Encoding::CSV, "csv"},
+                              {TileLayer::Encoding::Base64, "base64"}})
 
 }  // namespace step
 

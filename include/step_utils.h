@@ -37,26 +37,7 @@
 #include "step_exception.h"
 #include "step_types.h"
 
-namespace step {
-
-using File = fluent::NamedType<std::string,
-                               struct FileTag,
-                               fluent::Comparable,
-                               fluent::Printable>;
-
-/**
- * Constructs a File instance from a string literal.
- *
- * @param str the string that will be converted to a File instance.
- * @return a File instance.
- * @since 0.1.0
- */
-[[nodiscard]] inline File operator"" _file(const char* str, std::size_t)
-{
-  return File{str};
-}
-
-namespace detail {
+namespace step::detail {
 
 /**
  * Parses the specified JSON file and returns the data associated with the
@@ -117,8 +98,7 @@ template <typename T>
          std::is_same_v<T, File> || std::is_convertible_v<T, std::string>;
 }
 
-}  // namespace detail
-}  // namespace step
+}  // namespace step::detail
 
 #ifdef STEP_HEADER_ONLY
 #include "step_utils.cpp"
