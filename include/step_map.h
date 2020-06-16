@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILED_MAP_HEADER
-#define STEP_TILED_MAP_HEADER
+#ifndef STEP_MAP_HEADER
+#define STEP_MAP_HEADER
 
 #include <string>
 #include <string_view>
@@ -257,4 +257,4 @@ STEP_SERIALIZE_ENUM(Map::StaggerIndex,
 #include "step_map.cpp"
 #endif  // STEP_HEADER_ONLY
 
-#endif  // STEP_TILED_MAP_HEADER
+#endif  // STEP_MAP_HEADER

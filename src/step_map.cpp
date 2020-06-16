@@ -22,8 +22,8 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILED_MAP_SOURCE
-#define STEP_TILED_MAP_SOURCE
+#ifndef STEP_MAP_SOURCE
+#define STEP_MAP_SOURCE
 
 #include "step_map.h"
 
@@ -196,4 +196,4 @@ std::string Map::tiled_version() const
 
 }  // namespace step
 
-#endif  // STEP_TILED_MAP_SOURCE
+#endif  // STEP_MAP_SOURCE
