@@ -39,7 +39,7 @@ TEST_SUITE("Properties")
 
     SUBCASE("Testing the is-method")
     {
-      CHECK(!props.is("x", 812)); // doesn't exist
+      CHECK(!props.is("x", 812));  // doesn't exist
 
       CHECK(props.is("a", 67));
       CHECK(props.is("b", 24));
@@ -48,6 +48,7 @@ TEST_SUITE("Properties")
       CHECK(props.is("e", true));
       CHECK(props.is("f", Color{"#ABBAFEFF"}));
       CHECK(props.is("g", "dawkins"));
+      CHECK(props.is("h", "path/to/file.png"_file));
 
       CHECK(!props.is("a", false));
       CHECK(!props.is("b", "hello"));
@@ -57,11 +58,11 @@ TEST_SUITE("Properties")
       CHECK(!props.is("g", true));
     }
 
-    CHECK(props.amount() == 7);
+    CHECK(props.amount() == 8);
     CHECK(!props.empty());
 
     int i = 0;
     props.each([&i](const std::pair<std::string, Property>& pair) { ++i; });
-    CHECK(i == 7);
+    CHECK(i == 8);
   }
 }

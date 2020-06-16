@@ -33,5 +33,10 @@
     "name": "g",
     "type": "string",
     "value": "dawkins"
+  },
+  {
+    "name": "h",
+    "type": "file",
+    "value": "path/to/file.png"
   }
 ]

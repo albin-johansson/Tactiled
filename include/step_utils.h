@@ -26,6 +26,7 @@
 #define STEP_UTILS_HEADER
 
 #include <charconv>
+#include <named_type.hpp>
 #include <string>
 #include <string_view>
 #include <type_traits>
@@ -36,7 +37,26 @@
 #include "step_exception.h"
 #include "step_types.h"
 
-namespace step::detail {
+namespace step {
+
+using File = fluent::NamedType<std::string,
+                               struct FileTag,
+                               fluent::Comparable,
+                               fluent::Printable>;
+
+/**
+ * Constructs a File instance from a string literal.
+ *
+ * @param str the string that will be converted to a File instance.
+ * @return a File instance.
+ * @since 0.1.0
+ */
+[[nodiscard]] inline File operator"" _file(const char* str, std::size_t)
+{
+  return File{str};
+}
+
+namespace detail {
 
 /**
  * Parses the specified JSON file and returns the data associated with the
@@ -94,10 +114,11 @@ template <typename T>
 {
   return std::is_same_v<T, bool> || std::is_same_v<T, int> ||
          std::is_same_v<T, float> || std::is_same_v<T, Color> ||
-         std::is_convertible_v<T, std::string>;
+         std::is_same_v<T, File> || std::is_convertible_v<T, std::string>;
 }
 
-}  // namespace step::detail
+}  // namespace detail
+}  // namespace step
 
 #ifdef STEP_HEADER_ONLY
 #include "step_utils.cpp"

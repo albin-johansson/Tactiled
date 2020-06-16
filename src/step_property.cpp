@@ -27,8 +27,6 @@
 
 #include "step_property.h"
 
-#include <iostream>
-
 #include "step_exception.h"
 
 namespace step {
@@ -55,8 +53,10 @@ void from_json(const JSON& json, Property& property)
       property.m_value.emplace<Color>(json.at("value").get<std::string>());
       break;
     }
-    case Property::Type::File:
-      [[fallthrough]];
+    case Property::Type::File: {
+      property.m_value.emplace<File>(json.at("value").get<std::string>());
+      break;
+    }
     case Property::Type::String: {
       property.m_value.emplace<std::string>(
           json.at("value").get<std::string>());

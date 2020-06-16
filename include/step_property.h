@@ -68,8 +68,8 @@ class Property final {
    * will throw an exception if the property doesn't contain the specified
    * type. A compile-time error will be raised if the type of the
    * supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b> or <b>std::string</b> (accepts anything that is convertible
-   * to <b>std::string</b>).
+   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
+   * convertible to <b>std::string</b>).
    *
    * @tparam T the type of the value that will be returned. Must be the same
    * type of the value stored in the property. An unsupported type will cause a
@@ -90,8 +90,8 @@ class Property final {
    * supplied default value is returned instead. This method doesn't throw
    * any exceptions on its own. A compile-time error will be raised if the type
    * of the supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b> or <b>std::string</b> (accepts anything that is convertible
-   * to <b>std::string</b>).
+   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
+   * convertible to <b>std::string</b>).
    *
    * @tparam T the type of the value that will be obtained. An unsupported type
    * will cause a compile-time error.
@@ -116,10 +116,8 @@ class Property final {
    * Indicates whether or not the property holds a value of the specified
    * type. A compile-time error will be raised if the type
    * of the supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b> or <b>std::string</b> (accepts anything that is convertible
-   * to <b>std::string</b>). Note, it's impossible to tell a difference
-   * between string and file properties with this method, if that is what you
-   * want to do, see the other <code>is()</code>-method.
+   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
+   * convertible to <b>std::string</b>).
    *
    * @tparam T the type to compare with the type of the stored value. An
    * unsupported type will cause a compile-time error.
@@ -132,56 +130,57 @@ class Property final {
   [[nodiscard]] bool is() const noexcept
   {
     if constexpr (std::is_same_v<T, bool>) {
-      return is<Type::Bool>();
-
-    } else if constexpr (std::is_same_v<T, int>) {
-      return is<Type::Int>();
-
-    } else if constexpr (std::is_same_v<T, float>) {
-      return is<Type::Float>();
-
-    } else if constexpr (std::is_same_v<T, Color>) {
-      return is<Type::Color>();
-
-    } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
-      return is<Type::String>() || is<Type::File>();
-    }
-  }
-
-  /**
-   * Indicates whether or not the property holds a value of the specified
-   * type. This method is especially useful for distinguishing between string
-   * and file properties, which isn't possible with the other
-   * <code>is()</code>-method.
-   *
-   * @tparam T the <code>Property::Type</code> value that represents the type
-   * that will be checked.
-   * @return true if the property holds a value of the specified type; false
-   * otherwise.
-   * @since 0.1.0
-   */
-  template <Type T>
-  [[nodiscard]] bool is() const noexcept
-  {
-    if constexpr (T == Type::Bool) {
       return m_type == Type::Bool;
 
-    } else if constexpr (T == Type::Int) {
+    } else if constexpr (std::is_same_v<T, int>) {
       return m_type == Type::Int;
 
-    } else if constexpr (T == Type::Float) {
+    } else if constexpr (std::is_same_v<T, float>) {
       return m_type == Type::Float;
 
-    } else if constexpr (T == Type::Color) {
+    } else if constexpr (std::is_same_v<T, Color>) {
       return m_type == Type::Color;
 
-    } else if constexpr (T == Type::String) {
-      return m_type == Type::String;
-
-    } else /*if constexpr (T == Type::File)*/ {
+    } else if constexpr (std::is_same_v<T, File>) {
       return m_type == Type::File;
+
+    } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
+      return m_type == Type::String;
     }
   }
+
+//  /**
+//   * Indicates whether or not the property holds a value of the specified
+//   * type.
+//   *
+//   * @tparam T the <code>Property::Type</code> value that represents the type
+//   * that will be checked.
+//   * @return true if the property holds a value of the specified type; false
+//   * otherwise.
+//   * @since 0.1.0
+//   */
+//  template <Type T>
+//  [[nodiscard]] bool is() const noexcept
+//  {
+//    if constexpr (T == Type::Bool) {
+//      return m_type == Type::Bool;
+//
+//    } else if constexpr (T == Type::Int) {
+//      return m_type == Type::Int;
+//
+//    } else if constexpr (T == Type::Float) {
+//      return m_type == Type::Float;
+//
+//    } else if constexpr (T == Type::Color) {
+//      return m_type == Type::Color;
+//
+//    } else if constexpr (T == Type::String) {
+//      return m_type == Type::String;
+//
+//    } else /*if constexpr (T == Type::File)*/ {
+//      return m_type == Type::File;
+//    }
+//  }
 
   /**
    * Returns the name associated with the property.
@@ -201,7 +200,7 @@ class Property final {
 
  private:
   std::string m_name;
-  std::variant<std::string, Color, int, float, bool> m_value;
+  std::variant<std::string, File, Color, int, float, bool> m_value;
   Type m_type = Type::String;
 };
 

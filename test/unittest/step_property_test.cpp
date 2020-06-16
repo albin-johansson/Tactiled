@@ -26,7 +26,6 @@ TEST_SUITE("String property")
     CHECK(property.name() == "String property name");
     CHECK(property.type() == Property::Type::String);
     CHECK(property.is<std::string>());
-    CHECK(property.is<Property::Type::String>());
     CHECK(property.get<std::string>() == "This is a string value");
 
     SUBCASE("Property::get")
@@ -65,7 +64,6 @@ TEST_SUITE("Int property")
     CHECK(property.name() == "Sauron");
     CHECK(property.type() == Property::Type::Int);
     CHECK(property.is<int>());
-    CHECK(property.is<Property::Type::Int>());
     CHECK(property.get<int>() == 1337);
 
     SUBCASE("Property::get")
@@ -102,7 +100,6 @@ TEST_SUITE("Float property")
     CHECK(property.name() == "Erebor");
     CHECK(property.type() == Property::Type::Float);
     CHECK(property.is<float>());
-    CHECK(property.is<Property::Type::Float>());
     CHECK(property.get<float>() == 89.2f);
 
     SUBCASE("Property::get")
@@ -140,7 +137,6 @@ TEST_SUITE("Bool property")
     CHECK(property.name() == "Blue mountains");
     CHECK(property.type() == Property::Type::Bool);
     CHECK(property.is<bool>());
-    CHECK(property.is<Property::Type::Bool>());
     CHECK(!property.get<bool>());
 
     SUBCASE("Property::get")
@@ -178,7 +174,6 @@ TEST_SUITE("Color property")
     CHECK(property.name() == "Rohan");
     CHECK(property.type() == Property::Type::Color);
     CHECK(property.is<Color>());
-    CHECK(property.is<Property::Type::Color>());
     CHECK(property.get<Color>() == Color{"#AA22BB33"});
 
     SUBCASE("Property::get")
@@ -215,26 +210,30 @@ TEST_SUITE("File property")
         test::make<Property>(prefix, "file_property_valid.json");
     CHECK(property.name() == "Mirkwood");
     CHECK(property.type() == Property::Type::File);
-    CHECK(property.is<std::string>());
-    CHECK(property.is<Property::Type::File>());
-    CHECK(property.get<std::string>() == "path/to/something/nice");
+    CHECK(property.is<File>());
 
     SUBCASE("Property::get")
     {
-      CHECK(property.get<std::string>() == "path/to/something/nice");
+      CHECK(property.get<File>() == "path/to/file.txt"_file);
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<Color>());
+      CHECK_THROWS(property.get<std::string>());
     }
 
     SUBCASE("Property::get_or")
     {
-      CHECK(property.get_or<std::string>("foo") == "path/to/something/nice");
-      CHECK(property.get_or(Color{"#AABBCCDD"}) == Color{"#AABBCCDD"});
+      const bool result =
+          property.get_or("foo"_file) == "path/to/file.txt"_file;
+      CHECK(result);
+      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
       CHECK(property.get_or(true));
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);
+
+      using namespace std::string_literals;
+      CHECK(property.get_or("foo"s) == "foo"s);
     }
   }
   TEST_CASE("Bad value")

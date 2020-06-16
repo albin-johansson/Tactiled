@@ -91,8 +91,8 @@ class Properties final {
    * always <b>false</b> if the property doesn't exist or if the property
    * has another type. A compile-time error will be raised if the type of the
    * supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b> or <b>std::string</b> (accepts anything that is convertible
-   * to <b>std::string</b>).
+   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
+   * convertible to <b>std::string</b>).
    *
    * @tparam T the type of the value that will be compared to the value of
    * the specified property. An unsupported type will cause a compile-time
