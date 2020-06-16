@@ -85,7 +85,7 @@ void Tileset::parse(const JSON& json)
   detail::safe_bind(json, "version", m_jsonVersion);
 
   detail::bind_opt(json, "grid", m_grid);
-  detail::bind_opt(json, "tileoffset", m_tileOffset);
+  detail::emplace_opt(json, "tileoffset", m_tileOffset);
 
   if (json.contains("tiles") && json.at("tiles").is_array()) {
     for (const auto& [key, value] : json.at("tiles").items()) {

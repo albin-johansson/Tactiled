@@ -2,17 +2,16 @@
 
 #include <doctest.h>
 
-#include "step_test_utils.h"
+#include "step_utils.h"
 
 using namespace step;
-
-inline static const std::string prefix = "resource/tileoffset/";
 
 TEST_SUITE("TileOffset")
 {
   TEST_CASE("Valid tile offset")
   {
-    const auto offset = test::make<TileOffset>(prefix, "tile_offset.json");
+    const TileOffset offset{
+        detail::parse_json("resource/tileoffset/tile_offset.json")};
     CHECK(offset.x() == 123);
     CHECK(offset.y() == 829);
   }

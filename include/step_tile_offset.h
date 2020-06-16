@@ -38,7 +38,7 @@ namespace step {
  */
 class TileOffset final {
  public:
-  STEP_API friend void from_json(const JSON&, TileOffset&);
+  STEP_API explicit TileOffset(const JSON& json);
 
   /**
    * Returns the offset in the x-axis associated with the tile offset instance.
@@ -46,7 +46,7 @@ class TileOffset final {
    * @return the offset in the x-axis.
    * @since 0.1.0
    */
-  [[nodiscard]] int x() const noexcept { return m_x; }
+  STEP_QUERY int x() const noexcept;
 
   /**
    * Returns the offset in the y-axis associated with the tile offset instance.
@@ -54,14 +54,12 @@ class TileOffset final {
    * @return the offset in the y-axis.
    * @since 0.1.0
    */
-  [[nodiscard]] int y() const noexcept { return m_y; }
+  STEP_QUERY int y() const noexcept;
 
  private:
   int m_x;
   int m_y;
 };
-
-STEP_API void from_json(const JSON& json, TileOffset& offset);
 
 }  // namespace step
 

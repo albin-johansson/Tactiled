@@ -30,10 +30,20 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, TileOffset& offset)
+TileOffset::TileOffset(const JSON& json)
+    : m_x{json.at("x").get<int>()}, m_y{json.at("y").get<int>()}
+{}
+
+STEP_DEF
+int TileOffset::x() const noexcept
 {
-  json.at("x").get_to(offset.m_x);
-  json.at("y").get_to(offset.m_y);
+  return m_x;
+}
+
+STEP_DEF
+int TileOffset::y() const noexcept
+{
+  return m_y;
 }
 
 }  // namespace step
