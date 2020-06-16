@@ -28,7 +28,6 @@
 #include "step_color.h"
 
 #include <charconv>
-#include <iostream>
 #include <string>
 
 #include "step_exception.h"

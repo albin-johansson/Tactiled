@@ -27,8 +27,6 @@
 
 #include "step_map.h"
 
-#include <iostream>
-
 #include "step_exception.h"
 #include "step_utils.h"
 
