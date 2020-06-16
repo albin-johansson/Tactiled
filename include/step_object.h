@@ -170,7 +170,7 @@ class Object final {
    * @return the tile GID associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY Maybe<GID> tile_gid() const noexcept;
+  STEP_QUERY Maybe<GlobalID> tile_gid() const noexcept;
 
   /**
    * Returns the template data associated with the object.
@@ -263,7 +263,7 @@ class Object final {
   std::string m_name;
   std::string m_type;
   Properties m_properties;
-  std::variant<std::monostate, Polygon, Polyline, Text, Template, GID>
+  std::variant<std::monostate, Polygon, Polyline, Text, Template, GlobalID>
       m_specificData;
   bool m_ellipse{false};
   bool m_point{false};

@@ -35,6 +35,11 @@ namespace step {
 
 using JSON = nlohmann::json;
 
+/**
+ * The type used for properties that represent a file path.
+ *
+ * @since 0.1.0
+ */
 using File = fluent::NamedType<std::string,
                                struct FileTag,
                                fluent::Comparable,
@@ -45,21 +50,24 @@ using File = fluent::NamedType<std::string,
  *
  * @since 0.1.0
  */
-using GID = unsigned int;
+using GlobalID = fluent::NamedType<unsigned,
+                                   struct GlobalIDTag,
+                                   fluent::Comparable,
+                                   fluent::Addable,
+                                   fluent::Subtractable,
+                                   fluent::Printable>;
 
+/**
+ * The type used for local IDs (LIDs).
+ *
+ * @since 0.1.0
+ */
 using LocalID = fluent::NamedType<int,
                                   struct LocalIDTag,
                                   fluent::Comparable,
                                   fluent::Addable,
                                   fluent::Subtractable,
                                   fluent::Printable>;
-
-// using GlobalID = fluent::NamedType<unsigned,
-//                                   struct GlobalIDTag,
-//                                   fluent::Comparable,
-//                                   fluent::Addable,
-//                                   fluent::Subtractable,
-//                                   fluent::Printable>;
 
 using CZString = const char*;
 
@@ -68,7 +76,28 @@ using Maybe = std::optional<T>;
 
 inline constexpr std::nullopt_t nothing = std::nullopt;
 
-[[nodiscard]] inline LocalID operator"" _lid(std::size_t value) noexcept
+/**
+ * Constructs a global ID from an integer literal.
+ *
+ * @param value the literal that will be converted.
+ * @return a global ID value.
+ * @since 0.1.0
+ */
+[[nodiscard]] inline GlobalID operator"" _gid(
+    unsigned long long int value) noexcept
+{
+  return GlobalID{static_cast<unsigned>(value)};
+}
+
+/**
+ * Constructs a local ID from an integer literal.
+ *
+ * @param value the literal that will be converted.
+ * @return a local ID value.
+ * @since 0.1.0
+ */
+[[nodiscard]] inline LocalID operator"" _lid(
+    unsigned long long int value) noexcept
 {
   return LocalID{static_cast<int>(value)};
 }

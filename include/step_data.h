@@ -41,7 +41,7 @@ namespace step::detail {
  */
 class Data final {
  public:
-  using GIDData = std::vector<GID>;
+  using GIDData = std::vector<GlobalID>;
   using Base64Data = std::string;
 
   STEP_API friend void from_json(const JSON&, Data&);

@@ -17,7 +17,7 @@ TEST_SUITE("Tileset")
         Tileset::external(prefix, 4, "tileset_data_for_external_tileset.json");
 
     CHECK(tileset.columns() == 32);
-    CHECK(tileset.first_gid() == 4);
+    CHECK(tileset.first_gid() == 4_gid);
     CHECK(tileset.source() == "tileset_data_for_external_tileset.json");
     CHECK(tileset.image() == "../terrain.png");
     CHECK(tileset.image_width() == 1024);
@@ -39,7 +39,7 @@ TEST_SUITE("Tileset")
     const auto tileset = Tileset::embedded(
         detail::parse_json("resource/tileset/embedded_tileset.json"));
 
-    CHECK(tileset.first_gid() == 7);
+    CHECK(tileset.first_gid() == 7_gid);
     CHECK(tileset.columns() == 48);
     CHECK(tileset.source() == "");
     CHECK(tileset.image() == "sam/is/the/hero.png");
@@ -190,7 +190,7 @@ TEST_SUITE("Tileset")
   {
     const auto tileset = Tileset::embedded(
         detail::parse_json("resource/tileset/embedded_tileset_no_gid.json"));
-    CHECK(tileset.first_gid() == 1);
+    CHECK(tileset.first_gid() == 1_gid);
   }
 
   TEST_CASE("Tileset missing type attribute")

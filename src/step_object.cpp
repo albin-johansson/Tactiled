@@ -106,10 +106,10 @@ Maybe<Polyline> Object::polyline() const noexcept
 }
 
 STEP_DEF
-Maybe<GID> Object::tile_gid() const noexcept
+Maybe<GlobalID> Object::tile_gid() const noexcept
 {
-  if (std::holds_alternative<GID>(m_specificData)) {
-    return std::get<GID>(m_specificData);
+  if (std::holds_alternative<GlobalID>(m_specificData)) {
+    return std::get<GlobalID>(m_specificData);
   } else {
     return nothing;
   }
@@ -180,7 +180,7 @@ bool Object::is_template() const noexcept
 STEP_DEF
 bool Object::is_tile() const noexcept
 {
-  return std::holds_alternative<GID>(m_specificData);
+  return std::holds_alternative<GlobalID>(m_specificData);
 }
 
 STEP_DEF
@@ -197,7 +197,7 @@ void from_json(const JSON& json, Object& object)
   json.at("type").get_to(object.m_type);
 
   if (json.contains("gid")) {
-    object.m_specificData.emplace<GID>(json.at("gid").get<GID>());
+    object.m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
   } else if (json.contains("text")) {
     object.m_specificData.emplace<Text>(json.at("text").get<Text>());
   } else if (json.contains("polygon")) {

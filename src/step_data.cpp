@@ -57,7 +57,7 @@ void from_json(const JSON& json, Data& data)
   if (json.is_array()) {
     auto& gidData = data.m_data.emplace<Data::GIDData>();
     for (const auto& [key, value] : json.items()) {
-      gidData.emplace_back(value.get<GID>());
+      gidData.emplace_back(value.get<unsigned>());
     }
   } else if (json.is_string()) {
     data.m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());

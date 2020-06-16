@@ -26,7 +26,7 @@ TEST_SUITE("Object")
     CHECK(object.type() == "npc");
     CHECK(object.visible());
 
-    CHECK(object.tile_gid() == 5);
+    CHECK(object.tile_gid() == 5_gid);
 
     CHECK(object.is_tile());
     CHECK(!object.is_ellipse());

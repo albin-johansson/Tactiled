@@ -77,7 +77,9 @@ void Tileset::parse(const JSON& json)
   json.at("image").get_to(m_image);
   json.at("name").get_to(m_name);
 
-  detail::safe_bind(json, "firstgid", m_firstGID);
+  if (json.contains("firstgid")) {
+    m_firstGID = GlobalID{json.at("firstgid").get<unsigned>()};
+  }
   detail::safe_bind(json, "properties", m_properties);
   detail::safe_bind(json, "tiledversion", m_tiledVersion);
   detail::safe_bind(json, "version", m_jsonVersion);
@@ -113,7 +115,7 @@ void Tileset::parse(const JSON& json)
 }
 
 STEP_DEF
-GID Tileset::first_gid() const noexcept
+GlobalID Tileset::first_gid() const noexcept
 {
   return m_firstGID;
 }
