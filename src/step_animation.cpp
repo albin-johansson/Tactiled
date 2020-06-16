@@ -28,15 +28,25 @@
 #include "step_animation.h"
 
 #include "step_frame.h"
+#include "step_utils.h"
 
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Animation& animation)
+Animation::Animation(const JSON& json)
+    : m_frames{detail::fill<std::vector<Frame>>(json)}
+{}
+
+STEP_DEF
+const std::vector<Frame>& Animation::frames() const
 {
-  for (const auto& [key, value] : json.items()) {
-    animation.m_frames.push_back(value.get<Frame>());
-  }
+  return m_frames;
+}
+
+STEP_DEF
+int Animation::length() const noexcept
+{
+  return static_cast<int>(m_frames.size());
 }
 
 }  // namespace step

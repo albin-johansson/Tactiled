@@ -30,10 +30,21 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Frame& frame)
+Frame::Frame(const JSON& json)
+    : m_tileID{json.at("tileid").get<int>()},
+      m_duration{json.at("duration").get<int>()}
+{}
+
+STEP_DEF
+LocalID Frame::tile_id() const noexcept
 {
-  frame.m_tileID = LocalID{json.at("tileid").get<int>()};
-  json.at("duration").get_to(frame.m_duration);
+  return m_tileID;
+}
+
+STEP_DEF
+int Frame::duration() const noexcept
+{
+  return m_duration;
 }
 
 }  // namespace step

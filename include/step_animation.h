@@ -40,7 +40,7 @@ namespace step {
  */
 class Animation final {
  public:
-  STEP_API friend void from_json(const JSON&, Animation&);
+  STEP_API explicit Animation(const JSON& json);
 
   /**
    * Returns the frames associated with the animation.
@@ -48,7 +48,7 @@ class Animation final {
    * @return the frames associated with the animation.
    * @since 0.1.0
    */
-  [[nodiscard]] const std::vector<Frame>& frames() const { return m_frames; }
+  STEP_QUERY const std::vector<Frame>& frames() const;
 
   /**
    * Returns the amount of frames that constitute the animation.
@@ -56,16 +56,11 @@ class Animation final {
    * @return the amount of frames that constitute the animation.
    * @since 0.1.0
    */
-  [[nodiscard]] int length() const noexcept
-  {
-    return static_cast<int>(m_frames.size());
-  }
+  STEP_QUERY int length() const noexcept;
 
  private:
   std::vector<Frame> m_frames;
 };
-
-STEP_API void from_json(const JSON& json, Animation& animation);
 
 }  // namespace step
 

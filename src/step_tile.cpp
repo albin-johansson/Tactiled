@@ -48,7 +48,8 @@ Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
     m_objectGroup = std::make_shared<Layer>(json.at("objectgroup"));
   }
 
-  detail::bind_opt(json, "animation", m_animation);
+  detail::emplace_opt(json, "animation", m_animation);
+//  detail::bind_opt(json, "animation", m_animation);
   detail::bind_opt(json, "type", m_type);
   detail::bind_opt(json, "image", m_image);
   detail::bind_opt(json, "imagewidth", m_imageWidth);

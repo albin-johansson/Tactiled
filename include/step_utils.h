@@ -61,6 +61,16 @@ void bind_opt(const JSON& json,
 }
 
 template <typename T>
+void emplace_opt(const JSON& json,
+                 const std::string& key,
+                 std::optional<T>& attribute)
+{
+  if (json.contains(key)) {
+    attribute.emplace(json.at(key));
+  }
+}
+
+template <typename T>
 void safe_bind(const JSON& json, std::string_view key, T& value)
 {
   if (json.contains(key)) {
@@ -73,6 +83,16 @@ template <typename Container>
 {
   Container container;
   for (const auto& [key, value] : json.at(key).items()) {
+    container.emplace_back(value);
+  }
+  return container;
+}
+
+template <typename Container>
+[[nodiscard]] Container fill(const JSON& json)
+{
+  Container container;
+  for (const auto& [key, value] : json.items()) {
     container.emplace_back(value);
   }
   return container;
