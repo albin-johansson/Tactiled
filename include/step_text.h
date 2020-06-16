@@ -57,7 +57,7 @@ class Text final {
    */
   enum class VAlign { Center, Bottom, Top };
 
-  STEP_API friend void from_json(const JSON&, Text&);
+  STEP_API explicit Text(const JSON& json);
 
   /**
    * Returns the text associated with the Text instance. This property has no
@@ -185,8 +185,6 @@ class Text final {
   bool m_underline = false;
   bool m_wrap = false;
 };
-
-STEP_API void from_json(const JSON& json, Text& text);
 
 NLOHMANN_JSON_SERIALIZE_ENUM(Text::HAlign,
                              {{Text::HAlign::Center, "center"},

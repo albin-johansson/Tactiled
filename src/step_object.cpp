@@ -198,14 +198,18 @@ void from_json(const JSON& json, Object& object)
 
   if (json.contains("gid")) {
     object.m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
+
   } else if (json.contains("text")) {
-    object.m_specificData.emplace<Text>(json.at("text").get<Text>());
+    object.m_specificData.emplace<Text>(json.at("text"));
+
   } else if (json.contains("polygon")) {
     auto& polygon = object.m_specificData.emplace<Polygon>();
     json.at("polygon").get_to(polygon.points);
+
   } else if (json.contains("polyline")) {
     auto& polyline = object.m_specificData.emplace<Polyline>();
     json.at("polyline").get_to(polyline.points);
+
   } else if (json.contains("template")) {
     auto& templ = object.m_specificData.emplace<Template>();
     json.at("template").get_to(templ.templateFile);

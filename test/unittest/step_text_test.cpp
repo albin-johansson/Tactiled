@@ -3,17 +3,15 @@
 #include <doctest.h>
 
 #include "step_exception.h"
-#include "step_test_utils.h"
+#include "step_utils.h"
 
 using namespace step;
-
-inline static const std::string prefix = "resource/text/";
 
 TEST_SUITE("Text")
 {
   TEST_CASE("Text object with all keys")
   {
-    const auto text = test::make<Text>(prefix, "text_all_keys.json");
+    const Text text{detail::parse_json("resource/text/text_all_keys.json")};
 
     CHECK(text.text() == "Elrond");
     CHECK(text.font_family() == "Consolas");
@@ -31,7 +29,7 @@ TEST_SUITE("Text")
 
   TEST_CASE("Text object from bare minimum JSON")
   {
-    const auto text = test::make<Text>(prefix, "text_minimum.json");
+    const Text text{detail::parse_json("resource/text/text_minimum.json")};
 
     CHECK(text.text() == "Smaug");
 
@@ -56,9 +54,10 @@ TEST_SUITE("Text")
 
   TEST_CASE("Text without the \"text\" attribute")
   {
-    const auto path = "resource/text/text_missing_text_attribute.json";
-    CHECK_THROWS_WITH_AS(Text{detail::parse_json(path)},
-                         "Text > Missing \"text\" attribute!",
-                         StepException);
+    const auto json =
+        detail::parse_json("resource/text/text_missing_text_attribute.json");
+
+    CHECK_THROWS_WITH_AS(
+        Text{json}, "Text > Missing \"text\" attribute!", StepException);
   }
 }

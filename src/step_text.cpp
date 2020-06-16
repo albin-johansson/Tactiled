@@ -32,7 +32,7 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Text& text)
+Text::Text(const JSON& json)
 {
   if (!json.count("text")) {
     throw StepException{"Text > Missing \"text\" attribute!"};
@@ -40,40 +40,40 @@ void from_json(const JSON& json, Text& text)
 
   for (const auto& [key, value] : json.items()) {
     if (key == "text") {
-      text.m_text = value.get<std::string>();
+      m_text = value.get<std::string>();
 
     } else if (key == "fontfamily") {
-      text.m_fontFamily = value.get<std::string>();
+      m_fontFamily = value.get<std::string>();
 
     } else if (key == "color") {
-      text.m_color = Color{value.get<std::string>()};
+      m_color = Color{value.get<std::string>()};
 
     } else if (key == "halign") {
-      text.m_halign = value.get<Text::HAlign>();
+      m_halign = value.get<Text::HAlign>();
 
     } else if (key == "valign") {
-      text.m_valign = value.get<Text::VAlign>();
+      m_valign = value.get<Text::VAlign>();
 
     } else if (key == "pixelsize") {
-      text.m_pixelSize = value.get<int>();
+      m_pixelSize = value.get<int>();
 
     } else if (key == "bold") {
-      text.m_bold = value.get<bool>();
+      m_bold = value.get<bool>();
 
     } else if (key == "italic") {
-      text.m_italic = value.get<bool>();
+      m_italic = value.get<bool>();
 
     } else if (key == "kerning") {
-      text.m_kerning = value.get<bool>();
+      m_kerning = value.get<bool>();
 
     } else if (key == "strikeout") {
-      text.m_strikeout = value.get<bool>();
+      m_strikeout = value.get<bool>();
 
     } else if (key == "underline") {
-      text.m_underline = value.get<bool>();
+      m_underline = value.get<bool>();
 
     } else if (key == "wrap") {
-      text.m_wrap = value.get<bool>();
+      m_wrap = value.get<bool>();
     }
   }
 }
