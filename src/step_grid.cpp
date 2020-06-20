@@ -30,7 +30,7 @@
 namespace step {
 
 STEP_DEF
-void from_json(const JSON& json, Grid& grid)
+void from_json(const JSON& json, Grid& grid) // FIXME
 {
   json.at("width").get_to(grid.m_width);
   json.at("height").get_to(grid.m_height);

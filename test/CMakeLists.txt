@@ -44,19 +44,23 @@ target_include_directories(Doctest INTERFACE doctest)
 include(doctest)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(${STEP_TEST_TARGET} PRIVATE
-            -Wno-unused-result
-            )
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE -Wno-unused-result)
 endif ()
 
-target_include_directories(${STEP_TEST_TARGET} PUBLIC unittest)
-target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR})
-target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
-target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_INCLUDE_DIR})
-target_include_directories(${STEP_TEST_TARGET} SYSTEM PUBLIC ${STEP_SOURCE_DIR})
+if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE "/MP")
+endif ()
+
+target_include_directories(${STEP_TEST_TARGET}
+        PUBLIC unittest
+        PUBLIC ${STEP_INCLUDE_DIR}
+        SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/json
+        SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
 
 target_link_libraries(${STEP_TEST_TARGET}
         PUBLIC ${STEP_LIBRARIES}
+        PUBLIC libJSON
+        PUBLIC libNamedType
         PUBLIC Doctest)
 
 #doctest_discover_tests(${STEP_TEST_TARGET})

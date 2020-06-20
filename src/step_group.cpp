@@ -44,11 +44,9 @@ int Group::layers() const noexcept
 }
 
 STEP_DEF
-void from_json(const JSON& json, Group& group)
+void from_json(const JSON& json, Group& group)  // FIXME
 {
   for (const auto& [key, value] : json.at("layers").items()) {
-//    auto layer = std::make_unique<Layer>(value);
-//    from_json(value, *layer);
     group.m_layers.push_back(std::make_unique<Layer>(value));
   }
 }

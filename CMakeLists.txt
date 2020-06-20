@@ -30,19 +30,27 @@ set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 set(STEP_ROOT ${PROJECT_SOURCE_DIR})
 set(STEP_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(STEP_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
-set(STEP_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/include/lib)
+set(STEP_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/lib)
 
 set(STEP_LIB_TARGET libstep)
 set(STEP_TEST_TARGET teststep)
 
-if (${CMAKE_SYSTEM_NAME} STREQUAL "Windows")
-    set(STEP_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX}")
-elseif (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR DEFINED ENV{TRAVIS})
-    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep.so")
-else ()
-    message(FATAL_ERROR "Did not recognize the platform!")
-endif ()
+set(STEP_DYNAMIC_LIB ${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX})
+set(STEP_LIBRARIES ${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX})
+
+# FIXME for some reason, Clang ignores the system includes of the libraries
+
+add_library(libNamedType INTERFACE)
+target_sources(libNamedType INTERFACE
+        ${STEP_LIBRARY_DIR}/namedtype/named_type.hpp
+        ${STEP_LIBRARY_DIR}/namedtype/named_type_impl.hpp
+        ${STEP_LIBRARY_DIR}/namedtype/underlying_functionalities.hpp
+        ${STEP_LIBRARY_DIR}/namedtype/crtp.hpp)
+target_include_directories(libNamedType SYSTEM INTERFACE ${STEP_LIBRARY_DIR}/namedtype)
+
+add_library(libJSON INTERFACE)
+target_sources(libJSON INTERFACE ${STEP_LIBRARY_DIR}/json/json.hpp)
+target_include_directories(libJSON SYSTEM INTERFACE ${STEP_LIBRARY_DIR}/json)
 
 include(CTest)
 

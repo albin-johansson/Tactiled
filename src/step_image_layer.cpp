@@ -42,7 +42,7 @@ std::optional<Color> ImageLayer::transparent_color() const noexcept
 }
 
 STEP_DEF
-void from_json(const JSON& json, ImageLayer& layer)
+void from_json(const JSON& json, ImageLayer& layer)  // FIXME
 {
   json.at("image").get_to(layer.m_image);
   if (json.count("transparentcolor")) {

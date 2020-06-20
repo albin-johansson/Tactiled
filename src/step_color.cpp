@@ -79,7 +79,7 @@ Color::Color(std::string_view value)
     if (len == 8) {
       m_alpha = from_hex(withoutHash.substr(6, 2));
     }
-  } catch (const StepException& e) {
+  } catch (const StepException&) {
     throw;
   } catch (...) {
     throw StepException{"Couldn't create Color!"};

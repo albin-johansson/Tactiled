@@ -137,26 +137,6 @@ template <typename Container>
  *
  * @tparam Type the type of the elements.
  * @param json the JSON object that holds the data.
- * @return a vector of unique pointers.
- * @since 0.1.0
- */
-template <typename Type>
-[[nodiscard]] auto fill_unique_vec(const JSON& json)
-{
-  std::vector<std::unique_ptr<Type>> container;
-  container.reserve(json.size());
-  for (const auto& [_, value] : json.items()) {
-    container.emplace_back(std::make_unique<Type>(value));
-  }
-  return container;
-}
-
-/**
- * Creates a vector of unique pointers where every element has a constructor
- * that takes a single <code>const JSON&</code> parameter.
- *
- * @tparam Type the type of the elements.
- * @param json the JSON object that holds the data.
  * @param key the key of the array that holds the objects.
  * @return a vector of unique pointers.
  * @since 0.1.0
