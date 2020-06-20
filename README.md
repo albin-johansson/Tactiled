@@ -2,7 +2,7 @@
 
 ***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17. It can be used both as a shared library or in a pseudo-"header-only" mode where you also include the source files.
 
-This library *should* be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows, primarily using GCC and MSVC, and is tested on Windows and Linux (Ubuntu). Use the library in the header-only mode if there are no binaries for your system.
+This library *should* be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows, primarily using GCC and MSVC, and is tested on Windows and Linux (Ubuntu). Binaries are available for MSVC, GCC (MinGW) and GCC (Ubuntu).
 
 Refer to the in-source documentation and official Tiled documentation for details about the various components and properties.
 
@@ -17,6 +17,36 @@ int main()
 {
   auto map = step::parse("maps/", "my_tiled_map.json");
 }
+```
+
+## Building the library
+
+If there are no binaries for your OS, then you'll either need to use the library in the header-only mode or simply build the library by yourself. The procedure for building the library is quite standard if you've ever worked with CMake before and is almost the same for Windows and Ubuntu (and probably other Linux distros as well). The generated library files will be located under `step/build/src`. Replace every occurence of `projects/step` with wherever you want to keep the repo.
+
+### With **make**
+
+This approach is probably the easiest if you're on Ubuntu, since make is probably installed on your system.
+
+```shell
+git clone https://github.com/albin-johansson/step projects/step
+cd projects/step
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release
+make
+```
+
+### With **Ninja**
+
+If you're using Windows, you'll either need to install make through something like Cygwin or install Ninja, which works natively on Windows.
+
+```shell
+git clone https://github.com/albin-johansson/step projects/step
+cd projects/step
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release -G Ninja
+ninja
 ```
 
 ## Tools, API:s and dependencies
