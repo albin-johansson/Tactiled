@@ -1,0 +1,42 @@
+[
+  {
+    "name": "a",
+    "type": "int",
+    "value": 67
+  },
+  {
+    "name": "b",
+    "type": "int",
+    "value": 24
+  },
+  {
+    "name": "c",
+    "type": "int",
+    "value": 31
+  },
+  {
+    "name": "d",
+    "type": "float",
+    "value": 42.0
+  },
+  {
+    "name": "e",
+    "type": "bool",
+    "value": true
+  },
+  {
+    "name": "f",
+    "type": "color",
+    "value": "#ABBAFEFF"
+  },
+  {
+    "name": "g",
+    "type": "string",
+    "value": "dawkins"
+  },
+  {
+    "name": "h",
+    "type": "file",
+    "value": "path/to/file.png"
+  }
+]

@@ -1,0 +1,59 @@
+{
+  "id": 74,
+  "type": "foo",
+  "probability": 0.4,
+  "image": "some_image.png",
+  "imagewidth": 1024,
+  "imageheight": 768,
+  "properties": [
+    {
+      "name": "Galadriel",
+      "type": "string",
+      "value": "Denethor sucks"
+    },
+    {
+      "name": "Gandalf",
+      "type": "int",
+      "value": 7
+    }
+  ],
+  "animation": [
+    {
+      "tileid": 23,
+      "duration": 384
+    },
+    {
+      "tileid": 174,
+      "duration": 159
+    }
+  ],
+  "terrain": [
+    8,
+    2,
+    5,
+    7
+  ],
+  "objectgroup": {
+    "draworder": "index",
+    "id": 2,
+    "name": "wizard",
+    "objects": [
+      {
+        "height": 11.5434654050858,
+        "id": 1,
+        "name": "",
+        "rotation": 0,
+        "type": "",
+        "visible": true,
+        "width": 20.9107037256062,
+        "x": 7.47486694263749,
+        "y": 16.274393849793
+      }
+    ],
+    "opacity": 1,
+    "type": "objectgroup",
+    "visible": true,
+    "x": 0,
+    "y": 0
+  }
+}

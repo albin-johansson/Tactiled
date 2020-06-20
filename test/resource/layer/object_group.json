@@ -1,0 +1,25 @@
+{
+  "draworder": "topdown",
+  "id": 3,
+  "name": "object_layer",
+  "objects": [
+    {
+      "height": 77,
+      "id": 36,
+      "name": "legolas",
+      "rotation": 3,
+      "type": "boss",
+      "visible": true,
+      "width": 118,
+      "x": 234,
+      "y": 584
+    }
+  ],
+  "opacity": 0.4,
+  "type": "objectgroup",
+  "visible": false,
+  "x": 3,
+  "y": 5,
+  "offsetx": 65,
+  "offsety": 173
+}

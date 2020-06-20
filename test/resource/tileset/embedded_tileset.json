@@ -1,0 +1,48 @@
+{
+  "firstgid": 7,
+  "columns": 48,
+  "image": "sam/is/the/hero.png",
+  "imageheight": 960,
+  "imagewidth": 1270,
+  "margin": 77,
+  "name": "embedded_tileset",
+  "spacing": 82,
+  "tilecount": 63,
+  "tiledversion": "1.3.4",
+  "tileheight": 27,
+  "tilewidth": 55,
+  "backgroundcolor": "#12345678",
+  "transparentcolor": "#CCDDEEFF",
+  "type": "tileset",
+  "version": 1.2,
+  "grid": {
+    "orientation": "isometric",
+    "height": 64,
+    "width": 48
+  },
+  "tileoffset": {
+    "x": 1574,
+    "y": 753
+  },
+  "terrains": [
+    {
+      "name": "ground",
+      "properties": [
+        {
+          "name": "foo",
+          "type": "bool",
+          "value": true
+        }
+      ],
+      "tile": 4
+    },
+    {
+      "name": "chasm",
+      "tile": 12
+    },
+    {
+      "name": "cliff",
+      "tile": 36
+    }
+  ]
+}

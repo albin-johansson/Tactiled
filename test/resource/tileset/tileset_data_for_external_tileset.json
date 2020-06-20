@@ -1,0 +1,15 @@
+{
+  "columns": 32,
+  "image": "..\/terrain.png",
+  "imageheight": 768,
+  "imagewidth": 1024,
+  "margin": 18,
+  "name": "external_tileset",
+  "spacing": 7,
+  "tilecount": 1024,
+  "tiledversion": "1.3.4",
+  "tileheight": 32,
+  "tilewidth": 64,
+  "type": "tileset",
+  "version": 1.2
+}

@@ -1,0 +1,45 @@
+{
+  "name": "candyAppleRed",
+  "tile": 4,
+  "cornercolors": [
+    {
+      "color": "#CDEA34",
+      "name": "CornerColor",
+      "probability": 0.23,
+      "tile": 9
+    }
+  ],
+  "edgecolors": [
+    {
+      "color": "#A5BDCE",
+      "name": "EdgeColor",
+      "probability": 0.55,
+      "tile": 4
+    }
+  ],
+  "wangtiles": [
+    {
+      "dflip": false,
+      "hflip": false,
+      "tileid": 3,
+      "vflip": false,
+      "wangid": [
+        1,
+        0,
+        1,
+        0,
+        2,
+        0,
+        2,
+        0
+      ]
+    }
+  ],
+  "properties": [
+    {
+      "name": "wangSetProp",
+      "type": "int",
+      "value": 993
+    }
+  ]
+}
