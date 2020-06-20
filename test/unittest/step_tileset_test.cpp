@@ -13,8 +13,8 @@ TEST_SUITE("Tileset")
 {
   TEST_CASE("Parsing external tileset")
   {
-    const auto tileset =
-        Tileset::external(prefix, 4, "tileset_data_for_external_tileset.json");
+    const auto tileset = Tileset::external(
+        prefix, 4_gid, "tileset_data_for_external_tileset.json");
 
     CHECK(tileset.columns() == 32);
     CHECK(tileset.first_gid() == 4_gid);
@@ -78,23 +78,23 @@ TEST_SUITE("Tileset")
       const auto& terrains = tileset.terrains();
       REQUIRE(terrains.size() == 3);
 
-      const auto firstTerrain = terrains.at(0);
+      const auto& firstTerrain = terrains.at(0);
       CHECK(firstTerrain.name() == "ground");
       CHECK(firstTerrain.tile() == 4_lid);
 
       {
-        REQUIRE(firstTerrain.properties().amount() != 0);
-        const auto property = firstTerrain.properties().get("foo");
+        REQUIRE(firstTerrain.properties()->amount() != 0);
+        const auto property = firstTerrain.properties()->get("foo");
         CHECK(property.name() == "foo");
         REQUIRE(property.type() == Property::Type::Bool);
         CHECK(property.get<bool>());
       }
 
-      const auto secondTerrain = terrains.at(1);
+      const auto& secondTerrain = terrains.at(1);
       CHECK(secondTerrain.name() == "chasm");
       CHECK(secondTerrain.tile() == 12_lid);
 
-      const auto thirdTerrain = terrains.at(2);
+      const auto& thirdTerrain = terrains.at(2);
       CHECK(thirdTerrain.name() == "cliff");
       CHECK(thirdTerrain.tile() == 36_lid);
     }
@@ -104,16 +104,17 @@ TEST_SUITE("Tileset")
   {
     const auto tileset = Tileset::embedded(
         detail::parse_json("resource/tileset/with_properties.json"));
-    const auto& properties = tileset.properties();
+    const auto* properties = tileset.properties();
 
-    REQUIRE(properties.amount() == 2);
+    REQUIRE(properties);
+    REQUIRE(properties->amount() == 2);
 
-    const auto firstProperty = properties.get("aFloat");
+    const auto& firstProperty = properties->get("aFloat");
     CHECK(firstProperty.name() == "aFloat");
     CHECK(firstProperty.type() == Property::Type::Float);
     CHECK(firstProperty.get<float>() == 7.5f);
 
-    const auto secondProperty = properties.get("aString");
+    const auto& secondProperty = properties->get("aString");
     CHECK(secondProperty.name() == "aString");
     CHECK(secondProperty.type() == Property::Type::String);
     CHECK(secondProperty.get<std::string>() == "Hello");
@@ -128,7 +129,7 @@ TEST_SUITE("Tileset")
       const auto& tiles = tileset.tiles();
 
       REQUIRE(tiles.size() == 2);
-      const auto tile = tiles.at(0);
+      const auto& tile = tiles.at(0);
 
       CHECK(tile.id() == 187_lid);
 
@@ -147,10 +148,11 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Properties")
       {
-        const auto& properties = tile.properties();
-        REQUIRE(properties.amount() == 1);
+        const auto* properties = tile.properties();
+        REQUIRE(properties);
+        REQUIRE(properties->amount() == 1);
 
-        const auto property = properties.get("name");
+        const auto& property = properties->get("name");
         CHECK(property.name() == "name");
         CHECK(property.type() == Property::Type::String);
         CHECK(property.get<std::string>() == "waterTile");
@@ -164,21 +166,21 @@ TEST_SUITE("Tileset")
       auto& tiles = tileset.tiles();
 
       REQUIRE(tiles.size() == 2);
-      const auto tile = tiles.at(1);
+      const auto& tile = tiles.at(1);
 
       CHECK(tile.id() == 370_lid);
 
       SUBCASE("Properties")
       {
         const auto properties = tile.properties();
-        REQUIRE(properties.amount() == 2);
+        REQUIRE(properties->amount() == 2);
 
-        const auto firstProperty = properties.get("coolness");
+        const auto firstProperty = properties->get("coolness");
         CHECK(firstProperty.name() == "coolness");
         REQUIRE(firstProperty.type() == Property::Type::Int);
         CHECK(firstProperty.get<int>() == 9000);
 
-        const auto secondProperty = properties.get("frodo");
+        const auto secondProperty = properties->get("frodo");
         CHECK(secondProperty.name() == "frodo");
         REQUIRE(secondProperty.type() == Property::Type::String);
         CHECK(secondProperty.get<std::string>() == "sandTile");

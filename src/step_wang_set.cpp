@@ -40,11 +40,10 @@ WangSet::WangSet(const JSON& json)
     : m_cornerColors{detail::fill<WangColors>(json, "cornercolors")},
       m_edgeColors{detail::fill<WangColors>(json, "edgecolors")},
       m_wangTiles{detail::fill<WangTiles>(json, "wangtiles")},
+      m_properties{json.at("properties")},
       m_name{json.at("name").get<std::string>()},
       m_tile{json.at("tile").get<int>()}
-{
-  json.at("properties").get_to(m_properties);
-}
+{}
 
 STEP_DEF
 const std::vector<WangColor>& WangSet::corner_colors() const

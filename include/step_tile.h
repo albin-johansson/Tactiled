@@ -79,10 +79,10 @@ class Tile final {
   /**
    * Returns the properties associated with the tile.
    *
-   * @return the properties associated with the tile.
+   * @return the properties associated with the tile; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const;
+  STEP_QUERY const Properties* properties() const;
 
   /**
    * Returns the object group layer associated with the tile. This property
@@ -152,7 +152,7 @@ class Tile final {
  private:
   LocalID m_id{0};
   std::optional<Animation> m_animation;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
   std::shared_ptr<Layer> m_objectGroup;
   std::optional<std::array<int, 4>> m_terrain;
   std::optional<std::string> m_type;

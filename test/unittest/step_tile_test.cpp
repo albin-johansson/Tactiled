@@ -11,7 +11,8 @@ TEST_SUITE("Tile")
 {
   TEST_CASE("Parse tile with all keys")
   {
-    const Tile tile{detail::parse_json("resource/tile/tile_complete.json")};
+    const auto json = detail::parse_json("resource/tile/tile_complete.json");
+    const Tile tile{json};
 
     CHECK(tile.id() == 74_lid);
 
@@ -37,25 +38,26 @@ TEST_SUITE("Tile")
       CHECK(animation);
       CHECK(animation->length() == 2);
 
-      const auto firstFrame = animation->frames().at(0);
+      const auto& firstFrame = animation->frames().at(0);
       CHECK(firstFrame.tile_id() == 23_lid);
       CHECK(firstFrame.duration() == 384);
 
-      const auto secondFrame = animation->frames().at(1);
+      const auto& secondFrame = animation->frames().at(1);
       CHECK(secondFrame.tile_id() == 174_lid);
       CHECK(secondFrame.duration() == 159);
     }
 
     SUBCASE("Testing parsing of properties")
     {
-      const auto properties = tile.properties();
+      const auto* properties = tile.properties();
+      REQUIRE(properties);
 
-      const auto first = properties.get("Galadriel");
+      const auto& first = properties->get("Galadriel");
       CHECK(first.name() == "Galadriel");
       CHECK(first.type() == Property::Type::String);
       CHECK(first.get<std::string>() == "Denethor sucks");
 
-      const auto second = properties.get("Gandalf");
+      const auto& second = properties->get("Gandalf");
       CHECK(second.name() == "Gandalf");
       CHECK(second.type() == Property::Type::Int);
       CHECK(second.get<int>() == 7);

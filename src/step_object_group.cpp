@@ -30,22 +30,21 @@
 namespace step {
 
 STEP_DEF
+ObjectGroup::ObjectGroup(const JSON& json)
+    : m_drawOrder{json.at("draworder")},
+      m_objects{detail::fill_unique_vec<Object>(json, "objects")}
+{}
+
+STEP_DEF
 ObjectGroup::DrawOrder ObjectGroup::draw_order() const noexcept
 {
   return m_drawOrder;
 }
 
 STEP_DEF
-const std::vector<Object>& ObjectGroup::objects() const
+const std::vector<std::unique_ptr<Object>>& ObjectGroup::objects() const
 {
   return m_objects;
-}
-
-STEP_DEF
-void from_json(const JSON& json, ObjectGroup& group)
-{
-  json.at("draworder").get_to(group.m_drawOrder);
-  json.at("objects").get_to(group.m_objects);
 }
 
 }  // namespace step

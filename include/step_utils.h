@@ -26,6 +26,7 @@
 #define STEP_UTILS_HEADER
 
 #include <charconv>
+#include <memory>
 #include <named_type.hpp>
 #include <string>
 #include <string_view>
@@ -79,6 +80,30 @@ void safe_bind(const JSON& json, std::string_view key, T& value)
 }
 
 template <typename T>
+T safe_get(const JSON& json, const std::string& key, T defaultValue = {})
+{
+  static_assert(
+      std::is_default_constructible_v<T>,
+      "The type must be default constructible in order to use safe_bind!");
+  if (json.contains(key)) {
+    return json.at(key).get<T>();
+  } else {
+    return defaultValue;
+  }
+}
+
+template <typename T>
+[[nodiscard]] std::unique_ptr<T> safe_bind_unique(const JSON& json,
+                                                  const std::string& key)
+{
+  if (json.contains(key)) {
+    return std::make_unique<T>(json.at(key));
+  } else {
+    return nullptr;
+  }
+}
+
+template <typename T>
 void emplace(const JSON& json, const std::string& key, T& value)
 {
   if (json.contains(key)) {
@@ -102,6 +127,47 @@ template <typename Container>
   Container container;
   for (const auto& [key, value] : json.items()) {
     container.emplace_back(value);
+  }
+  return container;
+}
+
+/**
+ * Creates a vector of unique pointers where every element has a constructor
+ * that takes a single <code>const JSON&</code> parameter.
+ *
+ * @tparam Type the type of the elements.
+ * @param json the JSON object that holds the data.
+ * @return a vector of unique pointers.
+ * @since 0.1.0
+ */
+template <typename Type>
+[[nodiscard]] auto fill_unique_vec(const JSON& json)
+{
+  std::vector<std::unique_ptr<Type>> container;
+  container.reserve(json.size());
+  for (const auto& [_, value] : json.items()) {
+    container.emplace_back(std::make_unique<Type>(value));
+  }
+  return container;
+}
+
+/**
+ * Creates a vector of unique pointers where every element has a constructor
+ * that takes a single <code>const JSON&</code> parameter.
+ *
+ * @tparam Type the type of the elements.
+ * @param json the JSON object that holds the data.
+ * @param key the key of the array that holds the objects.
+ * @return a vector of unique pointers.
+ * @since 0.1.0
+ */
+template <typename Type>
+[[nodiscard]] auto fill_unique_vec(const JSON& json, const std::string& key)
+{
+  std::vector<std::unique_ptr<Type>> container;
+  container.reserve(json.size());
+  for (const auto& [_, value] : json.at(key).items()) {
+    container.emplace_back(std::make_unique<Type>(value));
   }
   return container;
 }

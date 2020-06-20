@@ -25,7 +25,7 @@ TEST_SUITE("Map")
     CHECK(map.orientation() == Map::Orientation::Orthogonal);
     CHECK(map.render_order() == Map::RenderOrder::RightDown);
     CHECK(map.tiled_version() == "1.3.4");
-    CHECK(map.properties().empty());
+    CHECK(!map.properties());
     CHECK(!map.infinite());
 
     SUBCASE("Test layers")

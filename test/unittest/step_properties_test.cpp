@@ -13,7 +13,8 @@ TEST_SUITE("Properties")
 {
   TEST_CASE("Parse properties")
   {
-    const auto props = test::make<Properties>(prefix, "properties.json");
+    const Properties props{
+        detail::parse_json("resource/properties/properties.json")};
 
     SUBCASE("Checking if property exists")
     {
@@ -64,5 +65,5 @@ TEST_SUITE("Properties")
     int i = 0;
     props.each([&i](const std::pair<std::string, Property>& pair) { ++i; });
     CHECK(i == 8);
-  }
+  };
 }

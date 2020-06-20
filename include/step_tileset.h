@@ -25,6 +25,7 @@
 #ifndef STEP_TILESET_HEADER
 #define STEP_TILESET_HEADER
 
+#include <memory>
 #include <string_view>
 #include <vector>
 
@@ -54,7 +55,7 @@ class Tileset final {
   STEP_API static Tileset embedded(const JSON& json);
 
   STEP_API static Tileset external(std::string_view root,
-                                   int id,
+                                   GlobalID id,
                                    std::string_view src);
 
   /**
@@ -153,10 +154,10 @@ class Tileset final {
   /**
    * Returns the properties associated with the tileset.
    *
-   * @return the properties associated with the tileset.
+   * @return the properties associated with the tileset; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
   /**
    * Returns the terrains associated with the tileset. This property is
@@ -257,7 +258,7 @@ class Tileset final {
   std::vector<Tile> m_tiles;
   std::vector<Terrain> m_terrains;
   std::vector<WangSet> m_wangSets;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
   std::string m_image;
   std::string m_source;
   std::string m_name;
@@ -269,7 +270,7 @@ class Tileset final {
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
 
-  Tileset(std::string_view root, int id, std::string_view src);
+  Tileset(std::string_view root, GlobalID id, std::string_view src);
 
   explicit Tileset(const JSON& json);
 

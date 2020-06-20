@@ -25,6 +25,7 @@
 #ifndef STEP_TERRAIN_HEADER
 #define STEP_TERRAIN_HEADER
 
+#include <memory>
 #include <string>
 #include <vector>
 
@@ -62,15 +63,15 @@ class Terrain final {
    * Returns the properties associated with the terrain. This property is
    * optional.
    *
-   * @return the properties associated with the terrain.
+   * @return the properties associated with the terrain; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
  private:
   LocalID m_tile{0};
   std::string m_name;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
 };
 
 }  // namespace step

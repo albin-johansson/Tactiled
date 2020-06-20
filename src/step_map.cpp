@@ -58,7 +58,10 @@ void Map::parse(std::string_view root, const JSON& json)
   json.at("version").get_to(m_jsonVersion);
   json.at("tiledversion").get_to(m_tiledVersion);
 
-  detail::safe_bind(json, "properties", m_properties);
+  if (json.contains("properties")) {
+    m_properties = std::make_unique<Properties>(json.at("properties"));
+  }
+
   detail::safe_bind(json, "renderorder", m_renderOrder);
   detail::safe_bind(json, "staggeraxis", m_staggerAxis);
   detail::safe_bind(json, "staggerindex", m_staggerIndex);
@@ -74,7 +77,7 @@ void Map::parse(std::string_view root, const JSON& json)
 
   for (const auto& [key, value] : json.at("tilesets").items()) {
     if (value.contains("source")) {
-      const auto firstgid = value.at("firstgid").get<int>();
+      const auto firstgid = GlobalID{value.at("firstgid").get<unsigned>()};
       const auto src = value.at("source").get<std::string>();
       m_tilesets.push_back(Tileset::external(root, firstgid, src.data()));
     } else {
@@ -132,9 +135,9 @@ const std::vector<Tileset>& Map::tilesets() const noexcept
 }
 
 STEP_DEF
-const Properties& Map::properties() const noexcept
+const Properties* Map::properties() const noexcept
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 STEP_DEF

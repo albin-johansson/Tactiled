@@ -32,6 +32,15 @@
 namespace step {
 
 STEP_DEF
+Properties::Properties(const JSON& json)
+{
+  for (const auto& [key, value] : json.items()) {
+    const Property property{value};
+    m_properties.emplace(property.name(), value);
+  }
+}
+
+STEP_DEF
 bool Properties::has(const std::string& name) const
 {
   return m_properties.count(name);
@@ -57,15 +66,6 @@ STEP_DEF
 bool Properties::empty() const noexcept
 {
   return m_properties.empty();
-}
-
-STEP_DEF
-void from_json(const JSON& json, Properties& props)
-{
-  for (const auto& [key, value] : json.items()) {
-    const Property property{value};
-    props.m_properties.emplace(property.name(), value);
-  }
 }
 
 }  // namespace step

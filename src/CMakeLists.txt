@@ -106,6 +106,10 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
             -Wconversion
             -Wno-c++14-compat
             -Wno-c++11-compat)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(${STEP_LIB_TARGET} PRIVATE
+            /EHsc
+            /W3)
 endif ()
 
 set_target_properties(${STEP_LIB_TARGET} PROPERTIES

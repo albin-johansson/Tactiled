@@ -28,6 +28,7 @@
 #include <string>
 #include <variant>
 #include <vector>
+#include <memory>
 
 #include "step_api.h"
 #include "step_group.h"
@@ -163,10 +164,10 @@ class Layer final {
   /**
    * Returns the properties associated with the layer.
    *
-   * @return the properties associated with the layer.
+   * @return the properties associated with the layer; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
   /**
    * Returns the x-coordinate of where the layer content begins. This is used by
@@ -233,7 +234,7 @@ class Layer final {
   int m_id{0};
   std::variant<std::monostate, TileLayer, ImageLayer, ObjectGroup, Group>
       m_layerData;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
   int m_width{0};
   int m_height{0};
   int m_startX{0};

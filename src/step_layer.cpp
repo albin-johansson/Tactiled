@@ -42,7 +42,7 @@ Layer::Layer(const JSON& json)
       break;
     }
     case Layer::Type::ObjectGroup: {
-      m_layerData.emplace<ObjectGroup>(json.get<ObjectGroup>());
+      m_layerData.emplace<ObjectGroup>(json);
       break;
     }
     case Layer::Type::ImageLayer: {
@@ -191,9 +191,9 @@ double Layer::opacity() const noexcept
 }
 
 STEP_DEF
-const Properties& Layer::properties() const noexcept
+const Properties* Layer::properties() const noexcept
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 STEP_DEF
@@ -211,7 +211,8 @@ void Layer::init_common(const JSON& json)
   detail::safe_bind(json, "starty", m_startY);
   detail::safe_bind(json, "offsetx", m_offsetX);
   detail::safe_bind(json, "offsety", m_offsetY);
-  detail::safe_bind(json, "properties", m_properties);
+
+  m_properties = detail::safe_bind_unique<Properties>(json, "properties");
 }
 
 }  // namespace step

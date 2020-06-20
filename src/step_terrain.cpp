@@ -36,7 +36,9 @@ Terrain::Terrain(const JSON& json)
     : m_tile{json.at("tile").get<int>()},
       m_name{json.at("name").get<std::string>()}
 {
-  detail::safe_bind(json, "properties", m_properties);
+  if (json.contains("properties")) {
+    m_properties = std::make_unique<Properties>(json.at("properties"));
+  }
 }
 
 STEP_DEF
@@ -52,9 +54,9 @@ std::string Terrain::name() const
 }
 
 STEP_DEF
-const Properties& Terrain::properties() const noexcept
+const Properties* Terrain::properties() const noexcept
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 }  // namespace step

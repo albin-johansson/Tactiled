@@ -25,6 +25,8 @@
 #ifndef STEP_OBJECT_GROUP_HEADER
 #define STEP_OBJECT_GROUP_HEADER
 
+#include <memory>
+
 #include "step_api.h"
 #include "step_object.h"
 #include "step_types.h"
@@ -47,7 +49,7 @@ class ObjectGroup final {
    */
   enum class DrawOrder { TopDown, Index };
 
-  STEP_API friend void from_json(const JSON&, ObjectGroup&);
+  STEP_API explicit ObjectGroup(const JSON& json);
 
   /**
    * Returns the draw order used by the object group. The default value of
@@ -58,20 +60,19 @@ class ObjectGroup final {
    */
   STEP_QUERY DrawOrder draw_order() const noexcept;
 
+  // FIXME unique ptr objects
   /**
    * Returns the objects contained in the object group.
    *
    * @return the objects contained in the object group.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Object>& objects() const;
+  STEP_QUERY const std::vector<std::unique_ptr<Object>>& objects() const;
 
  private:
   DrawOrder m_drawOrder{DrawOrder::TopDown};
-  std::vector<Object> m_objects;
+  std::vector<std::unique_ptr<Object>> m_objects;
 };
-
-STEP_API void from_json(const JSON& json, ObjectGroup& group);
 
 NLOHMANN_JSON_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
                              {{ObjectGroup::DrawOrder::Index, "index"},

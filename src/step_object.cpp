@@ -32,6 +32,41 @@
 namespace step {
 
 STEP_DEF
+Object::Object(const JSON& json)
+    : m_id{json.at("id").get<int>()},
+      m_x{json.at("x").get<double>()},
+      m_y{json.at("y").get<double>()},
+      m_width{json.at("width").get<double>()},
+      m_height{json.at("height").get<double>()},
+      m_rotation{json.at("rotation").get<double>()},
+      m_name{json.at("name").get<std::string>()},
+      m_type{json.at("type").get<std::string>()},
+      m_properties{detail::safe_bind_unique<Properties>(json, "properties")},
+      m_ellipse{detail::safe_get<bool>(json, "ellipse", false)},
+      m_point{detail::safe_get<bool>(json, "point", false)},
+      m_visible{json.at("visible").get<bool>()}
+{
+  if (json.contains("gid")) {
+    m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
+
+  } else if (json.contains("text")) {
+    m_specificData.emplace<Text>(json.at("text"));
+
+  } else if (json.contains("polygon")) {
+    auto& polygon = m_specificData.emplace<Polygon>();
+    json.at("polygon").get_to(polygon.points);
+
+  } else if (json.contains("polyline")) {
+    auto& polyline = m_specificData.emplace<Polyline>();
+    json.at("polyline").get_to(polyline.points);
+
+  } else if (json.contains("template")) {
+    auto& templ = m_specificData.emplace<Template>();
+    json.at("template").get_to(templ.templateFile);
+  }
+}
+
+STEP_DEF
 int Object::id() const noexcept
 {
   return m_id;
@@ -80,9 +115,9 @@ std::string Object::type() const
 }
 
 STEP_DEF
-const Properties& Object::properties() const noexcept
+const Properties* Object::properties() const noexcept
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 STEP_DEF
@@ -181,43 +216,6 @@ STEP_DEF
 bool Object::is_tile() const noexcept
 {
   return std::holds_alternative<GlobalID>(m_specificData);
-}
-
-STEP_DEF
-void from_json(const JSON& json, Object& object)
-{
-  json.at("id").get_to(object.m_id);
-  json.at("x").get_to(object.m_x);
-  json.at("y").get_to(object.m_y);
-  json.at("width").get_to(object.m_width);
-  json.at("height").get_to(object.m_height);
-  json.at("rotation").get_to(object.m_rotation);
-  json.at("visible").get_to(object.m_visible);
-  json.at("name").get_to(object.m_name);
-  json.at("type").get_to(object.m_type);
-
-  if (json.contains("gid")) {
-    object.m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
-
-  } else if (json.contains("text")) {
-    object.m_specificData.emplace<Text>(json.at("text"));
-
-  } else if (json.contains("polygon")) {
-    auto& polygon = object.m_specificData.emplace<Polygon>();
-    json.at("polygon").get_to(polygon.points);
-
-  } else if (json.contains("polyline")) {
-    auto& polyline = object.m_specificData.emplace<Polyline>();
-    json.at("polyline").get_to(polyline.points);
-
-  } else if (json.contains("template")) {
-    auto& templ = object.m_specificData.emplace<Template>();
-    json.at("template").get_to(templ.templateFile);
-  }
-
-  detail::safe_bind(json, "properties", object.m_properties);
-  detail::safe_bind(json, "ellipse", object.m_ellipse);
-  detail::safe_bind(json, "point", object.m_point);
 }
 
 }  // namespace step

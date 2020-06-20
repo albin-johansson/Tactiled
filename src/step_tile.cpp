@@ -35,7 +35,7 @@ namespace step {
 STEP_DEF
 Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
 {
-  detail::safe_bind(json, "properties", m_properties);
+  m_properties = detail::safe_bind_unique<Properties>(json, "properties");
 
   if (json.contains("terrain")) {
     m_terrain.emplace();
@@ -45,11 +45,12 @@ Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
   }
 
   if (json.contains("objectgroup")) {
-    m_objectGroup = std::make_shared<Layer>(json.at("objectgroup"));
+    const auto j = json.at("objectgroup");
+    m_objectGroup = std::make_shared<Layer>(j);
   }
 
   detail::emplace_opt(json, "animation", m_animation);
-//  detail::bind_opt(json, "animation", m_animation);
+
   detail::bind_opt(json, "type", m_type);
   detail::bind_opt(json, "image", m_image);
   detail::bind_opt(json, "imagewidth", m_imageWidth);
@@ -70,9 +71,9 @@ std::optional<Animation> Tile::animation() const noexcept
 }
 
 STEP_DEF
-const Properties& Tile::properties() const
+const Properties* Tile::properties() const
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 STEP_DEF

@@ -33,7 +33,7 @@
 namespace step {
 
 STEP_DEF
-Tileset::Tileset(std::string_view root, int id, std::string_view path)
+Tileset::Tileset(std::string_view root, GlobalID id, std::string_view path)
     : m_firstGID{id}, m_source{path.data()}
 {
   std::string fullPath{root.data()};
@@ -54,7 +54,9 @@ Tileset Tileset::embedded(const JSON& json)
 }
 
 STEP_DEF
-Tileset Tileset::external(std::string_view root, int id, std::string_view src)
+Tileset Tileset::external(std::string_view root,
+                          GlobalID id,
+                          std::string_view src)
 {
   return {root, id, src};
 }
@@ -80,7 +82,11 @@ void Tileset::parse(const JSON& json)
   if (json.contains("firstgid")) {
     m_firstGID = GlobalID{json.at("firstgid").get<unsigned>()};
   }
-  detail::safe_bind(json, "properties", m_properties);
+
+  if (json.contains("properties")) {
+    m_properties = std::make_unique<Properties>(json.at("properties"));
+  }
+
   detail::safe_bind(json, "tiledversion", m_tiledVersion);
   detail::safe_bind(json, "version", m_jsonVersion);
 
@@ -179,9 +185,9 @@ const std::vector<WangSet>& Tileset::wang_sets() const
 }
 
 STEP_DEF
-const Properties& Tileset::properties() const noexcept
+const Properties* Tileset::properties() const noexcept
 {
-  return m_properties;
+  return m_properties.get();
 }
 
 STEP_DEF

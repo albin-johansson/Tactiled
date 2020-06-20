@@ -25,6 +25,7 @@
 #ifndef STEP_MAP_HEADER
 #define STEP_MAP_HEADER
 
+#include <memory>
 #include <string>
 #include <string_view>
 #include <vector>
@@ -126,10 +127,10 @@ class Map final {
   /**
    * Returns the properties associated with the map.
    *
-   * @return the properties associated with the map.
+   * @return the properties associated with the map; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
   /**
    * Returns the orientation of the map.
@@ -218,7 +219,7 @@ class Map final {
   int m_nextObjectID{0};
   std::vector<Layer> m_layers;
   std::vector<Tileset> m_tilesets;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
   Orientation m_orientation{Orientation::Orthogonal};
   RenderOrder m_renderOrder{RenderOrder::RightDown};
   StaggerAxis m_staggerAxis{StaggerAxis::X};

@@ -13,9 +13,9 @@ TEST_SUITE("Terrain")
     const Terrain terrain{detail::parse_json("resource/terrain/complete.json")};
     CHECK(terrain.tile() == 64_lid);
     CHECK(terrain.name() == "water");
-    REQUIRE(!terrain.properties().empty());
+    REQUIRE(terrain.properties());
 
-    const auto property = terrain.properties().get("health");
+    const auto& property = terrain.properties()->get("health");
     CHECK(property.name() == "health");
     REQUIRE(property.type() == Property::Type::Int);
     CHECK(property.get<int>() == 87);
@@ -27,6 +27,6 @@ TEST_SUITE("Terrain")
         detail::parse_json("resource/terrain/no_properties.json")};
     CHECK(terrain.tile() == 77_lid);
     CHECK(terrain.name() == "lava");
-    CHECK(terrain.properties().empty());
+    CHECK(!terrain.properties());
   }
 }

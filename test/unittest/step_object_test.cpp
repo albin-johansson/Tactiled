@@ -14,7 +14,7 @@ TEST_SUITE("Object")
 {
   TEST_CASE("Parsing normal object")
   {
-    const auto object = test::make<Object>(prefix, "object.json");
+    const Object object{detail::parse_json("resource/object/object.json")};
 
     CHECK(object.id() == 1);
     CHECK(object.x() == 56);
@@ -38,9 +38,11 @@ TEST_SUITE("Object")
 
     SUBCASE("Check properties")
     {
-      const auto& props = object.properties();
-      REQUIRE(props.has("hp"));
-      const auto prop = props.get("hp");
+      const auto* props = object.properties();
+      REQUIRE(props);
+
+      REQUIRE(props->has("hp"));
+      const auto& prop = props->get("hp");
       CHECK(prop.is<int>());
       CHECK(prop.get<int>() == 12);
     }
@@ -48,7 +50,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing ellipse object")
   {
-    const auto ellipseObject = test::make<Object>(prefix, "ellipse.json");
+    const Object ellipseObject{
+        detail::parse_json("resource/object/ellipse.json")};
 
     REQUIRE(ellipseObject.is_ellipse());
 
@@ -73,7 +76,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing rectangle object")
   {
-    const auto rectObject = test::make<Object>(prefix, "rectangle.json");
+    const Object rectObject{
+        detail::parse_json("resource/object/rectangle.json")};
 
     CHECK(rectObject.id() == 14);
     CHECK(rectObject.x() == 576);
@@ -96,7 +100,7 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing point object")
   {
-    const auto pointObject = test::make<Object>(prefix, "point.json");
+    const Object pointObject{detail::parse_json("resource/object/point.json")};
 
     CHECK(pointObject.id() == 20);
     CHECK(pointObject.x() == 220);
@@ -119,7 +123,7 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing polygon object")
   {
-    const auto polygonObject = test::make<Object>(prefix, "polygon.json");
+    const Object polygonObject{detail::parse_json("resource/object/polygon.json")};
 
     CHECK(polygonObject.id() == 15);
     CHECK(polygonObject.x() == -176);
@@ -165,7 +169,7 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing polyline object")
   {
-    const auto polylineObject = test::make<Object>(prefix, "polyline.json");
+    const Object polylineObject{detail::parse_json("resource/object/polyline.json")};
 
     CHECK(polylineObject.id() == 16);
     CHECK(polylineObject.x() == 240);
@@ -214,7 +218,7 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing text object")
   {
-    const auto textObject = test::make<Object>(prefix, "text.json");
+    const Object textObject{detail::parse_json("resource/object/text.json")};
 
     CHECK(textObject.id() == 15);
     CHECK(textObject.x() == 48);

@@ -46,7 +46,7 @@ namespace step {
  */
 class Properties final {
  public:
-  STEP_API friend void from_json(const JSON&, Properties&);
+  STEP_API explicit Properties(const JSON& json);
 
   /**
    * Iterates over all of the properties store in this instance.
@@ -136,8 +136,6 @@ class Properties final {
  private:
   std::map<std::string, Property> m_properties;
 };
-
-STEP_API void from_json(const JSON& json, Properties& props);
 
 }  // namespace step
 

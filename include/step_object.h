@@ -25,6 +25,7 @@
 #ifndef STEP_OBJECT_HEADER
 #define STEP_OBJECT_HEADER
 
+#include <memory>
 #include <string>
 #include <variant>
 #include <vector>
@@ -74,7 +75,7 @@ struct Template {
  */
 class Object final {
  public:
-  STEP_API friend void from_json(const JSON&, Object&);
+  STEP_API explicit Object(const JSON& json);
 
   /**
    * Returns the incremental ID associated with the object.
@@ -143,10 +144,10 @@ class Object final {
   /**
    * Returns the properties associated with the object.
    *
-   * @return the properties associated with the object.
+   * @return the properties associated with the object; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
   /**
    * Returns the polygon associated with the object.
@@ -262,7 +263,7 @@ class Object final {
   double m_rotation{0};
   std::string m_name;
   std::string m_type;
-  Properties m_properties;
+  std::unique_ptr<Properties> m_properties;
   std::variant<std::monostate, Polygon, Polyline, Text, Template, GlobalID>
       m_specificData;
   bool m_ellipse{false};
@@ -271,8 +272,6 @@ class Object final {
 
   // TODO improve template object support
 };
-
-STEP_API void from_json(const JSON& json, Object& object);
 
 }  // namespace step
 
