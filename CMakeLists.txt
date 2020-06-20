@@ -35,8 +35,12 @@ set(STEP_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/lib)
 set(STEP_LIB_TARGET libstep)
 set(STEP_TEST_TARGET teststep)
 
-set(STEP_DYNAMIC_LIB ${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX})
-set(STEP_LIBRARIES ${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX})
+if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR DEFINED ENV{TRAVIS})
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep.so")
+else ()
+    set(STEP_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX}")
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX}")
+endif ()
 
 # FIXME for some reason, Clang ignores the system includes of the libraries
 
