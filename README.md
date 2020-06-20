@@ -2,7 +2,7 @@
 
 ***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17. It can be used both as a shared library or in a pseudo-"header-only" mode where you also include the source files.
 
-This library *should* be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows (with GCC 8.1.0) and is tested on Windows and Linux (Ubuntu).
+This library *should* be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows, primarily using GCC and MSVC, and is tested on Windows and Linux (Ubuntu). Use the library in the header-only mode if there are no binaries for your system.
 
 Refer to the in-source documentation and official Tiled documentation for details about the various components and properties.
 
