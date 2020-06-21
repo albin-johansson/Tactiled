@@ -28,7 +28,7 @@ If there are no binaries for your OS, then you'll either need to use the library
 This approach is probably the easiest if you're on Ubuntu, since make is probably installed on your system.
 
 ```shell
-git clone https://github.com/albin-johansson/step projects/step
+git clone https://github.com/albin-johansson/step.git projects/step
 cd projects/step
 mkdir build
 cd build
@@ -41,7 +41,7 @@ make
 If you're using Windows, you'll either need to install make through something like Cygwin or install Ninja, which works natively on Windows.
 
 ```shell
-git clone https://github.com/albin-johansson/step projects/step
+git clone https://github.com/albin-johansson/step.git projects/step
 cd projects/step
 mkdir build
 cd build
