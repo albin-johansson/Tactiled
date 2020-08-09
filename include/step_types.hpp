@@ -25,6 +25,7 @@
 #ifndef STEP_TYPES_HEADER
 #define STEP_TYPES_HEADER
 
+#include <cstdint>
 #include <filesystem>
 #include <json.hpp>
 #include <named_type.hpp>

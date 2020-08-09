@@ -18,7 +18,7 @@ text::text(const json& json)
       m_fontFamily = value.get<std::string>();
 
     } else if (key == "color") {
-      m_color = Color{value.get<std::string>()};
+      m_color = color{value.get<std::string>()};
 
     } else if (key == "halign") {
       m_halign = value.get<text::halign>();
@@ -60,7 +60,7 @@ auto text::font_family() const -> std::string
   return m_fontFamily;
 }
 
-auto text::color() const noexcept -> Color
+auto text::get_color() const noexcept -> color
 {
   return m_color;
 }

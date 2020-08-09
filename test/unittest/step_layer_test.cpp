@@ -88,7 +88,7 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parsing object group")
   {
-    //FIXME
+    // FIXME
 
     //    const Layer
     //    layer{detail::parse_json("resource/layer/object_group.json")};
@@ -162,7 +162,7 @@ TEST_SUITE("Layer")
     {
       const auto& imageLayer = layer.as_image_layer();
       CHECK(imageLayer.image() == "balrog.png");
-      CHECK(*imageLayer.transparent_color() == "#214365"_color);
+      CHECK(*imageLayer.transparent_color() == step::color{"#214365"});
     }
 
     CHECK(layer.id() == 2);

@@ -8,7 +8,6 @@
 
 #include "step_test_utils.h"
 
-using step::operator""_color;
 using step::operator""_file;
 
 TEST_SUITE("General Property stuff")
@@ -37,7 +36,7 @@ TEST_SUITE("String property")
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
-      CHECK_THROWS(property.get<step::Color>());
+      CHECK_THROWS(property.get<step::color>());
     }
 
     SUBCASE("Property::get_or")
@@ -46,7 +45,8 @@ TEST_SUITE("String property")
       CHECK(property.get_or(7) == 7);
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(true));
-      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
     }
   }
 
@@ -74,7 +74,7 @@ TEST_SUITE("Int property")
       CHECK(property.get<int>() == 1337);
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
-      CHECK_THROWS(property.get<step::Color>());
+      CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
     }
 
@@ -84,7 +84,8 @@ TEST_SUITE("Int property")
       CHECK(property.get_or<std::string>("foo") == "foo");
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(true));
-      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
     }
   }
   TEST_CASE("Bad value")
@@ -111,7 +112,7 @@ TEST_SUITE("Float property")
       CHECK(property.get<float>() == 89.2f);
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<bool>());
-      CHECK_THROWS(property.get<step::Color>());
+      CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
     }
 
@@ -121,7 +122,8 @@ TEST_SUITE("Float property")
       CHECK(property.get_or(7) == 7);
       CHECK(property.get_or<std::string>("foo") == "foo");
       CHECK(property.get_or(true));
-      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
     }
   }
   TEST_CASE("Bad value")
@@ -147,7 +149,7 @@ TEST_SUITE("Bool property")
       CHECK(!property.get<bool>());
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
-      CHECK_THROWS(property.get<step::Color>());
+      CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
     }
 
@@ -157,7 +159,8 @@ TEST_SUITE("Bool property")
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);
       CHECK(property.get_or<std::string>("foo") == "foo");
-      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
     }
   }
   TEST_CASE("Bad value")
@@ -175,12 +178,12 @@ TEST_SUITE("Color property")
         "resource/property/color_property_valid.json")};
     CHECK(property.name() == "Rohan");
     CHECK(property.get_type() == step::property::type::color);
-    CHECK(property.is<step::Color>());
-    CHECK(property.get<step::Color>() == "#AA22BB33"_color);
+    CHECK(property.is<step::color>());
+    CHECK(property.get<step::color>() == step::color{"#AA22BB33"});
 
     SUBCASE("Property::get")
     {
-      CHECK(property.get<step::Color>() == "#AA22BB33"_color);
+      CHECK(property.get<step::color>() == step::color{"#AA22BB33"});
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
@@ -189,8 +192,8 @@ TEST_SUITE("Color property")
 
     SUBCASE("Property::get_or")
     {
-      CHECK(property.get_or(step::Color{"#AABBCCDD"}) ==
-            step::Color{"#AA22BB33"});
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AA22BB33"});
       CHECK(property.get_or(true));
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);
@@ -220,7 +223,7 @@ TEST_SUITE("File property")
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
-      CHECK_THROWS(property.get<step::Color>());
+      CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
     }
 
@@ -229,7 +232,8 @@ TEST_SUITE("File property")
       const bool result =
           property.get_or("foo"_file) == "path/to/file.txt"_file;
       CHECK(result);
-      CHECK(property.get_or("#AABBCCDD"_color) == "#AABBCCDD"_color);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
       CHECK(property.get_or(true));
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);

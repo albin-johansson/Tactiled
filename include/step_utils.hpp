@@ -180,7 +180,7 @@ template <typename T>
 [[nodiscard]] constexpr bool valid_property_type() noexcept
 {
   return std::is_same_v<T, bool> || std::is_same_v<T, int> ||
-         std::is_same_v<T, float> || std::is_same_v<T, Color> ||
+         std::is_same_v<T, float> || std::is_same_v<T, color> ||
          std::is_same_v<T, file> || std::is_convertible_v<T, std::string>;
 }
 

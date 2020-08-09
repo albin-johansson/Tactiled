@@ -78,11 +78,11 @@ void Tileset::parse(const json& json)
   }
 
   if (json.contains("backgroundcolor")) {
-    m_backgroundColor = Color{json.at("backgroundcolor").get<std::string>()};
+    m_backgroundColor = color{json.at("backgroundcolor").get<std::string>()};
   }
 
   if (json.contains("transparentcolor")) {
-    m_transparentColor = Color{json.at("transparentcolor").get<std::string>()};
+    m_transparentColor = color{json.at("transparentcolor").get<std::string>()};
   }
 }
 
@@ -166,12 +166,12 @@ std::string Tileset::name() const
   return m_name;
 }
 
-std::optional<Color> Tileset::background_color() const noexcept
+std::optional<color> Tileset::background_color() const noexcept
 {
   return m_backgroundColor;
 }
 
-std::optional<Color> Tileset::transparent_color() const noexcept
+std::optional<color> Tileset::transparent_color() const noexcept
 {
   return m_transparentColor;
 }

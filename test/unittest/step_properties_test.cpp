@@ -27,7 +27,7 @@ TEST_SUITE("Properties")
     SUBCASE("Getting property")
     {
       CHECK_THROWS_WITH_AS(props.get("x"),
-                           "Properties > Couldn't find property!",
+                           "properties > Couldn't find property!",
                            step_exception);
 
       REQUIRE_NOTHROW(props.get("a"));
@@ -47,14 +47,14 @@ TEST_SUITE("Properties")
       CHECK(props.is("c", 31));
       CHECK(props.is("d", 42.0f));
       CHECK(props.is("e", true));
-      CHECK(props.is("f", "#ABBAFEFF"_color));
+      CHECK(props.is("f", color{"#ABBAFEFF"}));
       CHECK(props.is("g", "dawkins"));
       CHECK(props.is("h", "path/to/file.png"_file));
 
       CHECK(!props.is("a", false));
       CHECK(!props.is("b", "hello"));
       CHECK(!props.is("c", 2.91f));
-      CHECK(!props.is("d", "#AABBCCDD"_color));
+      CHECK(!props.is("d", color{"#AABBCCDD"}));
       CHECK(!props.is("f", 1234));
       CHECK(!props.is("g", true));
     }

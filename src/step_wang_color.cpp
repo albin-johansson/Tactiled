@@ -14,7 +14,7 @@ const std::string& WangColor::name() const
   return m_name;
 }
 
-const Color& WangColor::color() const noexcept
+const color& WangColor::get_color() const noexcept
 {
   return m_color;
 }

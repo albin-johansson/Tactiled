@@ -213,7 +213,7 @@ class Tileset final {
    * @return the background color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> background_color() const noexcept;
+  STEP_QUERY std::optional<color> background_color() const noexcept;
 
   /**
    * Returns the transparent color of the tileset. This property is optional.
@@ -221,7 +221,7 @@ class Tileset final {
    * @return the transparent color of the tileset; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
+  STEP_QUERY std::optional<color> transparent_color() const noexcept;
 
   /**
    * Returns the grid associated with the tileset. This property is optional.
@@ -273,8 +273,8 @@ class Tileset final {
   std::string m_image;
   std::string m_source;
   std::string m_name;
-  std::optional<Color> m_backgroundColor;
-  std::optional<Color> m_transparentColor;
+  std::optional<color> m_backgroundColor;
+  std::optional<color> m_transparentColor;
   std::optional<Grid> m_grid;
   std::optional<TileOffset> m_tileOffset;
 

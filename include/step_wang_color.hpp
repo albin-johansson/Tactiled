@@ -59,7 +59,7 @@ class WangColor final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Color& color() const noexcept;
+  const color& get_color() const noexcept;
 
   /**
    * Returns the local ID of the tile that represents the Wang color.
@@ -81,7 +81,7 @@ class WangColor final {
 
  private:
   std::string m_name;
-  Color m_color;
+  color m_color;
   local_id m_tile{0};
   double m_probability{};
 };

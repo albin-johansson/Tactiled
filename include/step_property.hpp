@@ -159,7 +159,7 @@ class property final {
     } else if constexpr (std::is_same_v<T, float>) {
       return m_type == type::floating;
 
-    } else if constexpr (std::is_same_v<T, Color>) {
+    } else if constexpr (std::is_same_v<T, color>) {
       return m_type == type::color;
 
     } else if constexpr (std::is_same_v<T, file>) {
@@ -193,7 +193,7 @@ class property final {
  private:
   type m_type{type::string};
   std::string m_name;
-  std::variant<std::string, file, Color, int, float, bool> m_value;
+  std::variant<std::string, file, color, int, float, bool> m_value;
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(property::type,

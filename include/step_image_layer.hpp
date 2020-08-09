@@ -62,11 +62,11 @@ class ImageLayer final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<Color> transparent_color() const noexcept;
+  std::optional<color> transparent_color() const noexcept;
 
  private:
   std::string m_image;
-  std::optional<Color> m_transparentColor;
+  std::optional<color> m_transparentColor;
 };
 
 STEP_API

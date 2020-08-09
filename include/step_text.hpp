@@ -117,7 +117,7 @@ class text final {
    * @since 0.1.0
    */
   STEP_QUERY
-  auto color() const noexcept -> Color;
+  auto get_color() const noexcept -> color;
 
   /**
    * @brief Returns the horizontal alignment of the text.
@@ -232,7 +232,7 @@ class text final {
  private:
   std::string m_text;
   std::string m_fontFamily{"sans-serif"};
-  Color m_color;
+  color m_color;
   halign m_halign{halign::left};
   valign m_valign{valign::top};
   int m_pixelSize{16};

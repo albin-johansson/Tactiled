@@ -22,7 +22,7 @@ property::property(const json& json)
       break;
     }
     case property::type::color: {
-      m_value.emplace<Color>(json.at("value").get<std::string>());
+      m_value.emplace<color>(json.at("value").get<std::string>());
       break;
     }
     case property::type::file: {

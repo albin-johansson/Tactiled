@@ -7,7 +7,7 @@ std::string ImageLayer::image() const
   return m_image;
 }
 
-std::optional<Color> ImageLayer::transparent_color() const noexcept
+std::optional<color> ImageLayer::transparent_color() const noexcept
 {
   return m_transparentColor;
 }
@@ -17,7 +17,7 @@ void from_json(const json& json, ImageLayer& layer)  // FIXME
   json.at("image").get_to(layer.m_image);
   if (json.count("transparentcolor")) {
     layer.m_transparentColor =
-        Color{json.at("transparentcolor").get<std::string>()};
+        color{json.at("transparentcolor").get<std::string>()};
   }
 }
 

@@ -15,7 +15,7 @@ TEST_SUITE("text")
 
     CHECK(text.get_text() == "Elrond");
     CHECK(text.font_family() == "Consolas");
-    CHECK(text.color() == Color{"#AA0000"});
+    CHECK(text.get_color() == color{"#AA0000"});
     CHECK(text.horizontal_alignment() == text::halign::center);
     CHECK(text.vertical_alignment() == text::valign::bottom);
     CHECK(text.pixel_size() == 24);
@@ -35,7 +35,7 @@ TEST_SUITE("text")
 
     SUBCASE("Check defaults")
     {
-      CHECK(text.color() == Color{"#000000"});
+      CHECK(text.get_color() == color{"#000000"});
 
       CHECK(text.kerning());
       CHECK(!text.bold());

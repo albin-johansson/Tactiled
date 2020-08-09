@@ -47,7 +47,7 @@ void Map::parse(std::string_view root, const json& json)
   detail::safe_bind(json, "hexSideLength", m_hexSideLength);
 
   if (json.contains("backgroundColor")) {
-    m_backgroundColor = Color{json.at("backgroundColor").get<std::string>()};
+    m_backgroundColor = color{json.at("backgroundColor").get<std::string>()};
   }
 
   for (const auto& [key, value] : json.at("layers").items()) {
@@ -140,7 +140,7 @@ int Map::hex_side_length() const noexcept
   return m_hexSideLength;
 }
 
-std::optional<Color> Map::background_color() const noexcept
+std::optional<color> Map::background_color() const noexcept
 {
   return m_backgroundColor;
 }
