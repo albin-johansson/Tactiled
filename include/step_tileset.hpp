@@ -52,11 +52,13 @@ class Tileset;
  */
 class Tileset final {
  public:
-  STEP_API static Tileset embedded(const json& json);
+  STEP_API
+  static Tileset embedded(const json& json);
 
-  STEP_API static Tileset external(std::string_view root,
-                                   global_id id,
-                                   std::string_view src);
+  STEP_API
+  static Tileset external(std::string_view root,
+                          global_id id,
+                          std::string_view src);
 
   /**
    * Returns the GID (Global ID) of the first tile in the tileset.
@@ -64,7 +66,8 @@ class Tileset final {
    * @return the GID (Global ID) of the first tile in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY global_id first_gid() const noexcept;
+  STEP_QUERY
+  global_id first_gid() const noexcept;
 
   /**
    * Returns the maximum width of tiles in the tileset.
@@ -72,7 +75,8 @@ class Tileset final {
    * @return the maximum width of tiles in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_width() const noexcept;
+  STEP_QUERY
+  int tile_width() const noexcept;
 
   /**
    * Returns the maximum height of tiles in the tileset.
@@ -80,7 +84,8 @@ class Tileset final {
    * @return the maximum height of tiles in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_height() const noexcept;
+  STEP_QUERY
+  int tile_height() const noexcept;
 
   /**
    * Returns the number of tiles in the tileset.
@@ -88,7 +93,8 @@ class Tileset final {
    * @return the number of tiles in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_count() const noexcept;
+  STEP_QUERY
+  int tile_count() const noexcept;
 
   /**
    * Returns the number of columns in the tileset.
@@ -96,7 +102,8 @@ class Tileset final {
    * @return the number of columns in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY int columns() const noexcept;
+  STEP_QUERY
+  int columns() const noexcept;
 
   /**
    * Returns the width of the source image in pixels.
@@ -104,7 +111,8 @@ class Tileset final {
    * @return the width of the source image in pixels.
    * @since 0.1.0
    */
-  STEP_QUERY int image_width() const noexcept;
+  STEP_QUERY
+  int image_width() const noexcept;
 
   /**
    * Returns the height of the source image in pixels.
@@ -112,7 +120,8 @@ class Tileset final {
    * @return the height of the source image in pixels.
    * @since 0.1.0
    */
-  STEP_QUERY int image_height() const noexcept;
+  STEP_QUERY
+  int image_height() const noexcept;
 
   /**
    * Returns the buffer amount between the image edge and the first tile, in
@@ -122,7 +131,8 @@ class Tileset final {
    * pixels.
    * @since 0.1.0
    */
-  STEP_QUERY int margin() const noexcept;
+  STEP_QUERY
+  int margin() const noexcept;
 
   /**
    * Returns the amount of spacing between adjacent tiles in the tileset, in
@@ -132,7 +142,8 @@ class Tileset final {
    * pixels.
    * @since 0.1.0
    */
-  STEP_QUERY int spacing() const noexcept;
+  STEP_QUERY
+  int spacing() const noexcept;
 
   /**
    * Returns the tiles associated with the tileset that have custom

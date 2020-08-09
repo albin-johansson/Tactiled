@@ -55,7 +55,8 @@ class Layer final {
    */
   enum class Type { TileLayer, ObjectGroup, ImageLayer, Group };
 
-  STEP_API explicit Layer(const json& json);
+  STEP_API
+  explicit Layer(const json& json);
 
   /**
    * Indicates whether or not the layer is a tile layer.
@@ -63,7 +64,8 @@ class Layer final {
    * @return true if the layer is a tile layer; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_tile_layer() const noexcept;
+  STEP_QUERY
+  bool is_tile_layer() const noexcept;
 
   /**
    * Indicates whether or not the layer is an image layer.
@@ -71,7 +73,8 @@ class Layer final {
    * @return true if the layer is an image layer; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_image_layer() const noexcept;
+  STEP_QUERY
+  bool is_image_layer() const noexcept;
 
   /**
    * Indicates whether or not the layer is an object group.
@@ -79,7 +82,8 @@ class Layer final {
    * @return true if the layer is an object group; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_object_group() const noexcept;
+  STEP_QUERY
+  bool is_object_group() const noexcept;
 
   /**
    * Indicates whether or not the layer is a group.
@@ -87,7 +91,8 @@ class Layer final {
    * @return true if the layer is a group; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_group() const noexcept;
+  STEP_QUERY
+  bool is_group() const noexcept;
 
   /**
    * Returns the type of the layer.
@@ -95,7 +100,8 @@ class Layer final {
    * @return the type of the layer.
    * @since 0.1.0
    */
-  STEP_QUERY Type type() const noexcept;
+  STEP_QUERY
+  Type type() const noexcept;
 
   /**
    * Returns the unique integer ID associated with the layer.
@@ -103,7 +109,8 @@ class Layer final {
    * @return the unique integer ID associated with the layer.
    * @since 0.1.0
    */
-  STEP_QUERY int id() const noexcept;
+  STEP_QUERY
+  int id() const noexcept;
 
   /**
    * Returns the tile layer information associated with the layer. This

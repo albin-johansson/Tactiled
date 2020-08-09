@@ -39,7 +39,8 @@ class WangTile final {
    * @param json the JSON object that holds the data for a Wang tile.
    * @since 0.1.0
    */
-  STEP_API explicit WangTile(const json& json);
+  STEP_API
+  explicit WangTile(const json& json);
 
   /**
    * Returns the local ID associated with the Wang tile.
@@ -47,7 +48,8 @@ class WangTile final {
    * @return the local ID associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY local_id tile_id() const noexcept;
+  STEP_QUERY
+  local_id tile_id() const noexcept;
 
   /**
    * Returns the Wang color indices associated with the Wang tile.
@@ -55,7 +57,8 @@ class WangTile final {
    * @return the Wang color indices associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY const std::array<int, 8>& wang_color_indices() const;
+  STEP_QUERY
+  const std::array<int, 8>& wang_color_indices() const;
 
   /**
    * Indicates whether or not the tile is flipped diagonally. The default
@@ -64,7 +67,8 @@ class WangTile final {
    * @return true if the tile is flipped diagonally; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool flipped_diagonally() const noexcept;
+  STEP_QUERY
+  bool flipped_diagonally() const noexcept;
 
   /**
    * Indicates whether or not the tile is flipped horizontally. The default
@@ -73,7 +77,8 @@ class WangTile final {
    * @return true if the tile is flipped horizontally; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool flipped_horizontally() const noexcept;
+  STEP_QUERY
+  bool flipped_horizontally() const noexcept;
 
   /**
    * Indicates whether or not the tile is flipped vertically. The default
@@ -82,7 +87,8 @@ class WangTile final {
    * @return true if the tile is flipped vertically; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool flipped_vertically() const noexcept;
+  STEP_QUERY
+  bool flipped_vertically() const noexcept;
 
  private:
   local_id m_tileID{0};

@@ -41,7 +41,8 @@ namespace step {
  */
 class ImageLayer final {
  public:
-  STEP_API friend void from_json(const json&, ImageLayer&);
+  STEP_API
+  friend void from_json(const json&, ImageLayer&);
 
   /**
    * Returns the image used by the image layer.
@@ -49,7 +50,8 @@ class ImageLayer final {
    * @return the image associated with the image layer.
    * @since 0.1.0
    */
-  STEP_QUERY std::string image() const;
+  STEP_QUERY
+  std::string image() const;
 
   /**
    * Returns the transparent color used by the image layer. This property is
@@ -59,14 +61,16 @@ class ImageLayer final {
    * none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
+  STEP_QUERY
+  std::optional<Color> transparent_color() const noexcept;
 
  private:
   std::string m_image;
   std::optional<Color> m_transparentColor;
 };
 
-STEP_API void from_json(const json& json, ImageLayer& layer);
+STEP_API
+void from_json(const json& json, ImageLayer& layer);
 
 }  // namespace step
 

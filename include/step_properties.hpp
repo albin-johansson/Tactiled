@@ -46,7 +46,8 @@ namespace step {
  */
 class Properties final {
  public:
-  STEP_API explicit Properties(const json& json);
+  STEP_API
+  explicit Properties(const json& json);
 
   /**
    * Iterates over all of the properties store in this instance.
@@ -71,7 +72,8 @@ class Properties final {
    * false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool has(const std::string& name) const;
+  STEP_QUERY
+  bool has(const std::string& name) const;
 
   /**
    * Returns the property associated with the specified name. This method
@@ -82,7 +84,8 @@ class Properties final {
    * @throws StepException if the desired property doesn't exist.
    * @since 0.1.0
    */
-  STEP_QUERY const Property& get(const std::string& name) const;
+  STEP_QUERY
+  const Property& get(const std::string& name) const;
 
   /**
    * Indicates whether or not the specified property is equal to the supplied
@@ -121,7 +124,8 @@ class Properties final {
    * @return the amount of Property instances handled by this instance.
    * @since 0.1.0
    */
-  STEP_QUERY int amount() const noexcept;
+  STEP_QUERY
+  int amount() const noexcept;
 
   /**
    * Indicates whether or not there are any Property instances handled by
@@ -131,7 +135,8 @@ class Properties final {
    * otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool empty() const noexcept;
+  STEP_QUERY
+  bool empty() const noexcept;
 
  private:
   std::map<std::string, Property> m_properties;

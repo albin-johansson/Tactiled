@@ -49,7 +49,8 @@ class ObjectGroup final {
    */
   enum class DrawOrder { TopDown, Index };
 
-  STEP_API explicit ObjectGroup(const json& json);
+  STEP_API
+  explicit ObjectGroup(const json& json);
 
   /**
    * Returns the draw order used by the object group. The default value of
@@ -58,7 +59,8 @@ class ObjectGroup final {
    * @return the draw order used by the object group.
    * @since 0.1.0
    */
-  STEP_QUERY DrawOrder draw_order() const noexcept;
+  STEP_QUERY
+  DrawOrder draw_order() const noexcept;
 
   // FIXME unique ptr objects
   /**
@@ -67,7 +69,8 @@ class ObjectGroup final {
    * @return the objects contained in the object group.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<std::unique_ptr<Object>>& objects() const;
+  STEP_QUERY
+  const std::vector<std::unique_ptr<Object>>& objects() const;
 
  private:
   DrawOrder m_drawOrder{DrawOrder::TopDown};

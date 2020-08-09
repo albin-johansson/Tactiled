@@ -41,7 +41,8 @@ namespace step {
  */
 class Terrain final {
  public:
-  STEP_API explicit Terrain(const json& json);
+  STEP_API
+  explicit Terrain(const json& json);
 
   /**
    * Returns the local GID of the tile associated with the terrain.
@@ -49,7 +50,8 @@ class Terrain final {
    * @return the local GID of the tile associated with the terrain.
    * @since 0.1.0
    */
-  STEP_QUERY local_id tile() const noexcept;
+  STEP_QUERY
+  local_id tile() const noexcept;
 
   /**
    * Returns the name associated with the terrain.
@@ -57,7 +59,8 @@ class Terrain final {
    * @return the name associated with the terrain.
    * @since 0.1.0
    */
-  STEP_QUERY std::string name() const;
+  STEP_QUERY
+  std::string name() const;
 
   /**
    * Returns the properties associated with the terrain. This property is
@@ -66,7 +69,8 @@ class Terrain final {
    * @return the properties associated with the terrain; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties* properties() const noexcept;
+  STEP_QUERY
+  const Properties* properties() const noexcept;
 
  private:
   local_id m_tile{0};

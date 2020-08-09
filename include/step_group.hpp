@@ -43,7 +43,8 @@ class Layer;
  */
 class Group final {
  public:
-  STEP_API friend void from_json(const json&, Group&);
+  STEP_API
+  friend void from_json(const json&, Group&);
 
   /**
    * Iterates over all of the layers store in this group.
@@ -69,7 +70,8 @@ class Group final {
    * @return the layer at the specified index.
    * @since 0.1.0
    */
-  STEP_QUERY const Layer& at(int index) const;
+  STEP_QUERY
+  const Layer& at(int index) const;
 
   /**
    * Returns the amount of layers that are in the group.
@@ -77,13 +79,15 @@ class Group final {
    * @return the amount of layers that are in the group.
    * @since 0.1.0
    */
-  STEP_QUERY int layers() const noexcept;
+  STEP_QUERY
+  int layers() const noexcept;
 
  private:
   std::vector<std::unique_ptr<Layer>> m_layers;
 };
 
-STEP_API void from_json(const json& json, Group& group);
+STEP_API
+void from_json(const json& json, Group& group);
 
 }  // namespace step
 

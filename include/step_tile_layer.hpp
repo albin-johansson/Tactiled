@@ -58,7 +58,8 @@ class TileLayer final {
    */
   enum class Encoding { CSV, Base64 };
 
-  STEP_API explicit TileLayer(const json& json);
+  STEP_API
+  explicit TileLayer(const json& json);
 
   /**
    * Returns the encoding used by the tile layer. The default value of this
@@ -67,7 +68,8 @@ class TileLayer final {
    * @return the encoding used by the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY Encoding encoding() const noexcept;
+  STEP_QUERY
+  Encoding encoding() const noexcept;
 
   /**
    * Returns the compression used by the tile layer. The default value of
@@ -76,7 +78,8 @@ class TileLayer final {
    * @return the compression used by the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY Compression compression() const noexcept;
+  STEP_QUERY
+  Compression compression() const noexcept;
 
   /**
    * Returns a pointer to the tile data associated with the tile layer. This
@@ -86,7 +89,8 @@ class TileLayer final {
    * no such data.
    * @since 0.1.0
    */
-  STEP_QUERY const detail::Data* data() const;
+  STEP_QUERY
+  const detail::Data* data() const;
 
   /**
    * Returns the chunks associated with the tile layer.
@@ -94,7 +98,8 @@ class TileLayer final {
    * @return the chunks associated with the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Chunk>& chunks() const noexcept;
+  STEP_QUERY
+  const std::vector<Chunk>& chunks() const noexcept;
 
  private:
   Encoding m_encoding{Encoding::CSV};

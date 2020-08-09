@@ -37,7 +37,8 @@ namespace step {
  */
 class Frame final {
  public:
-  STEP_API explicit Frame(const json& json);
+  STEP_API
+  explicit Frame(const json& json);
 
   /**
    * Returns the local tile ID that is associated with the frame.
@@ -45,7 +46,8 @@ class Frame final {
    * @return the local tile ID that is associated with the frame.
    * @since 0.1.0
    */
-  STEP_QUERY local_id tile_id() const noexcept;
+  STEP_QUERY
+  local_id tile_id() const noexcept;
 
   /**
    * Returns the duration of this frame, in milliseconds.
@@ -53,7 +55,8 @@ class Frame final {
    * @return the duration of this frame, in milliseconds.
    * @since 0.1.0
    */
-  STEP_QUERY int duration() const noexcept;
+  STEP_QUERY
+  int duration() const noexcept;
 
  private:
   local_id m_tileID{0};

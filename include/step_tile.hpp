@@ -57,7 +57,8 @@ class Tile final {
     BottomRight = 3
   };
 
-  STEP_API explicit Tile(const json& json);
+  STEP_API
+  explicit Tile(const json& json);
 
   /**
    * Returns the local ID associated with the tile.
@@ -65,7 +66,8 @@ class Tile final {
    * @return the local ID associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY local_id id() const noexcept;
+  STEP_QUERY
+  local_id id() const noexcept;
 
   /**
    * Returns the animation associated with the tile.
@@ -74,7 +76,8 @@ class Tile final {
    * animation associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Animation> animation() const noexcept;
+  STEP_QUERY
+  std::optional<Animation> animation() const noexcept;
 
   /**
    * Returns the properties associated with the tile.
@@ -82,7 +85,8 @@ class Tile final {
    * @return the properties associated with the tile; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties* properties() const;
+  STEP_QUERY
+  const Properties* properties() const;
 
   /**
    * Returns the object group layer associated with the tile. This property
@@ -94,7 +98,8 @@ class Tile final {
    * null if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::shared_ptr<Layer> object_group() const noexcept;
+  STEP_QUERY
+  std::shared_ptr<Layer> object_group() const noexcept;
 
   /**
    * Returns the type of the tile.
@@ -102,7 +107,8 @@ class Tile final {
    * @return the type of the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<std::string> type() const;
+  STEP_QUERY
+  std::optional<std::string> type() const;
 
   /**
    * Returns the image associated with the tile.
@@ -110,7 +116,8 @@ class Tile final {
    * @return the image associated with the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<std::string> image() const;
+  STEP_QUERY
+  std::optional<std::string> image() const;
 
   /**
    * Returns the width of the image associated with the tile.
@@ -119,7 +126,8 @@ class Tile final {
    * there is no image associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<int> image_width() const noexcept;
+  STEP_QUERY
+  std::optional<int> image_width() const noexcept;
 
   /**
    * Returns the height of the image associated with the tile.
@@ -128,7 +136,8 @@ class Tile final {
    * there is no image associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<int> image_height() const noexcept;
+  STEP_QUERY
+  std::optional<int> image_height() const noexcept;
 
   /**
    * Returns the probability associated with the tile.
@@ -136,7 +145,8 @@ class Tile final {
    * @return the probability associated with the tile; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<double> probability() const noexcept;
+  STEP_QUERY
+  std::optional<double> probability() const noexcept;
 
   /**
    * Returns the ID of the terrain at the specified position, in relation to
@@ -147,7 +157,8 @@ class Tile final {
    * if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<int> terrain_at(TerrainPos position) const noexcept;
+  STEP_QUERY
+  std::optional<int> terrain_at(TerrainPos position) const noexcept;
 
  private:
   local_id m_id{0};

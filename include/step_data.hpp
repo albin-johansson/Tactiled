@@ -44,7 +44,8 @@ class Data final {
   using GIDData = std::vector<global_id>;
   using Base64Data = std::string;
 
-  STEP_API explicit Data(const json& json);
+  STEP_API
+  explicit Data(const json& json);
 
   /**
    * Returns the GID data associated with the Data instance. This method
@@ -54,7 +55,8 @@ class Data final {
    * @throws StepException if the data cannot be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY const GIDData& as_gid() const;
+  STEP_QUERY
+  const GIDData& as_gid() const;
 
   /**
    * Returns the Base64 data associated with the Data instance. This method
@@ -64,7 +66,8 @@ class Data final {
    * @throws StepException if the data cannot be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY const Base64Data& as_base64() const;
+  STEP_QUERY
+  const Base64Data& as_base64() const;
 
  private:
   std::variant<GIDData, Base64Data> m_data;

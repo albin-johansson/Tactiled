@@ -54,7 +54,8 @@ class Color final {
    * @throws StepException if the color cannot be created.
    * @since 0.1.0
    */
-  STEP_API explicit Color(std::string_view value);
+  STEP_API
+  explicit Color(std::string_view value);
 
   /**
    * Returns the value of the red component of the color.

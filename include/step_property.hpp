@@ -61,7 +61,8 @@ class Property final {
    */
   enum class Type { String, Int, Float, Bool, Color, File };
 
-  STEP_API explicit Property(const json& json);
+  STEP_API
+  explicit Property(const json& json);
 
   /**
    * Returns the value of the property as the specified type. This method

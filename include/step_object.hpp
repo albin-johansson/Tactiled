@@ -75,7 +75,8 @@ struct Template {
  */
 class Object final {
  public:
-  STEP_API explicit Object(const json& json);
+  STEP_API
+  explicit Object(const json& json);
 
   /**
    * Returns the incremental ID associated with the object.
@@ -83,7 +84,8 @@ class Object final {
    * @return the incremental ID associated with the object.
    * @since 0.1.0
    */
-  STEP_QUERY int id() const noexcept;
+  STEP_QUERY
+  int id() const noexcept;
 
   /**
    * Returns the x-coordinate of the object.
@@ -91,7 +93,8 @@ class Object final {
    * @return the x-coordinate of the object.
    * @since 0.1.0
    */
-  STEP_QUERY double x() const noexcept;
+  STEP_QUERY
+  double x() const noexcept;
 
   /**
    * Returns the y-coordinate of the object.
@@ -99,7 +102,8 @@ class Object final {
    * @return the y-coordinate of the object.
    * @since 0.1.0
    */
-  STEP_QUERY double y() const noexcept;
+  STEP_QUERY
+  double y() const noexcept;
 
   /**
    * Returns the width of the object.
@@ -107,7 +111,8 @@ class Object final {
    * @return the width of the object.
    * @since 0.1.0
    */
-  STEP_QUERY double width() const noexcept;
+  STEP_QUERY
+  double width() const noexcept;
 
   /**
    * Returns the height of the object.
@@ -115,7 +120,8 @@ class Object final {
    * @return the height of the object.
    * @since 0.1.0
    */
-  STEP_QUERY double height() const noexcept;
+  STEP_QUERY
+  double height() const noexcept;
 
   /**
    * Returns the amount of clockwise rotation of the object.
@@ -123,7 +129,8 @@ class Object final {
    * @return the clockwise rotation of the object, in degrees.
    * @since 0.1.0
    */
-  STEP_QUERY double rotation() const noexcept;
+  STEP_QUERY
+  double rotation() const noexcept;
 
   /**
    * Returns the name of the object.
@@ -131,7 +138,8 @@ class Object final {
    * @return the name of the object.
    * @since 0.1.0
    */
-  STEP_QUERY std::string name() const;
+  STEP_QUERY
+  std::string name() const;
 
   /**
    * Returns the type associated with the object.
@@ -139,7 +147,8 @@ class Object final {
    * @return the type associated with the object.
    * @since 0.1.0
    */
-  STEP_QUERY std::string type() const;
+  STEP_QUERY
+  std::string type() const;
 
   /**
    * Returns the properties associated with the object.
@@ -147,7 +156,8 @@ class Object final {
    * @return the properties associated with the object; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties* properties() const noexcept;
+  STEP_QUERY
+  const Properties* properties() const noexcept;
 
   /**
    * Returns the polygon associated with the object.
@@ -155,7 +165,8 @@ class Object final {
    * @return the polygon associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Polygon> polygon() const noexcept;
+  STEP_QUERY
+  std::optional<Polygon> polygon() const noexcept;
 
   /**
    * Returns the polyline associated with the object.
@@ -163,7 +174,8 @@ class Object final {
    * @return the polyline associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Polyline> polyline() const noexcept;
+  STEP_QUERY
+  std::optional<Polyline> polyline() const noexcept;
 
   /**
    * Returns the tile GID associated with the object.
@@ -171,7 +183,8 @@ class Object final {
    * @return the tile GID associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<global_id> tile_gid() const noexcept;
+  STEP_QUERY
+  std::optional<global_id> tile_gid() const noexcept;
 
   /**
    * Returns the template data associated with the object.
@@ -180,7 +193,8 @@ class Object final {
    * none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Template> template_data() const;
+  STEP_QUERY
+  std::optional<Template> template_data() const;
 
   /**
    * Returns the text associated with the object.
@@ -188,7 +202,8 @@ class Object final {
    * @return the text associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<text> get_text() const;
+  STEP_QUERY
+  std::optional<text> get_text() const;
 
   /**
    * Indicates whether or not the object is visible.
@@ -196,7 +211,8 @@ class Object final {
    * @return true if the object is visible; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool visible() const noexcept;
+  STEP_QUERY
+  bool visible() const noexcept;
 
   /**
    * Indicates whether or not the object represents an ellipse.
@@ -204,7 +220,8 @@ class Object final {
    * @return true if the object represents an ellipse; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_ellipse() const noexcept;
+  STEP_QUERY
+  bool is_ellipse() const noexcept;
 
   /**
    * Indicates whether or not the object represents a point.
@@ -212,7 +229,8 @@ class Object final {
    * @return true if the object represents a point; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_point() const noexcept;
+  STEP_QUERY
+  bool is_point() const noexcept;
 
   /**
    * Indicates whether or not the object represents a polygon.
@@ -220,7 +238,8 @@ class Object final {
    * @return true if the object represents a polygon; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_polygon() const noexcept;
+  STEP_QUERY
+  bool is_polygon() const noexcept;
 
   /**
    * Indicates whether or not the object represents a polyline.
@@ -228,7 +247,8 @@ class Object final {
    * @return true if the object represents a polyline; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_polyline() const noexcept;
+  STEP_QUERY
+  bool is_polyline() const noexcept;
 
   /**
    * Indicates whether or not the object represents a text object.
@@ -236,7 +256,8 @@ class Object final {
    * @return true if the object represents a text object; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_text() const noexcept;
+  STEP_QUERY
+  bool is_text() const noexcept;
 
   /**
    * Indicates whether or not the object represents an object template.
@@ -244,7 +265,8 @@ class Object final {
    * @return true if the object represents an object template; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_template() const noexcept;
+  STEP_QUERY
+  bool is_template() const noexcept;
 
   /**
    * Indicates whether or not the object represents a tile.
@@ -252,7 +274,8 @@ class Object final {
    * @return true if the object represents a tile; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool is_tile() const noexcept;
+  STEP_QUERY
+  bool is_tile() const noexcept;
 
  private:
   int m_id{0};

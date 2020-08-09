@@ -69,7 +69,8 @@ class Map final {
    * @return the width of the map.
    * @since 0.1.0
    */
-  STEP_QUERY int width() const noexcept;
+  STEP_QUERY
+  int width() const noexcept;
 
   /**
    * Returns the height of the map.
@@ -77,7 +78,8 @@ class Map final {
    * @return the height of the map.
    * @since 0.1.0
    */
-  STEP_QUERY int height() const noexcept;
+  STEP_QUERY
+  int height() const noexcept;
 
   /**
    * Returns the width of the tiles in the map.
@@ -85,7 +87,8 @@ class Map final {
    * @return the width of the tiles in the map.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_width() const noexcept;
+  STEP_QUERY
+  int tile_width() const noexcept;
 
   /**
    * Returns the height of the tiles in the map.
@@ -93,7 +96,8 @@ class Map final {
    * @return the height of the tiles in the map.
    * @since 0.1.0
    */
-  STEP_QUERY int tile_height() const noexcept;
+  STEP_QUERY
+  int tile_height() const noexcept;
 
   /**
    * Returns the next layer ID, this is incremented every time an layer is
@@ -102,7 +106,8 @@ class Map final {
    * @return the next layer ID.
    * @since 0.1.0
    */
-  STEP_QUERY int next_layer_id() const noexcept;
+  STEP_QUERY
+  int next_layer_id() const noexcept;
 
   /**
    * Returns the next object ID, this is incremented every time an object is
@@ -111,7 +116,8 @@ class Map final {
    * @return the next object ID.
    * @since 0.1.0
    */
-  STEP_QUERY int next_object_id() const noexcept;
+  STEP_QUERY
+  int next_object_id() const noexcept;
 
   /**
    * Returns the tile layers associated with the map.
@@ -119,7 +125,8 @@ class Map final {
    * @return the tile layers associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Layer>& layers() const noexcept;
+  STEP_QUERY
+  const std::vector<Layer>& layers() const noexcept;
 
   /**
    * Returns the tilesets associated with the map.
@@ -127,7 +134,8 @@ class Map final {
    * @return the tilesets associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Tileset>& tilesets() const noexcept;
+  STEP_QUERY
+  const std::vector<Tileset>& tilesets() const noexcept;
 
   /**
    * Returns the properties associated with the map.
@@ -135,7 +143,8 @@ class Map final {
    * @return the properties associated with the map; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties* properties() const noexcept;
+  STEP_QUERY
+  const Properties* properties() const noexcept;
 
   /**
    * Returns the orientation of the map.
@@ -143,7 +152,8 @@ class Map final {
    * @return the orientation of the map.
    * @since 0.1.0
    */
-  STEP_QUERY Orientation orientation() const noexcept;
+  STEP_QUERY
+  Orientation orientation() const noexcept;
 
   /**
    * Returns the render-order associated with the map. The default value of
@@ -153,7 +163,8 @@ class Map final {
    * @return the render-order associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY RenderOrder render_order() const noexcept;
+  STEP_QUERY
+  RenderOrder render_order() const noexcept;
 
   /**
    * Returns the stagger axis associated with the map. This property is only
@@ -162,7 +173,8 @@ class Map final {
    * @return the stagger axis associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY StaggerAxis stagger_axis() const noexcept;
+  STEP_QUERY
+  StaggerAxis stagger_axis() const noexcept;
 
   /**
    * Returns the stagger index associated with the map. This property is only
@@ -171,7 +183,8 @@ class Map final {
    * @return the stagger index associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY StaggerIndex stagger_index() const noexcept;
+  STEP_QUERY
+  StaggerIndex stagger_index() const noexcept;
 
   /**
    * Indicates whether or not the map is infinite.
@@ -179,7 +192,8 @@ class Map final {
    * @return true if the map is infinite; false otherwise.
    * @since 0.1.0
    */
-  STEP_QUERY bool infinite() const noexcept;
+  STEP_QUERY
+  bool infinite() const noexcept;
 
   /**
    * Returns the length of the side of a hex tile, in pixels. This property
@@ -188,7 +202,8 @@ class Map final {
    * @return the length of the side of a hex tile, in pixels.
    * @since 0.1.0
    */
-  STEP_QUERY int hex_side_length() const noexcept;
+  STEP_QUERY
+  int hex_side_length() const noexcept;
 
   /**
    * Returns the background color associated with the map. This property is
@@ -197,7 +212,8 @@ class Map final {
    * @return the background color of the map.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> background_color() const noexcept;
+  STEP_QUERY
+  std::optional<Color> background_color() const noexcept;
 
   /**
    * Returns the JSON format version associated with the map.
@@ -205,7 +221,8 @@ class Map final {
    * @return the JSON format version associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY double json_version() const noexcept;
+  STEP_QUERY
+  double json_version() const noexcept;
 
   /**
    * Returns the Tiled version associated with the map.
@@ -213,7 +230,8 @@ class Map final {
    * @return the Tiled version associated with the map.
    * @since 0.1.0
    */
-  STEP_QUERY std::string tiled_version() const;
+  STEP_QUERY
+  std::string tiled_version() const;
 
  private:
   int m_width{0};

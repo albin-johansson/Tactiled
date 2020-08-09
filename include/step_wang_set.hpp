@@ -42,7 +42,8 @@ class WangSet final {
    * @param json the JSON object that holds the data for a Wang set.
    * @since 0.1.0
    */
-  STEP_API explicit WangSet(const json& json);
+  STEP_API
+  explicit WangSet(const json& json);
 
   /**
    * Returns all of the corner colors associated with the Wang set.
@@ -50,7 +51,8 @@ class WangSet final {
    * @return all of the corner colors associated with the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<WangColor>& corner_colors() const;
+  STEP_QUERY
+  const std::vector<WangColor>& corner_colors() const;
 
   /**
    * Returns all of the edge colors associated with the Wang set.
@@ -58,7 +60,8 @@ class WangSet final {
    * @return all of the edge colors associated with the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<WangColor>& edge_colors() const;
+  STEP_QUERY
+  const std::vector<WangColor>& edge_colors() const;
 
   /**
    * Returns all of the Wang tiles associated with the Wang set.
@@ -66,7 +69,8 @@ class WangSet final {
    * @return all of the Wang tiles associated with the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<WangTile>& wang_tiles() const;
+  STEP_QUERY
+  const std::vector<WangTile>& wang_tiles() const;
 
   /**
    * Returns the properties associated with the Wang set.
@@ -74,7 +78,8 @@ class WangSet final {
    * @return the properties associated with the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties& properties() const;
+  STEP_QUERY
+  const Properties& properties() const;
 
   /**
    * Returns the name associated with the Wang set.
