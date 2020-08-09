@@ -21,6 +21,7 @@ addons:
       - g++-9
       - cmake
       - lcov
+      - zlib
 
 before_install:
   - sudo apt-get update
@@ -38,12 +39,11 @@ install:
     fi
   - sudo apt-get update
 
-  # Manually installs LCOV 1.14
-  - wget -c http://downloads.sourceforge.net/ltp/lcov-1.14.tar.gz
-  - tar -xf lcov-1.14.tar.gz
-  - cd lcov-1.14
-  - sudo make install
-  - cd
+  # Manually builds latest LCOV
+  - git clone https://github.com/linux-test-project/lcov.git lcov
+  - cd lcov
+  - make install
+  - cd ..
 
   - lcov --version
   - gcov --version
