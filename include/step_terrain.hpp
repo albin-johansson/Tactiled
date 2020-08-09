@@ -22,79 +22,58 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_CHUNK_HEADER
-#define STEP_CHUNK_HEADER
+#ifndef STEP_TERRAIN_HEADER
+#define STEP_TERRAIN_HEADER
 
-#include "step_api.h"
-#include "step_data.h"
-#include "step_types.h"
+#include <memory>
+#include <string>
+#include <vector>
+
+#include "step_api.hpp"
+#include "step_properties.hpp"
 
 namespace step {
 
 /**
- * The Chunk class represents so called chunks, that store the tile layer
- * data for infinite maps.
+ * The Terrain class represents optional terrains in a tileset.
  *
  * @since 0.1.0
  */
-class Chunk final {
+class Terrain final {
  public:
-  STEP_API
-  explicit Chunk(const json& json);
+  STEP_API explicit Terrain(const json& json);
 
   /**
-   * Returns the x-coordinate of the chunk.
+   * Returns the local GID of the tile associated with the terrain.
    *
-   * @return the x-coordinate of the chunk.
+   * @return the local GID of the tile associated with the terrain.
    * @since 0.1.0
    */
-  STEP_QUERY
-  int x() const noexcept;
+  STEP_QUERY local_id tile() const noexcept;
 
   /**
-   * Returns the y-coordinate of the chunk.
+   * Returns the name associated with the terrain.
    *
-   * @return the y-coordinate of the chunk.
+   * @return the name associated with the terrain.
    * @since 0.1.0
    */
-  STEP_QUERY
-  int y() const noexcept;
+  STEP_QUERY std::string name() const;
 
   /**
-   * Returns the width of the chunk.
+   * Returns the properties associated with the terrain. This property is
+   * optional.
    *
-   * @return the width of the chunk.
+   * @return the properties associated with the terrain; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY
-  int width() const noexcept;
-
-  /**
-   * Returns the height of the chunk.
-   *
-   * @return the height of the chunk.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  int height() const noexcept;
-
-  /**
-   * Returns the data associated with the chunk.
-   *
-   * @return the data associated with the chunk.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  const detail::Data& data() const noexcept;
+  STEP_QUERY const Properties* properties() const noexcept;
 
  private:
-  int m_x;
-  int m_y;
-  int m_width;
-  int m_height;
-  detail::Data m_data;
+  local_id m_tile{0};
+  std::string m_name;
+  std::unique_ptr<Properties> m_properties;
 };
 
 }  // namespace step
 
-#endif  // STEP_CHUNK_HEADER
+#endif  // STEP_TERRAIN_HEADER

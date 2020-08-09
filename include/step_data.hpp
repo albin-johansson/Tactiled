@@ -22,45 +22,54 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_OFFSET_HEADER
-#define STEP_TILE_OFFSET_HEADER
+#ifndef STEP_DATA_HEADER
+#define STEP_DATA_HEADER
 
-#include "step_api.h"
-#include "step_types.h"
+#include <string>
+#include <variant>
+#include <vector>
 
-namespace step {
+#include "step_api.hpp"
+#include "step_types.hpp"
+
+namespace step::detail {
 
 /**
- * The TileOffset class provides offsets in pixels that are to be applied when
- * rendering a tile from a tileset.
+ * The Data class is a helper that represents either GID or Base64 tile data.
  *
  * @since 0.1.0
  */
-class TileOffset final {
+class Data final {
  public:
-  STEP_API explicit TileOffset(const json& json);
+  using GIDData = std::vector<global_id>;
+  using Base64Data = std::string;
+
+  STEP_API explicit Data(const json& json);
 
   /**
-   * Returns the offset in the x-axis associated with the tile offset instance.
+   * Returns the GID data associated with the Data instance. This method
+   * throws an exception if the internal data isn't actually GID data.
    *
-   * @return the offset in the x-axis.
+   * @return the GID data associated with the Data instance.
+   * @throws StepException if the data cannot be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY int x() const noexcept;
+  STEP_QUERY const GIDData& as_gid() const;
 
   /**
-   * Returns the offset in the y-axis associated with the tile offset instance.
+   * Returns the Base64 data associated with the Data instance. This method
+   * throws an exception if the internal data isn't actually Base64 data.
    *
-   * @return the offset in the y-axis.
+   * @return the Base64 data associated with the Data instance.
+   * @throws StepException if the data cannot be obtained.
    * @since 0.1.0
    */
-  STEP_QUERY int y() const noexcept;
+  STEP_QUERY const Base64Data& as_base64() const;
 
  private:
-  int m_x;
-  int m_y;
+  std::variant<GIDData, Base64Data> m_data;
 };
 
-}  // namespace step
+}  // namespace step::detail
 
-#endif  // STEP_TILE_OFFSET_HEADER
+#endif  // STEP_DATA_HEADER

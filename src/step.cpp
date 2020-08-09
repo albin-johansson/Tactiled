@@ -1,6 +1,6 @@
-#include "step.h"
+#include "step.hpp"
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 namespace step {
 

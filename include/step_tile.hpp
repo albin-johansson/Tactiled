@@ -28,10 +28,10 @@
 #include <memory>
 #include <vector>
 
-#include "step_animation.h"
-#include "step_api.h"
-#include "step_properties.h"
-#include "step_types.h"
+#include "step_animation.hpp"
+#include "step_api.hpp"
+#include "step_properties.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
@@ -86,7 +86,7 @@ class Tile final {
 
   /**
    * Returns the object group layer associated with the tile. This property
-   * is optional. You'll need to include the <code>step_layer.h</code> header
+   * is optional. You'll need to include the <code>step_layer.hpp</code> header
    * if you want to use the returned pointer, since it is forward-declared in
    * the tile header.
    *

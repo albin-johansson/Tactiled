@@ -1,4 +1,4 @@
-#include "step_wang_tile.h"
+#include "step_wang_tile.hpp"
 
 namespace step {
 

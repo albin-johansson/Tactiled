@@ -22,54 +22,52 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_DATA_HEADER
-#define STEP_DATA_HEADER
+#ifndef STEP_IMAGE_LAYER_HEADER
+#define STEP_IMAGE_LAYER_HEADER
 
 #include <string>
-#include <variant>
-#include <vector>
 
-#include "step_api.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_types.hpp"
 
-namespace step::detail {
+namespace step {
 
 /**
- * The Data class is a helper that represents either GID or Base64 tile data.
+ * The ImageLayer class represents the API for layers that represent "image
+ * layers", that is layers that are represented by an image.
  *
  * @since 0.1.0
  */
-class Data final {
+class ImageLayer final {
  public:
-  using GIDData = std::vector<global_id>;
-  using Base64Data = std::string;
-
-  STEP_API explicit Data(const json& json);
+  STEP_API friend void from_json(const json&, ImageLayer&);
 
   /**
-   * Returns the GID data associated with the Data instance. This method
-   * throws an exception if the internal data isn't actually GID data.
+   * Returns the image used by the image layer.
    *
-   * @return the GID data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
+   * @return the image associated with the image layer.
    * @since 0.1.0
    */
-  STEP_QUERY const GIDData& as_gid() const;
+  STEP_QUERY std::string image() const;
 
   /**
-   * Returns the Base64 data associated with the Data instance. This method
-   * throws an exception if the internal data isn't actually Base64 data.
+   * Returns the transparent color used by the image layer. This property is
+   * optional.
    *
-   * @return the Base64 data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
+   * @return the transparent color used by the image layer; nothing if there is
+   * none.
    * @since 0.1.0
    */
-  STEP_QUERY const Base64Data& as_base64() const;
+  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
 
  private:
-  std::variant<GIDData, Base64Data> m_data;
+  std::string m_image;
+  std::optional<Color> m_transparentColor;
 };
 
-}  // namespace step::detail
+STEP_API void from_json(const json& json, ImageLayer& layer);
 
-#endif  // STEP_DATA_HEADER
+}  // namespace step
+
+#endif  // STEP_IMAGE_LAYER_HEADER

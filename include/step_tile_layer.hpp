@@ -27,10 +27,10 @@
 
 #include <memory>
 
-#include "step_api.h"
-#include "step_chunk.h"
-#include "step_data.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_chunk.hpp"
+#include "step_data.hpp"
+#include "step_types.hpp"
 
 namespace step {
 

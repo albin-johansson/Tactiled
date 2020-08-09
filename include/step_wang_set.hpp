@@ -28,11 +28,11 @@
 #include <string>
 #include <vector>
 
-#include "step_api.h"
-#include "step_properties.h"
-#include "step_utils.h"
-#include "step_wang_color.h"
-#include "step_wang_tile.h"
+#include "step_api.hpp"
+#include "step_properties.hpp"
+#include "step_utils.hpp"
+#include "step_wang_color.hpp"
+#include "step_wang_tile.hpp"
 
 namespace step {
 

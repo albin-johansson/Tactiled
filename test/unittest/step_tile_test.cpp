@@ -1,9 +1,9 @@
-#include "step_tile.h"
+#include "step_tile.hpp"
 
 #include <doctest.h>
 
-#include "step_layer.h"
-#include "step_utils.h"
+#include "step_layer.hpp"
+#include "step_utils.hpp"
 
 using namespace step;
 

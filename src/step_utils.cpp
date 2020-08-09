@@ -1,8 +1,8 @@
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 #include <fstream>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 
 namespace step::detail {
 

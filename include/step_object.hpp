@@ -30,11 +30,11 @@
 #include <variant>
 #include <vector>
 
-#include "step_api.h"
-#include "step_point.h"
-#include "step_properties.h"
-#include "step_text.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_point.hpp"
+#include "step_properties.hpp"
+#include "step_text.hpp"
+#include "step_types.hpp"
 
 namespace step {
 

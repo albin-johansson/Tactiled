@@ -22,44 +22,46 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_FRAME_HEADER
-#define STEP_FRAME_HEADER
+#ifndef STEP_ANIMATION_HEADER
+#define STEP_ANIMATION_HEADER
 
-#include "step_api.h"
-#include "step_types.h"
+#include <vector>
+
+#include "step_api.hpp"
+#include "step_frame.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
 /**
- * The Frame class represents a frame in an animation.
+ * The Animation class represents a collection of frames, used to animate tiles.
  *
  * @since 0.1.0
  */
-class Frame final {
+class Animation final {
  public:
-  STEP_API explicit Frame(const json& json);
+  STEP_API explicit Animation(const json& json);
 
   /**
-   * Returns the local tile ID that is associated with the frame.
+   * Returns the frames associated with the animation.
    *
-   * @return the local tile ID that is associated with the frame.
+   * @return the frames associated with the animation.
    * @since 0.1.0
    */
-  STEP_QUERY local_id tile_id() const noexcept;
+  STEP_QUERY const std::vector<Frame>& frames() const;
 
   /**
-   * Returns the duration of this frame, in milliseconds.
+   * Returns the amount of frames that constitute the animation.
    *
-   * @return the duration of this frame, in milliseconds.
+   * @return the amount of frames that constitute the animation.
    * @since 0.1.0
    */
-  STEP_QUERY int duration() const noexcept;
+  STEP_QUERY int length() const noexcept;
 
  private:
-  local_id m_tileID{0};
-  int m_duration{0};
+  std::vector<Frame> m_frames;
 };
 
 }  // namespace step
 
-#endif  // STEP_FRAME_HEADER
+#endif  // STEP_ANIMATION_HEADER

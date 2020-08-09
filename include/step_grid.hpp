@@ -25,8 +25,8 @@
 #ifndef STEP_GRID_HEADER
 #define STEP_GRID_HEADER
 
-#include "step_api.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_types.hpp"
 
 namespace step {
 

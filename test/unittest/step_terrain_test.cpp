@@ -1,8 +1,8 @@
-#include "step_terrain.h"
+#include "step_terrain.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 using namespace step;
 

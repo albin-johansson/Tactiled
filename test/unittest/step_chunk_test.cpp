@@ -1,8 +1,8 @@
-#include "step_chunk.h"
+#include "step_chunk.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 using namespace step;
 

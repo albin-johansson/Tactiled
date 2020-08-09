@@ -1,6 +1,6 @@
-#include "step_group.h"
+#include "step_group.hpp"
 
-#include "step_layer.h"
+#include "step_layer.hpp"
 
 namespace step {
 

@@ -1,8 +1,8 @@
-#include "step_tileset.h"
+#include "step_tileset.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 #include "step_test_utils.h"
 
 using namespace step;

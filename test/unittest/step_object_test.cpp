@@ -1,4 +1,4 @@
-#include "step_object.h"
+#include "step_object.hpp"
 
 #include <doctest.h>
 

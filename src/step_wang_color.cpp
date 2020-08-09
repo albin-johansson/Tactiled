@@ -1,4 +1,4 @@
-#include "step_wang_color.h"
+#include "step_wang_color.hpp"
 
 namespace step {
 

@@ -2,86 +2,86 @@ cmake_minimum_required(VERSION 3.12)
 project(StepSource)
 
 set(SOURCE_FILES
-        ../include/step_api.h
-        ../include/step_types.h
-        ../include/step_exception.h
+        ../include/step_api.hpp
+        ../include/step_types.hpp
+        ../include/step_exception.hpp
 
-        ../include/step.h
+        ../include/step.hpp
         step.cpp
 
-        ../include/step_map.h
+        ../include/step_map.hpp
         step_map.cpp
 
-        ../include/step_point.h
+        ../include/step_point.hpp
         step_point.cpp
 
-        ../include/step_utils.h
+        ../include/step_utils.hpp
         step_utils.cpp
 
-        ../include/step_property.h
+        ../include/step_property.hpp
         step_property.cpp
 
-        ../include/step_color.h
+        ../include/step_color.hpp
         step_color.cpp
 
-        ../include/step_text.h
+        ../include/step_text.hpp
         step_text.cpp
 
-        ../include/step_tileset.h
+        ../include/step_tileset.hpp
         step_tileset.cpp
 
-        ../include/step_tile.h
+        ../include/step_tile.hpp
         step_tile.cpp
 
-        ../include/step_frame.h
+        ../include/step_frame.hpp
         step_frame.cpp
 
-        ../include/step_animation.h
+        ../include/step_animation.hpp
         step_animation.cpp
 
-        ../include/step_grid.h
+        ../include/step_grid.hpp
         step_grid.cpp
 
-        ../include/step_tile_offset.h
+        ../include/step_tile_offset.hpp
         step_tile_offset.cpp
 
-        ../include/step_terrain.h
+        ../include/step_terrain.hpp
         step_terrain.cpp
 
-        ../include/step_layer.h
+        ../include/step_layer.hpp
         step_layer.cpp
 
-        ../include/step_chunk.h
+        ../include/step_chunk.hpp
         step_chunk.cpp
 
-        ../include/step_data.h
+        ../include/step_data.hpp
         step_data.cpp
 
-        ../include/step_tile_layer.h
+        ../include/step_tile_layer.hpp
         step_tile_layer.cpp
 
-        ../include/step_image_layer.h
+        ../include/step_image_layer.hpp
         step_image_layer.cpp
 
-        ../include/step_object_group.h
+        ../include/step_object_group.hpp
         step_object_group.cpp
 
-        ../include/step_group.h
+        ../include/step_group.hpp
         step_group.cpp
 
-        ../include/step_object.h
+        ../include/step_object.hpp
         step_object.cpp
 
-        ../include/step_properties.h
+        ../include/step_properties.hpp
         step_properties.cpp
 
-        ../include/step_wang_set.h
+        ../include/step_wang_set.hpp
         step_wang_set.cpp
 
-        ../include/step_wang_color.h
+        ../include/step_wang_color.hpp
         step_wang_color.cpp
 
-        ../include/step_wang_tile.h
+        ../include/step_wang_tile.hpp
         step_wang_tile.cpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})

@@ -28,8 +28,8 @@
 #include <cstdint>
 #include <string_view>
 
-#include "step_api.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_types.hpp"
 
 namespace step {
 

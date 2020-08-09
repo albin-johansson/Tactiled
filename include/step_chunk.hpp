@@ -22,62 +22,79 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_OBJECT_GROUP_HEADER
-#define STEP_OBJECT_GROUP_HEADER
+#ifndef STEP_CHUNK_HEADER
+#define STEP_CHUNK_HEADER
 
-#include <memory>
-
-#include "step_api.h"
-#include "step_object.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_data.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
 /**
- * The ObjectGroup class represents the API for layers that represent "object
- * groups", that hold data about various objects in a tilemap.
+ * The Chunk class represents so called chunks, that store the tile layer
+ * data for infinite maps.
  *
  * @since 0.1.0
  */
-class ObjectGroup final {
+class Chunk final {
  public:
-  /**
-   * The DrawOrder enum class provides hints for how rendering should be
-   * performed of layers.
-   *
-   * @since 0.1.0
-   */
-  enum class DrawOrder { TopDown, Index };
-
-  STEP_API explicit ObjectGroup(const json& json);
+  STEP_API
+  explicit Chunk(const json& json);
 
   /**
-   * Returns the draw order used by the object group. The default value of
-   * this property is <code>TopDown</code>.
+   * Returns the x-coordinate of the chunk.
    *
-   * @return the draw order used by the object group.
+   * @return the x-coordinate of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY DrawOrder draw_order() const noexcept;
+  STEP_QUERY
+  int x() const noexcept;
 
-  // FIXME unique ptr objects
   /**
-   * Returns the objects contained in the object group.
+   * Returns the y-coordinate of the chunk.
    *
-   * @return the objects contained in the object group.
+   * @return the y-coordinate of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<std::unique_ptr<Object>>& objects() const;
+  STEP_QUERY
+  int y() const noexcept;
+
+  /**
+   * Returns the width of the chunk.
+   *
+   * @return the width of the chunk.
+   * @since 0.1.0
+   */
+  STEP_QUERY
+  int width() const noexcept;
+
+  /**
+   * Returns the height of the chunk.
+   *
+   * @return the height of the chunk.
+   * @since 0.1.0
+   */
+  STEP_QUERY
+  int height() const noexcept;
+
+  /**
+   * Returns the data associated with the chunk.
+   *
+   * @return the data associated with the chunk.
+   * @since 0.1.0
+   */
+  STEP_QUERY
+  const detail::Data& data() const noexcept;
 
  private:
-  DrawOrder m_drawOrder{DrawOrder::TopDown};
-  std::vector<std::unique_ptr<Object>> m_objects;
+  int m_x;
+  int m_y;
+  int m_width;
+  int m_height;
+  detail::Data m_data;
 };
-
-NLOHMANN_JSON_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
-                             {{ObjectGroup::DrawOrder::Index, "index"},
-                              {ObjectGroup::DrawOrder::TopDown, "topdown"}})
 
 }  // namespace step
 
-#endif  // STEP_OBJECT_GROUP_HEADER
+#endif  // STEP_CHUNK_HEADER

@@ -1,10 +1,10 @@
-#include "step.h"
+#include "step.hpp"
 
 #include <doctest.h>
 
 #include <iostream>
 
-#include "step_types.h"
+#include "step_types.hpp"
 
 using namespace step;
 

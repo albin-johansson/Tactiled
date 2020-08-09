@@ -1,7 +1,7 @@
-#include "step_animation.h"
+#include "step_animation.hpp"
 
-#include "step_frame.h"
-#include "step_utils.h"
+#include "step_frame.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 

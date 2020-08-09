@@ -1,4 +1,4 @@
-#include "step_image_layer.h"
+#include "step_image_layer.hpp"
 
 namespace step {
 

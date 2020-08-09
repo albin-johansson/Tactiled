@@ -22,50 +22,74 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_HEADER
-#define STEP_HEADER
+/**
+ * @file step_point.hpp
+ *
+ * @brief Provides the `point` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
 
-#include <string_view>
+#ifndef STEP_POINT_HEADER
+#define STEP_POINT_HEADER
 
-#include "step_api.h"
-#include "step_map.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
 /**
- * @brief Attempts to parse a Tiled JSON map file located at the specified path.
+ * @class point
  *
- * @param path the path of the Tiled map.
- *
- * @return a unique pointer to a map that represents the map file.
- *
- * @throws StepException if the map cannot be parsed.
- *
- * @since 0.2.0
- */
-STEP_QUERY
-auto parse(const fs::path& path) -> std::unique_ptr<Map>;
-
-/**
- * @brief Attempts to parse a Tiled JSON map file located at the specified path.
- *
- * @note This method will throw an exception if the map cannot be parsed for
- * some reason.
- *
- * @param root the file path of the directory that contains the map file.
- * @param file the location of the Tiled JSON map file.
- *
- * @return a unique pointer to a map that represents the map file.
- *
- * @throws StepException if the map cannot be parsed.
+ * @brief Represents a simple 2D-coordinate in the plane.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_point.hpp
  */
-[[deprecated("Use the path-based function instead!")]] STEP_QUERY auto parse(
-    std::string_view root,
-    std::string_view file) -> std::unique_ptr<Map>;
+class point final {
+ public:
+  point() noexcept = default;
+
+  /**
+   * @brief Parses a point from a JSON object.
+   *
+   * @param json the JSON object that represents the point.
+   *
+   * @since 0.2.0
+   */
+  STEP_API
+  explicit point(const json& json);
+
+  /**
+   * @brief Returns the x-coordinate associated with the point.
+   *
+   * @return the x-coordinate of the point.
+   *
+   * @since 0.1.0
+   */
+  STEP_QUERY
+  auto x() const noexcept -> double;
+
+  /**
+   * @brief Returns the y-coordinate associated with the point.
+   *
+   * @return the y-coordinate of the point.
+   *
+   * @since 0.1.0
+   */
+  STEP_QUERY
+  auto y() const noexcept -> double;
+
+ private:
+  double m_x{};
+  double m_y{};
+};
 
 }  // namespace step
 
-#endif  // STEP_HEADER
+#endif  // STEP_POINT_HEADER

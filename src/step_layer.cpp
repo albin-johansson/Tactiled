@@ -1,7 +1,7 @@
-#include "step_layer.h"
+#include "step_layer.hpp"
 
-#include "step_exception.h"
-#include "step_utils.h"
+#include "step_exception.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 

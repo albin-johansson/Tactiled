@@ -22,58 +22,30 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TERRAIN_HEADER
-#define STEP_TERRAIN_HEADER
+#ifndef STEP_EXCEPTION_HEADER
+#define STEP_EXCEPTION_HEADER
 
-#include <memory>
-#include <string>
-#include <vector>
+#include <exception>
+#include <utility>
 
-#include "step_api.h"
-#include "step_properties.h"
+#include "step_types.hpp"
 
 namespace step {
 
-/**
- * The Terrain class represents optional terrains in a tileset.
- *
- * @since 0.1.0
- */
-class Terrain final {
+class StepException final : public std::exception {
  public:
-  STEP_API explicit Terrain(const json& json);
+  StepException() noexcept = default;
 
-  /**
-   * Returns the local GID of the tile associated with the terrain.
-   *
-   * @return the local GID of the tile associated with the terrain.
-   * @since 0.1.0
-   */
-  STEP_QUERY local_id tile() const noexcept;
+  explicit StepException(std::string what) : m_what{std::move(what)} {}
 
-  /**
-   * Returns the name associated with the terrain.
-   *
-   * @return the name associated with the terrain.
-   * @since 0.1.0
-   */
-  STEP_QUERY std::string name() const;
+  ~StepException() noexcept override = default;
 
-  /**
-   * Returns the properties associated with the terrain. This property is
-   * optional.
-   *
-   * @return the properties associated with the terrain; null if there are none.
-   * @since 0.1.0
-   */
-  STEP_QUERY const Properties* properties() const noexcept;
+  czstring what() const noexcept override { return m_what.c_str(); }
 
  private:
-  local_id m_tile{0};
-  std::string m_name;
-  std::unique_ptr<Properties> m_properties;
+  std::string m_what;
 };
 
 }  // namespace step
 
-#endif  // STEP_TERRAIN_HEADER
+#endif  // STEP_EXCEPTION_HEADER

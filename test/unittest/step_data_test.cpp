@@ -1,9 +1,9 @@
-#include "step_data.h"
+#include "step_data.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
-#include "step_utils.h"
+#include "step_exception.hpp"
+#include "step_utils.hpp"
 
 using namespace step;
 using namespace detail;

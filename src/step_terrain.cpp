@@ -1,6 +1,6 @@
-#include "step_terrain.h"
+#include "step_terrain.hpp"
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 namespace step {
 

@@ -1,4 +1,4 @@
-#include "step_wang_set.h"
+#include "step_wang_set.hpp"
 
 namespace step {
 namespace {

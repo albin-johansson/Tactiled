@@ -1,4 +1,4 @@
-#include "step_grid.h"
+#include "step_grid.hpp"
 
 #include <doctest.h>
 

@@ -1,8 +1,8 @@
-#include "step_wang_tile.h"
+#include "step_wang_tile.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 using namespace step;
 

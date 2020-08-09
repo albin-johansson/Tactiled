@@ -1,8 +1,8 @@
-#include "step_properties.h"
+#include "step_properties.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 #include "step_test_utils.h"
 
 using namespace step;

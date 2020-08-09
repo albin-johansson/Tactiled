@@ -22,69 +22,62 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_GROUP_HEADER
-#define STEP_GROUP_HEADER
+#ifndef STEP_OBJECT_GROUP_HEADER
+#define STEP_OBJECT_GROUP_HEADER
 
 #include <memory>
-#include <vector>
 
-#include "step_api.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_object.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
-class Layer;
-
 /**
- * The Group class represents the API for layers that represent "groups", that
- * in turn contain zero or more layers.
+ * The ObjectGroup class represents the API for layers that represent "object
+ * groups", that hold data about various objects in a tilemap.
  *
  * @since 0.1.0
  */
-class Group final {
+class ObjectGroup final {
  public:
-  STEP_API friend void from_json(const json&, Group&);
-
   /**
-   * Iterates over all of the layers store in this group.
+   * The DrawOrder enum class provides hints for how rendering should be
+   * performed of layers.
    *
-   * @tparam Lambda the type of the lambda object.
-   * @param lambda the lambda that takes one argument, <code>const
-   * Layer&</code>.
    * @since 0.1.0
    */
-  template <typename Lambda>
-  void each(Lambda&& lambda) const
-  {
-    for (const auto& layer : m_layers) {
-      lambda(*layer);
-    }
-  }
+  enum class DrawOrder { TopDown, Index };
+
+  STEP_API explicit ObjectGroup(const json& json);
 
   /**
-   * Returns the layer at the specified index. This method will throw an
-   * exception if the index is out-of-bounds.
+   * Returns the draw order used by the object group. The default value of
+   * this property is <code>TopDown</code>.
    *
-   * @param index the index of the desired layer.
-   * @return the layer at the specified index.
+   * @return the draw order used by the object group.
    * @since 0.1.0
    */
-  STEP_QUERY const Layer& at(int index) const;
+  STEP_QUERY DrawOrder draw_order() const noexcept;
 
+  // FIXME unique ptr objects
   /**
-   * Returns the amount of layers that are in the group.
+   * Returns the objects contained in the object group.
    *
-   * @return the amount of layers that are in the group.
+   * @return the objects contained in the object group.
    * @since 0.1.0
    */
-  STEP_QUERY int layers() const noexcept;
+  STEP_QUERY const std::vector<std::unique_ptr<Object>>& objects() const;
 
  private:
-  std::vector<std::unique_ptr<Layer>> m_layers;
+  DrawOrder m_drawOrder{DrawOrder::TopDown};
+  std::vector<std::unique_ptr<Object>> m_objects;
 };
 
-STEP_API void from_json(const json& json, Group& group);
+NLOHMANN_JSON_SERIALIZE_ENUM(ObjectGroup::DrawOrder,
+                             {{ObjectGroup::DrawOrder::Index, "index"},
+                              {ObjectGroup::DrawOrder::TopDown, "topdown"}})
 
 }  // namespace step
 
-#endif  // STEP_GROUP_HEADER
+#endif  // STEP_OBJECT_GROUP_HEADER

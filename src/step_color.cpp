@@ -1,10 +1,10 @@
-#include "step_color.h"
+#include "step_color.hpp"
 
 #include <charconv>
 #include <string>
 
-#include "step_exception.h"
-#include "step_utils.h"
+#include "step_exception.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 namespace {

@@ -22,30 +22,50 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_EXCEPTION_HEADER
-#define STEP_EXCEPTION_HEADER
+#ifndef STEP_HEADER
+#define STEP_HEADER
 
-#include <exception>
-#include <utility>
+#include <string_view>
 
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_map.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
-class StepException final : public std::exception {
- public:
-  StepException() noexcept = default;
+/**
+ * @brief Attempts to parse a Tiled JSON map file located at the specified path.
+ *
+ * @param path the path of the Tiled map.
+ *
+ * @return a unique pointer to a map that represents the map file.
+ *
+ * @throws StepException if the map cannot be parsed.
+ *
+ * @since 0.2.0
+ */
+STEP_QUERY
+auto parse(const fs::path& path) -> std::unique_ptr<Map>;
 
-  explicit StepException(std::string what) : m_what{std::move(what)} {}
-
-  ~StepException() noexcept override = default;
-
-  czstring what() const noexcept override { return m_what.c_str(); }
-
- private:
-  std::string m_what;
-};
+/**
+ * @brief Attempts to parse a Tiled JSON map file located at the specified path.
+ *
+ * @note This method will throw an exception if the map cannot be parsed for
+ * some reason.
+ *
+ * @param root the file path of the directory that contains the map file.
+ * @param file the location of the Tiled JSON map file.
+ *
+ * @return a unique pointer to a map that represents the map file.
+ *
+ * @throws StepException if the map cannot be parsed.
+ *
+ * @since 0.1.0
+ */
+[[deprecated("Use the path-based function instead!")]] STEP_QUERY auto parse(
+    std::string_view root,
+    std::string_view file) -> std::unique_ptr<Map>;
 
 }  // namespace step
 
-#endif  // STEP_EXCEPTION_HEADER
+#endif  // STEP_HEADER

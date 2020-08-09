@@ -33,10 +33,10 @@
 #include <type_traits>
 #include <vector>
 
-#include "step_api.h"
-#include "step_color.h"
-#include "step_exception.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_exception.hpp"
+#include "step_types.hpp"
 
 namespace step::detail {
 

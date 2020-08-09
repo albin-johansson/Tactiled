@@ -30,7 +30,7 @@
 #include <named_type.hpp>
 #include <optional>
 
-#include "step_api.h"
+#include "step_api.hpp"
 
 namespace step {
 

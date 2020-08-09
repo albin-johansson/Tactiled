@@ -1,4 +1,4 @@
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 #include <doctest.h>
 

@@ -1,6 +1,6 @@
-#include "step_tile_layer.h"
+#include "step_tile_layer.hpp"
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 namespace step {
 

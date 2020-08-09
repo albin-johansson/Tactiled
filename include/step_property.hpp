@@ -28,10 +28,10 @@
 #include <type_traits>
 #include <variant>
 
-#include "step_api.h"
-#include "step_color.h"
-#include "step_types.h"
-#include "step_utils.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_types.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 

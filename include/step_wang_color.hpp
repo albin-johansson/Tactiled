@@ -22,46 +22,65 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_ANIMATION_HEADER
-#define STEP_ANIMATION_HEADER
+#ifndef STEP_WANG_COLOR_HEADER
+#define STEP_WANG_COLOR_HEADER
 
-#include <vector>
+#include <string>
 
-#include "step_api.h"
-#include "step_frame.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_types.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 
-/**
- * The Animation class represents a collection of frames, used to animate tiles.
- *
- * @since 0.1.0
- */
-class Animation final {
+class WangColor final {
  public:
-  STEP_API explicit Animation(const json& json);
-
   /**
-   * Returns the frames associated with the animation.
-   *
-   * @return the frames associated with the animation.
+   * @param json the JSON object that holds the data for a Wang color.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Frame>& frames() const;
+  STEP_API explicit WangColor(const json& json);
 
   /**
-   * Returns the amount of frames that constitute the animation.
+   * Returns the name associated with the Wang color.
    *
-   * @return the amount of frames that constitute the animation.
+   * @return the name associated with the Wang color.
    * @since 0.1.0
    */
-  STEP_QUERY int length() const noexcept;
+  STEP_QUERY const std::string& name() const;
+
+  /**
+   * Returns the color associated with the Wang color.
+   *
+   * @return the color associated with the Wang color.
+   * @since 0.1.0
+   */
+  STEP_QUERY const Color& color() const noexcept;
+
+  /**
+   * Returns the local ID of the tile that represents the Wang color.
+   *
+   * @return the local ID of the tile that represents the Wang color.
+   * @since 0.1.0
+   */
+  STEP_QUERY local_id tile() const noexcept;
+
+  /**
+   * Returns the probability associated with the Wang color.
+   *
+   * @return the probability associated with the Wang color.
+   * @since 0.1.0
+   */
+  STEP_QUERY double probability() const noexcept;
 
  private:
-  std::vector<Frame> m_frames;
+  std::string m_name;
+  Color m_color;
+  local_id m_tile{0};
+  double m_probability{};
 };
 
 }  // namespace step
 
-#endif  // STEP_ANIMATION_HEADER
+#endif  // STEP_WANG_COLOR_HEADER

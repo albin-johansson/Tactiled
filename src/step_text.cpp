@@ -1,6 +1,6 @@
-#include "step_text.h"
+#include "step_text.hpp"
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 
 namespace step {
 

@@ -1,4 +1,4 @@
-#include "step_object_group.h"
+#include "step_object_group.hpp"
 
 namespace step {
 

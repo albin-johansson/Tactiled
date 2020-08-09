@@ -1,4 +1,4 @@
-#include "step_property.h"
+#include "step_property.hpp"
 
 #include <doctest.h>
 

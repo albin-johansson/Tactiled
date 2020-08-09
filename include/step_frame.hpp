@@ -22,74 +22,44 @@
  * SOFTWARE.
  */
 
-/**
- * @file step_point.h
- *
- * @brief Provides the `point` class.
- *
- * @author Albin Johansson
- *
- * @date 2020
- *
- * @copyright MIT License
- */
+#ifndef STEP_FRAME_HEADER
+#define STEP_FRAME_HEADER
 
-#ifndef STEP_POINT_HEADER
-#define STEP_POINT_HEADER
-
-#include "step_api.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
 /**
- * @class point
- *
- * @brief Represents a simple 2D-coordinate in the plane.
+ * The Frame class represents a frame in an animation.
  *
  * @since 0.1.0
- *
- * @headerfile step_point.h
  */
-class point final {
+class Frame final {
  public:
-  point() noexcept = default;
+  STEP_API explicit Frame(const json& json);
 
   /**
-   * @brief Parses a point from a JSON object.
+   * Returns the local tile ID that is associated with the frame.
    *
-   * @param json the JSON object that represents the point.
-   *
-   * @since 0.2.0
-   */
-  STEP_API
-  explicit point(const json& json);
-
-  /**
-   * @brief Returns the x-coordinate associated with the point.
-   *
-   * @return the x-coordinate of the point.
-   *
+   * @return the local tile ID that is associated with the frame.
    * @since 0.1.0
    */
-  STEP_QUERY
-  auto x() const noexcept -> double;
+  STEP_QUERY local_id tile_id() const noexcept;
 
   /**
-   * @brief Returns the y-coordinate associated with the point.
+   * Returns the duration of this frame, in milliseconds.
    *
-   * @return the y-coordinate of the point.
-   *
+   * @return the duration of this frame, in milliseconds.
    * @since 0.1.0
    */
-  STEP_QUERY
-  auto y() const noexcept -> double;
+  STEP_QUERY int duration() const noexcept;
 
  private:
-  double m_x{};
-  double m_y{};
+  local_id m_tileID{0};
+  int m_duration{0};
 };
 
 }  // namespace step
 
-#endif  // STEP_POINT_HEADER
+#endif  // STEP_FRAME_HEADER

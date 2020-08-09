@@ -1,8 +1,8 @@
-#include "step_color.h"
+#include "step_color.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 
 using namespace step;
 

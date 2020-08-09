@@ -29,15 +29,15 @@
 #include <string_view>
 #include <vector>
 
-#include "step_api.h"
-#include "step_color.h"
-#include "step_grid.h"
-#include "step_properties.h"
-#include "step_terrain.h"
-#include "step_tile.h"
-#include "step_tile_offset.h"
-#include "step_types.h"
-#include "step_wang_set.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_grid.hpp"
+#include "step_properties.hpp"
+#include "step_terrain.hpp"
+#include "step_tile.hpp"
+#include "step_tile_offset.hpp"
+#include "step_types.hpp"
+#include "step_wang_set.hpp"
 
 namespace step {
 

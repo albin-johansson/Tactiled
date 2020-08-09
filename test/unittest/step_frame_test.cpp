@@ -1,8 +1,8 @@
-#include "step_frame.h"
+#include "step_frame.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 using namespace step;
 

@@ -23,7 +23,7 @@
  */
 
 /**
- * @file step_text.h
+ * @file step_text.hpp
  *
  * @brief Provides the `text` class.
  *
@@ -39,9 +39,9 @@
 
 #include <string>
 
-#include "step_api.h"
-#include "step_color.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_color.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
@@ -52,7 +52,7 @@ namespace step {
  *
  * @since 0.1.0
  *
- * @headerfile step_text.h
+ * @headerfile step_text.hpp
  */
 class text final {
  public:
@@ -64,7 +64,7 @@ class text final {
    *
    * @since 0.1.0
    *
-   * @headerfile step_text.h
+   * @headerfile step_text.hpp
    */
   enum class halign { center, right, left, justify };
 
@@ -76,7 +76,7 @@ class text final {
    *
    * @since 0.1.0
    *
-   * @headerfile step_text.h
+   * @headerfile step_text.hpp
    */
   enum class valign { center, bottom, top };
 

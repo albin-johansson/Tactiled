@@ -22,52 +22,45 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_IMAGE_LAYER_HEADER
-#define STEP_IMAGE_LAYER_HEADER
+#ifndef STEP_TILE_OFFSET_HEADER
+#define STEP_TILE_OFFSET_HEADER
 
-#include <string>
-
-#include "step_api.h"
-#include "step_color.h"
-#include "step_types.h"
+#include "step_api.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
 /**
- * The ImageLayer class represents the API for layers that represent "image
- * layers", that is layers that are represented by an image.
+ * The TileOffset class provides offsets in pixels that are to be applied when
+ * rendering a tile from a tileset.
  *
  * @since 0.1.0
  */
-class ImageLayer final {
+class TileOffset final {
  public:
-  STEP_API friend void from_json(const json&, ImageLayer&);
+  STEP_API explicit TileOffset(const json& json);
 
   /**
-   * Returns the image used by the image layer.
+   * Returns the offset in the x-axis associated with the tile offset instance.
    *
-   * @return the image associated with the image layer.
+   * @return the offset in the x-axis.
    * @since 0.1.0
    */
-  STEP_QUERY std::string image() const;
+  STEP_QUERY int x() const noexcept;
 
   /**
-   * Returns the transparent color used by the image layer. This property is
-   * optional.
+   * Returns the offset in the y-axis associated with the tile offset instance.
    *
-   * @return the transparent color used by the image layer; nothing if there is
-   * none.
+   * @return the offset in the y-axis.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Color> transparent_color() const noexcept;
+  STEP_QUERY int y() const noexcept;
 
  private:
-  std::string m_image;
-  std::optional<Color> m_transparentColor;
+  int m_x;
+  int m_y;
 };
-
-STEP_API void from_json(const json& json, ImageLayer& layer);
 
 }  // namespace step
 
-#endif  // STEP_IMAGE_LAYER_HEADER
+#endif  // STEP_TILE_OFFSET_HEADER

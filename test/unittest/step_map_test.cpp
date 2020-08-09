@@ -1,8 +1,8 @@
-#include "step_map.h"
+#include "step_map.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 #include "step_test_utils.h"
 
 using namespace step;
