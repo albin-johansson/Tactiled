@@ -17,8 +17,8 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - gcc-8
-      - g++-8
+      - gcc-9
+      - g++-9
       - cmake
       - lcov
 
@@ -49,8 +49,8 @@ install:
   - gcov --version
 
 before_script:
-  - export CC=/usr/bin/gcc-8
-  - export CXX=/usr/bin/g++-8
+  - export CC=/usr/bin/gcc-9
+  - export CXX=/usr/bin/g++-9
 
   - gcc -v
   - g++ -v
@@ -68,7 +68,7 @@ script:
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}
-  - lcov --directory . --capture --output-file coverage.info --gcov-tool gcov-8
+  - lcov --directory . --capture --output-file coverage.info --gcov-tool gcov-9
   - lcov --remove coverage.info '*/test/*' '*/lib/*' '/usr/*' --output-file coverage.info
   - lcov --list coverage.info
   - bash <(curl -s https://codecov.io/bash) -X gcov || echo "Codecov did not collect coverage reports"
