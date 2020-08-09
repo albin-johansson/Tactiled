@@ -47,14 +47,14 @@ TEST_SUITE("Properties")
       CHECK(props.is("c", 31));
       CHECK(props.is("d", 42.0f));
       CHECK(props.is("e", true));
-      CHECK(props.is("f", Color{"#ABBAFEFF"}));
+      CHECK(props.is("f", "#ABBAFEFF"_color));
       CHECK(props.is("g", "dawkins"));
       CHECK(props.is("h", "path/to/file.png"_file));
 
       CHECK(!props.is("a", false));
       CHECK(!props.is("b", "hello"));
       CHECK(!props.is("c", 2.91f));
-      CHECK(!props.is("d", Color{"#AABBCCDD"}));
+      CHECK(!props.is("d", "#AABBCCDD"_color));
       CHECK(!props.is("f", 1234));
       CHECK(!props.is("g", true));
     }
