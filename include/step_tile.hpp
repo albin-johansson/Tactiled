@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @file step_tile.hpp
+ *
+ * @brief Provides the `tile` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
+
 #ifndef STEP_TILE_HEADER
 #define STEP_TILE_HEADER
 
@@ -30,141 +42,165 @@
 
 #include "step_animation.hpp"
 #include "step_api.hpp"
-#include "step_properties.hpp"
 #include "step_types.hpp"
+#include "step_fwd.hpp"
+#include "step_layer.hpp"
 
 namespace step {
 
-class Layer;
-
 /**
- * The Tile class provides information about a tile in a tileset.
+ * @class tile
+ *
+ * @brief Provides information about a tile in a tileset.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_tile.hpp
  */
-class Tile final {
+class tile final {
  public:
   /**
-   * The TerrainPos enum class provides values that represent the different
-   * positions that could be inhabited by terrain IDs, in relation to the tile.
+   * @enum terrain_pos
+   *
+   * @brief Provides values that represent the different positions that could be
+   * inhabited by terrain IDs, in relation to the tile.
    *
    * @since 0.1.0
+   *
+   * @headerfile step_tile.hpp
    */
-  enum class TerrainPos {
-    TopLeft = 0,
-    TopRight = 1,
-    BottomLeft = 2,
-    BottomRight = 3
+  enum class terrain_pos {
+    top_left = 0,
+    top_right = 1,
+    bottom_left = 2,
+    bottom_right = 3
   };
 
   STEP_API
-  explicit Tile(const json& json);
+  explicit tile(const json& json);
 
   /**
-   * Returns the local ID associated with the tile.
+   * @brief Returns the local ID associated with the tile.
    *
    * @return the local ID associated with the tile.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto id() const noexcept -> local_id;
 
   /**
-   * Returns the animation associated with the tile.
+   * @brief Returns the animation associated with the tile.
    *
-   * @return the animation associated with the tile; nothing if there is no
-   * animation associated with the tile.
+   * @return the animation associated with the tile; `std::nullopt` if there is
+   * no animation associated with the tile.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto get_animation() const noexcept -> std::optional<animation>;
 
   /**
-   * Returns the properties associated with the tile.
+   * @brief Returns the properties associated with the tile.
    *
-   * @return the properties associated with the tile; null if there are none.
+   * @note Don't take ownership of the returned pointer.
+   *
+   * @return the properties associated with the tile; `nullptr` if there are
+   * none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto get_properties() const -> const Properties*;
 
   /**
-   * Returns the object group layer associated with the tile. This property
-   * is optional. You'll need to include the <code>step_layer.hpp</code> header
-   * if you want to use the returned pointer, since it is forward-declared in
-   * the tile header.
+   * @brief Returns the object group layer associated with the tile.
+   *
+   * @note Don't take ownership of the returned pointer.
    *
    * @return a shared pointer to the object group associated with the tile;
-   * null if there is none.
+   * `nullptr` if there is none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  auto object_group() const noexcept -> std::shared_ptr<Layer>;
+  auto object_group() const noexcept -> const Layer*;
 
   /**
-   * Returns the type of the tile.
+   * @brief Returns the type of the tile.
    *
-   * @return the type of the tile; nothing if there is none.
+   * @return the type of the tile; `std::nullopt` if there is none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto type() const -> std::optional<std::string>;
 
   /**
-   * Returns the image associated with the tile.
+   * @brief Returns the image associated with the tile.
    *
-   * @return the image associated with the tile; nothing if there is none.
+   * @return the image associated with the tile; `std::nullopt` if there is
+   * none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto image() const -> std::optional<std::string>;
 
   /**
-   * Returns the width of the image associated with the tile.
+   * @brief Returns the width of the image associated with the tile.
    *
-   * @return the width of the image associated with the tile; nothing if
+   * @return the width of the image associated with the tile; `std::nullopt` if
    * there is no image associated with the tile.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto image_width() const noexcept -> std::optional<int>;
 
   /**
-   * Returns the height of the image associated with the tile.
+   * @brief Returns the height of the image associated with the tile.
    *
-   * @return the height of the image associated with the tile; nothing if
+   * @return the height of the image associated with the tile; `std::nullopt` if
    * there is no image associated with the tile.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto image_height() const noexcept -> std::optional<int>;
 
   /**
-   * Returns the probability associated with the tile.
+   * @brief Returns the probability associated with the tile.
    *
-   * @return the probability associated with the tile; nothing if there is none.
+   * @return the probability associated with the tile; `std::nullopt` if there
+   * is none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
   auto probability() const noexcept -> std::optional<double>;
 
   /**
-   * Returns the ID of the terrain at the specified position, in relation to
-   * the tile.
+   * @brief Returns the ID of the terrain at the specified position, in relation
+   * to the tile.
    *
    * @param position the position that will be checked.
-   * @return the ID of the terrain at the specified position; nothing
+   *
+   * @return the ID of the terrain at the specified position; `std::nullopt`
    * if there is none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  auto terrain_at(TerrainPos position) const noexcept -> std::optional<int>;
+  auto terrain_at(terrain_pos position) const noexcept -> std::optional<int>;
 
  private:
   local_id m_id{0};
-  std::optional<animation> m_animation;
+
   std::unique_ptr<Properties> m_properties;
-  std::shared_ptr<Layer> m_objectGroup;
+  std::unique_ptr<Layer> m_objectGroup;
+
+  std::optional<animation> m_animation;
   std::optional<std::array<int, 4>> m_terrain;
   std::optional<std::string> m_type;
   std::optional<std::string> m_image;

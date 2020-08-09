@@ -12,7 +12,7 @@ TEST_SUITE("Tile")
   TEST_CASE("Parse tile with all keys")
   {
     const auto json = detail::parse_json("resource/tile/tile_complete.json");
-    const Tile tile{json};
+    const tile tile{json};
 
     CHECK(tile.id() == 74_lid);
 
@@ -65,10 +65,10 @@ TEST_SUITE("Tile")
 
     SUBCASE("Testing parsing of terrain")
     {
-      CHECK(tile.terrain_at(Tile::TerrainPos::TopLeft) == 8);
-      CHECK(tile.terrain_at(Tile::TerrainPos::TopRight) == 2);
-      CHECK(tile.terrain_at(Tile::TerrainPos::BottomLeft) == 5);
-      CHECK(tile.terrain_at(Tile::TerrainPos::BottomRight) == 7);
+      CHECK(tile.terrain_at(tile::terrain_pos::top_left) == 8);
+      CHECK(tile.terrain_at(tile::terrain_pos::top_right) == 2);
+      CHECK(tile.terrain_at(tile::terrain_pos::bottom_left) == 5);
+      CHECK(tile.terrain_at(tile::terrain_pos::bottom_right) == 7);
     }
 
     SUBCASE("Testing object group")

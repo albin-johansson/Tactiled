@@ -73,7 +73,7 @@ class Properties final {
    * @since 0.1.0
    */
   STEP_QUERY
-  bool has(const std::string& name) const;
+  auto has(const std::string& name) const -> bool;
 
   /**
    * Returns the property associated with the specified name. This method
@@ -85,7 +85,7 @@ class Properties final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Property& get(const std::string& name) const;
+  auto get(const std::string& name) const -> const Property&;
 
   /**
    * Indicates whether or not the specified property is equal to the supplied
@@ -109,7 +109,7 @@ class Properties final {
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
-  [[nodiscard]] bool is(const std::string& name, const T& value) const
+  [[nodiscard]] auto is(const std::string& name, const T& value) const -> bool
   {
     if (!has(name)) {
       return false;
@@ -125,7 +125,7 @@ class Properties final {
    * @since 0.1.0
    */
   STEP_QUERY
-  int amount() const noexcept;
+  auto amount() const noexcept -> int;
 
   /**
    * Indicates whether or not there are any Property instances handled by
@@ -136,7 +136,7 @@ class Properties final {
    * @since 0.1.0
    */
   STEP_QUERY
-  bool empty() const noexcept;
+  auto empty() const noexcept -> bool;
 
  private:
   std::map<std::string, Property> m_properties;

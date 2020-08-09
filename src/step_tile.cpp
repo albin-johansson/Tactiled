@@ -1,11 +1,12 @@
 #include "step_tile.hpp"
 
 #include "step_layer.hpp"
+#include "step_properties.hpp"
 #include "step_utils.hpp"
 
 namespace step {
 
-Tile::Tile(const json& json) : m_id{json.at("id").get<int>()}
+tile::tile(const json& json) : m_id{json.at("id").get<int>()}
 {
   m_properties = detail::safe_bind_unique<Properties>(json, "properties");
 
@@ -18,7 +19,7 @@ Tile::Tile(const json& json) : m_id{json.at("id").get<int>()}
 
   if (json.contains("objectgroup")) {
     const auto j = json.at("objectgroup");
-    m_objectGroup = std::make_shared<Layer>(j);
+    m_objectGroup = std::make_unique<Layer>(j);
   }
 
   detail::emplace_opt(json, "animation", m_animation);
@@ -30,52 +31,52 @@ Tile::Tile(const json& json) : m_id{json.at("id").get<int>()}
   detail::bind_opt(json, "probability", m_probability);
 }
 
-local_id Tile::id() const noexcept
+auto tile::id() const noexcept -> local_id
 {
   return m_id;
 }
 
-std::optional<animation> Tile::get_animation() const noexcept
+auto tile::get_animation() const noexcept -> std::optional<animation>
 {
   return m_animation;
 }
 
-const Properties* Tile::get_properties() const
+auto tile::get_properties() const -> const Properties*
 {
   return m_properties.get();
 }
 
-std::shared_ptr<Layer> Tile::object_group() const noexcept
+auto tile::object_group() const noexcept -> const Layer*
 {
-  return m_objectGroup;
+  return m_objectGroup.get();
 }
 
-std::optional<std::string> Tile::type() const
+auto tile::type() const -> std::optional<std::string>
 {
   return m_type;
 }
 
-std::optional<std::string> Tile::image() const
+auto tile::image() const -> std::optional<std::string>
 {
   return m_image;
 }
 
-std::optional<int> Tile::image_width() const noexcept
+auto tile::image_width() const noexcept -> std::optional<int>
 {
   return m_imageWidth;
 }
 
-std::optional<int> Tile::image_height() const noexcept
+auto tile::image_height() const noexcept -> std::optional<int>
 {
   return m_imageHeight;
 }
 
-std::optional<double> Tile::probability() const noexcept
+auto tile::probability() const noexcept -> std::optional<double>
 {
   return m_probability;
 }
 
-std::optional<int> Tile::terrain_at(TerrainPos position) const noexcept
+auto tile::terrain_at(terrain_pos position) const noexcept -> std::optional<int>
 {
   if (m_terrain) {
     return m_terrain->at(static_cast<std::size_t>(position));

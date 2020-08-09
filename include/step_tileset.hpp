@@ -152,7 +152,7 @@ class Tileset final {
    * @return the tiles associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Tile>& tiles() const noexcept;
+  STEP_QUERY const std::vector<tile>& tiles() const noexcept;
 
   /**
    * Returns all of the Wang sets that are associated with the tileset.
@@ -266,7 +266,7 @@ class Tileset final {
   int m_imageHeight = 0;
   int m_margin = 0;
   int m_spacing = 0;
-  std::vector<Tile> m_tiles;
+  std::vector<tile> m_tiles;
   std::vector<Terrain> m_terrains;
   std::vector<WangSet> m_wangSets;
   std::unique_ptr<Properties> m_properties;

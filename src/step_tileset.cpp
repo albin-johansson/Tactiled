@@ -131,7 +131,7 @@ int Tileset::spacing() const noexcept
   return m_spacing;
 }
 
-const std::vector<Tile>& Tileset::tiles() const noexcept
+const std::vector<tile>& Tileset::tiles() const noexcept
 {
   return m_tiles;
 }
