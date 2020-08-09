@@ -45,7 +45,7 @@ using czstring = const char*;
  * @since 0.1.0
  */
 using file = fluent::NamedType<std::string,
-                               struct FileTag,
+                               struct file_t,
                                fluent::Comparable,
                                fluent::Printable>;
 
