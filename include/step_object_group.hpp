@@ -70,11 +70,11 @@ class ObjectGroup final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const std::vector<std::unique_ptr<Object>>& objects() const;
+  const std::vector<std::unique_ptr<object>>& objects() const;
 
  private:
   DrawOrder m_drawOrder{DrawOrder::TopDown};
-  std::vector<std::unique_ptr<Object>> m_objects;
+  std::vector<std::unique_ptr<object>> m_objects;
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(ObjectGroup::DrawOrder,

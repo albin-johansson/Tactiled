@@ -6,15 +6,13 @@
 
 #include "step_test_utils.h"
 
-using namespace step;
-
-inline static const std::string prefix = "resource/object/";
-
-TEST_SUITE("Object")
+TEST_SUITE("object")
 {
+  using step::operator""_gid;
   TEST_CASE("Parsing normal object")
   {
-    const Object object{detail::parse_json("resource/object/object.json")};
+    const step::object object{
+        step::detail::parse_json("resource/object/object.json")};
 
     CHECK(object.id() == 1);
     CHECK(object.x() == 56);
@@ -26,15 +24,15 @@ TEST_SUITE("Object")
     CHECK(object.type() == "npc");
     CHECK(object.visible());
 
-    CHECK(object.tile_gid() == 5_gid);
+    CHECK(object.get<step::global_id>() == 5_gid);
 
-    CHECK(object.is_tile());
     CHECK(!object.is_ellipse());
     CHECK(!object.is_point());
-    CHECK(!object.is_polygon());
-    CHECK(!object.is_polyline());
-    CHECK(!object.is_template());
-    CHECK(!object.is_text());
+    CHECK(object.has<step::global_id>());
+    CHECK(!object.has<step::polygon>());
+    CHECK(!object.has<step::polyline>());
+    CHECK(!object.has<step::template_object>());
+    CHECK(!object.has<step::text>());
 
     SUBCASE("Check properties")
     {
@@ -50,8 +48,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing ellipse object")
   {
-    const Object ellipseObject{
-        detail::parse_json("resource/object/ellipse.json")};
+    const step::object ellipseObject{
+        step::detail::parse_json("resource/object/ellipse.json")};
 
     REQUIRE(ellipseObject.is_ellipse());
 
@@ -67,17 +65,17 @@ TEST_SUITE("Object")
 
     CHECK(ellipseObject.is_ellipse());
     CHECK(!ellipseObject.is_point());
-    CHECK(!ellipseObject.is_polygon());
-    CHECK(!ellipseObject.is_polyline());
-    CHECK(!ellipseObject.is_template());
-    CHECK(!ellipseObject.is_text());
-    CHECK(!ellipseObject.is_tile());
+    CHECK(!ellipseObject.has<step::polygon>());
+    CHECK(!ellipseObject.has<step::polyline>());
+    CHECK(!ellipseObject.has<step::template_object>());
+    CHECK(!ellipseObject.has<step::text>());
+    CHECK(!ellipseObject.has<step::global_id>());
   }
 
   TEST_CASE("Parsing rectangle object")
   {
-    const Object rectObject{
-        detail::parse_json("resource/object/rectangle.json")};
+    const step::object rectObject{
+        step::detail::parse_json("resource/object/rectangle.json")};
 
     CHECK(rectObject.id() == 14);
     CHECK(rectObject.x() == 576);
@@ -90,17 +88,18 @@ TEST_SUITE("Object")
     CHECK(rectObject.visible());
 
     CHECK(!rectObject.is_point());
-    CHECK(!rectObject.is_polygon());
-    CHECK(!rectObject.is_polyline());
     CHECK(!rectObject.is_ellipse());
-    CHECK(!rectObject.is_template());
-    CHECK(!rectObject.is_text());
-    CHECK(!rectObject.is_tile());
+    CHECK(!rectObject.has<step::polygon>());
+    CHECK(!rectObject.has<step::polyline>());
+    CHECK(!rectObject.has<step::template_object>());
+    CHECK(!rectObject.has<step::text>());
+    CHECK(!rectObject.has<step::global_id>());
   }
 
   TEST_CASE("Parsing point object")
   {
-    const Object pointObject{detail::parse_json("resource/object/point.json")};
+    const step::object pointObject{
+        step::detail::parse_json("resource/object/point.json")};
 
     CHECK(pointObject.id() == 20);
     CHECK(pointObject.x() == 220);
@@ -113,17 +112,18 @@ TEST_SUITE("Object")
     CHECK(pointObject.visible());
 
     CHECK(pointObject.is_point());
-    CHECK(!pointObject.is_polygon());
-    CHECK(!pointObject.is_polyline());
     CHECK(!pointObject.is_ellipse());
-    CHECK(!pointObject.is_template());
-    CHECK(!pointObject.is_text());
-    CHECK(!pointObject.is_tile());
+    CHECK(!pointObject.has<step::polygon>());
+    CHECK(!pointObject.has<step::polyline>());
+    CHECK(!pointObject.has<step::template_object>());
+    CHECK(!pointObject.has<step::text>());
+    CHECK(!pointObject.has<step::global_id>());
   }
 
   TEST_CASE("Parsing polygon object")
   {
-    const Object polygonObject{detail::parse_json("resource/object/polygon.json")};
+    const step::object polygonObject{
+        step::detail::parse_json("resource/object/polygon.json")};
 
     CHECK(polygonObject.id() == 15);
     CHECK(polygonObject.x() == -176);
@@ -135,21 +135,20 @@ TEST_SUITE("Object")
     CHECK(polygonObject.type().empty());
     CHECK(polygonObject.visible());
 
-    CHECK(polygonObject.is_polygon());
-    CHECK(!polygonObject.is_polyline());
     CHECK(!polygonObject.is_ellipse());
     CHECK(!polygonObject.is_point());
-    CHECK(!polygonObject.is_template());
-    CHECK(!polygonObject.is_text());
-    CHECK(!polygonObject.is_tile());
+    CHECK(polygonObject.has<step::polygon>());
+    CHECK(!polygonObject.has<step::polyline>());
+    CHECK(!polygonObject.has<step::template_object>());
+    CHECK(!polygonObject.has<step::text>());
+    CHECK(!polygonObject.has<step::global_id>());
 
     SUBCASE("Check polygon stuff")
     {
-      const auto polygon = polygonObject.polygon();
-      REQUIRE(polygon);
-      REQUIRE(polygon->points.size() == 5);
+      const auto& polygon = polygonObject.get<step::polygon>();
+      REQUIRE(polygon.points.size() == 5);
 
-      const auto& points = polygon->points;
+      const auto& points = polygon.points;
       CHECK(points.at(0).x() == 0);
       CHECK(points.at(0).y() == 0);
 
@@ -169,7 +168,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing polyline object")
   {
-    const Object polylineObject{detail::parse_json("resource/object/polyline.json")};
+    const step::object polylineObject{
+        step::detail::parse_json("resource/object/polyline.json")};
 
     CHECK(polylineObject.id() == 16);
     CHECK(polylineObject.x() == 240);
@@ -181,21 +181,20 @@ TEST_SUITE("Object")
     CHECK(polylineObject.type().empty());
     CHECK(polylineObject.visible());
 
-    CHECK(polylineObject.is_polyline());
-    CHECK(!polylineObject.is_tile());
     CHECK(!polylineObject.is_ellipse());
     CHECK(!polylineObject.is_point());
-    CHECK(!polylineObject.is_polygon());
-    CHECK(!polylineObject.is_template());
-    CHECK(!polylineObject.is_text());
+    CHECK(polylineObject.has<step::polyline>());
+    CHECK(!polylineObject.has<step::global_id>());
+    CHECK(!polylineObject.has<step::polygon>());
+    CHECK(!polylineObject.has<step::template_object>());
+    CHECK(!polylineObject.has<step::text>());
 
     SUBCASE("Check polyline stuff")
     {
-      const auto polyline = polylineObject.polyline();
-      REQUIRE(polyline);
-      REQUIRE(polyline->points.size() == 6);
+      const auto& polyline = polylineObject.get<step::polyline>();
+      REQUIRE(polyline.points.size() == 6);
 
-      const auto& points = polyline->points;
+      const auto& points = polyline.points;
       CHECK(points.at(0).x() == 0);
       CHECK(points.at(0).y() == 0);
 
@@ -218,7 +217,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing text object")
   {
-    const Object textObject{detail::parse_json("resource/object/text.json")};
+    const step::object textObject{
+        step::detail::parse_json("resource/object/text.json")};
 
     CHECK(textObject.id() == 15);
     CHECK(textObject.x() == 48);
@@ -230,20 +230,19 @@ TEST_SUITE("Object")
     CHECK(textObject.type().empty());
     CHECK(textObject.visible());
 
-    CHECK(textObject.is_text());
-    CHECK(!textObject.is_polyline());
-    CHECK(!textObject.is_tile());
     CHECK(!textObject.is_ellipse());
     CHECK(!textObject.is_point());
-    CHECK(!textObject.is_polygon());
-    CHECK(!textObject.is_template());
+    CHECK(textObject.has<step::text>());
+    CHECK(!textObject.has<step::polyline>());
+    CHECK(!textObject.has<step::global_id>());
+    CHECK(!textObject.has<step::polygon>());
+    CHECK(!textObject.has<step::template_object>());
 
     SUBCASE("Text related properties")
     {
-      const auto text = textObject.get_text();
-      REQUIRE(text);
-      CHECK(text->get_text() == "Hello World");
-      CHECK(text->wrap());
+      const auto& text = textObject.get<step::text>();
+      CHECK(text.get_text() == "Hello World");
+      CHECK(text.wrap());
     }
   }
 }

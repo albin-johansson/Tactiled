@@ -27,6 +27,7 @@
 
 #include <memory>
 #include <string>
+#include <type_traits>
 #include <variant>
 #include <vector>
 
@@ -39,245 +40,254 @@
 namespace step {
 
 /**
- * A simple data container for polygon objects.
+ * @struct polygon
+ *
+ * @brief A simple data container for polygon objects.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_object.hpp
  */
-struct Polygon {
+struct polygon {
   std::vector<point> points;
 };
 
 /**
- * A simple data container for polyline objects.
+ * @struct polyline
+ *
+ * @brief A simple data container for polyline objects.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_object.hpp
  */
-struct Polyline {
+struct polyline {
   std::vector<point> points;
 };
 
 /**
- * A simple data container for template objects.
+ * @struct template_object
+ *
+ * @brief A simple data container for template objects.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_object.hpp
  */
-struct Template {
+struct template_object {
   std::string templateFile;
   // TODO std::shared_ptr<Tileset>
   // TODO std::shared_ptr<Object>
 };
 
 /**
- * The Object class represents different kinds of objects in tile maps, such
- * as polygons or text.
+ * @class object
+ *
+ * @brief Represents different kinds of objects in tile maps, such as polygons
+ * or text.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_object.hpp
  */
-class Object final {
+class object final {
+  template <typename T>
+  static constexpr auto valid_object_type() noexcept -> bool;
+
  public:
+  /**
+   * @brief Creates an tiled object from a JSON object.
+   *
+   * @param json the JSON object that represents the tiled object.
+   *
+   * @since 0.1.0
+   */
   STEP_API
-  explicit Object(const json& json);
+  explicit object(const json& json);
 
   /**
-   * Returns the incremental ID associated with the object.
+   * @brief Returns the incremental ID associated with the object.
    *
    * @return the incremental ID associated with the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  int id() const noexcept;
+  auto id() const noexcept -> int;
 
   /**
-   * Returns the x-coordinate of the object.
+   * @brief Returns the x-coordinate of the object.
    *
    * @return the x-coordinate of the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  double x() const noexcept;
+  auto x() const noexcept -> double;
 
   /**
-   * Returns the y-coordinate of the object.
+   * @brief Returns the y-coordinate of the object.
    *
    * @return the y-coordinate of the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  double y() const noexcept;
+  auto y() const noexcept -> double;
 
   /**
-   * Returns the width of the object.
+   * @brief Returns the width of the object.
    *
    * @return the width of the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  double width() const noexcept;
+  auto width() const noexcept -> double;
 
   /**
-   * Returns the height of the object.
+   * @brief Returns the height of the object.
    *
    * @return the height of the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  double height() const noexcept;
+  auto height() const noexcept -> double;
 
   /**
-   * Returns the amount of clockwise rotation of the object.
+   * @brief Returns the amount of clockwise rotation of the object.
    *
    * @return the clockwise rotation of the object, in degrees.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  double rotation() const noexcept;
+  auto rotation() const noexcept -> double;
 
   /**
-   * Returns the name of the object.
+   * @brief Returns the name of the object.
    *
    * @return the name of the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  std::string name() const;
+  auto name() const -> std::string;
 
   /**
-   * Returns the type associated with the object.
+   * @brief Returns the type associated with the object.
    *
    * @return the type associated with the object.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  std::string type() const;
+  auto type() const -> std::string;
 
   /**
-   * Returns the properties associated with the object.
+   * @brief Returns the properties associated with the object.
    *
-   * @return the properties associated with the object; null if there are none.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  const Properties* properties() const noexcept;
-
-  /**
-   * Returns the polygon associated with the object.
-   *
-   * @return the polygon associated with the object; nothing if there is none.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  std::optional<Polygon> polygon() const noexcept;
-
-  /**
-   * Returns the polyline associated with the object.
-   *
-   * @return the polyline associated with the object; nothing if there is none.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  std::optional<Polyline> polyline() const noexcept;
-
-  /**
-   * Returns the tile GID associated with the object.
-   *
-   * @return the tile GID associated with the object; nothing if there is none.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  std::optional<global_id> tile_gid() const noexcept;
-
-  /**
-   * Returns the template data associated with the object.
-   *
-   * @return the template data associated with the object; nothing if there is
+   * @return the properties associated with the object; `nullptr` if there are
    * none.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<Template> template_data() const;
+  auto properties() const noexcept -> const Properties*;
 
   /**
-   * Returns the text associated with the object.
+   * @brief Indicates whether or not the object is visible.
    *
-   * @return the text associated with the object; nothing if there is none.
+   * @return `true` if the object is visible; `false` otherwise.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<text> get_text() const;
+  auto visible() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the object is visible.
+   * @brief Returns a reference to the internal object type-specific data.
    *
-   * @return true if the object is visible; false otherwise.
-   * @since 0.1.0
+   * @note This function throws if the stored data isn't actually of the
+   * specified type.
+   *
+   * @tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
+   * `template_object`, `text` or `global_id`.
+   *
+   * @return a reference to the internal data.
+   *
+   * @since 0.2.0
    */
-  STEP_QUERY
-  bool visible() const noexcept;
+  template <typename T>
+  [[nodiscard]] auto get() const -> const T&
+  {
+    return std::get<T>(m_specificData);
+  }
+
+  /**
+   * @brief Returns a pointer to the internal object type-specific data.
+   *
+   * @note Unlike `get`, this function doesn't throw if the types mismatch,
+   * instead `nullptr` is returned.
+   *
+   * @tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
+   * `template_object`, `text` or `global_id`.
+   *
+   * @return a pointer to the internal data; `nullptr` if the types mismatch.
+   *
+   * @since 0.2.0
+   */
+  template <typename T>
+  [[nodiscard]] auto try_get() const noexcept -> const T*
+  {
+    return std::get_if<T>(m_specificData);
+  }
+
+  /**
+   * @brief Indicates whether or not the stored data is of the specified type.
+   *
+   * @tparam T the type to look for, i.e. `polygon`, `polyline`,
+   * `template_object`, `text` or `global_id`.
+   *
+   * @return `true` if the stored data is of the specified type; `false`
+   * otherwise.
+   *
+   * @since 0.2.0
+   */
+  template <typename T>
+  [[nodiscard]] auto has() const noexcept -> bool
+  {
+    return std::holds_alternative<T>(m_specificData);
+  }
 
   /**
    * Indicates whether or not the object represents an ellipse.
    *
-   * @return true if the object represents an ellipse; false otherwise.
+   * @return `true` if the object represents an ellipse; `false` otherwise.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  bool is_ellipse() const noexcept;
+  auto is_ellipse() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the object represents a point.
+   * @brief Indicates whether or not the object represents a point.
    *
-   * @return true if the object represents a point; false otherwise.
+   * @return `true` if the object represents a point; `false` otherwise.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  bool is_point() const noexcept;
-
-  /**
-   * Indicates whether or not the object represents a polygon.
-   *
-   * @return true if the object represents a polygon; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  bool is_polygon() const noexcept;
-
-  /**
-   * Indicates whether or not the object represents a polyline.
-   *
-   * @return true if the object represents a polyline; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  bool is_polyline() const noexcept;
-
-  /**
-   * Indicates whether or not the object represents a text object.
-   *
-   * @return true if the object represents a text object; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  bool is_text() const noexcept;
-
-  /**
-   * Indicates whether or not the object represents an object template.
-   *
-   * @return true if the object represents an object template; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  bool is_template() const noexcept;
-
-  /**
-   * Indicates whether or not the object represents a tile.
-   *
-   * @return true if the object represents a tile; false otherwise.
-   * @since 0.1.0
-   */
-  STEP_QUERY
-  bool is_tile() const noexcept;
+  auto is_point() const noexcept -> bool;
 
  private:
+  using data = std::variant<std::monostate,
+                            polygon,
+                            polyline,
+                            text,
+                            template_object,
+                            global_id>;
   int m_id{0};
   double m_x{0};
   double m_y{0};
@@ -287,14 +297,21 @@ class Object final {
   std::string m_name;
   std::string m_type;
   std::unique_ptr<Properties> m_properties;
-  std::variant<std::monostate, Polygon, Polyline, text, Template, global_id>
-      m_specificData;
+  data m_specificData;
   bool m_ellipse{false};
   bool m_point{false};
   bool m_visible{true};
 
   // TODO improve template object support
 };
+
+template <typename T>
+constexpr auto object::valid_object_type() noexcept -> bool
+{
+  return std::is_same_v<T, polygon> || std::is_same_v<T, polyline> ||
+         std::is_same_v<T, text> || std::is_same_v<T, template_object> ||
+         std::is_same_v<T, global_id>;
+}
 
 }  // namespace step
 

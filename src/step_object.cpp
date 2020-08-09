@@ -4,7 +4,7 @@
 
 namespace step {
 
-Object::Object(const json& json)
+object::object(const json& json)
     : m_id{json.at("id").get<int>()},
       m_x{json.at("x").get<double>()},
       m_y{json.at("y").get<double>()},
@@ -25,153 +25,83 @@ Object::Object(const json& json)
     m_specificData.emplace<text>(json.at("text"));
 
   } else if (json.contains("polygon")) {
-    auto& polygon = m_specificData.emplace<Polygon>();
+    auto& poly = m_specificData.emplace<polygon>();
 
     for (const auto& [key, value] : json.at("polygon").items()) {
-      polygon.points.emplace_back(point{value});
+      poly.points.emplace_back(point{value});
     }
 
   } else if (json.contains("polyline")) {
-    auto& polyline = m_specificData.emplace<Polyline>();
+    auto& line = m_specificData.emplace<polyline>();
 
     for (const auto& [key, value] : json.at("polyline").items()) {
-      polyline.points.emplace_back(point{value});
+      line.points.emplace_back(point{value});
     }
 
   } else if (json.contains("template")) {
-    auto& templ = m_specificData.emplace<Template>();
+    auto& templ = m_specificData.emplace<template_object>();
     json.at("template").get_to(templ.templateFile);
   }
 }
 
-int Object::id() const noexcept
+auto object::id() const noexcept -> int
 {
   return m_id;
 }
 
-double Object::x() const noexcept
+auto object::x() const noexcept -> double
 {
   return m_x;
 }
 
-double Object::y() const noexcept
+auto object::y() const noexcept -> double
 {
   return m_y;
 }
 
-double Object::width() const noexcept
+auto object::width() const noexcept -> double
 {
   return m_width;
 }
 
-double Object::height() const noexcept
+auto object::height() const noexcept -> double
 {
   return m_height;
 }
 
-double Object::rotation() const noexcept
+auto object::rotation() const noexcept -> double
 {
   return m_rotation;
 }
 
-std::string Object::name() const
+auto object::name() const -> std::string
 {
   return m_name;
 }
 
-std::string Object::type() const
+auto object::type() const -> std::string
 {
   return m_type;
 }
 
-const Properties* Object::properties() const noexcept
+auto object::properties() const noexcept -> const Properties*
 {
   return m_properties.get();
 }
 
-std::optional<Polygon> Object::polygon() const noexcept
-{
-  if (std::holds_alternative<Polygon>(m_specificData)) {
-    return std::get<Polygon>(m_specificData);
-  } else {
-    return std::nullopt;
-  }
-}
-
-std::optional<Polyline> Object::polyline() const noexcept
-{
-  if (std::holds_alternative<Polyline>(m_specificData)) {
-    return std::get<Polyline>(m_specificData);
-  } else {
-    return std::nullopt;
-  }
-}
-
-std::optional<global_id> Object::tile_gid() const noexcept
-{
-  if (std::holds_alternative<global_id>(m_specificData)) {
-    return std::get<global_id>(m_specificData);
-  } else {
-    return std::nullopt;
-  }
-}
-
-std::optional<Template> Object::template_data() const
-{
-  if (std::holds_alternative<Template>(m_specificData)) {
-    return std::get<Template>(m_specificData);
-  } else {
-    return std::nullopt;
-  }
-}
-
-std::optional<text> Object::get_text() const
-{
-  if (std::holds_alternative<text>(m_specificData)) {
-    return std::get<text>(m_specificData);
-  } else {
-    return std::nullopt;
-  }
-}
-
-bool Object::visible() const noexcept
+auto object::visible() const noexcept -> bool
 {
   return m_visible;
 }
 
-bool Object::is_ellipse() const noexcept
+auto object::is_ellipse() const noexcept -> bool
 {
   return m_ellipse;
 }
 
-bool Object::is_point() const noexcept
+auto object::is_point() const noexcept -> bool
 {
   return m_point;
-}
-
-bool Object::is_polygon() const noexcept
-{
-  return std::holds_alternative<Polygon>(m_specificData);
-}
-
-bool Object::is_polyline() const noexcept
-{
-  return std::holds_alternative<Polyline>(m_specificData);
-}
-
-bool Object::is_text() const noexcept
-{
-  return std::holds_alternative<text>(m_specificData);
-}
-
-bool Object::is_template() const noexcept
-{
-  return std::holds_alternative<Template>(m_specificData);
-}
-
-bool Object::is_tile() const noexcept
-{
-  return std::holds_alternative<global_id>(m_specificData);
 }
 
 }  // namespace step
