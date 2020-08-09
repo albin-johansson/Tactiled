@@ -9,7 +9,7 @@ namespace step::detail {
 json parse_json(std::string_view file)
 {
   if (!file.data()) {
-    throw StepException{"Cannot parse JSON from null file!"};
+    throw step_exception{"Cannot parse JSON from null file!"};
   }
 
   try {
@@ -19,7 +19,7 @@ json parse_json(std::string_view file)
     return json;
   } catch (const std::exception& e) {
     using namespace std::string_literals;
-    throw StepException{e.what() ? e.what() : "Failed to parse JSON!"s};
+    throw step_exception{e.what() ? e.what() : "Failed to parse JSON!"s};
   }
 }
 

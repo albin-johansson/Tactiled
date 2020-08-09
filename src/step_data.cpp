@@ -16,7 +16,7 @@ Data::Data(const json& json)
   } else if (json.is_string()) {
     m_data.emplace<Data::Base64Data>(json.get<Data::Base64Data>());
   } else {
-    throw StepException{"Data > Failed to determine the kind of data!"};
+    throw step_exception{"Data > Failed to determine the kind of data!"};
   }
 }
 
@@ -25,7 +25,7 @@ const Data::GIDData& Data::as_gid() const
   if (std::holds_alternative<GIDData>(m_data)) {
     return std::get<GIDData>(m_data);
   } else {
-    throw StepException{"Data > Couldn't obtain GID data!"};
+    throw step_exception{"Data > Couldn't obtain GID data!"};
   }
 }
 
@@ -34,7 +34,7 @@ const Data::Base64Data& Data::as_base64() const
   if (std::holds_alternative<Base64Data>(m_data)) {
     return std::get<Base64Data>(m_data);
   } else {
-    throw StepException{"Data > Couldn't obtain Base64 data!"};
+    throw step_exception{"Data > Couldn't obtain Base64 data!"};
   }
 }
 

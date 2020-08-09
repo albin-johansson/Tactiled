@@ -207,7 +207,7 @@ class object final {
    * @since 0.1.0
    */
   STEP_QUERY
-  auto properties() const noexcept -> const Properties*;
+  auto get_properties() const noexcept -> const properties*;
 
   /**
    * @brief Indicates whether or not the object is visible.
@@ -309,7 +309,7 @@ class object final {
   double m_rotation{0};
   std::string m_name;
   std::string m_type;
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
   data m_specificData;
   bool m_ellipse{false};
   bool m_point{false};

@@ -47,6 +47,6 @@ TEST_SUITE("Map")
   {
     CHECK_THROWS_WITH_AS(Map("resource/map/no_type.json"),
                          "Map > \"type\" attribute must be \"map\"!",
-                         StepException);
+                         step_exception);
   }
 }

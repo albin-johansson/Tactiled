@@ -86,7 +86,7 @@ TEST_SUITE("Tileset")
         REQUIRE(firstTerrain.properties()->amount() != 0);
         const auto property = firstTerrain.properties()->get("foo");
         CHECK(property.name() == "foo");
-        REQUIRE(property.type() == Property::Type::Bool);
+        REQUIRE(property.type() == property::Type::Bool);
         CHECK(property.get<bool>());
       }
 
@@ -111,12 +111,12 @@ TEST_SUITE("Tileset")
 
     const auto& firstProperty = properties->get("aFloat");
     CHECK(firstProperty.name() == "aFloat");
-    CHECK(firstProperty.type() == Property::Type::Float);
+    CHECK(firstProperty.type() == property::Type::Float);
     CHECK(firstProperty.get<float>() == 7.5f);
 
     const auto& secondProperty = properties->get("aString");
     CHECK(secondProperty.name() == "aString");
-    CHECK(secondProperty.type() == Property::Type::String);
+    CHECK(secondProperty.type() == property::Type::String);
     CHECK(secondProperty.get<std::string>() == "Hello");
   }
 
@@ -154,7 +154,7 @@ TEST_SUITE("Tileset")
 
         const auto& property = properties->get("name");
         CHECK(property.name() == "name");
-        CHECK(property.type() == Property::Type::String);
+        CHECK(property.type() == property::Type::String);
         CHECK(property.get<std::string>() == "waterTile");
       }
     }
@@ -177,12 +177,12 @@ TEST_SUITE("Tileset")
 
         const auto firstProperty = properties->get("coolness");
         CHECK(firstProperty.name() == "coolness");
-        REQUIRE(firstProperty.type() == Property::Type::Int);
+        REQUIRE(firstProperty.type() == property::Type::Int);
         CHECK(firstProperty.get<int>() == 9000);
 
         const auto secondProperty = properties->get("frodo");
         CHECK(secondProperty.name() == "frodo");
-        REQUIRE(secondProperty.type() == Property::Type::String);
+        REQUIRE(secondProperty.type() == property::Type::String);
         CHECK(secondProperty.get<std::string>() == "sandTile");
       }
     }
@@ -200,6 +200,6 @@ TEST_SUITE("Tileset")
     CHECK_THROWS_WITH_AS(Tileset::embedded(detail::parse_json(
                              "resource/tileset/tileset_wrong_type.json")),
                          "Tileset > \"type\" must be \"tileset\"!",
-                         StepException);
+                         step_exception);
   }
 }

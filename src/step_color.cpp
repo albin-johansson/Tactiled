@@ -24,7 +24,7 @@ uint8_t from_hex(std::string_view view)
     return detail::convert<uint8_t>(view, 16);
   } catch (...) {
     using namespace std::string_literals;
-    throw StepException{"Color > Failed to parse hex string: "s.append(view)};
+    throw step_exception{"Color > Failed to parse hex string: "s.append(view)};
   }
 }
 
@@ -34,11 +34,11 @@ Color::Color(std::string_view value)
 {
   if (value.length() != 7 && value.length() != 9) {
     const auto badLen = std::to_string(value.length());
-    throw StepException{"Color > Input string has incorrect length: " + badLen};
+    throw step_exception{"Color > Input string has incorrect length: " + badLen};
   }
 
   if (value.at(0) != '#') {
-    throw StepException{"Color > Input string must begin with #"};
+    throw step_exception{"Color > Input string must begin with #"};
   }
 
   const auto withoutHash = value.substr(1);
@@ -51,10 +51,10 @@ Color::Color(std::string_view value)
     if (len == 8) {
       m_alpha = from_hex(withoutHash.substr(6, 2));
     }
-  } catch (const StepException&) {
+  } catch (const step_exception&) {
     throw;
   } catch (...) {
-    throw StepException{"Couldn't create Color!"};
+    throw step_exception{"Couldn't create Color!"};
   }
 }
 

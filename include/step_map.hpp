@@ -144,7 +144,7 @@ class Map final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Properties* properties() const noexcept;
+  const properties* get_properties() const noexcept;
 
   /**
    * Returns the orientation of the map.
@@ -242,7 +242,7 @@ class Map final {
   int m_nextObjectID{0};
   std::vector<Layer> m_layers;
   std::vector<Tileset> m_tilesets;
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
   Orientation m_orientation{Orientation::Orthogonal};
   RenderOrder m_renderOrder{RenderOrder::RightDown};
   StaggerAxis m_staggerAxis{StaggerAxis::X};

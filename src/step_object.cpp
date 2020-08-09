@@ -13,7 +13,7 @@ object::object(const json& json)
       m_rotation{json.at("rotation").get<double>()},
       m_name{json.at("name").get<std::string>()},
       m_type{json.at("type").get<std::string>()},
-      m_properties{detail::safe_bind_unique<Properties>(json, "properties")},
+      m_properties{detail::safe_bind_unique<properties>(json, "properties")},
       m_ellipse{detail::safe_get<bool>(json, "ellipse", false)},
       m_point{detail::safe_get<bool>(json, "point", false)},
       m_visible{json.at("visible").get<bool>()}
@@ -84,7 +84,7 @@ auto object::type() const -> std::string
   return m_type;
 }
 
-auto object::properties() const noexcept -> const Properties*
+auto object::get_properties() const noexcept -> const properties*
 {
   return m_properties.get();
 }

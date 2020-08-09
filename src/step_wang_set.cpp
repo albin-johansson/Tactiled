@@ -32,7 +32,7 @@ const std::vector<WangTile>& WangSet::wang_tiles() const
   return m_wangTiles;
 }
 
-const Properties& WangSet::properties() const
+const properties& WangSet::get_properties() const
 {
   return m_properties;
 }

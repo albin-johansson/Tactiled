@@ -8,7 +8,7 @@ namespace step {
 
 tile::tile(const json& json) : m_id{json.at("id").get<int>()}
 {
-  m_properties = detail::safe_bind_unique<Properties>(json, "properties");
+  m_properties = detail::safe_bind_unique<properties>(json, "properties");
 
   if (json.contains("terrain")) {
     m_terrain.emplace();
@@ -41,7 +41,7 @@ auto tile::get_animation() const noexcept -> std::optional<animation>
   return m_animation;
 }
 
-auto tile::get_properties() const -> const Properties*
+auto tile::get_properties() const -> const properties*
 {
   return m_properties.get();
 }

@@ -51,7 +51,7 @@ class Terrain final {
    * @since 0.1.0
    */
   STEP_QUERY
-  local_id tile() const noexcept;
+  auto tile() const noexcept -> local_id;
 
   /**
    * Returns the name associated with the terrain.
@@ -60,7 +60,7 @@ class Terrain final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::string name() const;
+  auto name() const -> std::string;
 
   /**
    * Returns the properties associated with the terrain. This property is
@@ -70,12 +70,12 @@ class Terrain final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Properties* properties() const noexcept;
+  auto get_properties() const noexcept -> const properties*;
 
  private:
   local_id m_tile{0};
   std::string m_name;
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
 };
 
 }  // namespace step

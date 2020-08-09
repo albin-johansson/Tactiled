@@ -29,7 +29,7 @@ namespace step {
 
 class Layer;
 
-class Properties;
+class properties;
 
 class tile;
 

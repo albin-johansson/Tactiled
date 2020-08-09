@@ -23,7 +23,7 @@ Map::Map(std::string_view root, std::string_view file)
 void Map::parse(std::string_view root, const json& json)
 {
   if (!json.contains("type") || json.at("type") != "map") {
-    throw StepException{R"(Map > "type" attribute must be "map"!)"};
+    throw step_exception{R"(Map > "type" attribute must be "map"!)"};
   }
 
   json.at("width").get_to(m_width);
@@ -38,7 +38,7 @@ void Map::parse(std::string_view root, const json& json)
   json.at("tiledversion").get_to(m_tiledVersion);
 
   if (json.contains("properties")) {
-    m_properties = std::make_unique<Properties>(json.at("properties"));
+    m_properties = std::make_unique<properties>(json.at("properties"));
   }
 
   detail::safe_bind(json, "renderorder", m_renderOrder);
@@ -105,7 +105,7 @@ const std::vector<Tileset>& Map::tilesets() const noexcept
   return m_tilesets;
 }
 
-const Properties* Map::properties() const noexcept
+const properties* Map::get_properties() const noexcept
 {
   return m_properties.get();
 }

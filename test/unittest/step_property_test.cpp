@@ -12,7 +12,7 @@ TEST_SUITE("General Property stuff")
 {
   TEST_CASE("Bad name")
   {
-    CHECK_THROWS(Property{"resource/property/property_bad_name.json"});
+    CHECK_THROWS(property{"resource/property/property_bad_name.json"});
   }
 }
 
@@ -20,11 +20,11 @@ TEST_SUITE("String property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/string_property_valid.json")};
 
     CHECK(property.name() == "String property name");
-    CHECK(property.type() == Property::Type::String);
+    CHECK(property.type() == property::Type::String);
     CHECK(property.is<std::string>());
     CHECK(property.get<std::string>() == "This is a string value");
 
@@ -49,7 +49,7 @@ TEST_SUITE("String property")
 
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/string_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/string_property_bad_value.json"});
   }
 }
 
@@ -57,11 +57,11 @@ TEST_SUITE("Int property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/int_property_valid.json")};
 
     CHECK(property.name() == "Sauron");
-    CHECK(property.type() == Property::Type::Int);
+    CHECK(property.type() == property::Type::Int);
     CHECK(property.is<int>());
     CHECK(property.get<int>() == 1337);
 
@@ -85,7 +85,7 @@ TEST_SUITE("Int property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/int_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/int_property_bad_value.json"});
   }
 }
 
@@ -93,11 +93,11 @@ TEST_SUITE("Float property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/float_property_valid.json")};
 
     CHECK(property.name() == "Erebor");
-    CHECK(property.type() == Property::Type::Float);
+    CHECK(property.type() == property::Type::Float);
     CHECK(property.is<float>());
     CHECK(property.get<float>() == 89.2f);
 
@@ -121,7 +121,7 @@ TEST_SUITE("Float property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/float_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/float_property_bad_value.json"});
   }
 }
 
@@ -129,10 +129,10 @@ TEST_SUITE("Bool property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/bool_property_valid.json")};
     CHECK(property.name() == "Blue mountains");
-    CHECK(property.type() == Property::Type::Bool);
+    CHECK(property.type() == property::Type::Bool);
     CHECK(property.is<bool>());
     CHECK(!property.get<bool>());
 
@@ -156,7 +156,7 @@ TEST_SUITE("Bool property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/bool_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/bool_property_bad_value.json"});
   }
 }
 
@@ -164,10 +164,10 @@ TEST_SUITE("Color property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/color_property_valid.json")};
     CHECK(property.name() == "Rohan");
-    CHECK(property.type() == Property::Type::Color);
+    CHECK(property.type() == property::Type::Color);
     CHECK(property.is<Color>());
     CHECK(property.get<Color>() == Color{"#AA22BB33"});
 
@@ -191,7 +191,7 @@ TEST_SUITE("Color property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/color_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/color_property_bad_value.json"});
   }
 }
 
@@ -199,10 +199,10 @@ TEST_SUITE("File property")
 {
   TEST_CASE("Valid")
   {
-    const Property property{
+    const property property{
         detail::parse_json("resource/property/file_property_valid.json")};
     CHECK(property.name() == "Mirkwood");
-    CHECK(property.type() == Property::Type::File);
+    CHECK(property.type() == property::Type::File);
     CHECK(property.is<file>());
 
     SUBCASE("Property::get")
@@ -231,6 +231,6 @@ TEST_SUITE("File property")
   }
   TEST_CASE("Bad value")
   {
-    CHECK_THROWS(Property{"resource/property/file_property_bad_value.json"});
+    CHECK_THROWS(property{"resource/property/file_property_bad_value.json"});
   }
 }

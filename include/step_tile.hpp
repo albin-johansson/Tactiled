@@ -111,7 +111,7 @@ class tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  auto get_properties() const -> const Properties*;
+  auto get_properties() const -> const properties*;
 
   /**
    * @brief Returns the object group layer associated with the tile.
@@ -197,7 +197,7 @@ class tile final {
  private:
   local_id m_id{0};
 
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
   std::unique_ptr<Layer> m_objectGroup;
 
   std::optional<animation> m_animation;

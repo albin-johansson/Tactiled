@@ -9,21 +9,21 @@ Terrain::Terrain(const json& json)
       m_name{json.at("name").get<std::string>()}
 {
   if (json.contains("properties")) {
-    m_properties = std::make_unique<Properties>(json.at("properties"));
+    m_properties = std::make_unique<properties>(json.at("properties"));
   }
 }
 
-local_id Terrain::tile() const noexcept
+auto Terrain::tile() const noexcept -> local_id
 {
   return m_tile;
 }
 
-std::string Terrain::name() const
+auto Terrain::name() const -> std::string
 {
   return m_name;
 }
 
-const Properties* Terrain::properties() const noexcept
+auto Terrain::get_properties() const noexcept -> const properties*
 {
   return m_properties.get();
 }

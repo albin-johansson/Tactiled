@@ -41,7 +41,7 @@ namespace step {
  *
  * @since 0.1.0
  */
-class Property final {
+class property final {
  public:
   /**
    * The Type enum class provides different values that represent the various
@@ -62,7 +62,7 @@ class Property final {
   enum class Type { String, Int, Float, Bool, Color, File };
 
   STEP_API
-  explicit Property(const json& json);
+  explicit property(const json& json);
 
   /**
    * Returns the value of the property as the specified type. This method
@@ -172,13 +172,13 @@ class Property final {
   Type m_type = Type::String;
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(Property::Type,
-                             {{Property::Type::String, "string"},
-                              {Property::Type::Int, "int"},
-                              {Property::Type::Float, "float"},
-                              {Property::Type::Bool, "bool"},
-                              {Property::Type::Color, "color"},
-                              {Property::Type::File, "file"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(property::Type,
+                             {{property::Type::String, "string"},
+                              {property::Type::Int, "int"},
+                              {property::Type::Float, "float"},
+                              {property::Type::Bool, "bool"},
+                              {property::Type::Color, "color"},
+                              {property::Type::File, "file"}})
 
 }  // namespace step
 

@@ -7,7 +7,7 @@ namespace step {
 text::text(const json& json)
 {
   if (!json.count("text")) {
-    throw StepException{"Text > Missing \"text\" attribute!"};
+    throw step_exception{"Text > Missing \"text\" attribute!"};
   }
 
   for (const auto& [key, value] : json.items()) {

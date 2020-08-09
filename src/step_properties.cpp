@@ -4,34 +4,35 @@
 
 namespace step {
 
-Properties::Properties(const json& json)
+properties::properties(const json& json)
 {
   for (const auto& [key, value] : json.items()) {
-    const Property property{value};
+    const property property{value};
     m_properties.emplace(property.name(), value);
   }
 }
 
-bool Properties::has(const std::string& name) const
+auto properties::has(std::string_view name) const -> bool
 {
   return m_properties.count(name);
 }
 
-const Property& Properties::get(const std::string& name) const
+auto properties::get(std::string_view name) const -> const property&
 {
-  try {
-    return m_properties.at(name);
-  } catch (...) {
-    throw StepException{"Properties > Couldn't lookup property: " + name};
+  const auto iterator = m_properties.find(name);
+  if (iterator != m_properties.end()) {
+    return iterator->second;
+  } else {
+    throw step_exception{"properties > Couldn't find property!"};
   }
 }
 
-int Properties::amount() const noexcept
+auto properties::amount() const noexcept -> int
 {
   return static_cast<int>(m_properties.size());
 }
 
-bool Properties::empty() const noexcept
+auto properties::empty() const noexcept -> bool
 {
   return m_properties.empty();
 }

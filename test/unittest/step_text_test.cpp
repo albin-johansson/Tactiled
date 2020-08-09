@@ -58,6 +58,6 @@ TEST_SUITE("text")
         detail::parse_json("resource/text/text_missing_text_attribute.json");
 
     CHECK_THROWS_WITH_AS(
-        text{json}, "Text > Missing \"text\" attribute!", StepException);
+        text{json}, "Text > Missing \"text\" attribute!", step_exception);
   }
 }

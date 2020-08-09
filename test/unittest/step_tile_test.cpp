@@ -54,12 +54,12 @@ TEST_SUITE("Tile")
 
       const auto& first = properties->get("Galadriel");
       CHECK(first.name() == "Galadriel");
-      CHECK(first.type() == Property::Type::String);
+      CHECK(first.type() == property::Type::String);
       CHECK(first.get<std::string>() == "Denethor sucks");
 
       const auto& second = properties->get("Gandalf");
       CHECK(second.name() == "Gandalf");
-      CHECK(second.type() == Property::Type::Int);
+      CHECK(second.type() == property::Type::Int);
       CHECK(second.get<int>() == 7);
     }
 

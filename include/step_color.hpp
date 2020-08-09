@@ -51,7 +51,7 @@ class Color final {
    *
    * @param value the string that contains the color information, in ARGB or
    * RGB format.
-   * @throws StepException if the color cannot be created.
+   * @throws step_exception if the color cannot be created.
    * @since 0.1.0
    */
   STEP_API

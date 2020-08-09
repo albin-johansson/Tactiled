@@ -13,7 +13,7 @@ TEST_SUITE("Properties")
 {
   TEST_CASE("Parse properties")
   {
-    const Properties props{
+    const properties props{
         detail::parse_json("resource/properties/properties.json")};
 
     SUBCASE("Checking if property exists")
@@ -28,7 +28,7 @@ TEST_SUITE("Properties")
     {
       CHECK_THROWS_WITH_AS(props.get("x"),
                            "Properties > Couldn't lookup property: x",
-                           StepException);
+                           step_exception);
 
       REQUIRE_NOTHROW(props.get("a"));
 
@@ -63,7 +63,7 @@ TEST_SUITE("Properties")
     CHECK(!props.empty());
 
     int i = 0;
-    props.each([&i](const std::pair<std::string, Property>& pair) { ++i; });
+    props.each([&i](const std::pair<std::string, property>& pair) { ++i; });
     CHECK(i == 8);
-  };
+  }
 }

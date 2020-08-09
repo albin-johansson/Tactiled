@@ -27,7 +27,7 @@ Layer::Layer(const json& json)
     }
     default: {
       const auto id = std::to_string(static_cast<int>(type()));
-      throw StepException{"Layer > Unknown layer type: " + id};
+      throw step_exception{"Layer > Unknown layer type: " + id};
     }
   }
 }
@@ -42,7 +42,7 @@ const TileLayer& Layer::as_tile_layer() const
   if (std::holds_alternative<TileLayer>(m_layerData)) {
     return std::get<TileLayer>(m_layerData);
   } else {
-    throw StepException{"Layer > The layer isn't a tile layer!"};
+    throw step_exception{"Layer > The layer isn't a tile layer!"};
   }
 }
 
@@ -51,7 +51,7 @@ const ImageLayer& Layer::as_image_layer() const
   if (std::holds_alternative<ImageLayer>(m_layerData)) {
     return std::get<ImageLayer>(m_layerData);
   } else {
-    throw StepException{"Layer > The layer isn't an image layer!"};
+    throw step_exception{"Layer > The layer isn't an image layer!"};
   }
 }
 
@@ -60,7 +60,7 @@ const ObjectGroup& Layer::as_object_group() const
   if (std::holds_alternative<ObjectGroup>(m_layerData)) {
     return std::get<ObjectGroup>(m_layerData);
   } else {
-    throw StepException{"Layer > The layer isn't an object group!"};
+    throw step_exception{"Layer > The layer isn't an object group!"};
   }
 }
 
@@ -69,7 +69,7 @@ const Group& Layer::as_group() const
   if (std::holds_alternative<Group>(m_layerData)) {
     return std::get<Group>(m_layerData);
   } else {
-    throw StepException{"Layer > The layer isn't a group!"};
+    throw step_exception{"Layer > The layer isn't a group!"};
   }
 }
 
@@ -143,7 +143,7 @@ double Layer::opacity() const noexcept
   return m_opacity;
 }
 
-const Properties* Layer::properties() const noexcept
+const properties* Layer::get_properties() const noexcept
 {
   return m_properties.get();
 }
@@ -163,7 +163,7 @@ void Layer::init_common(const json& json)
   detail::safe_bind(json, "offsetx", m_offsetX);
   detail::safe_bind(json, "offsety", m_offsetY);
 
-  m_properties = detail::safe_bind_unique<Properties>(json, "properties");
+  m_properties = detail::safe_bind_unique<properties>(json, "properties");
 }
 
 }  // namespace step

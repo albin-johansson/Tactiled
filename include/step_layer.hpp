@@ -117,7 +117,7 @@ class Layer final {
    * method will throw an exception if the layer isn't a tile layer.
    *
    * @return the tile layer information associated with the layer.
-   * @throws StepException if the layer isn't actually a tile layer.
+   * @throws step_exception if the layer isn't actually a tile layer.
    * @since 0.1.0
    */
   STEP_QUERY
@@ -128,7 +128,7 @@ class Layer final {
    * method will throw an exception if the layer isn't an image layer.
    *
    * @return the image layer information associated with the layer.
-   * @throws StepException if the layer isn't actually an image layer.
+   * @throws step_exception if the layer isn't actually an image layer.
    * @since 0.1.0
    */
   STEP_QUERY
@@ -139,7 +139,7 @@ class Layer final {
    * method will throw an exception if the layer isn't an object group.
    *
    * @return the object group information associated with the layer.
-   * @throws StepException if the layer isn't actually an object group.
+   * @throws step_exception if the layer isn't actually an object group.
    * @since 0.1.0
    */
   STEP_QUERY
@@ -150,7 +150,7 @@ class Layer final {
    * method will throw an exception if the layer isn't a group.
    *
    * @return the group information associated with the layer.
-   * @throws StepException if the layer isn't actually a group.
+   * @throws step_exception if the layer isn't actually a group.
    * @since 0.1.0
    */
   STEP_QUERY
@@ -181,7 +181,7 @@ class Layer final {
    * @since 0.1.0
    */
   STEP_QUERY
-  auto properties() const noexcept -> const Properties*;
+  auto get_properties() const noexcept -> const properties*;
 
   /**
    * Returns the x-coordinate of where the layer content begins. This is used by
@@ -255,7 +255,7 @@ class Layer final {
   int m_id{0};
   std::variant<std::monostate, TileLayer, ImageLayer, ObjectGroup, Group>
       m_layerData;
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
   int m_width{0};
   int m_height{0};
   int m_startX{0};

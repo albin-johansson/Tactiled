@@ -52,7 +52,7 @@ class Data final {
    * throws an exception if the internal data isn't actually GID data.
    *
    * @return the GID data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
+   * @throws step_exception if the data cannot be obtained.
    * @since 0.1.0
    */
   STEP_QUERY
@@ -63,7 +63,7 @@ class Data final {
    * throws an exception if the internal data isn't actually Base64 data.
    *
    * @return the Base64 data associated with the Data instance.
-   * @throws StepException if the data cannot be obtained.
+   * @throws step_exception if the data cannot be obtained.
    * @since 0.1.0
    */
   STEP_QUERY

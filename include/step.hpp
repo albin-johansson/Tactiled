@@ -40,7 +40,7 @@ namespace step {
  *
  * @return a unique pointer to a map that represents the map file.
  *
- * @throws StepException if the map cannot be parsed.
+ * @throws step_exception if the map cannot be parsed.
  *
  * @since 0.2.0
  */
@@ -58,7 +58,7 @@ auto parse(const fs::path& path) -> std::unique_ptr<Map>;
  *
  * @return a unique pointer to a map that represents the map file.
  *
- * @throws StepException if the map cannot be parsed.
+ * @throws step_exception if the map cannot be parsed.
  *
  * @since 0.1.0
  */

@@ -79,7 +79,7 @@ class WangSet final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Properties& properties() const;
+  const properties& get_properties() const;
 
   /**
    * Returns the name associated with the Wang set.
@@ -101,7 +101,7 @@ class WangSet final {
   std::vector<WangColor> m_cornerColors;
   std::vector<WangColor> m_edgeColors;
   std::vector<WangTile> m_wangTiles;
-  Properties m_properties;
+  properties m_properties;
   std::string m_name;
   local_id m_tile{0};
 };

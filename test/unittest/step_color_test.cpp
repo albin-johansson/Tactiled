@@ -38,18 +38,18 @@ TEST_SUITE("Color")
 
   TEST_CASE("Invalid string")
   {
-    CHECK_THROWS_AS(Color{""}, StepException);
+    CHECK_THROWS_AS(Color{""}, step_exception);
 
     CHECK_THROWS_WITH_AS("#AABBCCDDD"_color,
                          "Color > Input string has incorrect length: 10",
-                         StepException);
+                         step_exception);
 
     CHECK_THROWS_WITH_AS("1112233"_color,
                          "Color > Input string must begin with #",
-                         StepException);
+                         step_exception);
 
     CHECK_THROWS_WITH_AS("#GGBBCCDD"_color,
                          "Color > Failed to parse hex string: GG",
-                         StepException);
+                         step_exception);
   }
 }

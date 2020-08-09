@@ -46,7 +46,7 @@ namespace step::detail {
  *
  * @param file the the JSON file that will be parsed.
  * @return a JSON object that contains the data from the parsed file.
- * @throws StepException if the file cannot be parsed.
+ * @throws step_exception if the file cannot be parsed.
  * @since 0.1.0
  */
 [[nodiscard]] STEP_API json parse_json(std::string_view file);
@@ -159,7 +159,7 @@ template <typename Type>
  * @param str the string that represents the integer.
  * @param base the base that will be used, defaults to 10.
  * @return the integral value.
- * @throws StepException if the string cannot be converted.
+ * @throws step_exception if the string cannot be converted.
  * @since 0.1.0
  */
 template <typename T>
@@ -172,7 +172,7 @@ template <typename T>
       error != std::errc::result_out_of_range) {
     return result;
   } else {
-    throw StepException{"Failed to convert string to integral!"};
+    throw step_exception{"Failed to convert string to integral!"};
   }
 }
 

@@ -32,13 +32,13 @@
 
 namespace step {
 
-class StepException final : public std::exception {
+class step_exception final : public std::exception {
  public:
-  StepException() noexcept = default;
+  step_exception() noexcept = default;
 
-  explicit StepException(std::string what) : m_what{std::move(what)} {}
+  explicit step_exception(std::string what) : m_what{std::move(what)} {}
 
-  ~StepException() noexcept override = default;
+  ~step_exception() noexcept override = default;
 
   czstring what() const noexcept override { return m_what.c_str(); }
 

@@ -10,8 +10,8 @@ TEST_SUITE("parse_json(CZString)")
   TEST_CASE("Bad args")
   {
     std::string_view bad;
-    CHECK_THROWS_AS(parse_json(bad), StepException);
-    CHECK_THROWS_AS(parse_json("abc"), StepException);
+    CHECK_THROWS_AS(parse_json(bad), step_exception);
+    CHECK_THROWS_AS(parse_json("abc"), step_exception);
   }
 
   TEST_CASE("Valid JSON")
@@ -24,8 +24,8 @@ TEST_SUITE("parse_json(CZString)")
     TEST_CASE("Bad args")
     {
       std::string_view bad;
-      CHECK_THROWS_AS(convert<int>(bad), StepException);
-      CHECK_THROWS_AS(convert<int>("abc"), StepException);
+      CHECK_THROWS_AS(convert<int>(bad), step_exception);
+      CHECK_THROWS_AS(convert<int>("abc"), step_exception);
     }
 
     TEST_CASE("Valid args")

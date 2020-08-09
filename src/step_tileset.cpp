@@ -33,7 +33,7 @@ Tileset Tileset::external(std::string_view root,
 void Tileset::parse(const json& json)
 {
   if (json.at("type").get<std::string>() != "tileset") {
-    throw StepException{"Tileset > \"type\" must be \"tileset\"!"};
+    throw step_exception{"Tileset > \"type\" must be \"tileset\"!"};
   }
 
   json.at("tilewidth").get_to(m_tileWidth);
@@ -52,7 +52,7 @@ void Tileset::parse(const json& json)
   }
 
   if (json.contains("properties")) {
-    m_properties = std::make_unique<Properties>(json.at("properties"));
+    m_properties = std::make_unique<properties>(json.at("properties"));
   }
 
   detail::safe_bind(json, "tiledversion", m_tiledVersion);
@@ -141,7 +141,7 @@ const std::vector<WangSet>& Tileset::wang_sets() const
   return m_wangSets;
 }
 
-const Properties* Tileset::properties() const noexcept
+const properties* Tileset::get_properties() const noexcept
 {
   return m_properties.get();
 }

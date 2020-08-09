@@ -168,7 +168,7 @@ class Tileset final {
    * @return the properties associated with the tileset; null if there are none.
    * @since 0.1.0
    */
-  STEP_QUERY const Properties* properties() const noexcept;
+  STEP_QUERY const properties* get_properties() const noexcept;
 
   /**
    * Returns the terrains associated with the tileset. This property is
@@ -269,7 +269,7 @@ class Tileset final {
   std::vector<tile> m_tiles;
   std::vector<Terrain> m_terrains;
   std::vector<WangSet> m_wangSets;
-  std::unique_ptr<Properties> m_properties;
+  std::unique_ptr<properties> m_properties;
   std::string m_image;
   std::string m_source;
   std::string m_name;
