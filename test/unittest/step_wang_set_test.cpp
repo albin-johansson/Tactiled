@@ -69,7 +69,7 @@ TEST_SUITE("WangSet")
 
       const auto& prop = properties.get("wangSetProp");
       CHECK(prop.name() == "wangSetProp");
-      CHECK(prop.type() == property::Type::Int);
+      CHECK(prop.get_type() == property::type::integer);
       CHECK(prop.get<int>() == 993);
     }
   }

@@ -1,3 +1,6 @@
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wunused-result"
+
 #include "step_layer.hpp"
 
 #include <doctest.h>
@@ -85,6 +88,8 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parsing object group")
   {
+    //FIXME
+
     //    const Layer
     //    layer{detail::parse_json("resource/layer/object_group.json")};
 
@@ -157,7 +162,7 @@ TEST_SUITE("Layer")
     {
       const auto& imageLayer = layer.as_image_layer();
       CHECK(imageLayer.image() == "balrog.png");
-      CHECK(*imageLayer.transparent_color() == Color{"#214365"});
+      CHECK(*imageLayer.transparent_color() == "#214365"_color);
     }
 
     CHECK(layer.id() == 2);
@@ -207,3 +212,5 @@ TEST_SUITE("Layer")
     CHECK(layer.visible());
   }
 }
+
+#pragma clang diagnostic pop

@@ -17,7 +17,7 @@ TEST_SUITE("terrain")
 
     const auto& property = terrain.get_properties()->get("health");
     CHECK(property.name() == "health");
-    REQUIRE(property.type() == step::property::Type::Int);
+    REQUIRE(property.get_type() == step::property::type::integer);
     CHECK(property.get<int>() == 87);
   }
 

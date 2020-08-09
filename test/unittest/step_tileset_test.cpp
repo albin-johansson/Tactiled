@@ -88,7 +88,7 @@ TEST_SUITE("Tileset")
         REQUIRE(firstTerrain.get_properties()->amount() != 0);
         const auto property = firstTerrain.get_properties()->get("foo");
         CHECK(property.name() == "foo");
-        REQUIRE(property.type() == property::Type::Bool);
+        REQUIRE(property.get_type() == property::type::boolean);
         CHECK(property.get<bool>());
       }
 
@@ -113,12 +113,12 @@ TEST_SUITE("Tileset")
 
     const auto& firstProperty = properties->get("aFloat");
     CHECK(firstProperty.name() == "aFloat");
-    CHECK(firstProperty.type() == property::Type::Float);
+    CHECK(firstProperty.get_type() == property::type::floating);
     CHECK(firstProperty.get<float>() == 7.5f);
 
     const auto& secondProperty = properties->get("aString");
     CHECK(secondProperty.name() == "aString");
-    CHECK(secondProperty.type() == property::Type::String);
+    CHECK(secondProperty.get_type() == property::type::string);
     CHECK(secondProperty.get<std::string>() == "Hello");
   }
 
@@ -156,7 +156,7 @@ TEST_SUITE("Tileset")
 
         const auto& property = properties->get("name");
         CHECK(property.name() == "name");
-        CHECK(property.type() == property::Type::String);
+        CHECK(property.get_type() == property::type::string);
         CHECK(property.get<std::string>() == "waterTile");
       }
     }
@@ -179,12 +179,12 @@ TEST_SUITE("Tileset")
 
         const auto& firstProperty = properties->get("coolness");
         CHECK(firstProperty.name() == "coolness");
-        REQUIRE(firstProperty.type() == property::Type::Int);
+        REQUIRE(firstProperty.get_type() == property::type::integer);
         CHECK(firstProperty.get<int>() == 9000);
 
         const auto& secondProperty = properties->get("frodo");
         CHECK(secondProperty.name() == "frodo");
-        REQUIRE(secondProperty.type() == property::Type::String);
+        REQUIRE(secondProperty.get_type() == property::type::string);
         CHECK(secondProperty.get<std::string>() == "sandTile");
       }
     }

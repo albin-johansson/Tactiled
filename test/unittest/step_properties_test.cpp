@@ -27,7 +27,7 @@ TEST_SUITE("Properties")
     SUBCASE("Getting property")
     {
       CHECK_THROWS_WITH_AS(props.get("x"),
-                           "Properties > Couldn't lookup property: x",
+                           "Properties > Couldn't lookup property!",
                            step_exception);
 
       REQUIRE_NOTHROW(props.get("a"));

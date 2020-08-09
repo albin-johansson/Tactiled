@@ -36,75 +36,92 @@
 namespace step {
 
 /**
- * The Property class represents small objects that have a name, type and
- * value. A property can represent a string, int, float, bool, color or file.
+ * @class property
+ *
+ * @brief Represents small objects that have a name, type and value.
+ *
+ * @details A property can represent a `std::string`, `int`, `float`, `bool`,
+ * `color` or `file`.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_property.hpp
  */
 class property final {
  public:
   /**
-   * The Type enum class provides different values that represent the various
-   * kinds of possible property types.
+   * @enum type
    *
-   * <ul>
-   *  <li><code>String</code> is for string values, such as "foo".</li>
-   *  <li><code>Int</code> is for integer values, such as 27.</li>
-   *  <li><code>Float</code> is for floating-point values, such as 182.4.</li>
-   *  <li><code>Bool</code> is for the boolean values true/false.</li>
-   *  <li><code>Color</code> is for ARGB and RGB colors, such as "AARRGGBB"
-   *  or "RRGGBB".</li>
-   *  <li><code>File</code> is for file paths, such as "some/path/abc.png</li>
-   * </ul>
+   * @brief Provides different values that represent the various kinds of
+   * possible property types.
    *
    * @since 0.1.0
+   *
+   * @headerfile step_property.hpp
    */
-  enum class Type { String, Int, Float, Bool, Color, File };
+  enum class type {
+    string,    ///< For string values, such as `"foo"`.
+    integer,   ///< For integer values, e.g. `27`.
+    floating,  ///< For floating-point values, e.g. `182.4`.
+    boolean,   ///< For the boolean values `true`/`false`.
+    color,     ///< For ARGB/RGB colors, e.g. `"AARRGGBB"` and `"RRGGBB"`.
+    file       ///< For file paths, e.g. `"some/path/abc.png"`.
+  };
 
   STEP_API
   explicit property(const json& json);
 
   /**
-   * Returns the value of the property as the specified type. This method
-   * will throw an exception if the property doesn't contain the specified
-   * type. A compile-time error will be raised if the type of the
-   * supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
-   * convertible to <b>std::string</b>).
+   * @brief Returns the value of the property as the specified type.
+   *
+   * @note This method will throw an exception if the property doesn't contain
+   * the specified type.
+   *
+   * @details A compile-time error will be raised if the type of the supplied
+   * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
+   * `std::string` (accepts anything that is convertible to `std::string`).
    *
    * @tparam T the type of the value that will be returned. Must be the same
    * type of the value stored in the property. An unsupported type will cause a
    * compile-time error.
+   *
    * @return the value of the property.
+   *
    * @since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
-  [[nodiscard]] const T& get() const
+  [[nodiscard]] auto get() const -> const T&
   {
     return std::get<T>(m_value);
   }
 
   /**
-   * Attempts to return the value of the property as the specified type, if
-   * the property doesn't contain a value of the specified type, then the
-   * supplied default value is returned instead. This method doesn't throw
-   * any exceptions on its own. A compile-time error will be raised if the type
-   * of the supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
-   * convertible to <b>std::string</b>).
+   * @brief Attempts to return the value of the property as the specified type.
+   *
+   * @note This method doesn't throw any exceptions on its own.
+   *
+   * @details If the property doesn't contain a value of the specified type,
+   * then the supplied default value is returned instead.
+   *
+   * @details A compile-time error will be raised if the type of the supplied
+   * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
+   * `std::string` (accepts anything that is convertible to `std::string`).
    *
    * @tparam T the type of the value that will be obtained. An unsupported type
    * will cause a compile-time error.
+   *
    * @param defaultValue the backup value that will be returned if the
    * desired value cannot be obtained.
-   * @return the value stored in the property; <code>defaultValue</code> if
-   * the property doesn't contain a value of the specified type.
+   *
+   * @return the value stored in the property; `defaultValue` if the property
+   * doesn't contain a value of the specified type.
+   *
    * @since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
-  [[nodiscard]] T get_or(const T& defaultValue) const
+  [[nodiscard]] auto get_or(const T& defaultValue) const -> const T&
   {
     if (is<T>()) {
       return get<T>();
@@ -114,71 +131,78 @@ class property final {
   }
 
   /**
-   * Indicates whether or not the property holds a value of the specified
-   * type. A compile-time error will be raised if the type
-   * of the supplied value isn't one of: <b>bool</b>, <b>int</b>, <b>float</b>,
-   * <b>Color</b>, <b>File</b> or <b>std::string</b> (accepts anything that is
-   * convertible to <b>std::string</b>).
+   * @brief Indicates whether or not the property holds a value of the specified
+   * type.
+   *
+   * @details A compile-time error will be raised if the type of the supplied
+   * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
+   * `std::string` (accepts anything that is convertible to `std::string`).
    *
    * @tparam T the type to compare with the type of the stored value. An
    * unsupported type will cause a compile-time error.
-   * @return true if the property holds a value of the specified type; false
+   *
+   * @return `true` if the property holds a value of the specified type; `false`
    * otherwise.
+   *
    * @since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
-  [[nodiscard]] bool is() const noexcept
+  [[nodiscard]] auto is() const noexcept -> bool
   {
     if constexpr (std::is_same_v<T, bool>) {
-      return m_type == Type::Bool;
+      return m_type == type::boolean;
 
     } else if constexpr (std::is_same_v<T, int>) {
-      return m_type == Type::Int;
+      return m_type == type::integer;
 
     } else if constexpr (std::is_same_v<T, float>) {
-      return m_type == Type::Float;
+      return m_type == type::floating;
 
     } else if constexpr (std::is_same_v<T, Color>) {
-      return m_type == Type::Color;
+      return m_type == type::color;
 
     } else if constexpr (std::is_same_v<T, file>) {
-      return m_type == Type::File;
+      return m_type == type::file;
 
     } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
-      return m_type == Type::String;
+      return m_type == type::string;
     }
   }
 
   /**
-   * Returns the name associated with the property.
+   * @brief Returns the name associated with the property.
    *
    * @return the name associated with the property.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] std::string name() const { return m_name; }
+  STEP_QUERY
+  auto name() const -> std::string;
 
   /**
-   * Returns the type associated with the property.
+   * @brief Returns the type associated with the property.
    *
    * @return the type associated with the property.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] Type type() const noexcept { return m_type; }
+  STEP_QUERY
+  auto get_type() const noexcept -> type;
 
  private:
+  type m_type{type::string};
   std::string m_name;
   std::variant<std::string, file, Color, int, float, bool> m_value;
-  Type m_type = Type::String;
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(property::Type,
-                             {{property::Type::String, "string"},
-                              {property::Type::Int, "int"},
-                              {property::Type::Float, "float"},
-                              {property::Type::Bool, "bool"},
-                              {property::Type::Color, "color"},
-                              {property::Type::File, "file"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(property::type,
+                             {{property::type::string, "string"},
+                              {property::type::integer, "int"},
+                              {property::type::floating, "float"},
+                              {property::type::boolean, "bool"},
+                              {property::type::color, "color"},
+                              {property::type::file, "file"}})
 
 }  // namespace step
 
