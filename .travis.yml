@@ -41,7 +41,7 @@ install:
   # Manually builds latest LCOV
   - git clone https://github.com/linux-test-project/lcov.git lcov
   - cd lcov
-  - make install
+  - sudo make install
   - cd ..
 
   - lcov --version
