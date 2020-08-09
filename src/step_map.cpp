@@ -33,6 +33,15 @@
 namespace step {
 
 STEP_DEF
+Map::Map(const fs::path& path)
+{
+  auto parent = path.parent_path();
+  parent += fs::path::preferred_separator;
+
+  parse(parent.string(), detail::parse_json(path.string()));
+}
+
+STEP_DEF
 Map::Map(std::string_view root, std::string_view file)
 {
   std::string map{root.data()};
@@ -44,7 +53,7 @@ STEP_DEF
 void Map::parse(std::string_view root, const JSON& json)
 {
   if (!json.contains("type") || json.at("type") != "map") {
-    throw StepException{"Map > \"type\" attribute must be \"map\"!"};
+    throw StepException{R"(Map > "type" attribute must be "map"!)"};
   }
 
   json.at("width").get_to(m_width);

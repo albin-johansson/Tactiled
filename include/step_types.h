@@ -25,6 +25,7 @@
 #ifndef STEP_TYPES_HEADER
 #define STEP_TYPES_HEADER
 
+#include <filesystem>
 #include <json.hpp>
 #include <named_type.hpp>
 #include <optional>
@@ -32,6 +33,8 @@
 #include "step_api.h"
 
 namespace step {
+
+namespace fs = std::filesystem;
 
 using JSON = nlohmann::json;
 

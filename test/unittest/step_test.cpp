@@ -2,13 +2,18 @@
 
 #include <doctest.h>
 
+#include <iostream>
+
+#include "step_types.h"
+
 using namespace step;
 
 TEST_SUITE("Test of realistic usage of step")
 {
   TEST_CASE("Parsing map with two tilesets")
   {
-    auto map = parse("resource/real/", "map.json");
+    auto map = parse("resource/real/map.json");
+
     CHECK(map->width() == 50);
     CHECK(map->height() == 50);
     CHECK(map->next_object_id() == 1);

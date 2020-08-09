@@ -57,18 +57,37 @@
 namespace step {
 
 /**
- * Attempts to parse a Tiled JSON map file located at the specified path.
- * This method will throw an exception if the map cannot be parsed for some
- * reason.
+ * @brief Attempts to parse a Tiled JSON map file located at the specified path.
+ *
+ * @param path the path of the Tiled map.
+ *
+ * @return a unique pointer to a map that represents the map file.
+ *
+ * @throws StepException if the map cannot be parsed.
+ *
+ * @since 0.2.0
+ */
+STEP_QUERY
+auto parse(const fs::path& path) -> std::unique_ptr<Map>;
+
+/**
+ * @brief Attempts to parse a Tiled JSON map file located at the specified path.
+ *
+ * @note This method will throw an exception if the map cannot be parsed for
+ * some reason.
  *
  * @param root the file path of the directory that contains the map file.
  * @param file the location of the Tiled JSON map file.
+ *
  * @return a unique pointer to a map that represents the map file.
+ *
  * @throws StepException if the map cannot be parsed.
+ *
  * @since 0.1.0
  */
-STEP_QUERY std::unique_ptr<Map> parse(std::string_view root,
-                                      std::string_view file);
+[[deprecated("Use the path-based function instead!")]] STEP_QUERY auto parse(
+    std::string_view root,
+    std::string_view file) -> std::unique_ptr<Map>;
 
 }  // namespace step
 

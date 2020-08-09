@@ -51,12 +51,17 @@ class Map final {
   enum class StaggerAxis { X, Y };
   enum class StaggerIndex { Odd, Even };
 
+  STEP_API
+  explicit Map(const fs::path& path);
+
   /**
    * @param root the file path of the directory that contains the map.
    * @param file the name of the JSON map file, including the .json extension.
    * @since 0.1.0
    */
-  STEP_API Map(std::string_view root, std::string_view file);
+  [[deprecated("Use the path version instead!")]] STEP_API Map(
+      std::string_view root,
+      std::string_view file);
 
   /**
    * Returns the width of the map.

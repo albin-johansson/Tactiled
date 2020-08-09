@@ -7,13 +7,11 @@
 
 using namespace step;
 
-inline const std::string prefix = "resource/map/";
-
 TEST_SUITE("Map")
 {
   TEST_CASE("Parsing map")
   {
-    const Map map{prefix, "basic_map.json"};
+    const Map map{R"(resource\map\basic_map.json)"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
@@ -47,7 +45,7 @@ TEST_SUITE("Map")
 
   TEST_CASE("No type attribute")
   {
-    CHECK_THROWS_WITH_AS(Map(prefix, "no_type.json"),
+    CHECK_THROWS_WITH_AS(Map("resource/map/no_type.json"),
                          "Map > \"type\" attribute must be \"map\"!",
                          StepException);
   }
