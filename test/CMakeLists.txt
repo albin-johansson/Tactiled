@@ -44,12 +44,19 @@ target_include_directories(Doctest INTERFACE doctest)
 include(doctest)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    target_compile_options(${STEP_TEST_TARGET} PRIVATE -Wno-unused-result)
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE
+            -Wno-unused-result
+            )
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE
+            /EHsc)
+elseif (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+    target_compile_options(${STEP_TEST_TARGET} PRIVATE
+            /EHsc
+            /MP
+            /W3)
 endif ()
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
-    target_compile_options(${STEP_TEST_TARGET} PRIVATE "/MP")
-endif ()
 
 target_include_directories(${STEP_TEST_TARGET}
         PUBLIC unittest
