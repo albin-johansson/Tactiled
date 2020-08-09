@@ -91,6 +91,7 @@ struct template_object {
  * @headerfile step_object.hpp
  */
 class object final {
+ private:
   template <typename T>
   static constexpr auto valid_object_type() noexcept -> bool;
 
@@ -219,7 +220,7 @@ class object final {
    *
    * @since 0.2.0
    */
-  template <typename T>
+  template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto get() const -> const T&
   {
     return std::get<T>(m_specificData);
@@ -238,7 +239,7 @@ class object final {
    *
    * @since 0.2.0
    */
-  template <typename T>
+  template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto try_get() const noexcept -> const T*
   {
     return std::get_if<T>(m_specificData);
@@ -255,7 +256,7 @@ class object final {
    *
    * @since 0.2.0
    */
-  template <typename T>
+  template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto has() const noexcept -> bool
   {
     return std::holds_alternative<T>(m_specificData);
