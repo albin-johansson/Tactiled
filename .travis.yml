@@ -21,7 +21,6 @@ addons:
       - g++-9
       - cmake
       - lcov
-      - zlib
 
 before_install:
   - sudo apt-get update
