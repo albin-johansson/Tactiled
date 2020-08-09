@@ -1,30 +1,3 @@
-/**
- * MIT License
- *
- * Copyright (c) 2020 Albin Johansson
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-
-#ifndef STEP_MAP_SOURCE
-#define STEP_MAP_SOURCE
-
 #include "step_map.h"
 
 #include "step_exception.h"
@@ -32,7 +5,6 @@
 
 namespace step {
 
-STEP_DEF
 Map::Map(const fs::path& path)
 {
   auto parent = path.parent_path();
@@ -41,7 +13,6 @@ Map::Map(const fs::path& path)
   parse(parent.string(), detail::parse_json(path.string()));
 }
 
-STEP_DEF
 Map::Map(std::string_view root, std::string_view file)
 {
   std::string map{root.data()};
@@ -49,7 +20,6 @@ Map::Map(std::string_view root, std::string_view file)
   parse(root, detail::parse_json(map));
 }
 
-STEP_DEF
 void Map::parse(std::string_view root, const JSON& json)
 {
   if (!json.contains("type") || json.at("type") != "map") {
@@ -95,114 +65,94 @@ void Map::parse(std::string_view root, const JSON& json)
   }
 }
 
-STEP_DEF
 int Map::width() const noexcept
 {
   return m_width;
 }
 
-STEP_DEF
 int Map::height() const noexcept
 {
   return m_height;
 }
 
-STEP_DEF
 int Map::tile_width() const noexcept
 {
   return m_tileWidth;
 }
 
-STEP_DEF
 int Map::tile_height() const noexcept
 {
   return m_tileHeight;
 }
 
-STEP_DEF
 int Map::next_layer_id() const noexcept
 {
   return m_nextLayerID;
 }
 
-STEP_DEF
 int Map::next_object_id() const noexcept
 {
   return m_nextObjectID;
 }
 
-STEP_DEF
 const std::vector<Layer>& Map::layers() const noexcept
 {
   return m_layers;
 }
 
-STEP_DEF
 const std::vector<Tileset>& Map::tilesets() const noexcept
 {
   return m_tilesets;
 }
 
-STEP_DEF
 const Properties* Map::properties() const noexcept
 {
   return m_properties.get();
 }
 
-STEP_DEF
 Map::Orientation Map::orientation() const noexcept
 {
   return m_orientation;
 }
 
-STEP_DEF
 Map::RenderOrder Map::render_order() const noexcept
 {
   return m_renderOrder;
 }
 
-STEP_DEF
 Map::StaggerAxis Map::stagger_axis() const noexcept
 {
   return m_staggerAxis;
 }
 
-STEP_DEF
 Map::StaggerIndex Map::stagger_index() const noexcept
 {
   return m_staggerIndex;
 }
 
-STEP_DEF
 bool Map::infinite() const noexcept
 {
   return m_infinite;
 }
 
-STEP_DEF
 int Map::hex_side_length() const noexcept
 {
   return m_hexSideLength;
 }
 
-STEP_DEF
 std::optional<Color> Map::background_color() const noexcept
 {
   return m_backgroundColor;
 }
 
-STEP_DEF
 double Map::json_version() const noexcept
 {
   return m_jsonVersion;
 }
 
-STEP_DEF
 std::string Map::tiled_version() const
 {
   return m_tiledVersion;
 }
 
 }  // namespace step
-
-#endif  // STEP_MAP_SOURCE

@@ -275,8 +275,4 @@ class Object final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_object.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_OBJECT_HEADER

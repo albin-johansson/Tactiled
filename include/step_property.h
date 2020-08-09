@@ -181,8 +181,4 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Property::Type,
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_property.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_PROPERTY_HEADER

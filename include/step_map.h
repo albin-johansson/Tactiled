@@ -260,8 +260,4 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Map::StaggerIndex,
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_map.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_MAP_HEADER

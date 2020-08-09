@@ -103,8 +103,4 @@ class WangSet final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_wang_set.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_WANG_SET_HEADER

@@ -198,8 +198,4 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Text::VAlign,
                               {Text::VAlign::Bottom, "bottom"}})
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_text.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TEXT_HEADER

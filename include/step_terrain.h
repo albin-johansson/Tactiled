@@ -76,8 +76,4 @@ class Terrain final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_terrain.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TERRAIN_HEADER

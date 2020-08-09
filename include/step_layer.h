@@ -25,10 +25,10 @@
 #ifndef STEP_LAYER_HEADER
 #define STEP_LAYER_HEADER
 
+#include <memory>
 #include <string>
 #include <variant>
 #include <vector>
-#include <memory>
 
 #include "step_api.h"
 #include "step_group.h"
@@ -255,9 +255,5 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Layer::Type,
                               {Layer::Type::Group, "group"}})
 
 }  // namespace step
-
-#ifdef STEP_HEADER_ONLY
-#include "step_layer.cpp"
-#endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_LAYER_HEADER

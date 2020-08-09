@@ -114,8 +114,4 @@ NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Encoding,
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_tile_layer.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TILE_LAYER_HEADER

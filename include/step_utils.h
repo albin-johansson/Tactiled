@@ -186,8 +186,4 @@ template <typename T>
 
 }  // namespace step::detail
 
-#ifdef STEP_HEADER_ONLY
-#include "step_utils.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_UTILS_HEADER

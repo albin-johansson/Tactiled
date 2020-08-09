@@ -83,8 +83,4 @@ class WangColor final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_wang_color.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_WANG_COLOR_HEADER

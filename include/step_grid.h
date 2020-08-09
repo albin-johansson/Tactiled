@@ -89,8 +89,4 @@ NLOHMANN_JSON_SERIALIZE_ENUM(Grid::Orientation,
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_grid.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_GRID_HEADER

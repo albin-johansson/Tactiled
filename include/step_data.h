@@ -72,8 +72,4 @@ class Data final {
 
 }  // namespace step::detail
 
-#ifdef STEP_HEADER_ONLY
-#include "step_data.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_DATA_HEADER

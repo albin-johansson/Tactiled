@@ -139,8 +139,4 @@ class Properties final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_properties.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_PROPERTIES_HEADER

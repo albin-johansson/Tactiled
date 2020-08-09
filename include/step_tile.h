@@ -164,8 +164,4 @@ class Tile final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_tile.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TILE_HEADER

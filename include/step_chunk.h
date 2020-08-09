@@ -39,7 +39,8 @@ namespace step {
  */
 class Chunk final {
  public:
-  STEP_API explicit Chunk(const JSON& json);
+  STEP_API
+  explicit Chunk(const JSON& json);
 
   /**
    * Returns the x-coordinate of the chunk.
@@ -47,7 +48,8 @@ class Chunk final {
    * @return the x-coordinate of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY int x() const noexcept;
+  STEP_QUERY
+  int x() const noexcept;
 
   /**
    * Returns the y-coordinate of the chunk.
@@ -55,7 +57,8 @@ class Chunk final {
    * @return the y-coordinate of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY int y() const noexcept;
+  STEP_QUERY
+  int y() const noexcept;
 
   /**
    * Returns the width of the chunk.
@@ -63,7 +66,8 @@ class Chunk final {
    * @return the width of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY int width() const noexcept;
+  STEP_QUERY
+  int width() const noexcept;
 
   /**
    * Returns the height of the chunk.
@@ -71,7 +75,8 @@ class Chunk final {
    * @return the height of the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY int height() const noexcept;
+  STEP_QUERY
+  int height() const noexcept;
 
   /**
    * Returns the data associated with the chunk.
@@ -79,7 +84,8 @@ class Chunk final {
    * @return the data associated with the chunk.
    * @since 0.1.0
    */
-  STEP_QUERY const detail::Data& data() const noexcept;
+  STEP_QUERY
+  const detail::Data& data() const noexcept;
 
  private:
   int m_x;
@@ -90,9 +96,5 @@ class Chunk final {
 };
 
 }  // namespace step
-
-#ifdef STEP_HEADER_ONLY
-#include "step_chunk.cpp"
-#endif  // STEP_HEADER_ONLY
 
 #endif  // STEP_CHUNK_HEADER

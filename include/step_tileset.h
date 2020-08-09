@@ -279,8 +279,4 @@ class Tileset final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_tileset.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TILESET_HEADER

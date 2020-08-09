@@ -64,8 +64,4 @@ class Animation final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_animation.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_ANIMATION_HEADER

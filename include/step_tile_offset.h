@@ -63,8 +63,4 @@ class TileOffset final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_tile_offset.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_TILE_OFFSET_HEADER

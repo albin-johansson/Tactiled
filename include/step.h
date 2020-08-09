@@ -27,32 +27,9 @@
 
 #include <string_view>
 
-#include "step_animation.h"
 #include "step_api.h"
-#include "step_cfg.h"
-#include "step_chunk.h"
-#include "step_color.h"
-#include "step_data.h"
-#include "step_exception.h"
-#include "step_frame.h"
-#include "step_grid.h"
-#include "step_group.h"
-#include "step_image_layer.h"
-#include "step_layer.h"
 #include "step_map.h"
-#include "step_object.h"
-#include "step_object_group.h"
-#include "step_point.h"
-#include "step_properties.h"
-#include "step_property.h"
-#include "step_terrain.h"
-#include "step_text.h"
-#include "step_tile.h"
-#include "step_tile_layer.h"
-#include "step_tile_offset.h"
-#include "step_tileset.h"
 #include "step_types.h"
-#include "step_utils.h"
 
 namespace step {
 

@@ -94,8 +94,4 @@ class WangTile final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_wang_tile.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_WANG_TILE_HEADER

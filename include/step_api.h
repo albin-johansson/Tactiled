@@ -25,8 +25,6 @@
 #ifndef STEP_API_HEADER
 #define STEP_API_HEADER
 
-#include "step_cfg.h"
-
 // Define STEP_API for any platform
 // https://atomheartother.github.io/c++/2018/07/12/CPPDynLib.html
 #if defined(_WIN32) && !defined(STEP_API)
@@ -38,13 +36,6 @@
 #else
 #define STEP_API
 #endif  // defined(_WIN32) && !defined(STEP_API)
-
-// When header-only mode is enabled, definitions are specified as inline
-#if !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
-#define STEP_DEF inline
-#else
-#define STEP_DEF
-#endif  // !defined(STEP_DEF) && defined(STEP_HEADER_ONLY)
 
 // Used for getters that aren't inlined
 #define STEP_QUERY [[nodiscard]] STEP_API

@@ -64,8 +64,4 @@ STEP_API void from_json(const JSON& json, Point& point);
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_point.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_POINT_HEADER

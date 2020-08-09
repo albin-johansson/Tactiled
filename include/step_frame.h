@@ -62,8 +62,4 @@ class Frame final {
 
 }  // namespace step
 
-#ifdef STEP_HEADER_ONLY
-#include "step_frame.cpp"
-#endif  // STEP_HEADER_ONLY
-
 #endif  // STEP_FRAME_HEADER
