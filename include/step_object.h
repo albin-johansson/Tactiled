@@ -44,7 +44,7 @@ namespace step {
  * @since 0.1.0
  */
 struct Polygon {
-  std::vector<Point> points;
+  std::vector<point> points;
 };
 
 /**
@@ -53,7 +53,7 @@ struct Polygon {
  * @since 0.1.0
  */
 struct Polyline {
-  std::vector<Point> points;
+  std::vector<point> points;
 };
 
 /**

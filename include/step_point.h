@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @file step_point.h
+ *
+ * @brief Provides the `point` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
+
 #ifndef STEP_POINT_HEADER
 #define STEP_POINT_HEADER
 
@@ -31,36 +43,52 @@
 namespace step {
 
 /**
- * The Point class represents a simple coordinate in the plane.
+ * @class point
+ *
+ * @brief Represents a simple 2D-coordinate in the plane.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_point.h
  */
-class Point final {
+class point final {
  public:
-  STEP_API friend void from_json(const JSON&, Point&);
+  point() noexcept = default;
 
   /**
-   * Returns the x-coordinate associated with the point.
+   * @brief Parses a point from a JSON object.
+   *
+   * @param json the JSON object that represents the point.
+   *
+   * @since 0.2.0
+   */
+  STEP_API
+  explicit point(const JSON& json);
+
+  /**
+   * @brief Returns the x-coordinate associated with the point.
    *
    * @return the x-coordinate of the point.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] double x() const noexcept { return m_x; }
+  STEP_QUERY
+  auto x() const noexcept -> double;
 
   /**
-   * Returns the y-coordinate associated with the point.
+   * @brief Returns the y-coordinate associated with the point.
    *
    * @return the y-coordinate of the point.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] double y() const noexcept { return m_y; }
+  STEP_QUERY
+  auto y() const noexcept -> double;
 
  private:
-  double m_x = 0;
-  double m_y = 0;
+  double m_x{};
+  double m_y{};
 };
-
-STEP_API void from_json(const JSON& json, Point& point);
 
 }  // namespace step
 

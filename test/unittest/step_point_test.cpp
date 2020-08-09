@@ -4,15 +4,12 @@
 
 #include "step_test_utils.h"
 
-using namespace step;
-
-inline static const std::string prefix = "resource/point/";
-
-TEST_SUITE("Point")
+TEST_SUITE("point")
 {
   TEST_CASE("Parsing valid point")
   {
-    const auto point = test::make<Point>(prefix, "point_valid.json");
+    const step::point point{
+        step::detail::parse_json("resource/point/point_valid.json")};
 
     CHECK(point.x() == 42.6);
     CHECK(point.y() == 184.3);
@@ -20,6 +17,7 @@ TEST_SUITE("Point")
 
   TEST_CASE("Parsing invalid point")
   {
-    CHECK_THROWS(test::make<Point>(prefix, "point_invalid.json"));
+    CHECK_THROWS(step::point{
+        step::detail::parse_json("resource/point/point_invalid.json")});
   }
 }

@@ -2,10 +2,18 @@
 
 namespace step {
 
-void from_json(const JSON& json, Point& point)  // FIXME
+point::point(const JSON& json)
+    : m_x{json.at("x").get<double>()}, m_y{json.at("y").get<double>()}
+{}
+
+auto point::x() const noexcept -> double
 {
-  json.at("x").get_to(point.m_x);
-  json.at("y").get_to(point.m_y);
+  return m_x;
+}
+
+auto point::y() const noexcept -> double
+{
+  return m_y;
 }
 
 }  // namespace step

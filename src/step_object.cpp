@@ -26,11 +26,19 @@ Object::Object(const JSON& json)
 
   } else if (json.contains("polygon")) {
     auto& polygon = m_specificData.emplace<Polygon>();
-    json.at("polygon").get_to(polygon.points);
+
+    for (const auto& [key, value] : json.at("polygon").items())
+    {
+      polygon.points.emplace_back(point{value});
+    }
 
   } else if (json.contains("polyline")) {
     auto& polyline = m_specificData.emplace<Polyline>();
-    json.at("polyline").get_to(polyline.points);
+
+    for (const auto& [key, value] : json.at("polyline").items())
+    {
+      polyline.points.emplace_back(point{value});
+    }
 
   } else if (json.contains("template")) {
     auto& templ = m_specificData.emplace<Template>();
