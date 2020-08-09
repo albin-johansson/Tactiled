@@ -4,7 +4,7 @@
 
 namespace step {
 
-Text::Text(const JSON& json)
+text::text(const JSON& json)
 {
   if (!json.count("text")) {
     throw StepException{"Text > Missing \"text\" attribute!"};
@@ -21,10 +21,10 @@ Text::Text(const JSON& json)
       m_color = Color{value.get<std::string>()};
 
     } else if (key == "halign") {
-      m_halign = value.get<Text::HAlign>();
+      m_halign = value.get<text::halign>();
 
     } else if (key == "valign") {
-      m_valign = value.get<Text::VAlign>();
+      m_valign = value.get<text::valign>();
 
     } else if (key == "pixelsize") {
       m_pixelSize = value.get<int>();
@@ -48,6 +48,66 @@ Text::Text(const JSON& json)
       m_wrap = value.get<bool>();
     }
   }
+}
+
+auto text::get_text() const -> std::string
+{
+  return m_text;
+}
+
+auto text::font_family() const -> std::string
+{
+  return m_fontFamily;
+}
+
+auto text::color() const noexcept -> Color
+{
+  return m_color;
+}
+
+auto text::horizontal_alignment() const noexcept -> text::halign
+{
+  return m_halign;
+}
+
+auto text::vertical_alignment() const noexcept -> text::valign
+{
+  return m_valign;
+}
+
+auto text::pixel_size() const noexcept -> int
+{
+  return m_pixelSize;
+}
+
+auto text::bold() const noexcept -> bool
+{
+  return m_bold;
+}
+
+auto text::italic() const noexcept -> bool
+{
+  return m_italic;
+}
+
+auto text::kerning() const noexcept -> bool
+{
+  return m_kerning;
+}
+
+auto text::strikeout() const noexcept -> bool
+{
+  return m_strikeout;
+}
+
+auto text::underline() const noexcept -> bool
+{
+  return m_underline;
+}
+
+auto text::wrap() const noexcept -> bool
+{
+  return m_wrap;
 }
 
 }  // namespace step

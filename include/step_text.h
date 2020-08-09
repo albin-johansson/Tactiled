@@ -22,10 +22,21 @@
  * SOFTWARE.
  */
 
+/**
+ * @file step_text.h
+ *
+ * @brief Provides the `text` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
+
 #ifndef STEP_TEXT_HEADER
 #define STEP_TEXT_HEADER
 
-#include <memory>
 #include <string>
 
 #include "step_api.h"
@@ -35,167 +46,214 @@
 namespace step {
 
 /**
- * The Text class represents objects that represent piece of text.
+ * @class text
+ *
+ * @brief Represents objects that represent a piece of text.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_text.h
  */
-class Text final {
+class text final {
  public:
   /**
-   * The HAlign enum class provides values that represents the different
-   * possible horizontal alignment modes for text.
+   * @enum halign
+   *
+   * @brief Provides values that represents the different possible horizontal
+   * alignment modes for text.
+   *
+   * @since 0.1.0
+   *
+   * @headerfile step_text.h
+   */
+  enum class halign { center, right, left, justify };
+
+  /**
+   * @enum valign
+   *
+   * @brief Provides values that represents the different possible vertical
+   * alignment modes for text.
+   *
+   * @since 0.1.0
+   *
+   * @headerfile step_text.h
+   */
+  enum class valign { center, bottom, top };
+
+  STEP_API
+  explicit text(const JSON& json);
+
+  /**
+   * @brief Returns the text associated with the instance.
+   *
+   * @note This property has no default value since it is a required attribute.
+   *
+   * @return the text associated with the instance.
    *
    * @since 0.1.0
    */
-  enum class HAlign { Center, Right, Left, Justify };
+  STEP_QUERY
+  auto get_text() const -> std::string;
 
   /**
-   * The VAlign enum class provides values that represents the different
-   * possible vertical alignment modes for text.
+   * @brief Returns the name of the font family associated with the text.
    *
-   * @since 0.1.0
-   */
-  enum class VAlign { Center, Bottom, Top };
-
-  STEP_API explicit Text(const JSON& json);
-
-  /**
-   * Returns the text associated with the Text instance. This property has no
-   * default value since it is a required attribute.
-   *
-   * @return the text associated with the Text instance.
-   * @since 0.1.0
-   */
-  [[nodiscard]] std::string text() const { return m_text; };
-
-  /**
-   * Returns the name of the font family associated with the text. The default
-   * value of this property is <b>"sans-serif"</b>.
+   * @note The default value of this property is `"sans-serif"`.
    *
    * @return the name of the font family associated with the text.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] std::string font_family() const { return m_fontFamily; }
+  STEP_QUERY
+  auto font_family() const -> std::string;
 
   /**
-   * Returns the color associated with the text. The default value of this
-   * property is <b>#000000</b>.
+   * @brief Returns the color associated with the text.
+   *
+   * @note The default value of this property is `#000000`.
    *
    * @return the color associated with the text.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] Color color() const noexcept { return m_color; }
+  STEP_QUERY
+  auto color() const noexcept -> Color;
 
   /**
-   * Returns the horizontal alignment of the text. The default value of this
-   * property is <b>Left</b>.
+   * @brief Returns the horizontal alignment of the text.
+   *
+   * @note The default value of this property is `Left`
    *
    * @return the horizontal alignment of the text.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] HAlign horizontal_alignment() const noexcept
-  {
-    return m_halign;
-  }
+  STEP_QUERY
+  auto horizontal_alignment() const noexcept -> halign;
 
   /**
-   * Returns the vertical alignment of the text. The default value of this
-   * property is <b>Top</b>.
+   * @brief Returns the vertical alignment of the text.
+   *
+   * @note The default value of this property is `Top`.
    *
    * @return the vertical alignment of the text.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] VAlign vertical_alignment() const noexcept { return m_valign; }
+  STEP_QUERY
+  auto vertical_alignment() const noexcept -> valign;
 
   /**
-   * Returns the pixel size of the associated font that the text uses. The
-   * default value of this property is <b>16</b>.
+   * @brief Returns the pixel size of the associated font that the text uses.
+   *
+   * @note The default value of this property is `16`.
    *
    * @return the pixel size of the associated font.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] int pixel_size() const noexcept { return m_pixelSize; }
+  STEP_QUERY
+  auto pixel_size() const noexcept -> int;
 
   /**
-   * Indicates whether or not the text is bold. The default value of
-   * this property is <b>false</b>.
+   * @brief Indicates whether or not the text is bold.
    *
-   * @return true if the text is bold; false otherwise.
+   * @note The default value of this property is `false`.
+   *
+   * @return `true` if the text is bold; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool bold() const noexcept { return m_bold; }
+  STEP_QUERY
+  auto bold() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the text is italic. The default value of
-   * this property is <b>false</b>.
+   * @brief Indicates whether or not the text is italic.
    *
-   * @return true if the text is italic; false otherwise.
+   * @note The default value of this property is `false`.
+   *
+   * @return `true` if the text is italic; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool italic() const noexcept { return m_italic; }
+  STEP_QUERY
+  auto italic() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the text uses kerning. The default value of
-   * this property is <b>true</b>.
+   * @brief Indicates whether or not the text uses kerning.
    *
-   * @return true if the text used kerning; false otherwise.
+   * @note The default value of this property is `true`.
+   *
+   * @return `true` if the text used kerning; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool kerning() const noexcept { return m_kerning; }
+  STEP_QUERY
+  auto kerning() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the text is strikethrough. The default value of
-   * this property is <b>false</b>.
+   * @brief Indicates whether or not the text is strikethrough.
    *
-   * @return true if the text is strikethrough; false otherwise.
+   * @note The default value of this property is `false`.
+   *
+   * @return `true` if the text is strikethrough; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool strikeout() const noexcept { return m_strikeout; }
+  STEP_QUERY
+  auto strikeout() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the text is underlined. The default value of
-   * this property is <b>false</b>.
+   * @brief Indicates whether or not the text is underlined.
    *
-   * @return true if the text is underlined; false otherwise.
+   * @note The default value of this property is `false`.
+   *
+   * @return `true` if the text is underlined; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool underline() const noexcept { return m_underline; }
+  STEP_QUERY
+  auto underline() const noexcept -> bool;
 
   /**
-   * Indicates whether or not the text is wrapped within the object bounds.
-   * The default value of this property is <b>false</b>.
+   * @brief Indicates whether or not the text is wrapped within the object
+   * bounds.
    *
-   * @return true if the text is wrapped within the object bounds; false
+   * @note The default value of this property is `false`.
+   *
+   * @return `true` if the text is wrapped within the object bounds; `false`
    * otherwise.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] bool wrap() const noexcept { return m_wrap; }
+  STEP_QUERY
+  auto wrap() const noexcept -> bool;
 
  private:
   std::string m_text;
-  std::string m_fontFamily = "sans-serif";
+  std::string m_fontFamily{"sans-serif"};
   Color m_color;
-  HAlign m_halign = HAlign::Left;
-  VAlign m_valign = VAlign::Top;
-  int m_pixelSize = 16;
-  bool m_bold = false;
-  bool m_italic = false;
-  bool m_kerning = true;
-  bool m_strikeout = false;
-  bool m_underline = false;
-  bool m_wrap = false;
+  halign m_halign{halign::left};
+  valign m_valign{valign::top};
+  int m_pixelSize{16};
+  bool m_bold{false};
+  bool m_italic{false};
+  bool m_kerning{true};
+  bool m_strikeout{false};
+  bool m_underline{false};
+  bool m_wrap{false};
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(Text::HAlign,
-                             {{Text::HAlign::Center, "center"},
-                              {Text::HAlign::Right, "right"},
-                              {Text::HAlign::Left, "left"},
-                              {Text::HAlign::Justify, "justify"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(text::halign,
+                             {{text::halign::center, "center"},
+                              {text::halign::right, "right"},
+                              {text::halign::left, "left"},
+                              {text::halign::justify, "justify"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(Text::VAlign,
-                             {{Text::VAlign::Center, "center"},
-                              {Text::VAlign::Top, "top"},
-                              {Text::VAlign::Bottom, "bottom"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(text::valign,
+                             {{text::valign::center, "center"},
+                              {text::valign::top, "top"},
+                              {text::valign::bottom, "bottom"}})
 }  // namespace step
 
 #endif  // STEP_TEXT_HEADER

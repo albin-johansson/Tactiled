@@ -240,9 +240,9 @@ TEST_SUITE("Object")
 
     SUBCASE("Text related properties")
     {
-      const auto text = textObject.text();
+      const auto text = textObject.get_text();
       REQUIRE(text);
-      CHECK(text->text() == "Hello World");
+      CHECK(text->get_text() == "Hello World");
       CHECK(text->wrap());
     }
   }

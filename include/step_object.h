@@ -188,7 +188,7 @@ class Object final {
    * @return the text associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Text> text() const;
+  STEP_QUERY std::optional<text> get_text() const;
 
   /**
    * Indicates whether or not the object is visible.
@@ -264,7 +264,7 @@ class Object final {
   std::string m_name;
   std::string m_type;
   std::unique_ptr<Properties> m_properties;
-  std::variant<std::monostate, Polygon, Polyline, Text, Template, GlobalID>
+  std::variant<std::monostate, Polygon, Polyline, text, Template, GlobalID>
       m_specificData;
   bool m_ellipse{false};
   bool m_point{false};

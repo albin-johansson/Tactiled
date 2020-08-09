@@ -22,21 +22,19 @@ Object::Object(const JSON& json)
     m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
 
   } else if (json.contains("text")) {
-    m_specificData.emplace<Text>(json.at("text"));
+    m_specificData.emplace<text>(json.at("text"));
 
   } else if (json.contains("polygon")) {
     auto& polygon = m_specificData.emplace<Polygon>();
 
-    for (const auto& [key, value] : json.at("polygon").items())
-    {
+    for (const auto& [key, value] : json.at("polygon").items()) {
       polygon.points.emplace_back(point{value});
     }
 
   } else if (json.contains("polyline")) {
     auto& polyline = m_specificData.emplace<Polyline>();
 
-    for (const auto& [key, value] : json.at("polyline").items())
-    {
+    for (const auto& [key, value] : json.at("polyline").items()) {
       polyline.points.emplace_back(point{value});
     }
 
@@ -127,10 +125,10 @@ std::optional<Template> Object::template_data() const
   }
 }
 
-std::optional<Text> Object::text() const
+std::optional<text> Object::get_text() const
 {
-  if (std::holds_alternative<Text>(m_specificData)) {
-    return std::get<Text>(m_specificData);
+  if (std::holds_alternative<text>(m_specificData)) {
+    return std::get<text>(m_specificData);
   } else {
     return std::nullopt;
   }
@@ -163,7 +161,7 @@ bool Object::is_polyline() const noexcept
 
 bool Object::is_text() const noexcept
 {
-  return std::holds_alternative<Text>(m_specificData);
+  return std::holds_alternative<text>(m_specificData);
 }
 
 bool Object::is_template() const noexcept
