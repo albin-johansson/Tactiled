@@ -64,7 +64,7 @@ TEST_SUITE("WangSet")
 
     SUBCASE("Check properties")
     {
-      const auto& properties = wangSet.properties();
+      const auto& properties = wangSet.get_properties();
       REQUIRE(properties.amount() == 1);
 
       const auto& prop = properties.get("wangSetProp");

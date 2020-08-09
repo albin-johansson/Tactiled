@@ -36,7 +36,7 @@ TEST_SUITE("object")
 
     SUBCASE("Check properties")
     {
-      const auto* props = object.properties();
+      const auto* props = object.get_properties();
       REQUIRE(props);
 
       REQUIRE(props->has("hp"));

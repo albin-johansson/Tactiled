@@ -5,13 +5,11 @@
 #include "step_exception.hpp"
 #include "step_test_utils.h"
 
-using namespace step;
-
-TEST_SUITE("Map")
+TEST_SUITE("map")
 {
   TEST_CASE("Parsing map")
   {
-    const Map map{"resource/map/basic_map.json"};
+    const step::Map map{"resource/map/basic_map.json"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
@@ -20,10 +18,10 @@ TEST_SUITE("Map")
     CHECK(map.json_version() == 1.2);
     CHECK(map.next_layer_id() == 2);
     CHECK(map.next_object_id() == 1);
-    CHECK(map.orientation() == Map::Orientation::Orthogonal);
-    CHECK(map.render_order() == Map::RenderOrder::RightDown);
+    CHECK(map.orientation() == step::Map::Orientation::Orthogonal);
+    CHECK(map.render_order() == step::Map::RenderOrder::RightDown);
     CHECK(map.tiled_version() == "1.3.4");
-    CHECK(!map.properties());
+    CHECK(!map.get_properties());
     CHECK(!map.infinite());
 
     SUBCASE("Test layers")
@@ -38,15 +36,15 @@ TEST_SUITE("Map")
       CHECK(layer.height() == 125);
       CHECK(layer.opacity() == 1);
       CHECK(layer.name() == "herbert");
-      CHECK(layer.type() == Layer::Type::TileLayer);
+      CHECK(layer.type() == step::Layer::Type::TileLayer);
       CHECK(layer.visible());
     }
   }
 
   TEST_CASE("No type attribute")
   {
-    CHECK_THROWS_WITH_AS(Map("resource/map/no_type.json"),
+    CHECK_THROWS_WITH_AS(step::Map("resource/map/no_type.json"),
                          "Map > \"type\" attribute must be \"map\"!",
-                         step_exception);
+                         step::step_exception);
   }
 }

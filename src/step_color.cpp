@@ -34,7 +34,8 @@ Color::Color(std::string_view value)
 {
   if (value.length() != 7 && value.length() != 9) {
     const auto badLen = std::to_string(value.length());
-    throw step_exception{"Color > Input string has incorrect length: " + badLen};
+    throw step_exception{"Color > Input string has incorrect length: " +
+                         badLen};
   }
 
   if (value.at(0) != '#') {

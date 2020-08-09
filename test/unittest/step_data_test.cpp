@@ -14,8 +14,8 @@ TEST_SUITE("Data")
   {
     const Data data{parse_json("resource/data/csv.json")};
     CHECK_NOTHROW(data.as_gid());
-    CHECK_THROWS_WITH_AS(
-        data.as_base64(), "Data > Couldn't obtain Base64 data!",
+    CHECK_THROWS_WITH_AS(data.as_base64(),
+                         "Data > Couldn't obtain Base64 data!",
                          step_exception);
   }
 

@@ -2,12 +2,14 @@
 
 #include <doctest.h>
 
+#include <string_view>
+
 #include "step_exception.hpp"
 #include "step_test_utils.h"
 
 using namespace step;
 
-inline static const std::string prefix = "resource/tileset/";
+inline static constexpr std::string_view prefix = "resource/tileset/";
 
 TEST_SUITE("Tileset")
 {
@@ -83,8 +85,8 @@ TEST_SUITE("Tileset")
       CHECK(firstTerrain.tile() == 4_lid);
 
       {
-        REQUIRE(firstTerrain.properties()->amount() != 0);
-        const auto property = firstTerrain.properties()->get("foo");
+        REQUIRE(firstTerrain.get_properties()->amount() != 0);
+        const auto property = firstTerrain.get_properties()->get("foo");
         CHECK(property.name() == "foo");
         REQUIRE(property.type() == property::Type::Bool);
         CHECK(property.get<bool>());
@@ -104,7 +106,7 @@ TEST_SUITE("Tileset")
   {
     const auto tileset = Tileset::embedded(
         detail::parse_json("resource/tileset/with_properties.json"));
-    const auto* properties = tileset.properties();
+    const auto* properties = tileset.get_properties();
 
     REQUIRE(properties);
     REQUIRE(properties->amount() == 2);
@@ -175,12 +177,12 @@ TEST_SUITE("Tileset")
         const auto properties = tile.get_properties();
         REQUIRE(properties->amount() == 2);
 
-        const auto firstProperty = properties->get("coolness");
+        const auto& firstProperty = properties->get("coolness");
         CHECK(firstProperty.name() == "coolness");
         REQUIRE(firstProperty.type() == property::Type::Int);
         CHECK(firstProperty.get<int>() == 9000);
 
-        const auto secondProperty = properties->get("frodo");
+        const auto& secondProperty = properties->get("frodo");
         CHECK(secondProperty.name() == "frodo");
         REQUIRE(secondProperty.type() == property::Type::String);
         CHECK(secondProperty.get<std::string>() == "sandTile");

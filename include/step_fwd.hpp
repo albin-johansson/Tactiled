@@ -33,6 +33,6 @@ class properties;
 
 class tile;
 
-}
+}  // namespace step
 
-#endif // STEP_FWD_HEADER
+#endif  // STEP_FWD_HEADER

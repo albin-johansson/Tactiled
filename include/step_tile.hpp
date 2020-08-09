@@ -42,9 +42,9 @@
 
 #include "step_animation.hpp"
 #include "step_api.hpp"
-#include "step_types.hpp"
 #include "step_fwd.hpp"
 #include "step_layer.hpp"
+#include "step_types.hpp"
 
 namespace step {
 
