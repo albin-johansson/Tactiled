@@ -4,7 +4,7 @@
 
 namespace step {
 
-Property::Property(const JSON& json)
+Property::Property(const json& json)
 {
   m_name = json.at("name").get<std::string>();
   m_type = json.at("type").get<Property::Type>();
@@ -26,7 +26,7 @@ Property::Property(const JSON& json)
       break;
     }
     case Property::Type::File: {
-      m_value.emplace<File>(json.at("value").get<std::string>());
+      m_value.emplace<file>(json.at("value").get<std::string>());
       break;
     }
     case Property::Type::String: {

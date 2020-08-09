@@ -4,7 +4,7 @@
 
 namespace step {
 
-Terrain::Terrain(const JSON& json)
+Terrain::Terrain(const json& json)
     : m_tile{json.at("tile").get<int>()},
       m_name{json.at("name").get<std::string>()}
 {
@@ -13,7 +13,7 @@ Terrain::Terrain(const JSON& json)
   }
 }
 
-LocalID Terrain::tile() const noexcept
+local_id Terrain::tile() const noexcept
 {
   return m_tile;
 }

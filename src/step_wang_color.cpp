@@ -2,7 +2,7 @@
 
 namespace step {
 
-WangColor::WangColor(const JSON& json)
+WangColor::WangColor(const json& json)
     : m_name{json.at("name").get<std::string>()},
       m_color{json.at("color").get<std::string>()},
       m_tile{json.at("tile").get<int>()},
@@ -19,7 +19,7 @@ const Color& WangColor::color() const noexcept
   return m_color;
 }
 
-LocalID WangColor::tile() const noexcept
+local_id WangColor::tile() const noexcept
 {
   return m_tile;
 }

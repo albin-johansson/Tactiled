@@ -2,7 +2,7 @@
 
 namespace step {
 
-Chunk::Chunk(const JSON& json)
+Chunk::Chunk(const json& json)
     : m_x{json.at("x").get<int>()},
       m_y{json.at("y").get<int>()},
       m_width{json.at("width").get<int>()},

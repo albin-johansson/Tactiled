@@ -4,7 +4,7 @@
 
 namespace step {
 
-TileLayer::TileLayer(const JSON& json)
+TileLayer::TileLayer(const json& json)
 {
   detail::safe_bind(json, "compression", m_compression);
   detail::safe_bind(json, "encoding", m_encoding);

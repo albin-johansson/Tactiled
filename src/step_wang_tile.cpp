@@ -2,7 +2,7 @@
 
 namespace step {
 
-WangTile::WangTile(const JSON& json) : m_tileID{json.at("tileid").get<int>()}
+WangTile::WangTile(const json& json) : m_tileID{json.at("tileid").get<int>()}
 {
   json.at("wangid").get_to(m_wangColorIndices);
   json.at("dflip").get_to(m_flippedDiagonally);
@@ -10,7 +10,7 @@ WangTile::WangTile(const JSON& json) : m_tileID{json.at("tileid").get<int>()}
   json.at("vflip").get_to(m_flippedVertically);
 }
 
-LocalID WangTile::tile_id() const noexcept
+local_id WangTile::tile_id() const noexcept
 {
   return m_tileID;
 }

@@ -40,7 +40,7 @@ class WangColor final {
    * @param json the JSON object that holds the data for a Wang color.
    * @since 0.1.0
    */
-  STEP_API explicit WangColor(const JSON& json);
+  STEP_API explicit WangColor(const json& json);
 
   /**
    * Returns the name associated with the Wang color.
@@ -64,7 +64,7 @@ class WangColor final {
    * @return the local ID of the tile that represents the Wang color.
    * @since 0.1.0
    */
-  STEP_QUERY LocalID tile() const noexcept;
+  STEP_QUERY local_id tile() const noexcept;
 
   /**
    * Returns the probability associated with the Wang color.
@@ -77,7 +77,7 @@ class WangColor final {
  private:
   std::string m_name;
   Color m_color;
-  LocalID m_tile{0};
+  local_id m_tile{0};
   double m_probability{};
 };
 

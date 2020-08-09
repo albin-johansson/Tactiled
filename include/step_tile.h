@@ -57,7 +57,7 @@ class Tile final {
     BottomRight = 3
   };
 
-  STEP_API explicit Tile(const JSON& json);
+  STEP_API explicit Tile(const json& json);
 
   /**
    * Returns the local ID associated with the tile.
@@ -65,7 +65,7 @@ class Tile final {
    * @return the local ID associated with the tile.
    * @since 0.1.0
    */
-  STEP_QUERY LocalID id() const noexcept;
+  STEP_QUERY local_id id() const noexcept;
 
   /**
    * Returns the animation associated with the tile.
@@ -150,7 +150,7 @@ class Tile final {
   STEP_QUERY std::optional<int> terrain_at(TerrainPos position) const noexcept;
 
  private:
-  LocalID m_id{0};
+  local_id m_id{0};
   std::optional<Animation> m_animation;
   std::unique_ptr<Properties> m_properties;
   std::shared_ptr<Layer> m_objectGroup;

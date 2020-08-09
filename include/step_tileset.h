@@ -52,10 +52,10 @@ class Tileset;
  */
 class Tileset final {
  public:
-  STEP_API static Tileset embedded(const JSON& json);
+  STEP_API static Tileset embedded(const json& json);
 
   STEP_API static Tileset external(std::string_view root,
-                                   GlobalID id,
+                                   global_id id,
                                    std::string_view src);
 
   /**
@@ -64,7 +64,7 @@ class Tileset final {
    * @return the GID (Global ID) of the first tile in the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY GlobalID first_gid() const noexcept;
+  STEP_QUERY global_id first_gid() const noexcept;
 
   /**
    * Returns the maximum width of tiles in the tileset.
@@ -246,7 +246,7 @@ class Tileset final {
   STEP_QUERY double json_version() const noexcept;
 
  private:
-  GlobalID m_firstGID{1};
+  global_id m_firstGID{1};
   int m_tileWidth = 0;
   int m_tileHeight = 0;
   int m_tileCount = 0;
@@ -270,11 +270,11 @@ class Tileset final {
   std::string m_tiledVersion;
   double m_jsonVersion = 0;
 
-  Tileset(std::string_view root, GlobalID id, std::string_view src);
+  Tileset(std::string_view root, global_id id, std::string_view src);
 
-  explicit Tileset(const JSON& json);
+  explicit Tileset(const json& json);
 
-  void parse(const JSON& json);
+  void parse(const json& json);
 };
 
 }  // namespace step

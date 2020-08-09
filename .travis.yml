@@ -65,7 +65,6 @@ script:
   - make
   - cd test
   - ./teststep
-#  - ctest
 
 after_success:
   - cd ${TRAVIS_BUILD_DIR}

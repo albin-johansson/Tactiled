@@ -235,7 +235,7 @@ class Map final {
   double m_jsonVersion{0};
   bool m_infinite{false};
 
-  void parse(std::string_view root, const JSON& json);
+  void parse(std::string_view root, const json& json);
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(Map::RenderOrder,

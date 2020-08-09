@@ -2,7 +2,7 @@
 
 namespace step {
 
-point::point(const JSON& json)
+point::point(const json& json)
     : m_x{json.at("x").get<double>()}, m_y{json.at("y").get<double>()}
 {}
 

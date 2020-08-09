@@ -38,7 +38,7 @@ namespace step {
  */
 class TileOffset final {
  public:
-  STEP_API explicit TileOffset(const JSON& json);
+  STEP_API explicit TileOffset(const json& json);
 
   /**
    * Returns the offset in the x-axis associated with the tile offset instance.

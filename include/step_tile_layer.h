@@ -58,7 +58,7 @@ class TileLayer final {
    */
   enum class Encoding { CSV, Base64 };
 
-  STEP_API explicit TileLayer(const JSON& json);
+  STEP_API explicit TileLayer(const json& json);
 
   /**
    * Returns the encoding used by the tile layer. The default value of this

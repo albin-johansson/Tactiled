@@ -40,7 +40,7 @@ namespace step {
 class Chunk final {
  public:
   STEP_API
-  explicit Chunk(const JSON& json);
+  explicit Chunk(const json& json);
 
   /**
    * Returns the x-coordinate of the chunk.

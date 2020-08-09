@@ -5,7 +5,7 @@
 
 namespace step {
 
-Animation::Animation(const JSON& json)
+Animation::Animation(const json& json)
     : m_frames{detail::fill<std::vector<Frame>>(json)}
 {}
 

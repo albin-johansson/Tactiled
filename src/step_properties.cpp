@@ -4,7 +4,7 @@
 
 namespace step {
 
-Properties::Properties(const JSON& json)
+Properties::Properties(const json& json)
 {
   for (const auto& [key, value] : json.items()) {
     const Property property{value};

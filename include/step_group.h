@@ -43,7 +43,7 @@ class Layer;
  */
 class Group final {
  public:
-  STEP_API friend void from_json(const JSON&, Group&);
+  STEP_API friend void from_json(const json&, Group&);
 
   /**
    * Iterates over all of the layers store in this group.
@@ -83,7 +83,7 @@ class Group final {
   std::vector<std::unique_ptr<Layer>> m_layers;
 };
 
-STEP_API void from_json(const JSON& json, Group& group);
+STEP_API void from_json(const json& json, Group& group);
 
 }  // namespace step
 

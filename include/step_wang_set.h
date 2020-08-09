@@ -42,7 +42,7 @@ class WangSet final {
    * @param json the JSON object that holds the data for a Wang set.
    * @since 0.1.0
    */
-  STEP_API explicit WangSet(const JSON& json);
+  STEP_API explicit WangSet(const json& json);
 
   /**
    * Returns all of the corner colors associated with the Wang set.
@@ -90,7 +90,7 @@ class WangSet final {
    * @return the local ID of the tile that represents the Wang set.
    * @since 0.1.0
    */
-  STEP_QUERY LocalID tile_id() const noexcept;
+  STEP_QUERY local_id tile_id() const noexcept;
 
  private:
   std::vector<WangColor> m_cornerColors;
@@ -98,7 +98,7 @@ class WangSet final {
   std::vector<WangTile> m_wangTiles;
   Properties m_properties;
   std::string m_name;
-  LocalID m_tile{0};
+  local_id m_tile{0};
 };
 
 }  // namespace step

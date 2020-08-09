@@ -63,7 +63,7 @@ class point final {
    * @since 0.2.0
    */
   STEP_API
-  explicit point(const JSON& json);
+  explicit point(const json& json);
 
   /**
    * @brief Returns the x-coordinate associated with the point.

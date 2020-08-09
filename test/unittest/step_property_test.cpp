@@ -203,11 +203,11 @@ TEST_SUITE("File property")
         detail::parse_json("resource/property/file_property_valid.json")};
     CHECK(property.name() == "Mirkwood");
     CHECK(property.type() == Property::Type::File);
-    CHECK(property.is<File>());
+    CHECK(property.is<file>());
 
     SUBCASE("Property::get")
     {
-      CHECK(property.get<File>() == "path/to/file.txt"_file);
+      CHECK(property.get<file>() == "path/to/file.txt"_file);
       CHECK_THROWS(property.get<int>());
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());

@@ -20,7 +20,7 @@ Map::Map(std::string_view root, std::string_view file)
   parse(root, detail::parse_json(map));
 }
 
-void Map::parse(std::string_view root, const JSON& json)
+void Map::parse(std::string_view root, const json& json)
 {
   if (!json.contains("type") || json.at("type") != "map") {
     throw StepException{R"(Map > "type" attribute must be "map"!)"};
@@ -56,7 +56,7 @@ void Map::parse(std::string_view root, const JSON& json)
 
   for (const auto& [key, value] : json.at("tilesets").items()) {
     if (value.contains("source")) {
-      const auto firstgid = GlobalID{value.at("firstgid").get<unsigned>()};
+      const auto firstgid = global_id{value.at("firstgid").get<unsigned>()};
       const auto src = value.at("source").get<std::string>();
       m_tilesets.push_back(Tileset::external(root, firstgid, src.data()));
     } else {

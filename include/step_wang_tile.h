@@ -39,7 +39,7 @@ class WangTile final {
    * @param json the JSON object that holds the data for a Wang tile.
    * @since 0.1.0
    */
-  STEP_API explicit WangTile(const JSON& json);
+  STEP_API explicit WangTile(const json& json);
 
   /**
    * Returns the local ID associated with the Wang tile.
@@ -47,7 +47,7 @@ class WangTile final {
    * @return the local ID associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY LocalID tile_id() const noexcept;
+  STEP_QUERY local_id tile_id() const noexcept;
 
   /**
    * Returns the Wang color indices associated with the Wang tile.
@@ -85,7 +85,7 @@ class WangTile final {
   STEP_QUERY bool flipped_vertically() const noexcept;
 
  private:
-  LocalID m_tileID{0};
+  local_id m_tileID{0};
   std::array<int, 8> m_wangColorIndices;
   bool m_flippedDiagonally{false};
   bool m_flippedHorizontally{false};

@@ -2,7 +2,7 @@
 
 namespace step {
 
-ObjectGroup::ObjectGroup(const JSON& json)
+ObjectGroup::ObjectGroup(const json& json)
     : m_drawOrder{json.at("draworder")},
       m_objects{detail::fill_unique_vec<Object>(json, "objects")}
 {}

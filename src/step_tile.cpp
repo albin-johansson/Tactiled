@@ -5,7 +5,7 @@
 
 namespace step {
 
-Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
+Tile::Tile(const json& json) : m_id{json.at("id").get<int>()}
 {
   m_properties = detail::safe_bind_unique<Properties>(json, "properties");
 
@@ -30,7 +30,7 @@ Tile::Tile(const JSON& json) : m_id{json.at("id").get<int>()}
   detail::bind_opt(json, "probability", m_probability);
 }
 
-LocalID Tile::id() const noexcept
+local_id Tile::id() const noexcept
 {
   return m_id;
 }

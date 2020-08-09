@@ -41,10 +41,10 @@ namespace step::detail {
  */
 class Data final {
  public:
-  using GIDData = std::vector<GlobalID>;
+  using GIDData = std::vector<global_id>;
   using Base64Data = std::string;
 
-  STEP_API explicit Data(const JSON& json);
+  STEP_API explicit Data(const json& json);
 
   /**
    * Returns the GID data associated with the Data instance. This method

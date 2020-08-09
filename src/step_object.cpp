@@ -4,7 +4,7 @@
 
 namespace step {
 
-Object::Object(const JSON& json)
+Object::Object(const json& json)
     : m_id{json.at("id").get<int>()},
       m_x{json.at("x").get<double>()},
       m_y{json.at("y").get<double>()},
@@ -19,7 +19,7 @@ Object::Object(const JSON& json)
       m_visible{json.at("visible").get<bool>()}
 {
   if (json.contains("gid")) {
-    m_specificData.emplace<GlobalID>(json.at("gid").get<unsigned>());
+    m_specificData.emplace<global_id>(json.at("gid").get<unsigned>());
 
   } else if (json.contains("text")) {
     m_specificData.emplace<text>(json.at("text"));
@@ -107,10 +107,10 @@ std::optional<Polyline> Object::polyline() const noexcept
   }
 }
 
-std::optional<GlobalID> Object::tile_gid() const noexcept
+std::optional<global_id> Object::tile_gid() const noexcept
 {
-  if (std::holds_alternative<GlobalID>(m_specificData)) {
-    return std::get<GlobalID>(m_specificData);
+  if (std::holds_alternative<global_id>(m_specificData)) {
+    return std::get<global_id>(m_specificData);
   } else {
     return std::nullopt;
   }
@@ -171,7 +171,7 @@ bool Object::is_template() const noexcept
 
 bool Object::is_tile() const noexcept
 {
-  return std::holds_alternative<GlobalID>(m_specificData);
+  return std::holds_alternative<global_id>(m_specificData);
 }
 
 }  // namespace step

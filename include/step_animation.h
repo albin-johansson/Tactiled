@@ -40,7 +40,7 @@ namespace step {
  */
 class Animation final {
  public:
-  STEP_API explicit Animation(const JSON& json);
+  STEP_API explicit Animation(const json& json);
 
   /**
    * Returns the frames associated with the animation.

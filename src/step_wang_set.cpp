@@ -8,7 +8,7 @@ using WangTiles = std::vector<WangTile>;
 
 }  // namespace
 
-WangSet::WangSet(const JSON& json)
+WangSet::WangSet(const json& json)
     : m_cornerColors{detail::fill<WangColors>(json, "cornercolors")},
       m_edgeColors{detail::fill<WangColors>(json, "edgecolors")},
       m_wangTiles{detail::fill<WangTiles>(json, "wangtiles")},
@@ -42,7 +42,7 @@ const std::string& WangSet::name() const
   return m_name;
 }
 
-LocalID WangSet::tile_id() const noexcept
+local_id WangSet::tile_id() const noexcept
 {
   return m_tile;
 }

@@ -40,7 +40,7 @@ class StepException final : public std::exception {
 
   ~StepException() noexcept override = default;
 
-  CZString what() const noexcept override { return m_what.c_str(); }
+  czstring what() const noexcept override { return m_what.c_str(); }
 
  private:
   std::string m_what;

@@ -46,7 +46,7 @@ namespace step {
  */
 class Properties final {
  public:
-  STEP_API explicit Properties(const JSON& json);
+  STEP_API explicit Properties(const json& json);
 
   /**
    * Iterates over all of the properties store in this instance.

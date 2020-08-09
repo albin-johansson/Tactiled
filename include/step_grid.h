@@ -45,7 +45,7 @@ class Grid final {
    */
   enum class Orientation { Orthogonal, Isometric };
 
-  STEP_API friend void from_json(const JSON&, Grid&);
+  STEP_API friend void from_json(const json&, Grid&);
 
   /**
    * Returns the orientation of the grid. The default value of this property
@@ -81,7 +81,7 @@ class Grid final {
   int m_height;
 };
 
-STEP_API void from_json(const JSON& json, Grid& grid);
+STEP_API void from_json(const json& json, Grid& grid);
 
 NLOHMANN_JSON_SERIALIZE_ENUM(Grid::Orientation,
                              {{Grid::Orientation::Orthogonal, "orthogonal"},

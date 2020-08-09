@@ -12,7 +12,7 @@ std::optional<Color> ImageLayer::transparent_color() const noexcept
   return m_transparentColor;
 }
 
-void from_json(const JSON& json, ImageLayer& layer)  // FIXME
+void from_json(const json& json, ImageLayer& layer)  // FIXME
 {
   json.at("image").get_to(layer.m_image);
   if (json.count("transparentcolor")) {

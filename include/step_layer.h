@@ -55,7 +55,7 @@ class Layer final {
    */
   enum class Type { TileLayer, ObjectGroup, ImageLayer, Group };
 
-  STEP_API explicit Layer(const JSON& json);
+  STEP_API explicit Layer(const json& json);
 
   /**
    * Indicates whether or not the layer is a tile layer.
@@ -245,7 +245,7 @@ class Layer final {
   std::string m_name;
   bool m_visible{true};
 
-  void init_common(const JSON& json);
+  void init_common(const json& json);
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(Layer::Type,

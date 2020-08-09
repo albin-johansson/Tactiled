@@ -75,7 +75,7 @@ struct Template {
  */
 class Object final {
  public:
-  STEP_API explicit Object(const JSON& json);
+  STEP_API explicit Object(const json& json);
 
   /**
    * Returns the incremental ID associated with the object.
@@ -171,7 +171,7 @@ class Object final {
    * @return the tile GID associated with the object; nothing if there is none.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<GlobalID> tile_gid() const noexcept;
+  STEP_QUERY std::optional<global_id> tile_gid() const noexcept;
 
   /**
    * Returns the template data associated with the object.
@@ -264,7 +264,7 @@ class Object final {
   std::string m_name;
   std::string m_type;
   std::unique_ptr<Properties> m_properties;
-  std::variant<std::monostate, Polygon, Polyline, text, Template, GlobalID>
+  std::variant<std::monostate, Polygon, Polyline, text, Template, global_id>
       m_specificData;
   bool m_ellipse{false};
   bool m_point{false};

@@ -5,7 +5,7 @@
 
 namespace step {
 
-Layer::Layer(const JSON& json)
+Layer::Layer(const json& json)
 {
   init_common(json);
   switch (type()) {
@@ -148,7 +148,7 @@ const Properties* Layer::properties() const noexcept
   return m_properties.get();
 }
 
-void Layer::init_common(const JSON& json)
+void Layer::init_common(const json& json)
 {
   json.at("type").get_to(m_type);
 

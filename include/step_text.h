@@ -81,7 +81,7 @@ class text final {
   enum class valign { center, bottom, top };
 
   STEP_API
-  explicit text(const JSON& json);
+  explicit text(const json& json);
 
   /**
    * @brief Returns the text associated with the instance.

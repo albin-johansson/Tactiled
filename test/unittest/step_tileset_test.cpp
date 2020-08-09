@@ -142,7 +142,7 @@ TEST_SUITE("Tileset")
         const auto& frames = animation->frames();
         for (int i = 0; i < 3; ++i) {
           CHECK(frames.at(i).duration() == 900);
-          CHECK(frames.at(i).tile_id() == 187_lid + LocalID{i});
+          CHECK(frames.at(i).tile_id() == 187_lid + local_id{i});
         }
       }
 

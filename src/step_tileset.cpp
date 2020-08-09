@@ -5,7 +5,7 @@
 
 namespace step {
 
-Tileset::Tileset(std::string_view root, GlobalID id, std::string_view path)
+Tileset::Tileset(std::string_view root, global_id id, std::string_view path)
     : m_firstGID{id}, m_source{path.data()}
 {
   std::string fullPath{root.data()};
@@ -13,24 +13,24 @@ Tileset::Tileset(std::string_view root, GlobalID id, std::string_view path)
   parse(detail::parse_json(fullPath));
 }
 
-Tileset::Tileset(const JSON& json)
+Tileset::Tileset(const json& json)
 {
   parse(json);
 }
 
-Tileset Tileset::embedded(const JSON& json)
+Tileset Tileset::embedded(const json& json)
 {
   return Tileset{json};
 }
 
 Tileset Tileset::external(std::string_view root,
-                          GlobalID id,
+                          global_id id,
                           std::string_view src)
 {
   return {root, id, src};
 }
 
-void Tileset::parse(const JSON& json)
+void Tileset::parse(const json& json)
 {
   if (json.at("type").get<std::string>() != "tileset") {
     throw StepException{"Tileset > \"type\" must be \"tileset\"!"};
@@ -48,7 +48,7 @@ void Tileset::parse(const JSON& json)
   json.at("name").get_to(m_name);
 
   if (json.contains("firstgid")) {
-    m_firstGID = GlobalID{json.at("firstgid").get<unsigned>()};
+    m_firstGID = global_id{json.at("firstgid").get<unsigned>()};
   }
 
   if (json.contains("properties")) {
@@ -86,7 +86,7 @@ void Tileset::parse(const JSON& json)
   }
 }
 
-GlobalID Tileset::first_gid() const noexcept
+global_id Tileset::first_gid() const noexcept
 {
   return m_firstGID;
 }

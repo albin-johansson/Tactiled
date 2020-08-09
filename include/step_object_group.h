@@ -49,7 +49,7 @@ class ObjectGroup final {
    */
   enum class DrawOrder { TopDown, Index };
 
-  STEP_API explicit ObjectGroup(const JSON& json);
+  STEP_API explicit ObjectGroup(const json& json);
 
   /**
    * Returns the draw order used by the object group. The default value of

@@ -5,7 +5,7 @@
 
 namespace step::detail {
 
-Data::Data(const JSON& json)
+Data::Data(const json& json)
 {
   if (json.is_array()) {
     //    m_data = detail::fill<GIDData>(json);

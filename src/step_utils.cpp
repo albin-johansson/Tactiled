@@ -6,14 +6,14 @@
 
 namespace step::detail {
 
-JSON parse_json(std::string_view file)
+json parse_json(std::string_view file)
 {
   if (!file.data()) {
     throw StepException{"Cannot parse JSON from null file!"};
   }
 
   try {
-    JSON json;
+    json json;
     std::ifstream stream{file.data()};
     stream >> json;
     return json;

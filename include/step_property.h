@@ -61,7 +61,7 @@ class Property final {
    */
   enum class Type { String, Int, Float, Bool, Color, File };
 
-  STEP_API explicit Property(const JSON& json);
+  STEP_API explicit Property(const json& json);
 
   /**
    * Returns the value of the property as the specified type. This method
@@ -141,7 +141,7 @@ class Property final {
     } else if constexpr (std::is_same_v<T, Color>) {
       return m_type == Type::Color;
 
-    } else if constexpr (std::is_same_v<T, File>) {
+    } else if constexpr (std::is_same_v<T, file>) {
       return m_type == Type::File;
 
     } else /*if constexpr (std::is_convertible_v<T, std::string>)*/ {
@@ -167,7 +167,7 @@ class Property final {
 
  private:
   std::string m_name;
-  std::variant<std::string, File, Color, int, float, bool> m_value;
+  std::variant<std::string, file, Color, int, float, bool> m_value;
   Type m_type = Type::String;
 };
 
