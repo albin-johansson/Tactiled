@@ -11,7 +11,7 @@ TEST_SUITE("Map")
 {
   TEST_CASE("Parsing map")
   {
-    const Map map{R"(resource/map/basic_map.json)"};
+    const Map map{"resource/map/basic_map.json"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
