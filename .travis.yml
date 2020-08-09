@@ -38,6 +38,8 @@ install:
     fi
   - sudo apt-get update
 
+  - sudo cpan JSON
+
   # Manually builds latest LCOV
   - git clone https://github.com/linux-test-project/lcov.git lcov
   - cd lcov
