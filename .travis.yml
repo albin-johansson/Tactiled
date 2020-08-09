@@ -38,7 +38,7 @@ install:
     fi
   - sudo apt-get update
 
-  - sudo cpan JSON
+  - sudo apt-get install -y libjson-perl
 
   # Manually builds latest LCOV
   - git clone https://github.com/linux-test-project/lcov.git lcov
