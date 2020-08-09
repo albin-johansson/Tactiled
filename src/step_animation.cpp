@@ -5,16 +5,16 @@
 
 namespace step {
 
-Animation::Animation(const json& json)
+animation::animation(const json& json)
     : m_frames{detail::fill<std::vector<Frame>>(json)}
 {}
 
-const std::vector<Frame>& Animation::frames() const
+auto animation::frames() const -> const std::vector<Frame>&
 {
   return m_frames;
 }
 
-int Animation::length() const noexcept
+auto animation::num_frames() const noexcept -> int
 {
   return static_cast<int>(m_frames.size());
 }

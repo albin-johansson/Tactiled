@@ -35,12 +35,12 @@ local_id Tile::id() const noexcept
   return m_id;
 }
 
-std::optional<Animation> Tile::animation() const noexcept
+std::optional<animation> Tile::get_animation() const noexcept
 {
   return m_animation;
 }
 
-const Properties* Tile::properties() const
+const Properties* Tile::get_properties() const
 {
   return m_properties.get();
 }

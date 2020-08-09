@@ -10,10 +10,10 @@ TEST_SUITE("Animation")
 {
   TEST_CASE("Parsing valid animation")
   {
-    const Animation animation{
+    const animation animation{
         detail::parse_json("resource/animation/animation_valid.json")};
 
-    CHECK(animation.length() == 3);
+    CHECK(animation.num_frames() == 3);
 
     const auto first = animation.frames().at(0);
     CHECK(first.tile_id() == 77_lid);

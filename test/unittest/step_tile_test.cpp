@@ -33,10 +33,10 @@ TEST_SUITE("Tile")
 
     SUBCASE("Testing parsing of animation")
     {
-      const auto animation = tile.animation();
+      const auto animation = tile.get_animation();
 
       CHECK(animation);
-      CHECK(animation->length() == 2);
+      CHECK(animation->num_frames() == 2);
 
       const auto& firstFrame = animation->frames().at(0);
       CHECK(firstFrame.tile_id() == 23_lid);
@@ -49,7 +49,7 @@ TEST_SUITE("Tile")
 
     SUBCASE("Testing parsing of properties")
     {
-      const auto* properties = tile.properties();
+      const auto* properties = tile.get_properties();
       REQUIRE(properties);
 
       const auto& first = properties->get("Galadriel");

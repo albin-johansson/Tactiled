@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
+/**
+ * @file step_object.hpp
+ *
+ * @brief Provides `object`, `polygon`, `polyline` and `template_object`.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
+
 #ifndef STEP_OBJECT_HEADER
 #define STEP_OBJECT_HEADER
 

@@ -67,7 +67,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  local_id id() const noexcept;
+  auto id() const noexcept -> local_id;
 
   /**
    * Returns the animation associated with the tile.
@@ -77,7 +77,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<Animation> animation() const noexcept;
+  auto get_animation() const noexcept -> std::optional<animation>;
 
   /**
    * Returns the properties associated with the tile.
@@ -86,7 +86,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const Properties* properties() const;
+  auto get_properties() const -> const Properties*;
 
   /**
    * Returns the object group layer associated with the tile. This property
@@ -99,7 +99,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::shared_ptr<Layer> object_group() const noexcept;
+  auto object_group() const noexcept -> std::shared_ptr<Layer>;
 
   /**
    * Returns the type of the tile.
@@ -108,7 +108,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<std::string> type() const;
+  auto type() const -> std::optional<std::string>;
 
   /**
    * Returns the image associated with the tile.
@@ -117,7 +117,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<std::string> image() const;
+  auto image() const -> std::optional<std::string>;
 
   /**
    * Returns the width of the image associated with the tile.
@@ -127,7 +127,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<int> image_width() const noexcept;
+  auto image_width() const noexcept -> std::optional<int>;
 
   /**
    * Returns the height of the image associated with the tile.
@@ -137,7 +137,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<int> image_height() const noexcept;
+  auto image_height() const noexcept -> std::optional<int>;
 
   /**
    * Returns the probability associated with the tile.
@@ -146,7 +146,7 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<double> probability() const noexcept;
+  auto probability() const noexcept -> std::optional<double>;
 
   /**
    * Returns the ID of the terrain at the specified position, in relation to
@@ -158,11 +158,11 @@ class Tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  std::optional<int> terrain_at(TerrainPos position) const noexcept;
+  auto terrain_at(TerrainPos position) const noexcept -> std::optional<int>;
 
  private:
   local_id m_id{0};
-  std::optional<Animation> m_animation;
+  std::optional<animation> m_animation;
   std::unique_ptr<Properties> m_properties;
   std::shared_ptr<Layer> m_objectGroup;
   std::optional<std::array<int, 4>> m_terrain;

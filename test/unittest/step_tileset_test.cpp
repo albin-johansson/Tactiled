@@ -135,9 +135,9 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Animation")
       {
-        const auto animation = tile.animation();
+        const auto animation = tile.get_animation();
         REQUIRE(animation);
-        CHECK(animation->length() == 3);
+        CHECK(animation->num_frames() == 3);
 
         const auto& frames = animation->frames();
         for (int i = 0; i < 3; ++i) {
@@ -148,7 +148,7 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Properties")
       {
-        const auto* properties = tile.properties();
+        const auto* properties = tile.get_properties();
         REQUIRE(properties);
         REQUIRE(properties->amount() == 1);
 
@@ -172,7 +172,7 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Properties")
       {
-        const auto properties = tile.properties();
+        const auto properties = tile.get_properties();
         REQUIRE(properties->amount() == 2);
 
         const auto firstProperty = properties->get("coolness");

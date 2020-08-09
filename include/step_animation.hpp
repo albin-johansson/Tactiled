@@ -22,6 +22,18 @@
  * SOFTWARE.
  */
 
+/*
+ * @file step_animation.hpp
+ *
+ * @brief Provides the `animation` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
+
 #ifndef STEP_ANIMATION_HEADER
 #define STEP_ANIMATION_HEADER
 
@@ -34,32 +46,40 @@
 namespace step {
 
 /**
- * The Animation class represents a collection of frames, used to animate tiles.
+ * @class animation
+ *
+ * @brief Represents a collection of frames, used to animate tiles.
  *
  * @since 0.1.0
+ *
+ * @todo Add begin() and end(), maybe even at() & operator[].
+ *
+ * @headerfile step_animation.hpp
  */
-class Animation final {
+class animation final {
  public:
   STEP_API
-  explicit Animation(const json& json);
+  explicit animation(const json& json);
 
   /**
-   * Returns the frames associated with the animation.
+   * @brief Returns the frames associated with the animation.
    *
    * @return the frames associated with the animation.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  const std::vector<Frame>& frames() const;
+  auto frames() const -> const std::vector<Frame>&;
 
   /**
-   * Returns the amount of frames that constitute the animation.
+   * @brief Returns the amount of frames that constitute the animation.
    *
    * @return the amount of frames that constitute the animation.
+   *
    * @since 0.1.0
    */
   STEP_QUERY
-  int length() const noexcept;
+  auto num_frames() const noexcept -> int;
 
  private:
   std::vector<Frame> m_frames;
