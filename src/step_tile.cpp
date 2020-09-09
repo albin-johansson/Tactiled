@@ -10,16 +10,15 @@ tile::tile(const json& json) : m_id{json.at("id").get<int>()}
 {
   m_properties = detail::safe_bind_unique<properties>(json, "properties");
 
-  if (json.contains("terrain")) {
+  if (const auto it = json.find("terrain"); it != json.end()) {
     m_terrain.emplace();
-    for (const auto& [key, value] : json.at("terrain").items()) {
+    for (const auto& [key, value] : it->items()) {
       m_terrain->at(detail::convert<std::size_t>(key)) = value.get<int>();
     }
   }
 
-  if (json.contains("objectgroup")) {
-    const auto j = json.at("objectgroup");
-    m_objectGroup = std::make_unique<Layer>(j);
+  if (const auto it = json.find("objectgroup"); it != json.end()) {
+    m_objectGroup = std::make_unique<Layer>(*it);
   }
 
   detail::emplace_opt(json, "animation", m_animation);
