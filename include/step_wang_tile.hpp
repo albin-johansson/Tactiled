@@ -39,8 +39,13 @@ class WangTile final {
    * @param json the JSON object that holds the data for a Wang tile.
    * @since 0.1.0
    */
-  STEP_API
-  explicit WangTile(const json& json);
+  explicit WangTile(const json& json)
+      : m_tileID{json.at("tileid").get<int>()},
+        m_wangColorIndices{json.at("wangid").get<std::array<int, 8>>()},
+        m_flippedDiagonally{json.at("dflip").get<bool>()},
+        m_flippedHorizontally{json.at("hflip").get<bool>()},
+        m_flippedVertically{json.at("vflip").get<bool>()}
+  {}
 
   /**
    * Returns the local ID associated with the Wang tile.
@@ -48,8 +53,7 @@ class WangTile final {
    * @return the local ID associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY
-  local_id tile_id() const noexcept;
+  [[nodiscard]] auto tile_id() const noexcept -> local_id { return m_tileID; }
 
   /**
    * Returns the Wang color indices associated with the Wang tile.
@@ -57,42 +61,56 @@ class WangTile final {
    * @return the Wang color indices associated with the Wang tile.
    * @since 0.1.0
    */
-  STEP_QUERY
-  const std::array<int, 8>& wang_color_indices() const;
+  [[nodiscard]] auto wang_color_indices() const -> const std::array<int, 8>&
+  {
+    return m_wangColorIndices;
+  }
 
   /**
-   * Indicates whether or not the tile is flipped diagonally. The default
-   * value of this property is false.
+   * @brief Indicates whether or not the tile is flipped diagonally.
    *
-   * @return true if the tile is flipped diagonally; false otherwise.
+   * @details The default value of this property is false.
+   *
+   * @return `true` if the tile is flipped diagonally; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  STEP_QUERY
-  bool flipped_diagonally() const noexcept;
+  [[nodiscard]] auto flipped_diagonally() const noexcept -> bool
+  {
+    return m_flippedDiagonally;
+  }
 
   /**
-   * Indicates whether or not the tile is flipped horizontally. The default
-   * value of this property is false.
+   * @brief Indicates whether or not the tile is flipped horizontally.
    *
-   * @return true if the tile is flipped horizontally; false otherwise.
+   * @details The default value of this property is false.
+   *
+   * @return `true` if the tile is flipped horizontally; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  STEP_QUERY
-  bool flipped_horizontally() const noexcept;
+  [[nodiscard]] auto flipped_horizontally() const noexcept -> bool
+  {
+    return m_flippedHorizontally;
+  }
 
   /**
-   * Indicates whether or not the tile is flipped vertically. The default
-   * value of this property is false.
+   * @brief Indicates whether or not the tile is flipped vertically.
    *
-   * @return true if the tile is flipped vertically; false otherwise.
+   * @details The default value of this property is false.
+   *
+   * @return `true` if the tile is flipped vertically; `false` otherwise.
+   *
    * @since 0.1.0
    */
-  STEP_QUERY
-  bool flipped_vertically() const noexcept;
+  [[nodiscard]] auto flipped_vertically() const noexcept -> bool
+  {
+    return m_flippedVertically;
+  }
 
  private:
   local_id m_tileID{0};
-  std::array<int, 8> m_wangColorIndices;
+  std::array<int, 8> m_wangColorIndices{};
   bool m_flippedDiagonally{false};
   bool m_flippedHorizontally{false};
   bool m_flippedVertically{false};
