@@ -8,8 +8,7 @@ using namespace step;
 
 TEST_SUITE("Chunk")
 {
-  TEST_CASE("Parse chunk with CSV data" *
-            doctest::may_fail{"Failed to parse Chunk with CSV data!"})
+  TEST_CASE("Parse chunk with CSV data")
   {
     const Chunk chunk{detail::parse_json("resource/chunk/chunk_csv.json")};
 
@@ -25,8 +24,7 @@ TEST_SUITE("Chunk")
     CHECK(chunk.height() == 22);
   }
 
-  TEST_CASE("Parse chunk with Base64 data" *
-            doctest::may_fail{"Failed to parse Chunk with Base64 data!"})
+  TEST_CASE("Parse chunk with Base64 data")
   {
     const Chunk chunk{detail::parse_json("resource/chunk/chunk_base64.json")};
 

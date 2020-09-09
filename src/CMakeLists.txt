@@ -34,7 +34,6 @@ set(SOURCE_FILES
         step_tile.cpp
 
         ../include/step_frame.hpp
-        step_frame.cpp
 
         ../include/step_animation.hpp
         step_animation.cpp
