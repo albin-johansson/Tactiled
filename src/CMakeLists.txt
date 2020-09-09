@@ -13,7 +13,6 @@ set(SOURCE_FILES
         step_map.cpp
 
         ../include/step_point.hpp
-        step_point.cpp
 
         ../include/step_utils.hpp
         step_utils.cpp
