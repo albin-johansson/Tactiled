@@ -69,7 +69,6 @@ class property final {
     file       ///< For file paths, e.g. `"some/path/abc.png"`.
   };
 
-  STEP_API
   explicit property(const json& json)
       : m_name{json.at("name").get<std::string>()},
         m_type{json.at("type").get<property::type>()}
