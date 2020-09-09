@@ -24,7 +24,6 @@ set(SOURCE_FILES
         step_color.cpp
 
         ../include/step_text.hpp
-        step_text.cpp
 
         ../include/step_tileset.hpp
         step_tileset.cpp
