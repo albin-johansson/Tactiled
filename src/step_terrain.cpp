@@ -8,8 +8,8 @@ Terrain::Terrain(const json& json)
     : m_tile{json.at("tile").get<int>()},
       m_name{json.at("name").get<std::string>()}
 {
-  if (json.contains("properties")) {
-    m_properties = std::make_unique<properties>(json.at("properties"));
+  if (const auto it = json.find("properties"); it != json.end()) {
+    m_properties = std::make_unique<properties>(*it);
   }
 }
 
