@@ -19,7 +19,6 @@ set(SOURCE_FILES
         step_utils.cpp
 
         ../include/step_property.hpp
-        step_property.cpp
 
         ../include/step_color.hpp
         step_color.cpp
