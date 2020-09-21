@@ -99,13 +99,13 @@ class TileLayer final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const std::vector<Chunk>& chunks() const noexcept;
+  const std::vector<chunk>& chunks() const noexcept;
 
  private:
   Encoding m_encoding{Encoding::CSV};
   Compression m_compression{Compression::None};
   std::unique_ptr<detail::Data> m_data;
-  std::vector<Chunk> m_chunks;
+  std::vector<chunk> m_chunks;
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Compression,

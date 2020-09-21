@@ -10,7 +10,7 @@ TileLayer::TileLayer(const json& json)
   detail::safe_bind(json, "encoding", m_encoding);
 
   if (json.contains("chunks")) {
-    m_chunks = detail::fill<std::vector<Chunk>>(json, "chunks");
+    m_chunks = detail::fill<std::vector<chunk>>(json, "chunks");
   }
 
   if (json.contains("data")) {
@@ -33,7 +33,7 @@ const detail::Data* TileLayer::data() const
   return m_data.get();
 }
 
-const std::vector<Chunk>& TileLayer::chunks() const noexcept
+const std::vector<chunk>& TileLayer::chunks() const noexcept
 {
   return m_chunks;
 }

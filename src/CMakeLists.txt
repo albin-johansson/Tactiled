@@ -38,7 +38,6 @@ set(SOURCE_FILES
         step_layer.cpp
 
         ../include/step_chunk.hpp
-        step_chunk.cpp
 
         ../include/step_data.hpp
         step_data.cpp

@@ -4,13 +4,12 @@
 
 #include "step_utils.hpp"
 
-using namespace step;
-
-TEST_SUITE("Chunk")
+TEST_SUITE("chunk")
 {
   TEST_CASE("Parse chunk with CSV data")
   {
-    const Chunk chunk{detail::parse_json("resource/chunk/chunk_csv.json")};
+    const step::chunk chunk{
+        step::detail::parse_json("resource/chunk/chunk_csv.json")};
 
     SUBCASE("Test obtaining data")
     {
@@ -26,7 +25,8 @@ TEST_SUITE("Chunk")
 
   TEST_CASE("Parse chunk with Base64 data")
   {
-    const Chunk chunk{detail::parse_json("resource/chunk/chunk_base64.json")};
+    const step::chunk chunk{
+        step::detail::parse_json("resource/chunk/chunk_base64.json")};
 
     SUBCASE("Test obtaining data")
     {
