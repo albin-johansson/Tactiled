@@ -15,7 +15,7 @@ TEST_SUITE("Tileset")
 {
   TEST_CASE("Parsing external tileset")
   {
-    const auto tileset = Tileset::external(
+    const auto tileset = tileset::external(
         prefix, 4_gid, "tileset_data_for_external_tileset.json");
 
     CHECK(tileset->columns() == 32);
@@ -38,7 +38,7 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Parsing embedded tileset")
   {
-    const auto tileset = Tileset::embedded(
+    const auto tileset = tileset::embedded(
         detail::parse_json("resource/tileset/embedded_tileset.json"));
 
     CHECK(tileset->first_gid() == 7_gid);
@@ -104,7 +104,7 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Tileset with properties")
   {
-    const auto tileset = Tileset::embedded(
+    const auto tileset = tileset::embedded(
         detail::parse_json("resource/tileset/with_properties.json"));
     const auto* properties = tileset->get_properties();
 
@@ -126,7 +126,7 @@ TEST_SUITE("Tileset")
   {
     SUBCASE("Check first tile")
     {
-      const auto tileset = Tileset::embedded(
+      const auto tileset = tileset::embedded(
           detail::parse_json("resource/tileset/with_tiles.json"));
       const auto& tiles = tileset->tiles();
 
@@ -163,7 +163,7 @@ TEST_SUITE("Tileset")
 
     SUBCASE("Check second tile")
     {
-      const auto tileset = Tileset::embedded(
+      const auto tileset = tileset::embedded(
           detail::parse_json("resource/tileset/with_tiles.json"));
       auto& tiles = tileset->tiles();
 
@@ -192,14 +192,14 @@ TEST_SUITE("Tileset")
 
   TEST_CASE("Embedded tileset without explicit first GID")
   {
-    const auto tileset = Tileset::embedded(
+    const auto tileset = tileset::embedded(
         detail::parse_json("resource/tileset/embedded_tileset_no_gid.json"));
     CHECK(tileset->first_gid() == 1_gid);
   }
 
   TEST_CASE("Tileset missing type attribute")
   {
-    CHECK_THROWS_WITH_AS(Tileset::embedded(detail::parse_json(
+    CHECK_THROWS_WITH_AS(tileset::embedded(detail::parse_json(
                              "resource/tileset/tileset_wrong_type.json")),
                          "Tileset \"type\" must be \"tileset\"!",
                          step_exception);

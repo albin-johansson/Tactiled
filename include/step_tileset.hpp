@@ -42,29 +42,34 @@
 
 namespace step {
 
-class Tileset;
+class tileset;
 
 /**
- * The Tileset class represents a collection of tiles associated with an
- * image. All tilesets have a global ID (GID) associated with them, that
+ * @class tileset
+ *
+ * @brief Represents a collection of tiles associated with an image.
+ *
+ * @details All tilesets have a global ID (GID) associated with them, that
  * starts at 1 for the first tileset.
  *
  * @since 0.1.0
+ *
+ * @headerfile step_tileset.hpp
  */
-class Tileset final {
+class tileset final {
  public:
   [[nodiscard]] static auto embedded(const json& json)
-      -> std::unique_ptr<Tileset>
+      -> std::unique_ptr<tileset>
   {
-    return std::unique_ptr<Tileset>{new Tileset{json}};
+    return std::unique_ptr<tileset>{new tileset{json}};
   }
 
   [[nodiscard]] static auto external(std::string_view root,
                                      global_id id,
                                      std::string_view src)
-      -> std::unique_ptr<Tileset>
+      -> std::unique_ptr<tileset>
   {
-    return std::unique_ptr<Tileset>{new Tileset{root, id, src}};
+    return std::unique_ptr<tileset>{new tileset{root, id, src}};
   }
 
   /**
@@ -380,7 +385,7 @@ class Tileset final {
   std::string m_tiledVersion;
   double m_jsonVersion{};
 
-  Tileset(std::string_view root, global_id id, std::string_view src)
+  tileset(std::string_view root, global_id id, std::string_view src)
       : m_firstGID{id},
         m_source{src.data()}
   {
@@ -389,7 +394,7 @@ class Tileset final {
     parse(detail::parse_json(fullPath));
   }
 
-  explicit Tileset(const json& json)
+  explicit tileset(const json& json)
   {
     parse(json);
   }

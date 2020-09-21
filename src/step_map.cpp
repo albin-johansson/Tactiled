@@ -58,9 +58,9 @@ void Map::parse(std::string_view root, const json& json)
     if (value.contains("source")) {
       const auto firstgid = global_id{value.at("firstgid").get<unsigned>()};
       const auto src = value.at("source").get<std::string>();
-      m_tilesets.push_back(Tileset::external(root, firstgid, src.data()));
+      m_tilesets.push_back(tileset::external(root, firstgid, src.data()));
     } else {
-      m_tilesets.push_back(Tileset::embedded(value));
+      m_tilesets.push_back(tileset::embedded(value));
     }
   }
 }
@@ -100,7 +100,7 @@ const std::vector<layer>& Map::layers() const noexcept
   return m_layers;
 }
 
-const std::vector<std::unique_ptr<Tileset>>& Map::tilesets() const noexcept
+const std::vector<std::unique_ptr<tileset>>& Map::tilesets() const noexcept
 {
   return m_tilesets;
 }
