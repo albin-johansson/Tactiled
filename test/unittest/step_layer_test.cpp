@@ -17,7 +17,7 @@ TEST_SUITE("Layer")
     SUBCASE("Layer type indicators")
     {
       REQUIRE(layer.is<step::tile_layer>());
-      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::image_layer>());
       CHECK(!layer.is<step::ObjectGroup>());
       CHECK(!layer.is<step::group>());
     }
@@ -25,7 +25,7 @@ TEST_SUITE("Layer")
     SUBCASE("Conversions")
     {
       CHECK_THROWS(layer.as<step::ObjectGroup>());
-      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::image_layer>());
       CHECK_THROWS(layer.as<step::group>());
     }
 
@@ -91,7 +91,7 @@ TEST_SUITE("Layer")
     SUBCASE("Layer type indicators")
     {
       REQUIRE(layer.is<step::ObjectGroup>());
-      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::image_layer>());
       CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
     }
@@ -99,7 +99,7 @@ TEST_SUITE("Layer")
     SUBCASE("Conversions")
     {
       CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::image_layer>());
       CHECK_THROWS(layer.as<step::group>());
     }
 
@@ -140,7 +140,7 @@ TEST_SUITE("Layer")
 
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is<step::ImageLayer>());
+      REQUIRE(layer.is<step::image_layer>());
       CHECK(!layer.is<step::ObjectGroup>());
       CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
@@ -155,7 +155,7 @@ TEST_SUITE("Layer")
 
     SUBCASE("Image layer exclusive properties")
     {
-      const auto& imageLayer = layer.as<step::ImageLayer>();
+      const auto& imageLayer = layer.as<step::image_layer>();
       CHECK(imageLayer.image() == "balrog.png");
       CHECK(*imageLayer.transparent_color() == step::color{"#214365"});
     }
@@ -178,7 +178,7 @@ TEST_SUITE("Layer")
     SUBCASE("Layer type indicators")
     {
       REQUIRE(layer.is<step::group>());
-      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::image_layer>());
       CHECK(!layer.is<step::ObjectGroup>());
       CHECK(!layer.is<step::tile_layer>());
     }
@@ -186,7 +186,7 @@ TEST_SUITE("Layer")
     SUBCASE("Conversions")
     {
       CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::image_layer>());
       CHECK_THROWS(layer.as<step::ObjectGroup>());
     }
 

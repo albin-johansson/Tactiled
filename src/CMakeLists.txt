@@ -43,7 +43,6 @@ set(SOURCE_FILES
         ../include/step_tile_layer.hpp
 
         ../include/step_image_layer.hpp
-        step_image_layer.cpp
 
         ../include/step_object_group.hpp
         step_object_group.cpp
