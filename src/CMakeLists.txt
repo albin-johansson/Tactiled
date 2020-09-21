@@ -15,7 +15,6 @@ set(SOURCE_FILES
         ../include/step_point.hpp
 
         ../include/step_utils.hpp
-        step_utils.cpp
 
         ../include/step_property.hpp
 
