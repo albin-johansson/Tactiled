@@ -11,7 +11,7 @@ TEST_SUITE("WangSet")
   TEST_CASE("Parsing valid Wang set")
   {
     const auto json = step::detail::parse_json("resource/wangset/valid.json");
-    const step::WangSet wangSet{json};
+    const step::wang_set wangSet{json};
 
     CHECK(wangSet.name() == "candyAppleRed");
     CHECK(wangSet.tile_id() == 4_lid);

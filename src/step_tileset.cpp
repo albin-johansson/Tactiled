@@ -137,7 +137,7 @@ const std::vector<tile>& Tileset::tiles() const noexcept
   return m_tiles;
 }
 
-const std::vector<WangSet>& Tileset::wang_sets() const
+const std::vector<wang_set>& Tileset::wang_sets() const
 {
   return m_wangSets;
 }

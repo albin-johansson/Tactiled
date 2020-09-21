@@ -53,7 +53,6 @@ set(SOURCE_FILES
         step_properties.cpp
 
         ../include/step_wang_set.hpp
-        step_wang_set.cpp
 
         ../include/step_wang_color.hpp
         step_wang_color.cpp
