@@ -24,8 +24,6 @@ else ()
     set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX}")
 endif ()
 
-# FIXME for some reason, Clang ignores the system includes of the libraries
-
 add_library(libNamedType INTERFACE)
 target_sources(libNamedType INTERFACE
         ${STEP_LIBRARY_DIR}/namedtype/named_type.hpp

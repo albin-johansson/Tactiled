@@ -1,9 +1,8 @@
-#include "step.hpp"
-
 #include <doctest.h>
 
 #include <iostream>
 
+#include "step_map.hpp"
 #include "step_types.hpp"
 
 using namespace step;
@@ -12,14 +11,14 @@ TEST_SUITE("Test of realistic usage of step")
 {
   TEST_CASE("Parsing map with two tilesets")
   {
-    auto map = parse("resource/real/map.json");
+    auto map = std::make_unique<step::map>("resource/real/map.json");
 
     CHECK(map->width() == 50);
     CHECK(map->height() == 50);
     CHECK(map->next_object_id() == 1);
     CHECK(map->next_layer_id() == 4);
-    CHECK(map->orientation() == Map::Orientation::Orthogonal);
-    CHECK(map->render_order() == Map::RenderOrder::RightDown);
+    CHECK(map->get_orientation() == map::orientation::orthogonal);
+    CHECK(map->get_render_order() == map::render_order::right_down);
     CHECK(map->tile_width() == 32);
     CHECK(map->tile_height() == 32);
     CHECK(map->json_version() == 1.2);

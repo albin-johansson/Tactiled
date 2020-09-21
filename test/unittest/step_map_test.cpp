@@ -9,7 +9,7 @@ TEST_SUITE("map")
 {
   TEST_CASE("Parsing map")
   {
-    const step::Map map{"resource/map/basic_map.json"};
+    const step::map map{"resource/map/basic_map.json"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
@@ -18,8 +18,8 @@ TEST_SUITE("map")
     CHECK(map.json_version() == 1.2);
     CHECK(map.next_layer_id() == 2);
     CHECK(map.next_object_id() == 1);
-    CHECK(map.orientation() == step::Map::Orientation::Orthogonal);
-    CHECK(map.render_order() == step::Map::RenderOrder::RightDown);
+    CHECK(map.get_orientation() == step::map::orientation::orthogonal);
+    CHECK(map.get_render_order() == step::map::render_order::right_down);
     CHECK(map.tiled_version() == "1.3.4");
     CHECK(!map.get_properties());
     CHECK(!map.infinite());
@@ -43,8 +43,8 @@ TEST_SUITE("map")
 
   TEST_CASE("No type attribute")
   {
-    CHECK_THROWS_WITH_AS(step::Map("resource/map/no_type.json"),
-                         "Map > \"type\" attribute must be \"map\"!",
+    CHECK_THROWS_WITH_AS(step::map("resource/map/no_type.json"),
+                         "Map \"type\" attribute must be \"map\"!",
                          step::step_exception);
   }
 }

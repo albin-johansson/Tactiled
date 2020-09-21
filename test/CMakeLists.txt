@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
-project(StepTest)
+
+project(StepTest CXX)
 
 set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/doctest)
 find_package(doctest REQUIRED)
@@ -32,7 +33,6 @@ set(TEST_FILES
         unittest/step_wang_set_test.cpp)
 
 add_executable(${STEP_TEST_TARGET} ${TEST_FILES})
-add_dependencies(${STEP_TEST_TARGET} ${STEP_LIB_TARGET})
 
 set_target_properties(${STEP_TEST_TARGET} PROPERTIES
         CXX_STANDARD 17
@@ -40,7 +40,6 @@ set_target_properties(${STEP_TEST_TARGET} PROPERTIES
 
 add_library(Doctest INTERFACE)
 target_include_directories(Doctest INTERFACE doctest)
-
 include(doctest)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
@@ -65,21 +64,11 @@ target_include_directories(${STEP_TEST_TARGET}
         SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
 
 target_link_libraries(${STEP_TEST_TARGET}
-        PUBLIC ${STEP_LIBRARIES}
         PUBLIC libJSON
         PUBLIC libNamedType
         PUBLIC Doctest)
-
-#doctest_discover_tests(${STEP_TEST_TARGET})
 
 copy_directory_post_build(
         ${STEP_TEST_TARGET}
         ${STEP_TEST_RESOURCES}
         ${CMAKE_CURRENT_BINARY_DIR}/resource)
-
-if (WIN32)
-    copy_file_post_build(
-            ${STEP_TEST_TARGET}
-            ${STEP_DYNAMIC_LIB}
-            ${CMAKE_CURRENT_BINARY_DIR})
-endif ()
