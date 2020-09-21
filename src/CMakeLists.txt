@@ -47,7 +47,6 @@ set(SOURCE_FILES
         ../include/step_object_group.hpp
 
         ../include/step_object.hpp
-        step_object.cpp
 
         ../include/step_properties.hpp
         step_properties.cpp

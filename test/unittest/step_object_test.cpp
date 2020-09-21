@@ -24,7 +24,7 @@ TEST_SUITE("object")
     CHECK(object.type() == "npc");
     CHECK(object.visible());
 
-    CHECK(object.get<step::global_id>() == 5_gid);
+    CHECK(object.as<step::global_id>() == 5_gid);
 
     CHECK(!object.is_ellipse());
     CHECK(!object.is_point());
@@ -145,7 +145,7 @@ TEST_SUITE("object")
 
     SUBCASE("Check polygon stuff")
     {
-      const auto& polygon = polygonObject.get<step::polygon>();
+      const auto& polygon = polygonObject.as<step::polygon>();
       REQUIRE(polygon.points.size() == 5);
 
       const auto& points = polygon.points;
@@ -191,7 +191,7 @@ TEST_SUITE("object")
 
     SUBCASE("Check polyline stuff")
     {
-      const auto& polyline = polylineObject.get<step::polyline>();
+      const auto& polyline = polylineObject.as<step::polyline>();
       REQUIRE(polyline.points.size() == 6);
 
       const auto& points = polyline.points;
@@ -240,7 +240,7 @@ TEST_SUITE("object")
 
     SUBCASE("Text related properties")
     {
-      const auto& text = textObject.get<step::text>();
+      const auto& text = textObject.as<step::text>();
       CHECK(text.get_text() == "Hello World");
       CHECK(text.wrap());
     }
