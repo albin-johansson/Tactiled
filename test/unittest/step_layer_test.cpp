@@ -8,7 +8,7 @@
 
 using namespace step;
 
-TEST_SUITE("Layer")
+TEST_SUITE("layer")
 {
   TEST_CASE("Parsing tile layer")
   {
@@ -24,9 +24,9 @@ TEST_SUITE("Layer")
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::object_group>());
-      CHECK_THROWS(layer.as<step::image_layer>());
-      CHECK_THROWS(layer.as<step::group>());
+      CHECK_THROWS(layer.as<step::object_group>());  // NOLINT
+      CHECK_THROWS(layer.as<step::image_layer>());   // NOLINT
+      CHECK_THROWS(layer.as<step::group>());         // NOLINT
     }
 
     SUBCASE("Tile layer exclusive properties")
@@ -40,9 +40,9 @@ TEST_SUITE("Layer")
       SUBCASE("Check data")
       {
         CHECK(tileLayer.data());
-        CHECK_NOTHROW(tileLayer.data()->as_gid());
+        CHECK_NOTHROW(tileLayer.data()->as_gid());  // NOLINT
         CHECK(tileLayer.data()->as_gid().size() == 1024);
-        CHECK_THROWS(tileLayer.data()->as_base64());
+        CHECK_THROWS(tileLayer.data()->as_base64());  // NOLINT
       }
     }
 
@@ -98,9 +98,9 @@ TEST_SUITE("Layer")
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::image_layer>());
-      CHECK_THROWS(layer.as<step::group>());
+      CHECK_THROWS(layer.as<step::tile_layer>());   // NOLINT
+      CHECK_THROWS(layer.as<step::image_layer>());  // NOLINT
+      CHECK_THROWS(layer.as<step::group>());        // NOLINT
     }
 
     SUBCASE("Object group exclusive properties")
@@ -112,15 +112,15 @@ TEST_SUITE("Layer")
       REQUIRE(objects.size() == 1);
 
       const auto& object = objects.at(0);
-      CHECK(object->id() == 36);
-      CHECK(object->x() == 234);
-      CHECK(object->y() == 584);
-      CHECK(object->width() == 118);
-      CHECK(object->height() == 77);
-      CHECK(object->rotation() == 3);
-      CHECK(object->visible());
-      CHECK(object->name() == "legolas");
-      CHECK(object->type() == "boss");
+      CHECK(object.id() == 36);
+      CHECK(object.x() == 234);
+      CHECK(object.y() == 584);
+      CHECK(object.width() == 118);
+      CHECK(object.height() == 77);
+      CHECK(object.rotation() == 3);
+      CHECK(object.visible());
+      CHECK(object.name() == "legolas");
+      CHECK(object.type() == "boss");
     }
 
     CHECK(layer.id() == 3);
@@ -148,9 +148,9 @@ TEST_SUITE("Layer")
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::object_group>());
-      CHECK_THROWS(layer.as<step::group>());
+      CHECK_THROWS(layer.as<step::tile_layer>());    // NOLINT
+      CHECK_THROWS(layer.as<step::object_group>());  // NOLINT
+      CHECK_THROWS(layer.as<step::group>());         // NOLINT
     }
 
     SUBCASE("Image layer exclusive properties")
@@ -185,9 +185,9 @@ TEST_SUITE("Layer")
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::image_layer>());
-      CHECK_THROWS(layer.as<step::object_group>());
+      CHECK_THROWS(layer.as<step::tile_layer>());    // NOLINT
+      CHECK_THROWS(layer.as<step::image_layer>());   // NOLINT
+      CHECK_THROWS(layer.as<step::object_group>());  // NOLINT
     }
 
     SUBCASE("Group exclusive properties")

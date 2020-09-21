@@ -25,7 +25,7 @@
 #ifndef STEP_OBJECT_GROUP_HEADER
 #define STEP_OBJECT_GROUP_HEADER
 
-#include <memory>
+#include <vector>
 
 #include "step_api.hpp"
 #include "step_object.hpp"
@@ -38,6 +38,8 @@ namespace step {
  *
  * @brief Represents the API for layers that represent "object groups", that
  * hold data about various objects in a tile map.
+ *
+ * @todo begin, end, remove objects-getter
  *
  * @since 0.1.0
  *
@@ -54,10 +56,13 @@ class object_group final {
    */
   enum class draw_order { top_down, index };
 
-  explicit object_group(const json& json)
-      : m_drawOrder{json.at("draworder")},
-        m_objects{detail::fill_unique_vec<object>(json, "objects")}
-  {}
+  explicit object_group(const json& json) : m_drawOrder{json.at("draworder")}
+  {
+    m_objects.reserve(json.size());
+    for (const auto& [key, value] : json.at("objects").items()) {
+      m_objects.emplace_back(value);
+    }
+  }
 
   /**
    * @brief Returns the draw order used by the object group.
@@ -73,7 +78,6 @@ class object_group final {
     return m_drawOrder;
   }
 
-  // FIXME unique ptr objects
   /**
    * @brief Returns the objects contained in the object group.
    *
@@ -81,15 +85,14 @@ class object_group final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto objects() const
-      -> const std::vector<std::unique_ptr<object>>&
+  [[nodiscard]] auto objects() const -> const std::vector<object>&
   {
     return m_objects;
   }
 
  private:
   draw_order m_drawOrder{draw_order::top_down};
-  std::vector<std::unique_ptr<object>> m_objects;
+  std::vector<object> m_objects;
 };
 
 NLOHMANN_JSON_SERIALIZE_ENUM(object_group::draw_order,
