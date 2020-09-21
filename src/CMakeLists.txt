@@ -40,7 +40,6 @@ set(SOURCE_FILES
         ../include/step_chunk.hpp
 
         ../include/step_data.hpp
-        step_data.cpp
 
         ../include/step_tile_layer.hpp
         step_tile_layer.cpp

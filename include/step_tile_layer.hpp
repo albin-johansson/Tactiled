@@ -90,7 +90,7 @@ class TileLayer final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const detail::Data* data() const;
+  const detail::data* data() const;
 
   /**
    * Returns the chunks associated with the tile layer.
@@ -104,7 +104,7 @@ class TileLayer final {
  private:
   Encoding m_encoding{Encoding::CSV};
   Compression m_compression{Compression::None};
-  std::unique_ptr<detail::Data> m_data;
+  std::unique_ptr<detail::data> m_data;
   std::vector<chunk> m_chunks;
 };
 

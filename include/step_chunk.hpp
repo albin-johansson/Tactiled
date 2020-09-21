@@ -94,7 +94,7 @@ class chunk final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto data() const noexcept -> const detail::Data&
+  [[nodiscard]] auto data() const noexcept -> const detail::data&
   {
     return m_data;
   }
@@ -104,7 +104,7 @@ class chunk final {
   int m_y;
   int m_width;
   int m_height;
-  detail::Data m_data;
+  detail::data m_data;
 };
 
 }  // namespace step

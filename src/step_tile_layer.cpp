@@ -14,7 +14,7 @@ TileLayer::TileLayer(const json& json)
   }
 
   if (json.contains("data")) {
-    m_data = std::make_unique<detail::Data>(json.at("data"));
+    m_data = std::make_unique<detail::data>(json.at("data"));
   }
 }
 
@@ -28,7 +28,7 @@ TileLayer::Compression TileLayer::compression() const noexcept
   return m_compression;
 }
 
-const detail::Data* TileLayer::data() const
+const detail::data* TileLayer::data() const
 {
   return m_data.get();
 }
