@@ -68,7 +68,7 @@ void Tileset::parse(const json& json)
   }
 
   if (json.contains("terrains") && json.at("terrains").is_array()) {
-    m_terrains = detail::fill<std::vector<Terrain>>(json, "terrains");
+    m_terrains = detail::fill<std::vector<terrain>>(json, "terrains");
   }
 
   if (json.contains("wangsets") && json.at("wangsets").is_array()) {
@@ -146,7 +146,7 @@ const properties* Tileset::get_properties() const noexcept
   return m_properties.get();
 }
 
-const std::vector<Terrain>& Tileset::terrains() const noexcept
+const std::vector<terrain>& Tileset::terrains() const noexcept
 {
   return m_terrains;
 }

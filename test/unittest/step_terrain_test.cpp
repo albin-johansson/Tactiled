@@ -9,7 +9,7 @@ TEST_SUITE("terrain")
   using step::operator""_lid;
   TEST_CASE("Parsing complete terrain")
   {
-    const step::Terrain terrain{
+    const step::terrain terrain{
         step::detail::parse_json("resource/terrain/complete.json")};
     CHECK(terrain.tile() == 64_lid);
     CHECK(terrain.name() == "water");
@@ -23,7 +23,7 @@ TEST_SUITE("terrain")
 
   TEST_CASE("Parsing terrain with no properties")
   {
-    const step::Terrain terrain{
+    const step::terrain terrain{
         step::detail::parse_json("resource/terrain/no_properties.json")};
     CHECK(terrain.tile() == 77_lid);
     CHECK(terrain.name() == "lava");

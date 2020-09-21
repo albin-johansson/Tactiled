@@ -177,7 +177,7 @@ class Tileset final {
    * @return the terrains associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY const std::vector<Terrain>& terrains() const noexcept;
+  STEP_QUERY const std::vector<terrain>& terrains() const noexcept;
 
   /**
    * Returns the path to the external file that holds the actual tileset
@@ -267,7 +267,7 @@ class Tileset final {
   int m_margin = 0;
   int m_spacing = 0;
   std::vector<tile> m_tiles;
-  std::vector<Terrain> m_terrains;
+  std::vector<terrain> m_terrains;
   std::vector<WangSet> m_wangSets;
   std::unique_ptr<properties> m_properties;
   std::string m_image;

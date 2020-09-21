@@ -42,7 +42,6 @@ set(SOURCE_FILES
         step_tile_offset.cpp
 
         ../include/step_terrain.hpp
-        step_terrain.cpp
 
         ../include/step_layer.hpp
         step_layer.cpp
