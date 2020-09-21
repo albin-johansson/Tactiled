@@ -49,7 +49,6 @@ set(SOURCE_FILES
         ../include/step_object.hpp
 
         ../include/step_properties.hpp
-        step_properties.cpp
 
         ../include/step_wang_set.hpp
 
