@@ -21,7 +21,6 @@ set(SOURCE_FILES
         step_tileset.cpp
 
         ../include/step_tile.hpp
-        step_tile.cpp
 
         ../include/step_frame.hpp
 
