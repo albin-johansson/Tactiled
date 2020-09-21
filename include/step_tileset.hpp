@@ -238,7 +238,7 @@ class Tileset final {
    * @return the tile offset associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<TileOffset> tile_offset() const noexcept;
+  STEP_QUERY std::optional<tile_offset> get_tile_offset() const noexcept;
 
   /**
    * Returns the Tiled version associated with the tileset.
@@ -276,7 +276,7 @@ class Tileset final {
   std::optional<color> m_backgroundColor;
   std::optional<color> m_transparentColor;
   std::optional<grid> m_grid;
-  std::optional<TileOffset> m_tileOffset;
+  std::optional<tile_offset> m_tileOffset;
 
   std::string m_tiledVersion;
   double m_jsonVersion = 0;

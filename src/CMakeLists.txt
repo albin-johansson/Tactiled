@@ -30,7 +30,6 @@ set(SOURCE_FILES
         ../include/step_grid.hpp
 
         ../include/step_tile_offset.hpp
-        step_tile_offset.cpp
 
         ../include/step_terrain.hpp
 

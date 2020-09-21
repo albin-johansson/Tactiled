@@ -182,7 +182,7 @@ std::optional<grid> Tileset::get_grid() const noexcept
   return m_grid;
 }
 
-std::optional<TileOffset> Tileset::tile_offset() const noexcept
+std::optional<tile_offset> Tileset::get_tile_offset() const noexcept
 {
   return m_tileOffset;
 }
