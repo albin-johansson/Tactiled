@@ -18,13 +18,13 @@ TEST_SUITE("Layer")
     {
       REQUIRE(layer.is<step::tile_layer>());
       CHECK(!layer.is<step::image_layer>());
-      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::object_group>());
       CHECK(!layer.is<step::group>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::ObjectGroup>());
+      CHECK_THROWS(layer.as<step::object_group>());
       CHECK_THROWS(layer.as<step::image_layer>());
       CHECK_THROWS(layer.as<step::group>());
     }
@@ -90,7 +90,7 @@ TEST_SUITE("Layer")
 
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is<step::ObjectGroup>());
+      REQUIRE(layer.is<step::object_group>());
       CHECK(!layer.is<step::image_layer>());
       CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
@@ -105,8 +105,8 @@ TEST_SUITE("Layer")
 
     SUBCASE("Object group exclusive properties")
     {
-      const auto& objectGroup = layer.as<step::ObjectGroup>();
-      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::TopDown);
+      const auto& objectGroup = layer.as<step::object_group>();
+      CHECK(objectGroup.get_draw_order() == object_group::draw_order::top_down);
 
       const auto& objects = objectGroup.objects();
       REQUIRE(objects.size() == 1);
@@ -141,7 +141,7 @@ TEST_SUITE("Layer")
     SUBCASE("Layer type indicators")
     {
       REQUIRE(layer.is<step::image_layer>());
-      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::object_group>());
       CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
     }
@@ -149,7 +149,7 @@ TEST_SUITE("Layer")
     SUBCASE("Conversions")
     {
       CHECK_THROWS(layer.as<step::tile_layer>());
-      CHECK_THROWS(layer.as<step::ObjectGroup>());
+      CHECK_THROWS(layer.as<step::object_group>());
       CHECK_THROWS(layer.as<step::group>());
     }
 
@@ -179,7 +179,7 @@ TEST_SUITE("Layer")
     {
       REQUIRE(layer.is<step::group>());
       CHECK(!layer.is<step::image_layer>());
-      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::object_group>());
       CHECK(!layer.is<step::tile_layer>());
     }
 
@@ -187,7 +187,7 @@ TEST_SUITE("Layer")
     {
       CHECK_THROWS(layer.as<step::tile_layer>());
       CHECK_THROWS(layer.as<step::image_layer>());
-      CHECK_THROWS(layer.as<step::ObjectGroup>());
+      CHECK_THROWS(layer.as<step::object_group>());
     }
 
     SUBCASE("Group exclusive properties")

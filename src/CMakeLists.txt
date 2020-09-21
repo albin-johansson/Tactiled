@@ -45,7 +45,6 @@ set(SOURCE_FILES
         ../include/step_image_layer.hpp
 
         ../include/step_object_group.hpp
-        step_object_group.cpp
 
         ../include/step_object.hpp
         step_object.cpp

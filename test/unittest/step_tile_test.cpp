@@ -75,14 +75,14 @@ TEST_SUITE("Tile")
     {
       const auto objectGroupLayer = tile.object_group();
       REQUIRE(objectGroupLayer);
-      REQUIRE(objectGroupLayer->is<step::ObjectGroup>());
+      REQUIRE(objectGroupLayer->is<step::object_group>());
       CHECK(objectGroupLayer->id() == 2);
       CHECK(objectGroupLayer->name() == "wizard");
       CHECK(objectGroupLayer->opacity() == 1);
       CHECK(objectGroupLayer->visible());
 
-      const auto& objectGroup = objectGroupLayer->as<step::ObjectGroup>();
-      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::Index);
+      const auto& objectGroup = objectGroupLayer->as<step::object_group>();
+      CHECK(objectGroup.get_draw_order() == object_group::draw_order::index);
       CHECK(objectGroup.objects().size() == 1);
     }
   }

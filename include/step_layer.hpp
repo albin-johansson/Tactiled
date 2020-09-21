@@ -140,7 +140,7 @@ class layer final {
         break;
       }
       case layer::type::object_group: {
-        m_layerData.emplace<ObjectGroup>(json);
+        m_layerData.emplace<object_group>(json);
         break;
       }
       case layer::type::image_layer: {
@@ -343,7 +343,7 @@ class layer final {
  private:
   type m_type{};
   int m_id{0};
-  std::variant<std::monostate, tile_layer, image_layer, ObjectGroup, group>
+  std::variant<std::monostate, tile_layer, image_layer, object_group, group>
       m_layerData;
   std::unique_ptr<properties> m_properties;
   int m_width{0};
