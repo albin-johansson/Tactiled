@@ -62,7 +62,10 @@ class terrain final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto tile() const noexcept -> local_id { return m_tile; }
+  [[nodiscard]] auto tile() const noexcept -> local_id
+  {
+    return m_tile;
+  }
 
   /**
    * @brief Returns the name associated with the terrain.
@@ -71,7 +74,10 @@ class terrain final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto name() const -> std::string { return m_name; }
+  [[nodiscard]] auto name() const -> std::string
+  {
+    return m_name;
+  }
 
   /**
    * @brief Returns the properties associated with the terrain.

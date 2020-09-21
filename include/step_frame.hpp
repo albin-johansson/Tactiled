@@ -48,7 +48,10 @@ class Frame final {
    * @return the local tile ID that is associated with the frame.
    * @since 0.1.0
    */
-  [[nodiscard]] auto tile_id() const noexcept -> local_id { return m_tileID; }
+  [[nodiscard]] auto tile_id() const noexcept -> local_id
+  {
+    return m_tileID;
+  }
 
   /**
    * Returns the duration of this frame, in milliseconds.
@@ -56,7 +59,10 @@ class Frame final {
    * @return the duration of this frame, in milliseconds.
    * @since 0.1.0
    */
-  [[nodiscard]] auto duration() const noexcept -> int { return m_duration; }
+  [[nodiscard]] auto duration() const noexcept -> int
+  {
+    return m_duration;
+  }
 
  private:
   local_id m_tileID{0};

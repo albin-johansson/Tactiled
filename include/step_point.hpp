@@ -63,7 +63,8 @@ class point final {
    * @since 0.2.0
    */
   explicit point(const json& json)
-      : m_x{json.at("x").get<double>()}, m_y{json.at("y").get<double>()}
+      : m_x{json.at("x").get<double>()},
+        m_y{json.at("y").get<double>()}
   {}
 
   /**
@@ -73,7 +74,10 @@ class point final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto x() const noexcept -> double { return m_x; }
+  [[nodiscard]] auto x() const noexcept -> double
+  {
+    return m_x;
+  }
 
   /**
    * @brief Returns the y-coordinate associated with the point.
@@ -82,7 +86,10 @@ class point final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto y() const noexcept -> double { return m_y; }
+  [[nodiscard]] auto y() const noexcept -> double
+  {
+    return m_y;
+  }
 
  private:
   double m_x{};

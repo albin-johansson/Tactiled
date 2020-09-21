@@ -58,7 +58,10 @@ class chunk final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto x() const noexcept -> int { return m_x; }
+  [[nodiscard]] auto x() const noexcept -> int
+  {
+    return m_x;
+  }
 
   /**
    * @brief Returns the y-coordinate of the chunk.
@@ -67,7 +70,10 @@ class chunk final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto y() const noexcept -> int { return m_y; }
+  [[nodiscard]] auto y() const noexcept -> int
+  {
+    return m_y;
+  }
 
   /**
    * @brief Returns the width of the chunk.
@@ -76,7 +82,10 @@ class chunk final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto width() const noexcept -> int { return m_width; }
+  [[nodiscard]] auto width() const noexcept -> int
+  {
+    return m_width;
+  }
 
   /**
    * @brief Returns the height of the chunk.
@@ -85,7 +94,10 @@ class chunk final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto height() const noexcept -> int { return m_height; }
+  [[nodiscard]] auto height() const noexcept -> int
+  {
+    return m_height;
+  }
 
   /**
    * @brief Returns the data associated with the chunk.

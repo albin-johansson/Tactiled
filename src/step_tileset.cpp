@@ -6,7 +6,8 @@
 namespace step {
 
 Tileset::Tileset(std::string_view root, global_id id, std::string_view path)
-    : m_firstGID{id}, m_source{path.data()}
+    : m_firstGID{id},
+      m_source{path.data()}
 {
   std::string fullPath{root.data()};
   fullPath += path.data();

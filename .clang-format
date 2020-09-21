@@ -24,3 +24,6 @@ BraceWrapping:
 
 AllowShortFunctionsOnASingleLine: None
 AllowShortBlocksOnASingleLine: Never
+
+AllowAllConstructorInitializersOnNextLine: false
+BreakConstructorInitializers: BeforeColon

@@ -114,7 +114,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto get_text() const -> const std::string& { return m_text; }
+  [[nodiscard]] auto get_text() const -> const std::string&
+  {
+    return m_text;
+  }
 
   /**
    * @brief Returns the name of the font family associated with the text.
@@ -139,7 +142,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto get_color() const noexcept -> color { return m_color; }
+  [[nodiscard]] auto get_color() const noexcept -> color
+  {
+    return m_color;
+  }
 
   /**
    * @brief Returns the horizontal alignment of the text.
@@ -178,7 +184,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto pixel_size() const noexcept -> int { return m_pixelSize; }
+  [[nodiscard]] auto pixel_size() const noexcept -> int
+  {
+    return m_pixelSize;
+  }
 
   /**
    * @brief Indicates whether or not the text is bold.
@@ -189,7 +198,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto bold() const noexcept -> bool { return m_bold; }
+  [[nodiscard]] auto bold() const noexcept -> bool
+  {
+    return m_bold;
+  }
 
   /**
    * @brief Indicates whether or not the text is italic.
@@ -200,7 +212,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto italic() const noexcept -> bool { return m_italic; }
+  [[nodiscard]] auto italic() const noexcept -> bool
+  {
+    return m_italic;
+  }
 
   /**
    * @brief Indicates whether or not the text uses kerning.
@@ -211,7 +226,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto kerning() const noexcept -> bool { return m_kerning; }
+  [[nodiscard]] auto kerning() const noexcept -> bool
+  {
+    return m_kerning;
+  }
 
   /**
    * @brief Indicates whether or not the text is strikethrough.
@@ -222,7 +240,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto strikeout() const noexcept -> bool { return m_strikeout; }
+  [[nodiscard]] auto strikeout() const noexcept -> bool
+  {
+    return m_strikeout;
+  }
 
   /**
    * @brief Indicates whether or not the text is underlined.
@@ -233,7 +254,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto underline() const noexcept -> bool { return m_underline; }
+  [[nodiscard]] auto underline() const noexcept -> bool
+  {
+    return m_underline;
+  }
 
   /**
    * @brief Indicates whether or not the text is wrapped within the object
@@ -246,7 +270,10 @@ class text final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto wrap() const noexcept -> bool { return m_wrap; }
+  [[nodiscard]] auto wrap() const noexcept -> bool
+  {
+    return m_wrap;
+  }
 
  private:
   std::string m_text;

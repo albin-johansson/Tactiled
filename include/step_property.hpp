@@ -210,7 +210,10 @@ class property final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto name() const -> std::string { return m_name; }
+  [[nodiscard]] auto name() const -> std::string
+  {
+    return m_name;
+  }
 
   /**
    * @brief Returns the type associated with the property.
@@ -219,7 +222,10 @@ class property final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto get_type() const noexcept -> type { return m_type; }
+  [[nodiscard]] auto get_type() const noexcept -> type
+  {
+    return m_type;
+  }
 
  private:
   type m_type{type::string};

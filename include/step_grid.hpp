@@ -74,7 +74,10 @@ class grid final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto width() const noexcept -> int { return m_width; }
+  [[nodiscard]] auto width() const noexcept -> int
+  {
+    return m_width;
+  }
 
   /**
    * @brief Returns the height of the cells in the grid.
@@ -83,7 +86,10 @@ class grid final {
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto height() const noexcept -> int { return m_height; }
+  [[nodiscard]] auto height() const noexcept -> int
+  {
+    return m_height;
+  }
 
  private:
   orientation m_orientation{orientation::orthogonal};

@@ -53,7 +53,10 @@ class WangTile final {
    * @return the local ID associated with the Wang tile.
    * @since 0.1.0
    */
-  [[nodiscard]] auto tile_id() const noexcept -> local_id { return m_tileID; }
+  [[nodiscard]] auto tile_id() const noexcept -> local_id
+  {
+    return m_tileID;
+  }
 
   /**
    * Returns the Wang color indices associated with the Wang tile.
