@@ -229,6 +229,7 @@ class layer final {
    * @brief Returns the amount of columns in the layer.
    *
    * @return the amount of columns in the layer.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> int
@@ -240,6 +241,7 @@ class layer final {
    * @brief Returns the amount of rows in the layer.
    *
    * @return the amount of rows in the layer.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> int
@@ -251,6 +253,7 @@ class layer final {
    * @brief Returns the properties associated with the layer.
    *
    * @return the properties associated with the layer; null if there are none.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto get_properties() const noexcept -> const properties*
@@ -259,10 +262,12 @@ class layer final {
   }
 
   /**
-   * @brief Returns the x-coordinate of where the layer content begins. This is
-   * used by infinite maps.
+   * @brief Returns the x-coordinate of where the layer content begins.
+   *
+   * @details This is used by infinite maps.
    *
    * @return the x-coordinate of where the layer content begins.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto start_x() const noexcept -> int
@@ -271,10 +276,12 @@ class layer final {
   }
 
   /**
-   * @brief Returns the y-coordinate of where the layer content begins. This is
-   * used by infinite maps.
+   * @brief Returns the y-coordinate of where the layer content begins.
+   *
+   * @details This is used by infinite maps.
    *
    * @return the y-coordinate of where the layer content begins.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto start_y() const noexcept -> int
@@ -283,10 +290,12 @@ class layer final {
   }
 
   /**
-   * @brief Returns the horizontal offset of the layer. The default value of
-   * this property is 0.
+   * @brief Returns the horizontal offset of the layer.
+   *
+   * @details The default value of this property is 0.
    *
    * @return the horizontal offset of the layer, in pixels.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto offset_x() const noexcept -> double
@@ -295,10 +304,12 @@ class layer final {
   }
 
   /**
-   * @brief Returns the vertical offset of the layer. The default value of
-   * this property is 0.
+   * @brief Returns the vertical offset of the layer.
+   *
+   * @details The default value of this property is 0.
    *
    * @return the vertical offset of the layer, in pixels.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto offset_y() const noexcept -> double
@@ -310,6 +321,7 @@ class layer final {
    * @brief Returns the opacity of the layer.
    *
    * @return the opacity of the layer, in the range [0, 1].
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto opacity() const noexcept -> double
@@ -333,6 +345,7 @@ class layer final {
    * @brief Returns the name associated with the layer.
    *
    * @return the name associated with the layer.
+   *
    * @since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string
