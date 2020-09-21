@@ -7,7 +7,6 @@ set(SOURCE_FILES
         ../include/step_exception.hpp
 
         ../include/step.hpp
-        step.cpp
 
         ../include/step_map.hpp
         step_map.cpp

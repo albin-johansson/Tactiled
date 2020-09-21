@@ -44,8 +44,10 @@ namespace step {
  *
  * @since 0.2.0
  */
-STEP_QUERY
-auto parse(const fs::path& path) -> std::unique_ptr<Map>;
+[[nodiscard]] auto parse(const fs::path& path) -> std::unique_ptr<Map>
+{
+  return std::make_unique<Map>(path);
+}
 
 /**
  * @brief Attempts to parse a Tiled JSON map file located at the specified path.
@@ -62,9 +64,12 @@ auto parse(const fs::path& path) -> std::unique_ptr<Map>;
  *
  * @since 0.1.0
  */
-[[deprecated("Use the path-based function instead!")]] STEP_QUERY auto parse(
+[[nodiscard, deprecated("Use the path-based function instead!")]] auto parse(
     std::string_view root,
-    std::string_view file) -> std::unique_ptr<Map>;
+    std::string_view file) -> std::unique_ptr<Map>
+{
+  return std::make_unique<Map>(root, file);
+}
 
 }  // namespace step
 
