@@ -341,7 +341,7 @@ class layer final {
   }
 
  private:
-  type m_type;
+  type m_type{};
   int m_id{0};
   std::variant<std::monostate, TileLayer, ImageLayer, ObjectGroup, group>
       m_layerData;
