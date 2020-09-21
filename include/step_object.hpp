@@ -62,7 +62,7 @@ namespace step {
  *
  * @headerfile step_object.hpp
  */
-struct polygon {
+struct polygon final {
   std::vector<point> points;
 };
 
@@ -75,7 +75,7 @@ struct polygon {
  *
  * @headerfile step_object.hpp
  */
-struct polyline {
+struct polyline final {
   std::vector<point> points;
 };
 
@@ -88,7 +88,7 @@ struct polyline {
  *
  * @headerfile step_object.hpp
  */
-struct template_object {
+struct template_object final {
   std::string templateFile;
   // TODO std::shared_ptr<Tileset>
   // TODO std::shared_ptr<Object>
