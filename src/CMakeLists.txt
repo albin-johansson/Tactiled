@@ -31,7 +31,6 @@ set(SOURCE_FILES
         ../include/step_frame.hpp
 
         ../include/step_animation.hpp
-        step_animation.cpp
 
         ../include/step_grid.hpp
         step_grid.cpp
