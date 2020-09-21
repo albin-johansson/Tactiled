@@ -31,7 +31,7 @@ TEST_SUITE("map")
 
       const auto& layer = layers.front();
       CHECK(layer.id() == 1);
-      CHECK(!layer.as<step::TileLayer>().data()->as_gid().empty());
+      CHECK(!layer.as<step::tile_layer>().data()->as_gid().empty());
       CHECK(layer.width() == 45);
       CHECK(layer.height() == 125);
       CHECK(layer.opacity() == 1);

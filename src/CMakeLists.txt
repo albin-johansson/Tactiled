@@ -41,7 +41,6 @@ set(SOURCE_FILES
         ../include/step_data.hpp
 
         ../include/step_tile_layer.hpp
-        step_tile_layer.cpp
 
         ../include/step_image_layer.hpp
         step_image_layer.cpp

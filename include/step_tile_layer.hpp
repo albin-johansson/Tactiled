@@ -31,6 +31,7 @@
 #include "step_chunk.hpp"
 #include "step_data.hpp"
 #include "step_types.hpp"
+#include "step_utils.hpp"
 
 namespace step {
 
@@ -40,7 +41,7 @@ namespace step {
  *
  * @since 0.1.0
  */
-class TileLayer final {
+class tile_layer final {
  public:
   /**
    * The Compression enum class provides values for the different kinds of
@@ -48,7 +49,7 @@ class TileLayer final {
    *
    * @since 0.1.0
    */
-  enum class Compression { ZLib, GZip, None };
+  enum class compression { zlib, gzip, none };
 
   /**
    * The Encoding enum class provides identifiers for the different encodings
@@ -56,10 +57,21 @@ class TileLayer final {
    *
    * @since 0.1.0
    */
-  enum class Encoding { CSV, Base64 };
+  enum class encoding { csv, base64 };
 
-  STEP_API
-  explicit TileLayer(const json& json);
+  explicit tile_layer(const json& json)
+  {
+    detail::safe_bind(json, "compression", m_compression);
+    detail::safe_bind(json, "encoding", m_encoding);
+
+    if (json.contains("chunks")) {
+      m_chunks = detail::fill<std::vector<chunk>>(json, "chunks");
+    }
+
+    if (json.contains("data")) {
+      m_data = std::make_unique<detail::data>(json.at("data"));
+    }
+  }
 
   /**
    * Returns the encoding used by the tile layer. The default value of this
@@ -68,8 +80,10 @@ class TileLayer final {
    * @return the encoding used by the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY
-  Encoding encoding() const noexcept;
+  [[nodiscard]] auto get_encoding() const noexcept -> encoding
+  {
+    return m_encoding;
+  }
 
   /**
    * Returns the compression used by the tile layer. The default value of
@@ -78,8 +92,10 @@ class TileLayer final {
    * @return the compression used by the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY
-  Compression compression() const noexcept;
+  [[nodiscard]] auto get_compression() const noexcept -> compression
+  {
+    return m_compression;
+  }
 
   /**
    * Returns a pointer to the tile data associated with the tile layer. This
@@ -89,8 +105,10 @@ class TileLayer final {
    * no such data.
    * @since 0.1.0
    */
-  STEP_QUERY
-  const detail::data* data() const;
+  [[nodiscard]] auto data() const -> const detail::data*
+  {
+    return m_data.get();
+  }
 
   /**
    * Returns the chunks associated with the tile layer.
@@ -98,24 +116,26 @@ class TileLayer final {
    * @return the chunks associated with the tile layer.
    * @since 0.1.0
    */
-  STEP_QUERY
-  const std::vector<chunk>& chunks() const noexcept;
+  [[nodiscard]] auto chunks() const noexcept -> const std::vector<chunk>&
+  {
+    return m_chunks;
+  }
 
  private:
-  Encoding m_encoding{Encoding::CSV};
-  Compression m_compression{Compression::None};
+  encoding m_encoding{encoding::csv};
+  compression m_compression{compression::none};
   std::unique_ptr<detail::data> m_data;
   std::vector<chunk> m_chunks;
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Compression,
-                             {{TileLayer::Compression::None, ""},
-                              {TileLayer::Compression::GZip, "gzip"},
-                              {TileLayer::Compression::ZLib, "zlib"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(tile_layer::compression,
+                             {{tile_layer::compression::none, ""},
+                              {tile_layer::compression::gzip, "gzip"},
+                              {tile_layer::compression::zlib, "zlib"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(TileLayer::Encoding,
-                             {{TileLayer::Encoding::CSV, "csv"},
-                              {TileLayer::Encoding::Base64, "base64"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(tile_layer::encoding,
+                             {{tile_layer::encoding::csv, "csv"},
+                              {tile_layer::encoding::base64, "base64"}})
 
 }  // namespace step
 

@@ -16,7 +16,7 @@ TEST_SUITE("Layer")
 
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is<step::TileLayer>());
+      REQUIRE(layer.is<step::tile_layer>());
       CHECK(!layer.is<step::ImageLayer>());
       CHECK(!layer.is<step::ObjectGroup>());
       CHECK(!layer.is<step::group>());
@@ -31,10 +31,10 @@ TEST_SUITE("Layer")
 
     SUBCASE("Tile layer exclusive properties")
     {
-      const auto& tileLayer = layer.as<step::TileLayer>();
+      const auto& tileLayer = layer.as<step::tile_layer>();
 
-      CHECK(tileLayer.encoding() == TileLayer::Encoding::CSV);
-      CHECK(tileLayer.compression() == TileLayer::Compression::None);
+      CHECK(tileLayer.get_encoding() == tile_layer::encoding::csv);
+      CHECK(tileLayer.get_compression() == tile_layer::compression::none);
       CHECK(tileLayer.chunks().empty());
 
       SUBCASE("Check data")
@@ -79,7 +79,7 @@ TEST_SUITE("Layer")
   {
     const auto json = detail::parse_json("resource/layer/chunks.json");
     const layer layer{json};
-    const auto& chunks = layer.as<step::TileLayer>().chunks();
+    const auto& chunks = layer.as<step::tile_layer>().chunks();
     CHECK(chunks.size() == 4);
   }
 
@@ -87,18 +87,18 @@ TEST_SUITE("Layer")
   {
     const step::layer layer{
         detail::parse_json("resource/layer/object_group.json")};
-    
+
     SUBCASE("Layer type indicators")
     {
       REQUIRE(layer.is<step::ObjectGroup>());
       CHECK(!layer.is<step::ImageLayer>());
-      CHECK(!layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::tile_layer>());
       CHECK_THROWS(layer.as<step::ImageLayer>());
       CHECK_THROWS(layer.as<step::group>());
     }
@@ -142,13 +142,13 @@ TEST_SUITE("Layer")
     {
       REQUIRE(layer.is<step::ImageLayer>());
       CHECK(!layer.is<step::ObjectGroup>());
-      CHECK(!layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::tile_layer>());
       CHECK(!layer.is<step::group>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::tile_layer>());
       CHECK_THROWS(layer.as<step::ObjectGroup>());
       CHECK_THROWS(layer.as<step::group>());
     }
@@ -180,12 +180,12 @@ TEST_SUITE("Layer")
       REQUIRE(layer.is<step::group>());
       CHECK(!layer.is<step::ImageLayer>());
       CHECK(!layer.is<step::ObjectGroup>());
-      CHECK(!layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::tile_layer>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::tile_layer>());
       CHECK_THROWS(layer.as<step::ImageLayer>());
       CHECK_THROWS(layer.as<step::ObjectGroup>());
     }
