@@ -229,7 +229,7 @@ class Tileset final {
    * @return the grid associated with the tileset.
    * @since 0.1.0
    */
-  STEP_QUERY std::optional<Grid> grid() const noexcept;
+  STEP_QUERY std::optional<grid> get_grid() const noexcept;
 
   /**
    * Returns the tile offset associated with the tileset. This property is
@@ -275,7 +275,7 @@ class Tileset final {
   std::string m_name;
   std::optional<color> m_backgroundColor;
   std::optional<color> m_transparentColor;
-  std::optional<Grid> m_grid;
+  std::optional<grid> m_grid;
   std::optional<TileOffset> m_tileOffset;
 
   std::string m_tiledVersion;

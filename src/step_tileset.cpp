@@ -176,7 +176,7 @@ std::optional<color> Tileset::transparent_color() const noexcept
   return m_transparentColor;
 }
 
-std::optional<Grid> Tileset::grid() const noexcept
+std::optional<grid> Tileset::get_grid() const noexcept
 {
   return m_grid;
 }

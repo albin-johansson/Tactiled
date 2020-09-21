@@ -28,7 +28,6 @@ set(SOURCE_FILES
         ../include/step_animation.hpp
 
         ../include/step_grid.hpp
-        step_grid.cpp
 
         ../include/step_tile_offset.hpp
         step_tile_offset.cpp
