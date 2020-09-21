@@ -1,6 +1,3 @@
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wunused-result"
-
 #include "step_layer.hpp"
 
 #include <doctest.h>
@@ -15,26 +12,26 @@ TEST_SUITE("Layer")
 {
   TEST_CASE("Parsing tile layer")
   {
-    const Layer layer{detail::parse_json("resource/layer/tile_layer.json")};
+    const layer layer{detail::parse_json("resource/layer/tile_layer.json")};
 
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is_tile_layer());
-      CHECK(!layer.is_image_layer());
-      CHECK(!layer.is_object_group());
-      CHECK(!layer.is_group());
+      REQUIRE(layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::group>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as_object_group());
-      CHECK_THROWS(layer.as_image_layer());
-      CHECK_THROWS(layer.as_group());
+      CHECK_THROWS(layer.as<step::ObjectGroup>());
+      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::group>());
     }
 
     SUBCASE("Tile layer exclusive properties")
     {
-      const auto& tileLayer = layer.as_tile_layer();
+      const auto& tileLayer = layer.as<step::TileLayer>();
 
       CHECK(tileLayer.encoding() == TileLayer::Encoding::CSV);
       CHECK(tileLayer.compression() == TileLayer::Compression::None);
@@ -54,7 +51,7 @@ TEST_SUITE("Layer")
     CHECK(layer.height() == 28);
     CHECK(layer.name() == "tile_layer");
     CHECK(layer.opacity() == 0.7);
-    CHECK(layer.type() == Layer::Type::TileLayer);
+    CHECK(layer.get_type() == layer::type::tile_layer);
     CHECK(layer.visible());
     CHECK(layer.start_x() == 0);
     CHECK(layer.start_y() == 0);
@@ -81,86 +78,84 @@ TEST_SUITE("Layer")
   TEST_CASE("Parse tile layer chunks")
   {
     const auto json = detail::parse_json("resource/layer/chunks.json");
-    const Layer layer{json};
-    const auto& chunks = layer.as_tile_layer().chunks();
+    const layer layer{json};
+    const auto& chunks = layer.as<step::TileLayer>().chunks();
     CHECK(chunks.size() == 4);
   }
 
   TEST_CASE("Parsing object group")
   {
-    // FIXME
-
-    //    const Layer
-    //    layer{detail::parse_json("resource/layer/object_group.json")};
-
-    //    SUBCASE("Layer type indicators")
-    //    {
-    //      REQUIRE(layer.is_object_group());
-    //      CHECK(!layer.is_image_layer());
-    //      CHECK(!layer.is_tile_layer());
-    //      CHECK(!layer.is_group());
-    //    }
-    //
-    //    SUBCASE("Conversions")
-    //    {
-    //      CHECK_THROWS(layer.as_tile_layer());
-    //      CHECK_THROWS(layer.as_image_layer());
-    //      CHECK_THROWS(layer.as_group());
-    //    }
-    //
-    //    SUBCASE("Object group exclusive properties")
-    //    {
-    //      const auto& objectGroup = layer.as_object_group();
-    //      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::TopDown);
-    //
-    //      const auto& objects = objectGroup.objects();
-    //      REQUIRE(objects.size() == 1);
-    //
-    //      const auto& object = objects.at(0);
-    //      CHECK(object->id() == 36);
-    //      CHECK(object->x() == 234);
-    //      CHECK(object->y() == 584);
-    //      CHECK(object->width() == 118);
-    //      CHECK(object->height() == 77);
-    //      CHECK(object->rotation() == 3);
-    //      CHECK(object->visible());
-    //      CHECK(object->name() == "legolas");
-    //      CHECK(object->type() == "boss");
-    //    }
-
-    //    CHECK(layer.id() == 3);
-    //    CHECK(layer.name() == "object_layer");
-    //    CHECK(layer.opacity() == 0.4);
-    //    CHECK(layer.type() == Layer::Type::ObjectGroup);
-    //    CHECK(!layer.visible());
-    //    CHECK(layer.start_x() == 0);
-    //    CHECK(layer.start_y() == 0);
-    //    CHECK(layer.offset_x() == 65);
-    //    CHECK(layer.offset_y() == 173);
-  }
-
-  TEST_CASE("Parsing image layer")
-  {
-    const Layer layer{detail::parse_json("resource/layer/image_layer.json")};
-
+    const step::layer layer{
+        detail::parse_json("resource/layer/object_group.json")};
+    
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is_image_layer());
-      CHECK(!layer.is_object_group());
-      CHECK(!layer.is_tile_layer());
-      CHECK(!layer.is_group());
+      REQUIRE(layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::group>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as_tile_layer());
-      CHECK_THROWS(layer.as_object_group());
-      CHECK_THROWS(layer.as_group());
+      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::group>());
+    }
+
+    SUBCASE("Object group exclusive properties")
+    {
+      const auto& objectGroup = layer.as<step::ObjectGroup>();
+      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::TopDown);
+
+      const auto& objects = objectGroup.objects();
+      REQUIRE(objects.size() == 1);
+
+      const auto& object = objects.at(0);
+      CHECK(object->id() == 36);
+      CHECK(object->x() == 234);
+      CHECK(object->y() == 584);
+      CHECK(object->width() == 118);
+      CHECK(object->height() == 77);
+      CHECK(object->rotation() == 3);
+      CHECK(object->visible());
+      CHECK(object->name() == "legolas");
+      CHECK(object->type() == "boss");
+    }
+
+    CHECK(layer.id() == 3);
+    CHECK(layer.name() == "object_layer");
+    CHECK(layer.opacity() == 0.4);
+    CHECK(layer.get_type() == step::layer::type::object_group);
+    CHECK(!layer.visible());
+    CHECK(layer.start_x() == 0);
+    CHECK(layer.start_y() == 0);
+    CHECK(layer.offset_x() == 65);
+    CHECK(layer.offset_y() == 173);
+  }
+
+  TEST_CASE("Parsing image layer")
+  {
+    const layer layer{detail::parse_json("resource/layer/image_layer.json")};
+
+    SUBCASE("Layer type indicators")
+    {
+      REQUIRE(layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::TileLayer>());
+      CHECK(!layer.is<step::group>());
+    }
+
+    SUBCASE("Conversions")
+    {
+      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::ObjectGroup>());
+      CHECK_THROWS(layer.as<step::group>());
     }
 
     SUBCASE("Image layer exclusive properties")
     {
-      const auto& imageLayer = layer.as_image_layer();
+      const auto& imageLayer = layer.as<step::ImageLayer>();
       CHECK(imageLayer.image() == "balrog.png");
       CHECK(*imageLayer.transparent_color() == step::color{"#214365"});
     }
@@ -168,7 +163,7 @@ TEST_SUITE("Layer")
     CHECK(layer.id() == 2);
     CHECK(layer.name() == "image_layer");
     CHECK(layer.opacity() == 1);
-    CHECK(layer.type() == Layer::Type::ImageLayer);
+    CHECK(layer.get_type() == layer::type::image_layer);
     CHECK(layer.visible());
     CHECK(layer.start_x() == 82);
     CHECK(layer.start_y() == 37);
@@ -178,29 +173,30 @@ TEST_SUITE("Layer")
 
   TEST_CASE("Parsing group")
   {
-    const Layer layer{detail::parse_json("resource/layer/group.json")};
+    const layer layer{detail::parse_json("resource/layer/group.json")};
 
     SUBCASE("Layer type indicators")
     {
-      REQUIRE(layer.is_group());
-      CHECK(!layer.is_image_layer());
-      CHECK(!layer.is_object_group());
-      CHECK(!layer.is_tile_layer());
+      REQUIRE(layer.is<step::group>());
+      CHECK(!layer.is<step::ImageLayer>());
+      CHECK(!layer.is<step::ObjectGroup>());
+      CHECK(!layer.is<step::TileLayer>());
     }
 
     SUBCASE("Conversions")
     {
-      CHECK_THROWS(layer.as_tile_layer());
-      CHECK_THROWS(layer.as_image_layer());
-      CHECK_THROWS(layer.as_object_group());
+      CHECK_THROWS(layer.as<step::TileLayer>());
+      CHECK_THROWS(layer.as<step::ImageLayer>());
+      CHECK_THROWS(layer.as<step::ObjectGroup>());
     }
 
     SUBCASE("Group exclusive properties")
     {
-      const auto& group = layer.as_group();
-      REQUIRE(group.layers() == 1);
+      const auto& group = layer.as<step::group>();
+      REQUIRE(group.num_layers() == 1);
 
-      group.each([](const Layer& layer) { CHECK(layer.name() == "dawkins"); });
+      group.each(
+          [](const step::layer& layer) { CHECK(layer.name() == "dawkins"); });
 
       CHECK(group.at(0).name() == "dawkins");
     }
@@ -208,9 +204,7 @@ TEST_SUITE("Layer")
     CHECK(layer.id() == 7);
     CHECK(layer.name() == "group_layer");
     CHECK(layer.opacity() == 0.9);
-    CHECK(layer.type() == Layer::Type::Group);
+    CHECK(layer.get_type() == layer::type::group);
     CHECK(layer.visible());
   }
 }
-
-#pragma clang diagnostic pop

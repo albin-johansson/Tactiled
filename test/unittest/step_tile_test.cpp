@@ -75,13 +75,13 @@ TEST_SUITE("Tile")
     {
       const auto objectGroupLayer = tile.object_group();
       REQUIRE(objectGroupLayer);
-      REQUIRE(objectGroupLayer->is_object_group());
+      REQUIRE(objectGroupLayer->is<step::ObjectGroup>());
       CHECK(objectGroupLayer->id() == 2);
       CHECK(objectGroupLayer->name() == "wizard");
       CHECK(objectGroupLayer->opacity() == 1);
       CHECK(objectGroupLayer->visible());
 
-      const auto& objectGroup = objectGroupLayer->as_object_group();
+      const auto& objectGroup = objectGroupLayer->as<step::ObjectGroup>();
       CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::Index);
       CHECK(objectGroup.objects().size() == 1);
     }

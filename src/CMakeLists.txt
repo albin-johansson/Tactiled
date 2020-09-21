@@ -35,7 +35,6 @@ set(SOURCE_FILES
         ../include/step_terrain.hpp
 
         ../include/step_layer.hpp
-        step_layer.cpp
 
         ../include/step_chunk.hpp
 
@@ -49,9 +48,6 @@ set(SOURCE_FILES
 
         ../include/step_object_group.hpp
         step_object_group.cpp
-
-        ../include/step_group.hpp
-        step_group.cpp
 
         ../include/step_object.hpp
         step_object.cpp

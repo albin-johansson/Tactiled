@@ -124,7 +124,7 @@ class tile final {
    * @since 0.1.0
    */
   STEP_QUERY
-  auto object_group() const noexcept -> const Layer*;
+  auto object_group() const noexcept -> const layer*;
 
   /**
    * @brief Returns the type of the tile.
@@ -198,7 +198,7 @@ class tile final {
   local_id m_id{0};
 
   std::unique_ptr<properties> m_properties;
-  std::unique_ptr<Layer> m_objectGroup;
+  std::unique_ptr<layer> m_objectGroup;
 
   std::optional<animation> m_animation;
   std::optional<std::array<int, 4>> m_terrain;

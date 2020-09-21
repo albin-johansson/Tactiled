@@ -95,7 +95,7 @@ int Map::next_object_id() const noexcept
   return m_nextObjectID;
 }
 
-const std::vector<Layer>& Map::layers() const noexcept
+const std::vector<layer>& Map::layers() const noexcept
 {
   return m_layers;
 }

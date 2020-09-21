@@ -18,7 +18,7 @@ tile::tile(const json& json) : m_id{json.at("id").get<int>()}
   }
 
   if (const auto it = json.find("objectgroup"); it != json.end()) {
-    m_objectGroup = std::make_unique<Layer>(*it);
+    m_objectGroup = std::make_unique<layer>(*it);
   }
 
   detail::emplace_opt(json, "animation", m_animation);
@@ -45,7 +45,7 @@ auto tile::get_properties() const -> const properties*
   return m_properties.get();
 }
 
-auto tile::object_group() const noexcept -> const Layer*
+auto tile::object_group() const noexcept -> const layer*
 {
   return m_objectGroup.get();
 }

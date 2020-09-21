@@ -31,12 +31,12 @@ TEST_SUITE("map")
 
       const auto& layer = layers.front();
       CHECK(layer.id() == 1);
-      CHECK(!layer.as_tile_layer().data()->as_gid().empty());
+      CHECK(!layer.as<step::TileLayer>().data()->as_gid().empty());
       CHECK(layer.width() == 45);
       CHECK(layer.height() == 125);
       CHECK(layer.opacity() == 1);
       CHECK(layer.name() == "herbert");
-      CHECK(layer.type() == step::Layer::Type::TileLayer);
+      CHECK(layer.get_type() == step::layer::type::tile_layer);
       CHECK(layer.visible());
     }
   }

@@ -33,15 +33,15 @@ TEST_SUITE("Test of realistic usage of step")
 
       CHECK(layers.at(0).id() == 1);
       CHECK(layers.at(0).name() == "ground1");
-      CHECK(layers.at(0).is_tile_layer());
+      CHECK(layers.at(0).is<step::TileLayer>());
 
       CHECK(layers.at(1).id() == 2);
       CHECK(layers.at(1).name() == "ground2");
-      CHECK(layers.at(1).is_tile_layer());
+      CHECK(layers.at(1).is<step::TileLayer>());
 
       CHECK(layers.at(2).id() == 3);
       CHECK(layers.at(2).name() == "detail");
-      CHECK(layers.at(2).is_tile_layer());
+      CHECK(layers.at(2).is<step::TileLayer>());
     }
 
     SUBCASE("Tilesets")
