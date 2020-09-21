@@ -12,14 +12,9 @@ set(SOURCE_FILES
         step_map.cpp
 
         ../include/step_point.hpp
-
         ../include/step_utils.hpp
-
         ../include/step_property.hpp
-
         ../include/step_color.hpp
-        step_color.cpp
-
         ../include/step_text.hpp
 
         ../include/step_tileset.hpp
@@ -74,7 +69,8 @@ set(SOURCE_FILES
         step_wang_color.cpp
 
         ../include/step_wang_tile.hpp
-        ../include/step_fwd.hpp)
+        ../include/step_fwd.hpp
+        ../include/step_valid_property.hpp)
 
 add_library(${STEP_LIB_TARGET} SHARED ${SOURCE_FILES})
 if (WIN32)

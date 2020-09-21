@@ -36,6 +36,7 @@
 #include "step_property.hpp"
 #include "step_types.hpp"
 #include "step_utils.hpp"
+#include "step_valid_property.hpp"
 
 namespace step {
 

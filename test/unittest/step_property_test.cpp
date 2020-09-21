@@ -1,7 +1,3 @@
-#pragma clang diagnostic push
-#pragma ide diagnostic ignored "modernize-use-trailing-return-type"
-#pragma clang diagnostic ignored "-Wunused-result"
-
 #include "step_property.hpp"
 
 #include <doctest.h>
@@ -248,5 +244,3 @@ TEST_SUITE("File property")
         step::property{"resource/property/file_property_bad_value.json"});
   }
 }
-
-#pragma clang diagnostic pop

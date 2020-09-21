@@ -35,7 +35,6 @@
 #include <vector>
 
 #include "step_api.hpp"
-#include "step_color.hpp"
 #include "step_exception.hpp"
 #include "step_types.hpp"
 
@@ -191,14 +190,6 @@ template <typename T>
   } else {
     throw step_exception{"Failed to convert string to integral!"};
   }
-}
-
-template <typename T>
-[[nodiscard]] constexpr auto valid_property_type() noexcept -> bool
-{
-  return std::is_same_v<T, bool> || std::is_same_v<T, int> ||
-         std::is_same_v<T, float> || std::is_same_v<T, color> ||
-         std::is_same_v<T, file> || std::is_convertible_v<T, std::string>;
 }
 
 }  // namespace step::detail

@@ -25,6 +25,7 @@
 #ifndef STEP_HEADER
 #define STEP_HEADER
 
+#include <memory>
 #include <string_view>
 
 #include "step_api.hpp"
