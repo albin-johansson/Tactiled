@@ -49,11 +49,11 @@ TEST_SUITE("Test of realistic usage of step")
       const auto& tilesets = map->tilesets();
       REQUIRE(tilesets.size() == 2);
 
-      CHECK(tilesets.at(0).first_gid() == 1_gid);
-      CHECK(tilesets.at(0).source() == "terrain.json");
+      CHECK(tilesets.at(0)->first_gid() == 1_gid);
+      CHECK(tilesets.at(0)->source() == "terrain.json");
 
-      CHECK(tilesets.at(1).first_gid() == 1025_gid);
-      CHECK(tilesets.at(1).source() == "outside.json");
+      CHECK(tilesets.at(1)->first_gid() == 1025_gid);
+      CHECK(tilesets.at(1)->source() == "outside.json");
     }
   }
 }

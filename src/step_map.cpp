@@ -100,7 +100,7 @@ const std::vector<layer>& Map::layers() const noexcept
   return m_layers;
 }
 
-const std::vector<Tileset>& Map::tilesets() const noexcept
+const std::vector<std::unique_ptr<Tileset>>& Map::tilesets() const noexcept
 {
   return m_tilesets;
 }

@@ -18,7 +18,6 @@ set(SOURCE_FILES
         ../include/step_text.hpp
 
         ../include/step_tileset.hpp
-        step_tileset.cpp
 
         ../include/step_tile.hpp
 

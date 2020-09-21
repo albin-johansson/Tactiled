@@ -135,7 +135,7 @@ class Map final {
    * @since 0.1.0
    */
   STEP_QUERY
-  const std::vector<Tileset>& tilesets() const noexcept;
+  const std::vector<std::unique_ptr<Tileset>>& tilesets() const noexcept;
 
   /**
    * Returns the properties associated with the map.
@@ -241,7 +241,7 @@ class Map final {
   int m_nextLayerID{0};
   int m_nextObjectID{0};
   std::vector<layer> m_layers;
-  std::vector<Tileset> m_tilesets;
+  std::vector<std::unique_ptr<Tileset>> m_tilesets;
   std::unique_ptr<properties> m_properties;
   Orientation m_orientation{Orientation::Orthogonal};
   RenderOrder m_renderOrder{RenderOrder::RightDown};
