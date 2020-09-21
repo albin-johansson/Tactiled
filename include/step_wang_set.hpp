@@ -38,7 +38,7 @@
 namespace step {
 
 class wang_set final {
-  using colors = std::vector<WangColor>;
+  using colors = std::vector<wang_color>;
   using tiles = std::vector<WangTile>;
 
  public:
@@ -130,8 +130,8 @@ class wang_set final {
 
  private:
   local_id m_tile{0};
-  std::vector<WangColor> m_cornerColors;
-  std::vector<WangColor> m_edgeColors;
+  std::vector<wang_color> m_cornerColors;
+  std::vector<wang_color> m_edgeColors;
   std::vector<WangTile> m_wangTiles;
   properties m_properties;
   std::string m_name;

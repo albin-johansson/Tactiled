@@ -53,7 +53,6 @@ set(SOURCE_FILES
         ../include/step_wang_set.hpp
 
         ../include/step_wang_color.hpp
-        step_wang_color.cpp
 
         ../include/step_wang_tile.hpp
         ../include/step_fwd.hpp

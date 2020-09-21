@@ -11,7 +11,7 @@ TEST_SUITE("WangColor")
   TEST_CASE("Valid Wang color")
   {
     const auto json = detail::parse_json("resource/wangcolor/valid.json");
-    const WangColor wangColor{json};
+    const wang_color wangColor{json};
     CHECK(wangColor.get_color() == color{"#d31313"});
     CHECK(wangColor.name() == "Rails");
     CHECK(wangColor.probability() == 0.75);
