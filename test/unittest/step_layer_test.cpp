@@ -27,6 +27,11 @@ TEST_SUITE("layer")
       CHECK_THROWS(layer.as<step::object_group>());  // NOLINT
       CHECK_THROWS(layer.as<step::image_layer>());   // NOLINT
       CHECK_THROWS(layer.as<step::group>());         // NOLINT
+
+      CHECK(layer.try_as<step::tile_layer>());          // NOLINT
+      CHECK_FALSE(layer.try_as<step::object_group>());  // NOLINT
+      CHECK_FALSE(layer.try_as<step::image_layer>());   // NOLINT
+      CHECK_FALSE(layer.try_as<step::group>());         // NOLINT
     }
 
     SUBCASE("Tile layer exclusive properties")
@@ -103,6 +108,11 @@ TEST_SUITE("layer")
       CHECK_THROWS(layer.as<step::group>());        // NOLINT
     }
 
+    CHECK(layer.try_as<step::object_group>());       // NOLINT
+    CHECK_FALSE(layer.try_as<step::tile_layer>());   // NOLINT
+    CHECK_FALSE(layer.try_as<step::image_layer>());  // NOLINT
+    CHECK_FALSE(layer.try_as<step::group>());        // NOLINT
+
     SUBCASE("Object group exclusive properties")
     {
       const auto& objectGroup = layer.as<step::object_group>();
@@ -153,6 +163,11 @@ TEST_SUITE("layer")
       CHECK_THROWS(layer.as<step::group>());         // NOLINT
     }
 
+    CHECK(layer.try_as<step::image_layer>());         // NOLINT
+    CHECK_FALSE(layer.try_as<step::tile_layer>());    // NOLINT
+    CHECK_FALSE(layer.try_as<step::object_group>());  // NOLINT
+    CHECK_FALSE(layer.try_as<step::group>());         // NOLINT
+
     SUBCASE("Image layer exclusive properties")
     {
       const auto& imageLayer = layer.as<step::image_layer>();
@@ -189,6 +204,11 @@ TEST_SUITE("layer")
       CHECK_THROWS(layer.as<step::image_layer>());   // NOLINT
       CHECK_THROWS(layer.as<step::object_group>());  // NOLINT
     }
+
+    CHECK(layer.try_as<step::group>());               // NOLINT
+    CHECK_FALSE(layer.try_as<step::tile_layer>());    // NOLINT
+    CHECK_FALSE(layer.try_as<step::object_group>());  // NOLINT
+    CHECK_FALSE(layer.try_as<step::image_layer>());   // NOLINT
 
     SUBCASE("Group exclusive properties")
     {
