@@ -37,12 +37,6 @@ if (WIN32)
     add_definitions(-DWIN_EXPORT)
 endif ()
 
-if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-    set(STEP_OUTPUT_NAME step)
-else ()
-    set(STEP_OUTPUT_NAME libstep)
-endif ()
-
 target_include_directories(${STEP_LIB_TARGET}
         PUBLIC INTERFACE ${STEP_INCLUDE_DIR}
         SYSTEM PUBLIC INTERFACE ${STEP_LIBRARY_DIR}/json
