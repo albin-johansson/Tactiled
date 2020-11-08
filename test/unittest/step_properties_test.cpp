@@ -57,6 +57,15 @@ TEST_SUITE("Properties")
       CHECK(!props.is("d", color{"#AABBCCDD"}));
       CHECK(!props.is("f", 1234));
       CHECK(!props.is("g", true));
+
+      CHECK(!props.is("a", 124));
+      CHECK(!props.is("b", 293));
+      CHECK(!props.is("c", 863));
+      CHECK(!props.is("d", 73.4f));
+      CHECK(!props.is("e", false));
+      CHECK(!props.is("f", color{"#CCDDEEFF"}));
+      CHECK(!props.is("g", "richard"));
+      CHECK(!props.is("h", "foo/bar"_file));
     }
 
     CHECK(props.amount() == 8);
