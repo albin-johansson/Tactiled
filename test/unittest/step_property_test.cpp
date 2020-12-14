@@ -33,6 +33,7 @@ TEST_SUITE("String property")
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<step::color>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
@@ -43,6 +44,7 @@ TEST_SUITE("String property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
             step::color{"#AABBCCDD"});
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
     }
   }
 
@@ -72,6 +74,7 @@ TEST_SUITE("Int property")
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
@@ -82,6 +85,7 @@ TEST_SUITE("Int property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
             step::color{"#AABBCCDD"});
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
     }
   }
   TEST_CASE("Bad value")
@@ -110,6 +114,7 @@ TEST_SUITE("Float property")
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
@@ -120,6 +125,7 @@ TEST_SUITE("Float property")
       CHECK(property.get_or(true));
       CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
             step::color{"#AABBCCDD"});
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
     }
   }
   TEST_CASE("Bad value")
@@ -147,6 +153,7 @@ TEST_SUITE("Bool property")
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
@@ -157,6 +164,7 @@ TEST_SUITE("Bool property")
       CHECK(property.get_or<std::string>("foo") == "foo");
       CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
             step::color{"#AABBCCDD"});
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
     }
   }
   TEST_CASE("Bad value")
@@ -184,6 +192,7 @@ TEST_SUITE("Color property")
       CHECK_THROWS(property.get<float>());
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
@@ -194,6 +203,7 @@ TEST_SUITE("Color property")
       CHECK(property.get_or(42.5f) == 42.5f);
       CHECK(property.get_or(7) == 7);
       CHECK(property.get_or<std::string>("foo") == "foo");
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
     }
   }
   TEST_CASE("Bad value")
@@ -221,12 +231,57 @@ TEST_SUITE("File property")
       CHECK_THROWS(property.get<bool>());
       CHECK_THROWS(property.get<step::color>());
       CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::object_ref>());
     }
 
     SUBCASE("Property::get_or")
     {
       const bool result =
           property.get_or("foo"_file) == "path/to/file.txt"_file;
+      CHECK(result);
+      CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
+            step::color{"#AABBCCDD"});
+      CHECK(property.get_or(true));
+      CHECK(property.get_or(42.5f) == 42.5f);
+      CHECK(property.get_or(7) == 7);
+      CHECK(property.get_or(step::object_ref{7}) == step::object_ref{7});
+
+      using namespace std::string_literals;
+      CHECK(property.get_or("foo"s) == "foo"s);
+    }
+  }
+  TEST_CASE("Bad value")
+  {
+    CHECK_THROWS(
+        step::property{"resource/property/file_property_bad_value.json"});
+  }
+}
+
+TEST_SUITE("Object property")
+{
+  TEST_CASE("Valid")
+  {
+    const step::property property{step::detail::parse_json(
+        "resource/property/object_property_valid.json")};
+    CHECK(property.name() == "target");
+    CHECK(property.get_type() == step::property::type::object);
+    CHECK(property.is<step::object_ref>());
+
+    SUBCASE("Property::get")
+    {
+      CHECK(property.get<step::object_ref>() == step::object_ref{1});
+      CHECK_THROWS(property.get<int>());
+      CHECK_THROWS(property.get<float>());
+      CHECK_THROWS(property.get<bool>());
+      CHECK_THROWS(property.get<step::color>());
+      CHECK_THROWS(property.get<std::string>());
+      CHECK_THROWS(property.get<step::file>());
+    }
+
+    SUBCASE("Property::get_or")
+    {
+      const bool result =
+          property.get_or(step::object_ref{2}) == step::object_ref{1};
       CHECK(result);
       CHECK(property.get_or(step::color{"#AABBCCDD"}) ==
             step::color{"#AABBCCDD"});
@@ -241,6 +296,6 @@ TEST_SUITE("File property")
   TEST_CASE("Bad value")
   {
     CHECK_THROWS(
-        step::property{"resource/property/file_property_bad_value.json"});
+        step::property{"resource/property/object_property_bad_value.json"});
   }
 }
