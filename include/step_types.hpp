@@ -80,7 +80,7 @@ using local_id = fluent::NamedType<int,
  * @since 0.2.0
  */
 using object_ref = fluent::NamedType<int,
-                                     struct local_id_t,
+                                     struct object_ref_t,
                                      fluent::Comparable,
                                      fluent::Addable,
                                      fluent::Subtractable,
