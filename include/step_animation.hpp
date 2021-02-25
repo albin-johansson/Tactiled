@@ -57,7 +57,8 @@ namespace step {
  *
  * @headerfile step_animation.hpp
  */
-class animation final {
+class animation final
+{
  public:
   explicit animation(const json& json)
       : m_frames{detail::fill<std::vector<Frame>>(json)}

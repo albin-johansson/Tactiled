@@ -44,7 +44,8 @@ namespace step::detail {
  *
  * @headerfile step_data.hpp
  */
-class data final {
+class data final
+{
  public:
   using gid_data = std::vector<global_id>;
   using base64_data = std::string;

@@ -48,15 +48,36 @@ namespace step {
  *
  * @headerfile step_map.hpp
  */
-class map final {
+class map final
+{
  public:
-  enum class render_order { right_down, right_up, left_down, left_up };
+  enum class render_order
+  {
+    right_down,
+    right_up,
+    left_down,
+    left_up
+  };
 
-  enum class orientation { orthogonal, isometric, staggered, hexagonal };
+  enum class orientation
+  {
+    orthogonal,
+    isometric,
+    staggered,
+    hexagonal
+  };
 
-  enum class stagger_axis { x, y };
+  enum class stagger_axis
+  {
+    x,
+    y
+  };
 
-  enum class stagger_index { odd, even };
+  enum class stagger_index
+  {
+    odd,
+    even
+  };
 
   explicit map(const fs::path& path)
   {

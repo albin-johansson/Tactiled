@@ -62,7 +62,8 @@ namespace step {
  *
  * @headerfile step_object.hpp
  */
-struct polygon final {
+struct polygon final
+{
   std::vector<point> points;
 };
 
@@ -75,7 +76,8 @@ struct polygon final {
  *
  * @headerfile step_object.hpp
  */
-struct polyline final {
+struct polyline final
+{
   std::vector<point> points;
 };
 
@@ -88,7 +90,8 @@ struct polyline final {
  *
  * @headerfile step_object.hpp
  */
-struct template_object final {
+struct template_object final
+{
   std::string templateFile;
   // TODO std::shared_ptr<Tileset>
   // TODO std::shared_ptr<Object>
@@ -104,7 +107,8 @@ struct template_object final {
  *
  * @headerfile step_object.hpp
  */
-class object final {
+class object final
+{
  private:
   template <typename T>
   static constexpr auto valid_object_type() noexcept -> bool;
@@ -118,17 +122,17 @@ class object final {
    * @since 0.1.0
    */
   explicit object(const json& json)
-      : m_id{json.at("id").get<int>()},
-        m_x{json.at("x").get<double>()},
-        m_y{json.at("y").get<double>()},
-        m_width{json.at("width").get<double>()},
-        m_height{json.at("height").get<double>()},
-        m_rotation{json.at("rotation").get<double>()},
-        m_name{json.at("name").get<std::string>()},
-        m_type{json.at("type").get<std::string>()},
-        m_isEllipse{detail::safe_get<bool>(json, "ellipse", false)},
-        m_isPoint{detail::safe_get<bool>(json, "point", false)},
-        m_visible{json.at("visible").get<bool>()}
+      : m_id{json.at("id").get<int>()}
+      , m_x{json.at("x").get<double>()}
+      , m_y{json.at("y").get<double>()}
+      , m_width{json.at("width").get<double>()}
+      , m_height{json.at("height").get<double>()}
+      , m_rotation{json.at("rotation").get<double>()}
+      , m_name{json.at("name").get<std::string>()}
+      , m_type{json.at("type").get<std::string>()}
+      , m_isEllipse{detail::safe_get<bool>(json, "ellipse", false)}
+      , m_isPoint{detail::safe_get<bool>(json, "point", false)}
+      , m_visible{json.at("visible").get<bool>()}
   {
     if (const auto it = json.find("properties"); it != json.end()) {
       m_properties.emplace(it.value());

@@ -49,7 +49,8 @@ namespace step {
  *
  * @headerfile step_property.hpp
  */
-class property final {
+class property final
+{
  public:
   /**
    * @enum type
@@ -61,7 +62,8 @@ class property final {
    *
    * @headerfile step_property.hpp
    */
-  enum class type {
+  enum class type
+  {
     string,    ///< For string values, such as `"foo"`.
     integer,   ///< For integer values, e.g. `27`.
     floating,  ///< For floating-point values, e.g. `182.4`.
@@ -72,8 +74,8 @@ class property final {
   };
 
   explicit property(const json& json)
-      : m_name{json.at("name").get<std::string>()},
-        m_type{json.at("type").get<property::type>()}
+      : m_name{json.at("name").get<std::string>()}
+      , m_type{json.at("type").get<property::type>()}
   {
     switch (m_type) {
       case property::type::integer: {

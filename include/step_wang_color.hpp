@@ -35,17 +35,18 @@
 
 namespace step {
 
-class wang_color final {
+class wang_color final
+{
  public:
   /**
    * @param json the JSON object that holds the data for a Wang color.
    * @since 0.1.0
    */
   explicit wang_color(const json& json)
-      : m_name{json.at("name").get<std::string>()},
-        m_color{json.at("color").get<std::string>()},
-        m_tile{json.at("tile").get<int>()},
-        m_probability{json.at("probability").get<double>()}
+      : m_name{json.at("name").get<std::string>()}
+      , m_color{json.at("color").get<std::string>()}
+      , m_tile{json.at("tile").get<int>()}
+      , m_probability{json.at("probability").get<double>()}
   {}
 
   /**

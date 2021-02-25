@@ -44,11 +44,12 @@ namespace step {
  *
  * @headerfile step_terrain.hpp
  */
-class terrain final {
+class terrain final
+{
  public:
   explicit terrain(const json& json)
-      : m_tile{json.at("tile").get<int>()},
-        m_name{json.at("name").get<std::string>()}
+      : m_tile{json.at("tile").get<int>()}
+      , m_name{json.at("name").get<std::string>()}
   {
     if (const auto it = json.find("properties"); it != json.end()) {
       m_properties = std::make_unique<properties>(*it);

@@ -60,7 +60,8 @@ namespace step {
  *
  * @headerfile step_tile.hpp
  */
-class tile final {
+class tile final
+{
  public:
   /**
    * @enum terrain_pos
@@ -72,7 +73,8 @@ class tile final {
    *
    * @headerfile step_tile.hpp
    */
-  enum class terrain_pos {
+  enum class terrain_pos
+  {
     top_left = 0,
     top_right = 1,
     bottom_left = 2,

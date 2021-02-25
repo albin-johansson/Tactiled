@@ -37,7 +37,8 @@
 
 namespace step {
 
-class wang_set final {
+class wang_set final
+{
   using colors = std::vector<wang_color>;
   using tiles = std::vector<WangTile>;
 
@@ -48,12 +49,12 @@ class wang_set final {
    * @since 0.1.0
    */
   explicit wang_set(const json& json)
-      : m_tile{json.at("tile").get<int>()},
-        m_cornerColors{detail::fill<colors>(json, "cornercolors")},
-        m_edgeColors{detail::fill<colors>(json, "edgecolors")},
-        m_wangTiles{detail::fill<tiles>(json, "wangtiles")},
-        m_properties{json.at("properties")},
-        m_name{json.at("name").get<std::string>()}
+      : m_tile{json.at("tile").get<int>()}
+      , m_cornerColors{detail::fill<colors>(json, "cornercolors")}
+      , m_edgeColors{detail::fill<colors>(json, "edgecolors")}
+      , m_wangTiles{detail::fill<tiles>(json, "wangtiles")}
+      , m_properties{json.at("properties")}
+      , m_name{json.at("name").get<std::string>()}
   {}
 
   /**

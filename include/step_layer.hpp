@@ -52,7 +52,8 @@ class layer;
  *
  * @headerfile step_group.hpp
  */
-class group final {
+class group final
+{
  public:
   friend void from_json(const json&, group&);
 
@@ -120,7 +121,8 @@ inline void from_json(const json& json, group& group)
  *
  * @headerfile step_layer.hpp
  */
-class layer final {
+class layer final
+{
  public:
   /**
    * @enum layer::type
@@ -129,7 +131,13 @@ class layer final {
    *
    * @since 0.1.0
    */
-  enum class type { tile_layer, object_group, image_layer, group };
+  enum class type
+  {
+    tile_layer,
+    object_group,
+    image_layer,
+    group
+  };
 
   explicit layer(const json& json)
   {

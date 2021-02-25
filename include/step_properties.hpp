@@ -50,7 +50,8 @@ namespace step {
  *
  * @since 0.1.0
  */
-class properties final {
+class properties final
+{
  public:
   explicit properties(const json& json)
   {

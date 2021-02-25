@@ -39,7 +39,8 @@ namespace step {
  *
  * @headerfile step_grid.hpp
  */
-class grid final {
+class grid final
+{
  public:
   /**
    * @enum grid::orientation
@@ -49,7 +50,11 @@ class grid final {
    *
    * @since 0.1.0
    */
-  enum class orientation { orthogonal, isometric };
+  enum class orientation
+  {
+    orthogonal,
+    isometric
+  };
 
   friend void from_json(const json&, grid&);
 

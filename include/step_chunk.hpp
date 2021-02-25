@@ -41,14 +41,15 @@ namespace step {
  *
  * @headerfile step_chunk.hpp
  */
-class chunk final {
+class chunk final
+{
  public:
   explicit chunk(const json& json)
-      : m_x{json.at("x").get<int>()},
-        m_y{json.at("y").get<int>()},
-        m_width{json.at("width").get<int>()},
-        m_height{json.at("height").get<int>()},
-        m_data{json.at("data")}
+      : m_x{json.at("x").get<int>()}
+      , m_y{json.at("y").get<int>()}
+      , m_width{json.at("width").get<int>()}
+      , m_height{json.at("height").get<int>()}
+      , m_data{json.at("data")}
   {}
 
   /**

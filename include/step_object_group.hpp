@@ -45,7 +45,8 @@ namespace step {
  *
  * @headerfile step_object_group.hpp
  */
-class object_group final {
+class object_group final
+{
  public:
   /**
    * @enum object_group::draw_order
@@ -54,7 +55,11 @@ class object_group final {
    *
    * @since 0.1.0
    */
-  enum class draw_order { top_down, index };
+  enum class draw_order
+  {
+    top_down,
+    index
+  };
 
   explicit object_group(const json& json) : m_drawOrder{json.at("draworder")}
   {

@@ -51,7 +51,8 @@ namespace step {
  *
  * @headerfile step_point.hpp
  */
-class point final {
+class point final
+{
  public:
   point() noexcept = default;
 
@@ -63,8 +64,8 @@ class point final {
    * @since 0.2.0
    */
   explicit point(const json& json)
-      : m_x{json.at("x").get<double>()},
-        m_y{json.at("y").get<double>()}
+      : m_x{json.at("x").get<double>()}
+      , m_y{json.at("y").get<double>()}
   {}
 
   /**

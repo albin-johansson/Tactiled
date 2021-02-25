@@ -45,7 +45,8 @@ namespace step {
  *
  * @headerfile step_tile_layer.hpp
  */
-class tile_layer final {
+class tile_layer final
+{
  public:
   /**
    * @enum tile_layer::compression
@@ -55,7 +56,12 @@ class tile_layer final {
    *
    * @since 0.1.0
    */
-  enum class compression { zlib, gzip, none };
+  enum class compression
+  {
+    zlib,
+    gzip,
+    none
+  };
 
   /**
    * @enum tile_layer::encoding
@@ -64,7 +70,11 @@ class tile_layer final {
    *
    * @since 0.1.0
    */
-  enum class encoding { csv, base64 };
+  enum class encoding
+  {
+    csv,
+    base64
+  };
 
   explicit tile_layer(const json& json)
   {

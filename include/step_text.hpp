@@ -55,7 +55,8 @@ namespace step {
  *
  * @headerfile step_text.hpp
  */
-class text final {
+class text final
+{
  public:
   /**
    * @enum halign
@@ -67,7 +68,13 @@ class text final {
    *
    * @headerfile step_text.hpp
    */
-  enum class halign { center, right, left, justify };
+  enum class halign
+  {
+    center,
+    right,
+    left,
+    justify
+  };
 
   /**
    * @enum valign
@@ -79,7 +86,12 @@ class text final {
    *
    * @headerfile step_text.hpp
    */
-  enum class valign { center, bottom, top };
+  enum class valign
+  {
+    center,
+    bottom,
+    top
+  };
 
   explicit text(const json& json)
   {

@@ -32,7 +32,8 @@
 
 namespace step {
 
-class step_exception final : public std::exception {
+class step_exception final : public std::exception
+{
  public:
   step_exception() noexcept = default;
 

@@ -40,11 +40,12 @@ namespace step {
  *
  * @headerfile step_tile_offset.hpp
  */
-class tile_offset final {
+class tile_offset final
+{
  public:
   explicit tile_offset(const json& json)
-      : m_x{json.at("x").get<int>()},
-        m_y{json.at("y").get<int>()}
+      : m_x{json.at("x").get<int>()}
+      , m_y{json.at("y").get<int>()}
   {}
 
   /**

@@ -56,7 +56,8 @@ class tileset;
  *
  * @headerfile step_tileset.hpp
  */
-class tileset final {
+class tileset final
+{
  public:
   [[nodiscard]] static auto embedded(const json& json)
       -> std::unique_ptr<tileset>
@@ -386,8 +387,8 @@ class tileset final {
   double m_jsonVersion{};
 
   tileset(std::string_view root, global_id id, std::string_view src)
-      : m_firstGID{id},
-        m_source{src.data()}
+      : m_firstGID{id}
+      , m_source{src.data()}
   {
     std::string fullPath{root.data()};
     fullPath += src.data();

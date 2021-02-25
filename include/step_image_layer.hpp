@@ -43,7 +43,8 @@ namespace step {
  *
  * @headerfile step_image_layer.hpp
  */
-class image_layer final {
+class image_layer final
+{
  public:
   friend void from_json(const json&, image_layer&);
 

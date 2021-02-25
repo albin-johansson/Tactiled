@@ -33,18 +33,19 @@
 
 namespace step {
 
-class WangTile final {
+class WangTile final
+{
  public:
   /**
    * @param json the JSON object that holds the data for a Wang tile.
    * @since 0.1.0
    */
   explicit WangTile(const json& json)
-      : m_tileID{json.at("tileid").get<int>()},
-        m_wangColorIndices{json.at("wangid").get<std::array<int, 8>>()},
-        m_flippedDiagonally{json.at("dflip").get<bool>()},
-        m_flippedHorizontally{json.at("hflip").get<bool>()},
-        m_flippedVertically{json.at("vflip").get<bool>()}
+      : m_tileID{json.at("tileid").get<int>()}
+      , m_wangColorIndices{json.at("wangid").get<std::array<int, 8>>()}
+      , m_flippedDiagonally{json.at("dflip").get<bool>()}
+      , m_flippedHorizontally{json.at("hflip").get<bool>()}
+      , m_flippedVertically{json.at("vflip").get<bool>()}
   {}
 
   /**

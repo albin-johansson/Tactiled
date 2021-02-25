@@ -100,7 +100,8 @@ inline auto from_hex(std::string_view view) -> uint8_t
  *
  * @since 0.1.0
  */
-class color final {
+class color final
+{
  public:
   /**
    * @brief Creates a color equivalent to `"#FF000000`.

@@ -35,11 +35,12 @@ namespace step {
  *
  * @since 0.1.0
  */
-class Frame final {
+class Frame final
+{
  public:
   explicit Frame(const json& json)
-      : m_tileID{json.at("tileid").get<int>()},
-        m_duration{json.at("duration").get<int>()}
+      : m_tileID{json.at("tileid").get<int>()}
+      , m_duration{json.at("duration").get<int>()}
   {}
 
   /**
