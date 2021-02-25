@@ -3,34 +3,34 @@ project(step-src CXX)
 
 set(SOURCE_FILES
         ../include/step_api.hpp
-        ../include/step_types.hpp
+    ../include/types.hpp
         ../include/step_exception.hpp
-        ../include/step_map.hpp
-        ../include/step_point.hpp
-        ../include/step_utils.hpp
-        ../include/step_property.hpp
-        ../include/step_color.hpp
-        ../include/step_text.hpp
-        ../include/step_tileset.hpp
-        ../include/step_tile.hpp
-        ../include/step_frame.hpp
-        ../include/step_animation.hpp
-        ../include/step_grid.hpp
-        ../include/step_tile_offset.hpp
-        ../include/step_terrain.hpp
-        ../include/step_layer.hpp
-        ../include/step_chunk.hpp
-        ../include/step_data.hpp
-        ../include/step_tile_layer.hpp
-        ../include/step_image_layer.hpp
-        ../include/step_object_group.hpp
-        ../include/step_object.hpp
-        ../include/step_properties.hpp
-        ../include/step_wang_set.hpp
-        ../include/step_wang_color.hpp
-        ../include/step_wang_tile.hpp
+    ../include/map.hpp
+    ../include/point.hpp
+    ../include/utils.hpp
+    ../include/property.hpp
+    ../include/color.hpp
+    ../include/text.hpp
+    ../include/tileset.hpp
+    ../include/tile.hpp
+    ../include/frame.hpp
+    ../include/animation.hpp
+    ../include/grid.hpp
+    ../include/tile_offset.hpp
+    ../include/terrain.hpp
+    ../include/layer.hpp
+    ../include/chunk.hpp
+    ../include/data.hpp
+    ../include/tile_layer.hpp
+    ../include/image_layer.hpp
+    ../include/object_group.hpp
+    ../include/object.hpp
+    ../include/properties.hpp
+    ../include/wang_set.hpp
+    ../include/wang_color.hpp
+    ../include/wang_tile.hpp
         ../include/step_fwd.hpp
-        ../include/step_valid_property.hpp)
+    ../include/valid_property.hpp)
 
 add_library(${STEP_LIB_TARGET} INTERFACE)
 if (WIN32)

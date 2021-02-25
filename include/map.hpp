@@ -30,12 +30,12 @@
 #include <string_view>  // string_view
 #include <vector>       // vector
 
+#include "color.hpp"
+#include "layer.hpp"
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_color.hpp"
-#include "step_layer.hpp"
-#include "step_properties.hpp"
-#include "step_tileset.hpp"
-#include "step_types.hpp"
+#include "tileset.hpp"
+#include "types.hpp"
 
 namespace step {
 

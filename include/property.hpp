@@ -29,11 +29,11 @@
 #include <type_traits>
 #include <variant>
 
+#include "color.hpp"
 #include "step_api.hpp"
-#include "step_color.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
-#include "step_valid_property.hpp"
+#include "types.hpp"
+#include "utils.hpp"
+#include "valid_property.hpp"
 
 namespace step {
 

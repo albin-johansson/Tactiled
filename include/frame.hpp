@@ -22,63 +22,54 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_OFFSET_HEADER
-#define STEP_TILE_OFFSET_HEADER
+#ifndef STEP_FRAME_HEADER
+#define STEP_FRAME_HEADER
 
 #include "step_api.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
 
 namespace step {
 
 /**
- * @class tile_offset
- *
- * @brief Provides offsets in pixels that are to be applied when rendering a
- * tile from a tileset.
+ * The Frame class represents a frame in an animation.
  *
  * @since 0.1.0
- *
- * @headerfile step_tile_offset.hpp
  */
-class tile_offset final
+class Frame final
 {
  public:
-  explicit tile_offset(const json& json)
-      : m_x{json.at("x").get<int>()}
-      , m_y{json.at("y").get<int>()}
+  explicit Frame(const json& json)
+      : m_tileID{json.at("tileid").get<int>()}
+      , m_duration{json.at("duration").get<int>()}
   {}
 
   /**
-   * @brief Returns the offset in the x-axis associated with the tile offset
-   * instance.
+   * Returns the local tile ID that is associated with the frame.
    *
-   * @return the offset in the x-axis.
-   *
+   * @return the local tile ID that is associated with the frame.
    * @since 0.1.0
    */
-  [[nodiscard]] auto x() const noexcept -> int
+  [[nodiscard]] auto tile_id() const noexcept -> local_id
   {
-    return m_x;
+    return m_tileID;
   }
 
   /**
-   * @brief Returns the offset in the y-axis associated with the tile offset
-   * instance.
+   * Returns the duration of this frame, in milliseconds.
    *
-   * @return the offset in the y-axis.
-   *
+   * @return the duration of this frame, in milliseconds.
    * @since 0.1.0
    */
-  [[nodiscard]] auto y() const noexcept -> int
+  [[nodiscard]] auto duration() const noexcept -> int
   {
-    return m_y;
+    return m_duration;
   }
 
  private:
-  int m_x;
-  int m_y;
+  local_id m_tileID{0};
+  int m_duration{0};
 };
 
 }  // namespace step
 
-#endif  // STEP_TILE_OFFSET_HEADER
+#endif  // STEP_FRAME_HEADER

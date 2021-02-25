@@ -38,7 +38,7 @@
 #define STEP_POINT_HEADER
 
 #include "step_api.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
 
 namespace step {
 

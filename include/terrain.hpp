@@ -29,9 +29,9 @@
 #include <string>
 #include <vector>
 
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_properties.hpp"
-#include "step_utils.hpp"
+#include "utils.hpp"
 
 namespace step {
 

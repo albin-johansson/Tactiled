@@ -1,7 +1,6 @@
-#include "step_properties.hpp"
-
 #include <doctest.h>
 
+#include "properties.hpp"
 #include "step_exception.hpp"
 #include "step_test_utils.h"
 

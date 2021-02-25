@@ -1,7 +1,6 @@
-#include "step_property.hpp"
-
 #include <doctest.h>
 
+#include "property.hpp"
 #include "step_test_utils.h"
 
 using step::operator""_file;

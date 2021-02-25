@@ -1,9 +1,8 @@
-#include "step_object.hpp"
-
 #include <doctest.h>
 
 #include <string>
 
+#include "object.hpp"
 #include "step_test_utils.h"
 
 TEST_SUITE("object")

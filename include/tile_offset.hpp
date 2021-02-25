@@ -22,74 +22,63 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_IMAGE_LAYER_HEADER
-#define STEP_IMAGE_LAYER_HEADER
-
-#include <string>
+#ifndef STEP_TILE_OFFSET_HEADER
+#define STEP_TILE_OFFSET_HEADER
 
 #include "step_api.hpp"
-#include "step_color.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
 
 namespace step {
 
 /**
- * @class image_layer
+ * @class tile_offset
  *
- * @brief Represents the API for layers that represent "image layers", layers
- * that are represented by an image.
+ * @brief Provides offsets in pixels that are to be applied when rendering a
+ * tile from a tileset.
  *
  * @since 0.1.0
  *
- * @headerfile step_image_layer.hpp
+ * @headerfile step_tile_offset.hpp
  */
-class image_layer final
+class tile_offset final
 {
  public:
-  friend void from_json(const json&, image_layer&);
+  explicit tile_offset(const json& json)
+      : m_x{json.at("x").get<int>()}
+      , m_y{json.at("y").get<int>()}
+  {}
 
   /**
-   * @brief Returns the image used by the image layer.
+   * @brief Returns the offset in the x-axis associated with the tile offset
+   * instance.
    *
-   * @return the image associated with the image layer.
+   * @return the offset in the x-axis.
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto image() const -> const std::string&
+  [[nodiscard]] auto x() const noexcept -> int
   {
-    return m_image;
+    return m_x;
   }
 
   /**
-   * @brief Returns the transparent color used by the image layer.
+   * @brief Returns the offset in the y-axis associated with the tile offset
+   * instance.
    *
-   * @details This property is optional.
-   *
-   * @return the transparent color used by the image layer; `std::nullopt` if
-   * there is none.
+   * @return the offset in the y-axis.
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto transparent_color() const noexcept
-      -> const std::optional<color>&
+  [[nodiscard]] auto y() const noexcept -> int
   {
-    return m_transparentColor;
+    return m_y;
   }
 
  private:
-  std::string m_image;
-  std::optional<color> m_transparentColor;
+  int m_x;
+  int m_y;
 };
-
-inline void from_json(const json& json, image_layer& layer)
-{
-  json.at("image").get_to(layer.m_image);
-  if (json.count("transparentcolor")) {
-    layer.m_transparentColor =
-        color{json.at("transparentcolor").get<std::string>()};
-  }
-}
 
 }  // namespace step
 
-#endif  // STEP_IMAGE_LAYER_HEADER
+#endif  // STEP_TILE_OFFSET_HEADER

@@ -29,11 +29,11 @@
 #include <string_view>
 #include <vector>
 
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_properties.hpp"
-#include "step_utils.hpp"
-#include "step_wang_color.hpp"
-#include "step_wang_tile.hpp"
+#include "utils.hpp"
+#include "wang_color.hpp"
+#include "wang_tile.hpp"
 
 namespace step {
 

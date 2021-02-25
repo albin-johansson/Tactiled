@@ -1,8 +1,7 @@
-#include "step_animation.hpp"
-
 #include <doctest.h>
 
-#include "step_utils.hpp"
+#include "animation.hpp"
+#include "utils.hpp"
 
 using namespace step;
 

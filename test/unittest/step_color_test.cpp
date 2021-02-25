@@ -1,9 +1,8 @@
-#include "step_color.hpp"
-
 #include <doctest.h>
 
 #include <string_view>
 
+#include "color.hpp"
 #include "step_exception.hpp"
 
 TEST_SUITE("color")

@@ -22,76 +22,74 @@
  * SOFTWARE.
  */
 
-/*
- * @file step_animation.hpp
- *
- * @brief Provides the `animation` class.
- *
- * @author Albin Johansson
- *
- * @date 2020
- *
- * @copyright MIT License
- */
+#ifndef STEP_IMAGE_LAYER_HEADER
+#define STEP_IMAGE_LAYER_HEADER
 
-#ifndef STEP_ANIMATION_HEADER
-#define STEP_ANIMATION_HEADER
+#include <string>
 
-#include <vector>
-
+#include "color.hpp"
 #include "step_api.hpp"
-#include "step_frame.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
+#include "types.hpp"
 
 namespace step {
 
 /**
- * @class animation
+ * @class image_layer
  *
- * @brief Represents a collection of frames, used to animate tiles.
+ * @brief Represents the API for layers that represent "image layers", layers
+ * that are represented by an image.
  *
  * @since 0.1.0
  *
- * @todo Add begin() and end(), maybe even at() & operator[].
- *
- * @headerfile step_animation.hpp
+ * @headerfile step_image_layer.hpp
  */
-class animation final
+class image_layer final
 {
  public:
-  explicit animation(const json& json)
-      : m_frames{detail::fill<std::vector<Frame>>(json)}
-  {}
+  friend void from_json(const json&, image_layer&);
 
   /**
-   * @brief Returns the frames associated with the animation.
+   * @brief Returns the image used by the image layer.
    *
-   * @return the frames associated with the animation.
+   * @return the image associated with the image layer.
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto frames() const -> const std::vector<Frame>&
+  [[nodiscard]] auto image() const -> const std::string&
   {
-    return m_frames;
+    return m_image;
   }
 
   /**
-   * @brief Returns the amount of frames that constitute the animation.
+   * @brief Returns the transparent color used by the image layer.
    *
-   * @return the amount of frames that constitute the animation.
+   * @details This property is optional.
+   *
+   * @return the transparent color used by the image layer; `std::nullopt` if
+   * there is none.
    *
    * @since 0.1.0
    */
-  [[nodiscard]] auto num_frames() const noexcept -> int
+  [[nodiscard]] auto transparent_color() const noexcept
+      -> const std::optional<color>&
   {
-    return static_cast<int>(m_frames.size());
+    return m_transparentColor;
   }
 
  private:
-  std::vector<Frame> m_frames;
+  std::string m_image;
+  std::optional<color> m_transparentColor;
 };
+
+inline void from_json(const json& json, image_layer& layer)
+{
+  json.at("image").get_to(layer.m_image);
+  if (json.count("transparentcolor")) {
+    layer.m_transparentColor =
+        color{json.at("transparentcolor").get<std::string>()};
+  }
+}
 
 }  // namespace step
 
-#endif  // STEP_ANIMATION_HEADER
+#endif  // STEP_IMAGE_LAYER_HEADER

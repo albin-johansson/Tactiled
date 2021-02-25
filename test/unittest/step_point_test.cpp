@@ -1,7 +1,6 @@
-#include "step_point.hpp"
-
 #include <doctest.h>
 
+#include "point.hpp"
 #include "step_test_utils.h"
 
 TEST_SUITE("point")

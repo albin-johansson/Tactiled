@@ -1,7 +1,6 @@
-#include "step_map.hpp"
-
 #include <doctest.h>
 
+#include "map.hpp"
 #include "step_exception.hpp"
 #include "step_test_utils.h"
 

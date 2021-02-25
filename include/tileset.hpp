@@ -30,15 +30,15 @@
 #include <string_view>  // string_view
 #include <vector>       // vector
 
+#include "color.hpp"
+#include "grid.hpp"
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_color.hpp"
-#include "step_grid.hpp"
-#include "step_properties.hpp"
-#include "step_terrain.hpp"
-#include "step_tile.hpp"
-#include "step_tile_offset.hpp"
-#include "step_types.hpp"
-#include "step_wang_set.hpp"
+#include "terrain.hpp"
+#include "tile.hpp"
+#include "tile_offset.hpp"
+#include "types.hpp"
+#include "wang_set.hpp"
 
 namespace step {
 

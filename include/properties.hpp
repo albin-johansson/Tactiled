@@ -31,13 +31,13 @@
 #include <string>       // string
 #include <string_view>  // string_view
 
+#include "color.hpp"
+#include "property.hpp"
 #include "step_api.hpp"
-#include "step_color.hpp"
 #include "step_exception.hpp"
-#include "step_property.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
-#include "step_valid_property.hpp"
+#include "types.hpp"
+#include "utils.hpp"
+#include "valid_property.hpp"
 
 namespace step {
 

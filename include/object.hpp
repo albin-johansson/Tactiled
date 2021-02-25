@@ -45,11 +45,11 @@
 #include <variant>
 #include <vector>
 
+#include "point.hpp"
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_point.hpp"
-#include "step_properties.hpp"
-#include "step_text.hpp"
-#include "step_types.hpp"
+#include "text.hpp"
+#include "types.hpp"
 
 namespace step {
 

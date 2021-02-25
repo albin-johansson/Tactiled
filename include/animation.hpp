@@ -22,54 +22,76 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_FRAME_HEADER
-#define STEP_FRAME_HEADER
+/*
+ * @file step_animation.hpp
+ *
+ * @brief Provides the `animation` class.
+ *
+ * @author Albin Johansson
+ *
+ * @date 2020
+ *
+ * @copyright MIT License
+ */
 
+#ifndef STEP_ANIMATION_HEADER
+#define STEP_ANIMATION_HEADER
+
+#include <vector>
+
+#include "frame.hpp"
 #include "step_api.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
+#include "utils.hpp"
 
 namespace step {
 
 /**
- * The Frame class represents a frame in an animation.
+ * @class animation
+ *
+ * @brief Represents a collection of frames, used to animate tiles.
  *
  * @since 0.1.0
+ *
+ * @todo Add begin() and end(), maybe even at() & operator[].
+ *
+ * @headerfile step_animation.hpp
  */
-class Frame final
+class animation final
 {
  public:
-  explicit Frame(const json& json)
-      : m_tileID{json.at("tileid").get<int>()}
-      , m_duration{json.at("duration").get<int>()}
+  explicit animation(const json& json)
+      : m_frames{detail::fill<std::vector<Frame>>(json)}
   {}
 
   /**
-   * Returns the local tile ID that is associated with the frame.
+   * @brief Returns the frames associated with the animation.
    *
-   * @return the local tile ID that is associated with the frame.
+   * @return the frames associated with the animation.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] auto tile_id() const noexcept -> local_id
+  [[nodiscard]] auto frames() const -> const std::vector<Frame>&
   {
-    return m_tileID;
+    return m_frames;
   }
 
   /**
-   * Returns the duration of this frame, in milliseconds.
+   * @brief Returns the amount of frames that constitute the animation.
    *
-   * @return the duration of this frame, in milliseconds.
+   * @return the amount of frames that constitute the animation.
+   *
    * @since 0.1.0
    */
-  [[nodiscard]] auto duration() const noexcept -> int
+  [[nodiscard]] auto num_frames() const noexcept -> int
   {
-    return m_duration;
+    return static_cast<int>(m_frames.size());
   }
 
  private:
-  local_id m_tileID{0};
-  int m_duration{0};
+  std::vector<Frame> m_frames;
 };
 
 }  // namespace step
 
-#endif  // STEP_FRAME_HEADER
+#endif  // STEP_ANIMATION_HEADER

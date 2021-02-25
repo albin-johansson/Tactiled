@@ -1,10 +1,9 @@
-#include "step_layer.hpp"
-
 #include <doctest.h>
 
 #include <string>
 
-#include "step_utils.hpp"
+#include "layer.hpp"
+#include "utils.hpp"
 
 using namespace step;
 

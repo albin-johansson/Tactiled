@@ -1,8 +1,7 @@
-#include "step_wang_color.hpp"
-
 #include <doctest.h>
 
-#include "step_utils.hpp"
+#include "utils.hpp"
+#include "wang_color.hpp"
 
 using namespace step;
 

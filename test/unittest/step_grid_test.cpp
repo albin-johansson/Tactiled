@@ -1,8 +1,7 @@
-#include "step_grid.hpp"
-
 #include <doctest.h>
 
-#include "step_utils.hpp"
+#include "grid.hpp"
+#include "utils.hpp"
 
 TEST_SUITE("grid")
 {

@@ -1,8 +1,7 @@
-#include "step_wang_set.hpp"
-
 #include <doctest.h>
 
-#include "step_utils.hpp"
+#include "utils.hpp"
+#include "wang_set.hpp"
 
 using step::operator""_lid;
 

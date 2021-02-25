@@ -41,13 +41,13 @@
 #include <optional>  // optional
 #include <string>    // string
 
-#include "step_animation.hpp"
+#include "animation.hpp"
+#include "layer.hpp"
+#include "properties.hpp"
 #include "step_api.hpp"
 #include "step_fwd.hpp"
-#include "step_layer.hpp"
-#include "step_properties.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
+#include "types.hpp"
+#include "utils.hpp"
 
 namespace step {
 

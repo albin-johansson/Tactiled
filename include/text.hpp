@@ -39,10 +39,10 @@
 
 #include <string>
 
+#include "color.hpp"
 #include "step_api.hpp"
-#include "step_color.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
+#include "types.hpp"
+#include "utils.hpp"
 
 namespace step {
 

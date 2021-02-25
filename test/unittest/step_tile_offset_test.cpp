@@ -1,8 +1,7 @@
-#include "step_tile_offset.hpp"
-
 #include <doctest.h>
 
-#include "step_utils.hpp"
+#include "tile_offset.hpp"
+#include "utils.hpp"
 
 using namespace step;
 

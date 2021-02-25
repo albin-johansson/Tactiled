@@ -27,9 +27,9 @@
 
 #include <vector>
 
+#include "object.hpp"
 #include "step_api.hpp"
-#include "step_object.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
 
 namespace step {
 

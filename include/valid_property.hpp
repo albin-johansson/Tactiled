@@ -3,7 +3,7 @@
 #include <string>       // string
 #include <type_traits>  // is_same_v, is_convertible_v
 
-#include "step_color.hpp"
+#include "color.hpp"
 
 namespace step::detail {
 

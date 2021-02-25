@@ -30,13 +30,13 @@
 #include <variant>
 #include <vector>
 
+#include "image_layer.hpp"
+#include "object_group.hpp"
+#include "properties.hpp"
 #include "step_api.hpp"
-#include "step_image_layer.hpp"
-#include "step_object_group.hpp"
-#include "step_properties.hpp"
-#include "step_tile_layer.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
+#include "tile_layer.hpp"
+#include "types.hpp"
+#include "utils.hpp"
 
 namespace step {
 

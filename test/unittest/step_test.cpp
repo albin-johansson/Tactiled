@@ -2,8 +2,8 @@
 
 #include <iostream>
 
-#include "step_map.hpp"
-#include "step_types.hpp"
+#include "map.hpp"
+#include "types.hpp"
 
 using namespace step;
 

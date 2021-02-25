@@ -27,11 +27,11 @@
 
 #include <memory>
 
+#include "chunk.hpp"
+#include "data.hpp"
 #include "step_api.hpp"
-#include "step_chunk.hpp"
-#include "step_data.hpp"
-#include "step_types.hpp"
-#include "step_utils.hpp"
+#include "types.hpp"
+#include "utils.hpp"
 
 namespace step {
 

@@ -1,6 +1,6 @@
-#include "step_utils.hpp"
-
 #include <doctest.h>
+
+#include "utils.hpp"
 
 using namespace step;
 using namespace detail;

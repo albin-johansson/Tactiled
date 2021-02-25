@@ -1,9 +1,8 @@
-#include "step_text.hpp"
-
 #include <doctest.h>
 
 #include "step_exception.hpp"
-#include "step_utils.hpp"
+#include "text.hpp"
+#include "utils.hpp"
 
 using namespace step;
 

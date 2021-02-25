@@ -25,9 +25,9 @@
 #ifndef STEP_CHUNK_HEADER
 #define STEP_CHUNK_HEADER
 
+#include "data.hpp"
 #include "step_api.hpp"
-#include "step_data.hpp"
-#include "step_types.hpp"
+#include "types.hpp"
 
 namespace step {
 
