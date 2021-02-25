@@ -1,6 +1,6 @@
-# step [![version](https://img.shields.io/badge/version-0.2.0-red.svg)](https://semver.org) [![Build Status](https://travis-ci.org/albin-johansson/Centurion.svg?branch=master)](https://travis-ci.org/albin-johansson/step) [![Build status](https://ci.appveyor.com/api/projects/status/0ijia28k5u95ro1r?svg=true)](https://ci.appveyor.com/project/AlbinJohansson/step) [![codecov](https://codecov.io/gh/albin-johansson/step/branch/master/graph/badge.svg)](https://codecov.io/gh/albin-johansson/step) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/albin-johansson/step.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/albin-johansson/step/context:cpp) [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) ![GitHub repo size](https://img.shields.io/github/repo-size/albin-johansson/step)  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+# step [![version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://semver.org) [![Build Status](https://travis-ci.org/albin-johansson/Centurion.svg?branch=master)](https://travis-ci.org/albin-johansson/step) [![Build status](https://ci.appveyor.com/api/projects/status/0ijia28k5u95ro1r?svg=true)](https://ci.appveyor.com/project/AlbinJohansson/step) [![codecov](https://codecov.io/gh/albin-johansson/step/branch/master/graph/badge.svg)](https://codecov.io/gh/albin-johansson/step) [![Language grade: C/C++](https://img.shields.io/lgtm/grade/cpp/g/albin-johansson/step.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/albin-johansson/step/context:cpp) [![Language](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://en.wikipedia.org/wiki/C%2B%2B#Standardization) ![GitHub repo size](https://img.shields.io/github/repo-size/albin-johansson/step)  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17. This library should be usable on any platform that can use a reasonably recent C++ compiler that adheres to the C++17 standard. However, step is developed on Windows, primarily using MSVC, and is tested on Windows and Linux (Ubuntu).
+***step*** (name derived from **s**imple **t**il**e**d **p**arser), is a parsing library for the Tiled map editors JSON format that is written in modern C++17.
 
 Refer to the in-source documentation and official Tiled documentation for details about the various components and properties.
 
@@ -9,6 +9,8 @@ Happy coding! :heart:
 ## Usage
 
 ```C++
+#include <memory>
+
 #include <step_map.hpp>
 
 int main()
