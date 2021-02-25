@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.12)
 
-project(StepTest CXX)
+project(step-test CXX)
 
 set(doctest_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/doctest)
 find_package(doctest REQUIRED)
