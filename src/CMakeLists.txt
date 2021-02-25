@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(StepSource CXX)
+project(step-src CXX)
 
 set(SOURCE_FILES
         ../include/step_api.hpp
