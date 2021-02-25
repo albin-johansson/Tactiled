@@ -1,4 +1,4 @@
-#include "step_object.h"
+#include "step_object.hpp"
 
 #include <doctest.h>
 
@@ -6,15 +6,13 @@
 
 #include "step_test_utils.h"
 
-using namespace step;
-
-inline static const std::string prefix = "resource/object/";
-
-TEST_SUITE("Object")
+TEST_SUITE("object")
 {
+  using step::operator""_gid;
   TEST_CASE("Parsing normal object")
   {
-    const Object object{detail::parse_json("resource/object/object.json")};
+    const step::object object{
+        step::detail::parse_json("resource/object/object.json")};
 
     CHECK(object.id() == 1);
     CHECK(object.x() == 56);
@@ -26,19 +24,25 @@ TEST_SUITE("Object")
     CHECK(object.type() == "npc");
     CHECK(object.visible());
 
-    CHECK(object.tile_gid() == 5_gid);
+    CHECK(object.as<step::global_id>() == 5_gid);
 
-    CHECK(object.is_tile());
     CHECK(!object.is_ellipse());
     CHECK(!object.is_point());
-    CHECK(!object.is_polygon());
-    CHECK(!object.is_polyline());
-    CHECK(!object.is_template());
-    CHECK(!object.is_text());
+    CHECK(object.has<step::global_id>());
+    CHECK(!object.has<step::polygon>());
+    CHECK(!object.has<step::polyline>());
+    CHECK(!object.has<step::template_object>());
+    CHECK(!object.has<step::text>());
+
+    CHECK(object.try_as<step::global_id>());              // NOLINT
+    CHECK_FALSE(object.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(object.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(object.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(object.try_as<step::template_object>());  // NOLINT
 
     SUBCASE("Check properties")
     {
-      const auto* props = object.properties();
+      const auto* props = object.get_properties();
       REQUIRE(props);
 
       REQUIRE(props->has("hp"));
@@ -50,80 +54,100 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing ellipse object")
   {
-    const Object ellipseObject{
-        detail::parse_json("resource/object/ellipse.json")};
+    const step::object ellipse{
+        step::detail::parse_json("resource/object/ellipse.json")};
 
-    REQUIRE(ellipseObject.is_ellipse());
+    REQUIRE(ellipse.is_ellipse());
 
-    CHECK(ellipseObject.id() == 13);
-    CHECK(ellipseObject.x() == 560);
-    CHECK(ellipseObject.y() == 808);
-    CHECK(ellipseObject.width() == 248);
-    CHECK(ellipseObject.height() == 152);
-    CHECK(ellipseObject.rotation() == 0);
-    CHECK(ellipseObject.name().empty());
-    CHECK(ellipseObject.type().empty());
-    CHECK(ellipseObject.visible());
+    CHECK(ellipse.id() == 13);
+    CHECK(ellipse.x() == 560);
+    CHECK(ellipse.y() == 808);
+    CHECK(ellipse.width() == 248);
+    CHECK(ellipse.height() == 152);
+    CHECK(ellipse.rotation() == 0);
+    CHECK(ellipse.name().empty());
+    CHECK(ellipse.type().empty());
+    CHECK(ellipse.visible());
 
-    CHECK(ellipseObject.is_ellipse());
-    CHECK(!ellipseObject.is_point());
-    CHECK(!ellipseObject.is_polygon());
-    CHECK(!ellipseObject.is_polyline());
-    CHECK(!ellipseObject.is_template());
-    CHECK(!ellipseObject.is_text());
-    CHECK(!ellipseObject.is_tile());
+    CHECK(ellipse.is_ellipse());
+    CHECK(!ellipse.is_point());
+    CHECK(!ellipse.has<step::polygon>());
+    CHECK(!ellipse.has<step::polyline>());
+    CHECK(!ellipse.has<step::template_object>());
+    CHECK(!ellipse.has<step::text>());
+    CHECK(!ellipse.has<step::global_id>());
+
+    CHECK_FALSE(ellipse.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(ellipse.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(ellipse.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(ellipse.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(ellipse.try_as<step::template_object>());  // NOLINT
   }
 
   TEST_CASE("Parsing rectangle object")
   {
-    const Object rectObject{
-        detail::parse_json("resource/object/rectangle.json")};
+    const step::object rect{
+        step::detail::parse_json("resource/object/rectangle.json")};
 
-    CHECK(rectObject.id() == 14);
-    CHECK(rectObject.x() == 576);
-    CHECK(rectObject.y() == 584);
-    CHECK(rectObject.width() == 368);
-    CHECK(rectObject.height() == 184);
-    CHECK(rectObject.rotation() == 0);
-    CHECK(rectObject.name().empty());
-    CHECK(rectObject.type().empty());
-    CHECK(rectObject.visible());
+    CHECK(rect.id() == 14);
+    CHECK(rect.x() == 576);
+    CHECK(rect.y() == 584);
+    CHECK(rect.width() == 368);
+    CHECK(rect.height() == 184);
+    CHECK(rect.rotation() == 0);
+    CHECK(rect.name().empty());
+    CHECK(rect.type().empty());
+    CHECK(rect.visible());
 
-    CHECK(!rectObject.is_point());
-    CHECK(!rectObject.is_polygon());
-    CHECK(!rectObject.is_polyline());
-    CHECK(!rectObject.is_ellipse());
-    CHECK(!rectObject.is_template());
-    CHECK(!rectObject.is_text());
-    CHECK(!rectObject.is_tile());
+    CHECK(!rect.is_point());
+    CHECK(!rect.is_ellipse());
+    CHECK(!rect.has<step::polygon>());
+    CHECK(!rect.has<step::polyline>());
+    CHECK(!rect.has<step::template_object>());
+    CHECK(!rect.has<step::text>());
+    CHECK(!rect.has<step::global_id>());
+
+    CHECK_FALSE(rect.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(rect.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(rect.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(rect.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(rect.try_as<step::template_object>());  // NOLINT
   }
 
   TEST_CASE("Parsing point object")
   {
-    const Object pointObject{detail::parse_json("resource/object/point.json")};
+    const step::object point{
+        step::detail::parse_json("resource/object/point.json")};
 
-    CHECK(pointObject.id() == 20);
-    CHECK(pointObject.x() == 220);
-    CHECK(pointObject.y() == 350);
-    CHECK(pointObject.width() == 0);
-    CHECK(pointObject.height() == 0);
-    CHECK(pointObject.rotation() == 0);
-    CHECK(pointObject.name().empty());
-    CHECK(pointObject.type().empty());
-    CHECK(pointObject.visible());
+    CHECK(point.id() == 20);
+    CHECK(point.x() == 220);
+    CHECK(point.y() == 350);
+    CHECK(point.width() == 0);
+    CHECK(point.height() == 0);
+    CHECK(point.rotation() == 0);
+    CHECK(point.name().empty());
+    CHECK(point.type().empty());
+    CHECK(point.visible());
 
-    CHECK(pointObject.is_point());
-    CHECK(!pointObject.is_polygon());
-    CHECK(!pointObject.is_polyline());
-    CHECK(!pointObject.is_ellipse());
-    CHECK(!pointObject.is_template());
-    CHECK(!pointObject.is_text());
-    CHECK(!pointObject.is_tile());
+    CHECK(point.is_point());
+    CHECK(!point.is_ellipse());
+    CHECK(!point.has<step::polygon>());
+    CHECK(!point.has<step::polyline>());
+    CHECK(!point.has<step::template_object>());
+    CHECK(!point.has<step::text>());
+    CHECK(!point.has<step::global_id>());
+
+    CHECK_FALSE(point.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(point.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(point.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(point.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(point.try_as<step::template_object>());  // NOLINT
   }
 
   TEST_CASE("Parsing polygon object")
   {
-    const Object polygonObject{detail::parse_json("resource/object/polygon.json")};
+    const step::object polygonObject{
+        step::detail::parse_json("resource/object/polygon.json")};
 
     CHECK(polygonObject.id() == 15);
     CHECK(polygonObject.x() == -176);
@@ -135,21 +159,26 @@ TEST_SUITE("Object")
     CHECK(polygonObject.type().empty());
     CHECK(polygonObject.visible());
 
-    CHECK(polygonObject.is_polygon());
-    CHECK(!polygonObject.is_polyline());
     CHECK(!polygonObject.is_ellipse());
     CHECK(!polygonObject.is_point());
-    CHECK(!polygonObject.is_template());
-    CHECK(!polygonObject.is_text());
-    CHECK(!polygonObject.is_tile());
+    CHECK(polygonObject.has<step::polygon>());
+    CHECK(!polygonObject.has<step::polyline>());
+    CHECK(!polygonObject.has<step::template_object>());
+    CHECK(!polygonObject.has<step::text>());
+    CHECK(!polygonObject.has<step::global_id>());
+
+    CHECK(polygonObject.try_as<step::polygon>());                // NOLINT
+    CHECK_FALSE(polygonObject.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(polygonObject.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(polygonObject.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(polygonObject.try_as<step::template_object>());  // NOLINT
 
     SUBCASE("Check polygon stuff")
     {
-      const auto polygon = polygonObject.polygon();
-      REQUIRE(polygon);
-      REQUIRE(polygon->points.size() == 5);
+      const auto& polygon = polygonObject.as<step::polygon>();
+      REQUIRE(polygon.points.size() == 5);
 
-      const auto& points = polygon->points;
+      const auto& points = polygon.points;
       CHECK(points.at(0).x() == 0);
       CHECK(points.at(0).y() == 0);
 
@@ -169,7 +198,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing polyline object")
   {
-    const Object polylineObject{detail::parse_json("resource/object/polyline.json")};
+    const step::object polylineObject{
+        step::detail::parse_json("resource/object/polyline.json")};
 
     CHECK(polylineObject.id() == 16);
     CHECK(polylineObject.x() == 240);
@@ -181,21 +211,26 @@ TEST_SUITE("Object")
     CHECK(polylineObject.type().empty());
     CHECK(polylineObject.visible());
 
-    CHECK(polylineObject.is_polyline());
-    CHECK(!polylineObject.is_tile());
     CHECK(!polylineObject.is_ellipse());
     CHECK(!polylineObject.is_point());
-    CHECK(!polylineObject.is_polygon());
-    CHECK(!polylineObject.is_template());
-    CHECK(!polylineObject.is_text());
+    CHECK(polylineObject.has<step::polyline>());
+    CHECK(!polylineObject.has<step::global_id>());
+    CHECK(!polylineObject.has<step::polygon>());
+    CHECK(!polylineObject.has<step::template_object>());
+    CHECK(!polylineObject.has<step::text>());
+
+    CHECK(polylineObject.try_as<step::polyline>());               // NOLINT
+    CHECK_FALSE(polylineObject.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(polylineObject.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(polylineObject.try_as<step::text>());             // NOLINT
+    CHECK_FALSE(polylineObject.try_as<step::template_object>());  // NOLINT
 
     SUBCASE("Check polyline stuff")
     {
-      const auto polyline = polylineObject.polyline();
-      REQUIRE(polyline);
-      REQUIRE(polyline->points.size() == 6);
+      const auto& polyline = polylineObject.as<step::polyline>();
+      REQUIRE(polyline.points.size() == 6);
 
-      const auto& points = polyline->points;
+      const auto& points = polyline.points;
       CHECK(points.at(0).x() == 0);
       CHECK(points.at(0).y() == 0);
 
@@ -218,7 +253,8 @@ TEST_SUITE("Object")
 
   TEST_CASE("Parsing text object")
   {
-    const Object textObject{detail::parse_json("resource/object/text.json")};
+    const step::object textObject{
+        step::detail::parse_json("resource/object/text.json")};
 
     CHECK(textObject.id() == 15);
     CHECK(textObject.x() == 48);
@@ -230,20 +266,25 @@ TEST_SUITE("Object")
     CHECK(textObject.type().empty());
     CHECK(textObject.visible());
 
-    CHECK(textObject.is_text());
-    CHECK(!textObject.is_polyline());
-    CHECK(!textObject.is_tile());
     CHECK(!textObject.is_ellipse());
     CHECK(!textObject.is_point());
-    CHECK(!textObject.is_polygon());
-    CHECK(!textObject.is_template());
+    CHECK(textObject.has<step::text>());
+    CHECK(!textObject.has<step::polyline>());
+    CHECK(!textObject.has<step::global_id>());
+    CHECK(!textObject.has<step::polygon>());
+    CHECK(!textObject.has<step::template_object>());
+
+    CHECK(textObject.try_as<step::text>());                   // NOLINT
+    CHECK_FALSE(textObject.try_as<step::polyline>());         // NOLINT
+    CHECK_FALSE(textObject.try_as<step::polygon>());          // NOLINT
+    CHECK_FALSE(textObject.try_as<step::global_id>());        // NOLINT
+    CHECK_FALSE(textObject.try_as<step::template_object>());  // NOLINT
 
     SUBCASE("Text related properties")
     {
-      const auto text = textObject.text();
-      REQUIRE(text);
-      CHECK(text->text() == "Hello World");
-      CHECK(text->wrap());
+      const auto& text = textObject.as<step::text>();
+      CHECK(text.get_text() == "Hello World");
+      CHECK(text.wrap());
     }
   }
 }

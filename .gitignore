@@ -34,5 +34,6 @@
 # Custom stuff
 .idea
 .vscode
+doxygen-out
 cmake-build-*
 build

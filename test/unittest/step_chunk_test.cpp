@@ -1,17 +1,15 @@
-#include "step_chunk.h"
+#include "step_chunk.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
-using namespace step;
-
-TEST_SUITE("Chunk")
+TEST_SUITE("chunk")
 {
-  TEST_CASE("Parse chunk with CSV data" *
-            doctest::may_fail{"Failed to parse Chunk with CSV data!"})
+  TEST_CASE("Parse chunk with CSV data")
   {
-    const Chunk chunk{detail::parse_json("resource/chunk/chunk_csv.json")};
+    const step::chunk chunk{
+        step::detail::parse_json("resource/chunk/chunk_csv.json")};
 
     SUBCASE("Test obtaining data")
     {
@@ -25,10 +23,10 @@ TEST_SUITE("Chunk")
     CHECK(chunk.height() == 22);
   }
 
-  TEST_CASE("Parse chunk with Base64 data" *
-            doctest::may_fail{"Failed to parse Chunk with Base64 data!"})
+  TEST_CASE("Parse chunk with Base64 data")
   {
-    const Chunk chunk{detail::parse_json("resource/chunk/chunk_base64.json")};
+    const step::chunk chunk{
+        step::detail::parse_json("resource/chunk/chunk_base64.json")};
 
     SUBCASE("Test obtaining data")
     {

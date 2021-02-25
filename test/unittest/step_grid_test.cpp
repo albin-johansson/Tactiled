@@ -1,27 +1,26 @@
-#include "step_grid.h"
+#include "step_grid.hpp"
 
 #include <doctest.h>
 
-#include "step_test_utils.h"
+#include "step_utils.hpp"
 
-using namespace step;
-
-inline static const std::string prefix = "resource/grid/";
-
-TEST_SUITE("Grid")
+TEST_SUITE("grid")
 {
   TEST_CASE("Load valid isometric grid")
   {
-    const auto grid = test::make<Grid>(prefix, "isometric.json");
-    CHECK(grid.orientation() == Grid::Orientation::Isometric);
+    const step::grid grid{
+        step::detail::parse_json("resource/grid/isometric.json")};
+
+    CHECK(grid.get_orientation() == step::grid::orientation::isometric);
     CHECK(grid.width() == 18);
     CHECK(grid.height() == 24);
   }
 
   TEST_CASE("Load valid orthogonal grid")
   {
-    const auto grid = test::make<Grid>(prefix, "orthogonal.json");
-    CHECK(grid.orientation() == Grid::Orientation::Orthogonal);
+    const step::grid grid{
+        step::detail::parse_json("resource/grid/orthogonal.json")};
+    CHECK(grid.get_orientation() == step::grid::orientation::orthogonal);
     CHECK(grid.width() == 54);
     CHECK(grid.height() == 28);
   }

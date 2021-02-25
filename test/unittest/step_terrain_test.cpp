@@ -1,32 +1,32 @@
-#include "step_terrain.h"
+#include "step_terrain.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
-using namespace step;
-
-TEST_SUITE("Terrain")
+TEST_SUITE("terrain")
 {
+  using step::operator""_lid;
   TEST_CASE("Parsing complete terrain")
   {
-    const Terrain terrain{detail::parse_json("resource/terrain/complete.json")};
+    const step::terrain terrain{
+        step::detail::parse_json("resource/terrain/complete.json")};
     CHECK(terrain.tile() == 64_lid);
     CHECK(terrain.name() == "water");
-    REQUIRE(terrain.properties());
+    REQUIRE(terrain.get_properties());
 
-    const auto& property = terrain.properties()->get("health");
+    const auto& property = terrain.get_properties()->get("health");
     CHECK(property.name() == "health");
-    REQUIRE(property.type() == Property::Type::Int);
+    REQUIRE(property.get_type() == step::property::type::integer);
     CHECK(property.get<int>() == 87);
   }
 
   TEST_CASE("Parsing terrain with no properties")
   {
-    const Terrain terrain{
-        detail::parse_json("resource/terrain/no_properties.json")};
+    const step::terrain terrain{
+        step::detail::parse_json("resource/terrain/no_properties.json")};
     CHECK(terrain.tile() == 77_lid);
     CHECK(terrain.name() == "lava");
-    CHECK(!terrain.properties());
+    CHECK(!terrain.get_properties());
   }
 }

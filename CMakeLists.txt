@@ -1,48 +1,28 @@
 cmake_minimum_required(VERSION 3.12)
-project(Step)
 
-# Copies a file.
-#   target: the associated target.
-#   from: the file that will be copied.
-#   to: the target destination of the copied file.
-function(copy_file_post_build [target [from [to]]])
-    add_custom_command(
-            TARGET ${ARGV0} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy
-            ${ARGV1}
-            ${ARGV2})
-endfunction()
-
-# Copies a directory.
-#   target: the associated target.
-#   from: the directory that will be copied.
-#   to: the target destination of the copied directory.
-function(copy_directory_post_build [target [from [to]]])
-    add_custom_command(
-            TARGET ${ARGV0} POST_BUILD
-            COMMAND ${CMAKE_COMMAND} -E copy_directory
-            ${ARGV1}
-            ${ARGV2})
-endfunction()
+project(Step CXX)
 
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
+
+include(Utilities)
 
 set(STEP_ROOT ${PROJECT_SOURCE_DIR})
 set(STEP_SOURCE_DIR ${PROJECT_SOURCE_DIR}/src)
 set(STEP_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set(STEP_LIBRARY_DIR ${PROJECT_SOURCE_DIR}/lib)
+set(STEP_VERSION 0.2.0)
+
+message("Building step v${STEP_VERSION}...")
 
 set(STEP_LIB_TARGET libstep)
 set(STEP_TEST_TARGET teststep)
 
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux" OR DEFINED ENV{TRAVIS})
-    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep.so")
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/${CMAKE_IMPORT_LIBRARY_PREFIX}step${CMAKE_IMPORT_LIBRARY_SUFFIX}")
 else ()
-    set(STEP_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_SHARED_LIBRARY_SUFFIX}")
-    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/libstep${CMAKE_IMPORT_LIBRARY_SUFFIX}")
+    set(STEP_DYNAMIC_LIB "${CMAKE_BINARY_DIR}/src/${CMAKE_SHARED_LIBRARY_PREFIX}step${CMAKE_SHARED_LIBRARY_SUFFIX}")
+    set(STEP_LIBRARIES "${CMAKE_BINARY_DIR}/src/${CMAKE_IMPORT_LIBRARY_PREFIX}step${CMAKE_IMPORT_LIBRARY_SUFFIX}")
 endif ()
-
-# FIXME for some reason, Clang ignores the system includes of the libraries
 
 add_library(libNamedType INTERFACE)
 target_sources(libNamedType INTERFACE

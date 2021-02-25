@@ -4,7 +4,7 @@
 #include <string>
 #include <string_view>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
 namespace step::test {
 

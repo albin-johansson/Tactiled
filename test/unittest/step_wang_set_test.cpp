@@ -1,17 +1,17 @@
-#include "step_wang_set.h"
+#include "step_wang_set.hpp"
 
 #include <doctest.h>
 
-#include "step_utils.h"
+#include "step_utils.hpp"
 
-using namespace step;
+using step::operator""_lid;
 
 TEST_SUITE("WangSet")
 {
   TEST_CASE("Parsing valid Wang set")
   {
-    const auto json = detail::parse_json("resource/wangset/valid.json");
-    const WangSet wangSet{json};
+    const auto json = step::detail::parse_json("resource/wangset/valid.json");
+    const step::wang_set wangSet{json};
 
     CHECK(wangSet.name() == "candyAppleRed");
     CHECK(wangSet.tile_id() == 4_lid);
@@ -21,7 +21,7 @@ TEST_SUITE("WangSet")
       REQUIRE(wangSet.corner_colors().size() == 1);
 
       const auto& color = wangSet.corner_colors().at(0);
-      CHECK(color.color() == Color{"#CDEA34"});
+      CHECK(color.get_color() == step::color{"#CDEA34"});
       CHECK(color.name() == "CornerColor");
       CHECK(color.probability() == 0.23);
       CHECK(color.tile() == 9_lid);
@@ -32,7 +32,7 @@ TEST_SUITE("WangSet")
       REQUIRE(wangSet.edge_colors().size() == 1);
 
       const auto& color = wangSet.edge_colors().at(0);
-      CHECK(color.color() == Color{"#A5BDCE"});
+      CHECK(color.get_color() == step::color{"#A5BDCE"});
       CHECK(color.name() == "EdgeColor");
       CHECK(color.probability() == 0.55);
       CHECK(color.tile() == 4_lid);
@@ -64,12 +64,12 @@ TEST_SUITE("WangSet")
 
     SUBCASE("Check properties")
     {
-      const auto& properties = wangSet.properties();
+      const auto& properties = wangSet.get_properties();
       REQUIRE(properties.amount() == 1);
 
       const auto& prop = properties.get("wangSetProp");
       CHECK(prop.name() == "wangSetProp");
-      CHECK(prop.type() == Property::Type::Int);
+      CHECK(prop.get_type() == step::property::type::integer);
       CHECK(prop.get<int>() == 993);
     }
   }

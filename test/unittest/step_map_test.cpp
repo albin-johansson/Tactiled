@@ -1,19 +1,15 @@
-#include "step_map.h"
+#include "step_map.hpp"
 
 #include <doctest.h>
 
-#include "step_exception.h"
+#include "step_exception.hpp"
 #include "step_test_utils.h"
 
-using namespace step;
-
-inline const std::string prefix = "resource/map/";
-
-TEST_SUITE("Map")
+TEST_SUITE("map")
 {
   TEST_CASE("Parsing map")
   {
-    const Map map{prefix, "basic_map.json"};
+    const step::map map{"resource/map/basic_map.json"};
 
     CHECK(map.width() == 88);
     CHECK(map.height() == 94);
@@ -22,10 +18,10 @@ TEST_SUITE("Map")
     CHECK(map.json_version() == 1.2);
     CHECK(map.next_layer_id() == 2);
     CHECK(map.next_object_id() == 1);
-    CHECK(map.orientation() == Map::Orientation::Orthogonal);
-    CHECK(map.render_order() == Map::RenderOrder::RightDown);
+    CHECK(map.get_orientation() == step::map::orientation::orthogonal);
+    CHECK(map.get_render_order() == step::map::render_order::right_down);
     CHECK(map.tiled_version() == "1.3.4");
-    CHECK(!map.properties());
+    CHECK(!map.get_properties());
     CHECK(!map.infinite());
 
     SUBCASE("Test layers")
@@ -35,20 +31,20 @@ TEST_SUITE("Map")
 
       const auto& layer = layers.front();
       CHECK(layer.id() == 1);
-      CHECK(!layer.as_tile_layer().data()->as_gid().empty());
+      CHECK(!layer.as<step::tile_layer>().data()->as_gid().empty());
       CHECK(layer.width() == 45);
       CHECK(layer.height() == 125);
       CHECK(layer.opacity() == 1);
       CHECK(layer.name() == "herbert");
-      CHECK(layer.type() == Layer::Type::TileLayer);
+      CHECK(layer.get_type() == step::layer::type::tile_layer);
       CHECK(layer.visible());
     }
   }
 
   TEST_CASE("No type attribute")
   {
-    CHECK_THROWS_WITH_AS(Map(prefix, "no_type.json"),
-                         "Map > \"type\" attribute must be \"map\"!",
-                         StepException);
+    CHECK_THROWS_WITH_AS(step::map("resource/map/no_type.json"),
+                         "Map \"type\" attribute must be \"map\"!",
+                         step::step_exception);
   }
 }

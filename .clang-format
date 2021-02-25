@@ -4,6 +4,7 @@ IndentWidth: 2
 ---
 Language: Cpp
 Standard: c++17
+
 DerivePointerAlignment: false
 PointerAlignment: Left
 AllowAllParametersOfDeclarationOnNextLine: false
@@ -21,5 +22,8 @@ BraceWrapping:
   AfterFunction: true
   SplitEmptyFunction: false
 
-AllowShortFunctionsOnASingleLine: InlineOnly
+AllowShortFunctionsOnASingleLine: None
 AllowShortBlocksOnASingleLine: Never
+
+AllowAllConstructorInitializersOnNextLine: false
+BreakConstructorInitializers: BeforeColon

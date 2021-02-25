@@ -1,9 +1,9 @@
-#include "step_tile.h"
+#include "step_tile.hpp"
 
 #include <doctest.h>
 
-#include "step_layer.h"
-#include "step_utils.h"
+#include "step_layer.hpp"
+#include "step_utils.hpp"
 
 using namespace step;
 
@@ -12,7 +12,7 @@ TEST_SUITE("Tile")
   TEST_CASE("Parse tile with all keys")
   {
     const auto json = detail::parse_json("resource/tile/tile_complete.json");
-    const Tile tile{json};
+    const tile tile{json};
 
     CHECK(tile.id() == 74_lid);
 
@@ -33,10 +33,10 @@ TEST_SUITE("Tile")
 
     SUBCASE("Testing parsing of animation")
     {
-      const auto animation = tile.animation();
+      const auto animation = tile.get_animation();
 
       CHECK(animation);
-      CHECK(animation->length() == 2);
+      CHECK(animation->num_frames() == 2);
 
       const auto& firstFrame = animation->frames().at(0);
       CHECK(firstFrame.tile_id() == 23_lid);
@@ -49,40 +49,40 @@ TEST_SUITE("Tile")
 
     SUBCASE("Testing parsing of properties")
     {
-      const auto* properties = tile.properties();
+      const auto* properties = tile.get_properties();
       REQUIRE(properties);
 
       const auto& first = properties->get("Galadriel");
       CHECK(first.name() == "Galadriel");
-      CHECK(first.type() == Property::Type::String);
+      CHECK(first.get_type() == property::type::string);
       CHECK(first.get<std::string>() == "Denethor sucks");
 
       const auto& second = properties->get("Gandalf");
       CHECK(second.name() == "Gandalf");
-      CHECK(second.type() == Property::Type::Int);
+      CHECK(second.get_type() == property::type::integer);
       CHECK(second.get<int>() == 7);
     }
 
     SUBCASE("Testing parsing of terrain")
     {
-      CHECK(tile.terrain_at(Tile::TerrainPos::TopLeft) == 8);
-      CHECK(tile.terrain_at(Tile::TerrainPos::TopRight) == 2);
-      CHECK(tile.terrain_at(Tile::TerrainPos::BottomLeft) == 5);
-      CHECK(tile.terrain_at(Tile::TerrainPos::BottomRight) == 7);
+      CHECK(tile.terrain_at(tile::terrain_pos::top_left) == 8);
+      CHECK(tile.terrain_at(tile::terrain_pos::top_right) == 2);
+      CHECK(tile.terrain_at(tile::terrain_pos::bottom_left) == 5);
+      CHECK(tile.terrain_at(tile::terrain_pos::bottom_right) == 7);
     }
 
     SUBCASE("Testing object group")
     {
       const auto objectGroupLayer = tile.object_group();
       REQUIRE(objectGroupLayer);
-      REQUIRE(objectGroupLayer->is_object_group());
+      REQUIRE(objectGroupLayer->is<step::object_group>());
       CHECK(objectGroupLayer->id() == 2);
       CHECK(objectGroupLayer->name() == "wizard");
       CHECK(objectGroupLayer->opacity() == 1);
       CHECK(objectGroupLayer->visible());
 
-      const auto& objectGroup = objectGroupLayer->as_object_group();
-      CHECK(objectGroup.draw_order() == ObjectGroup::DrawOrder::Index);
+      const auto& objectGroup = objectGroupLayer->as<step::object_group>();
+      CHECK(objectGroup.get_draw_order() == object_group::draw_order::index);
       CHECK(objectGroup.objects().size() == 1);
     }
   }
