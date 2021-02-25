@@ -9,11 +9,11 @@ Happy coding! :heart:
 ## Usage
 
 ```C++
-#include <step.hpp>
+#include <step_map.hpp>
 
 int main()
 {
-  auto map = step::parse("maps/my_tiled_map.json");
+  auto map = std::make_unique<step::map>("maps/my_tiled_map.json");
   return 0;
 }
 ```
@@ -26,5 +26,5 @@ int main()
 
 ## See also
 
-* [**Tiled**](https://github.com/bjorn/tiled) - The amazing tile map editor that produces the maps that step parses.
+* [**Tiled**](https://github.com/bjorn/tiled) - The tile map editor that produces the maps that step parses.
 * [**Tiled documentation**](https://doc.mapeditor.org/en/stable/) - The reference used for developing the library, along with the Tiled editor itself.
