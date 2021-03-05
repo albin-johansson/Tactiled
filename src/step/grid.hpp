@@ -2,7 +2,6 @@
 #define STEP_GRID_HEADER
 
 #include "common.hpp"
-#include "step_api.hpp"
 
 namespace step {
 
