@@ -383,7 +383,7 @@ template <typename Container>
  * @since 0.1.0
  */
 template <typename T>
-[[nodiscard]] auto convert(std::string_view str, int base = 10) -> T
+[[nodiscard]] auto from_string(const std::string_view str, const int base = 10) -> T
 {
   T result{};
   if (const auto [ptr, error] =
