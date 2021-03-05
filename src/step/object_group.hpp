@@ -5,7 +5,6 @@
 
 #include "common.hpp"
 #include "object.hpp"
-#include "step_api.hpp"
 
 namespace step {
 
