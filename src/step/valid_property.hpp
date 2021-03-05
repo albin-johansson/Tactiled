@@ -1,4 +1,5 @@
-#pragma once
+#ifndef STEP_VALID_PROPERTY_HEADER
+#define STEP_VALID_PROPERTY_HEADER
 
 #include <string>       // string
 #include <type_traits>  // is_same_v, is_convertible_v
@@ -17,3 +18,5 @@ template <typename T>
 }
 
 }  // namespace step::detail
+
+#endif  // STEP_VALID_PROPERTY_HEADER

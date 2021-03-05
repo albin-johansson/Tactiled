@@ -22,63 +22,32 @@
  * SOFTWARE.
  */
 
-#ifndef STEP_TILE_OFFSET_HEADER
-#define STEP_TILE_OFFSET_HEADER
-
+#include "animation.hpp"
+#include "chunk.hpp"
+#include "color.hpp"
+#include "data.hpp"
+#include "frame.hpp"
+#include "grid.hpp"
+#include "image_layer.hpp"
+#include "layer.hpp"
+#include "map.hpp"
+#include "object.hpp"
+#include "object_group.hpp"
+#include "point.hpp"
+#include "properties.hpp"
+#include "property.hpp"
 #include "step_api.hpp"
+#include "step_exception.hpp"
+#include "step_fwd.hpp"
+#include "terrain.hpp"
+#include "text.hpp"
+#include "tile.hpp"
+#include "tile_layer.hpp"
+#include "tile_offset.hpp"
+#include "tileset.hpp"
 #include "types.hpp"
-
-namespace step {
-
-/**
- * @class tile_offset
- *
- * @brief Provides offsets in pixels that are to be applied when rendering a
- * tile from a tileset.
- *
- * @since 0.1.0
- *
- * @headerfile step_tile_offset.hpp
- */
-class tile_offset final
-{
- public:
-  explicit tile_offset(const json& json)
-      : m_x{json.at("x").get<int>()}
-      , m_y{json.at("y").get<int>()}
-  {}
-
-  /**
-   * @brief Returns the offset in the x-axis associated with the tile offset
-   * instance.
-   *
-   * @return the offset in the x-axis.
-   *
-   * @since 0.1.0
-   */
-  [[nodiscard]] auto x() const noexcept -> int
-  {
-    return m_x;
-  }
-
-  /**
-   * @brief Returns the offset in the y-axis associated with the tile offset
-   * instance.
-   *
-   * @return the offset in the y-axis.
-   *
-   * @since 0.1.0
-   */
-  [[nodiscard]] auto y() const noexcept -> int
-  {
-    return m_y;
-  }
-
- private:
-  int m_x;
-  int m_y;
-};
-
-}  // namespace step
-
-#endif  // STEP_TILE_OFFSET_HEADER
+#include "utils.hpp"
+#include "valid_property.hpp"
+#include "wang_color.hpp"
+#include "wang_set.hpp"
+#include "wang_tile.hpp"
