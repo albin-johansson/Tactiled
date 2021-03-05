@@ -20,7 +20,7 @@ class frame final
   {}
 
   /**
-   * Returns the local tile ID that is associated with the frame.
+   * \brief Returns the local tile ID that is associated with the frame.
    *
    * \return the local tile ID that is associated with the frame.
    * \since 0.1.0
@@ -31,7 +31,7 @@ class frame final
   }
 
   /**
-   * Returns the duration of this frame, in milliseconds.
+   * \brief Returns the duration of this frame, in milliseconds.
    *
    * \return the duration of this frame, in milliseconds.
    * \since 0.1.0
