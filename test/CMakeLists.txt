@@ -59,7 +59,7 @@ endif ()
 
 target_include_directories(${STEP_TEST_TARGET}
         PUBLIC unittest
-        PUBLIC ${STEP_INCLUDE_DIR}
+        PUBLIC ${STEP_SOURCE_DIR}/step
         SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/json
         SYSTEM PUBLIC ${STEP_LIBRARY_DIR}/namedtype)
 
