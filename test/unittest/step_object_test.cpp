@@ -178,20 +178,20 @@ TEST_SUITE("object")
       REQUIRE(polygon.points.size() == 5);
 
       const auto& points = polygon.points;
-      CHECK(points.at(0).x() == 0);
-      CHECK(points.at(0).y() == 0);
+      CHECK(points.at(0).x == 0);
+      CHECK(points.at(0).y == 0);
 
-      CHECK(points.at(1).x() == 152);
-      CHECK(points.at(1).y() == 88);
+      CHECK(points.at(1).x == 152);
+      CHECK(points.at(1).y == 88);
 
-      CHECK(points.at(2).x() == 136);
-      CHECK(points.at(2).y() == -128);
+      CHECK(points.at(2).x == 136);
+      CHECK(points.at(2).y == -128);
 
-      CHECK(points.at(3).x() == 80);
-      CHECK(points.at(3).y() == -280);
+      CHECK(points.at(3).x == 80);
+      CHECK(points.at(3).y == -280);
 
-      CHECK(points.at(4).x() == 16);
-      CHECK(points.at(4).y() == -288);
+      CHECK(points.at(4).x == 16);
+      CHECK(points.at(4).y == -288);
     }
   }
 
@@ -230,23 +230,23 @@ TEST_SUITE("object")
       REQUIRE(polyline.points.size() == 6);
 
       const auto& points = polyline.points;
-      CHECK(points.at(0).x() == 0);
-      CHECK(points.at(0).y() == 0);
+      CHECK(points.at(0).x == 0);
+      CHECK(points.at(0).y == 0);
 
-      CHECK(points.at(1).x() == 248);
-      CHECK(points.at(1).y() == -32);
+      CHECK(points.at(1).x == 248);
+      CHECK(points.at(1).y == -32);
 
-      CHECK(points.at(2).x() == 376);
-      CHECK(points.at(2).y() == 72);
+      CHECK(points.at(2).x == 376);
+      CHECK(points.at(2).y == 72);
 
-      CHECK(points.at(3).x() == 544);
-      CHECK(points.at(3).y() == 288);
+      CHECK(points.at(3).x == 544);
+      CHECK(points.at(3).y == 288);
 
-      CHECK(points.at(4).x() == 656);
-      CHECK(points.at(4).y() == 120);
+      CHECK(points.at(4).x == 656);
+      CHECK(points.at(4).y == 120);
 
-      CHECK(points.at(5).x() == 512);
-      CHECK(points.at(5).y() == 0);
+      CHECK(points.at(5).x == 512);
+      CHECK(points.at(5).y == 0);
     }
   }
 
