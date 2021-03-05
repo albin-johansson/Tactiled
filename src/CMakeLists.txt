@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.12)
+
 project(step-src CXX)
+
+add_header_only_lib(libJSON ${STEP_LIBRARY_DIR}/json ${STEP_LIBRARY_DIR}/json/json.hpp)
 
 set(SOURCE_FILES
     step/step_api.hpp
@@ -32,16 +35,5 @@ set(SOURCE_FILES
     step/step_fwd.hpp
     step/valid_property.hpp)
 
-add_library(${STEP_LIB_TARGET} INTERFACE)
-if (WIN32)
-    add_definitions(-DWIN_EXPORT)
-endif ()
-
-target_include_directories(${STEP_LIB_TARGET}
-        PUBLIC INTERFACE ${STEP_INCLUDE_DIR}
-        SYSTEM PUBLIC INTERFACE ${STEP_LIBRARY_DIR}/json
-        SYSTEM PUBLIC INTERFACE ${STEP_LIBRARY_DIR}/namedtype)
-
-target_link_libraries(${STEP_LIB_TARGET}
-        PUBLIC INTERFACE libNamedType
-        PUBLIC INTERFACE libJSON)
+target_include_directories(${STEP_LIBRARY_TARGET} PUBLIC INTERFACE ${STEP_SOURCE_DIR})
+#target_link_libraries(${STEP_LIBRARY_TARGET} PUBLIC INTERFACE libJSON)
