@@ -10,8 +10,7 @@ Happy coding! :heart:
 
 ```C++
 #include <memory>
-
-#include <step_map.hpp>
+#include <step.hpp>
 
 int main()
 {
