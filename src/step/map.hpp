@@ -31,13 +31,13 @@ enum class map_orientation
   hexagonal
 };
 
-enum class stagger_axis
+enum class map_stagger_axis
 {
   x,
   y
 };
 
-enum class stagger_index
+enum class map_stagger_index
 {
   odd,
   even
@@ -195,7 +195,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_orientation() const noexcept -> map_orientation
+  [[nodiscard]] auto orientation() const noexcept -> map_orientation
   {
     return m_orientation;
   }
@@ -211,7 +211,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_render_order() const noexcept -> map_render_order
+  [[nodiscard]] auto render_order() const noexcept -> map_render_order
   {
     return m_renderOrder;
   }
@@ -225,7 +225,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_stagger_axis() const noexcept -> stagger_axis
+  [[nodiscard]] auto stagger_axis() const noexcept -> map_stagger_axis
   {
     return m_staggerAxis;
   }
@@ -239,7 +239,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_stagger_index() const noexcept -> stagger_index
+  [[nodiscard]] auto stagger_index() const noexcept -> map_stagger_index
   {
     return m_staggerIndex;
   }
@@ -321,8 +321,8 @@ class map final
   std::unique_ptr<properties> m_properties;
   map_orientation m_orientation{map_orientation::orthogonal};
   map_render_order m_renderOrder{map_render_order::right_down};
-  stagger_axis m_staggerAxis{stagger_axis::x};
-  stagger_index m_staggerIndex{stagger_index::odd};
+  map_stagger_axis m_staggerAxis{map_stagger_axis::x};
+  map_stagger_index m_staggerIndex{map_stagger_index::odd};
   int m_hexSideLength{0};
   std::optional<color> m_backgroundColor;
   std::string m_tiledVersion;
@@ -389,12 +389,13 @@ NLOHMANN_JSON_SERIALIZE_ENUM(map_orientation,
                               {map_orientation::staggered, "staggered"},
                               {map_orientation::hexagonal, "hexagonal"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(stagger_axis,
-                             {{stagger_axis::x, "x"}, {stagger_axis::y, "y"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(map_stagger_axis,
+                             {{map_stagger_axis::x, "x"},
+                              {map_stagger_axis::y, "y"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(stagger_index,
-                             {{stagger_index::odd, "odd"},
-                              {stagger_index::even, "even"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(map_stagger_index,
+                             {{map_stagger_index::odd, "odd"},
+                              {map_stagger_index::even, "even"}})
 
 }  // namespace step
 

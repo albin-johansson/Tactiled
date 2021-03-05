@@ -17,8 +17,8 @@ TEST_SUITE("Test of realistic usage of step")
     CHECK(map->height() == 50);
     CHECK(map->next_object_id() == 1);
     CHECK(map->next_layer_id() == 4);
-    CHECK(map->get_orientation() == map_orientation::orthogonal);
-    CHECK(map->get_render_order() == map_render_order::right_down);
+    CHECK(map->orientation() == map_orientation::orthogonal);
+    CHECK(map->render_order() == map_render_order::right_down);
     CHECK(map->tile_width() == 32);
     CHECK(map->tile_height() == 32);
     CHECK(map->json_version() == 1.2);

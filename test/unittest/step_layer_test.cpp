@@ -115,9 +115,9 @@ TEST_SUITE("layer")
     SUBCASE("Object group exclusive properties")
     {
       const auto& objectGroup = layer.as<step::object_group>();
-      CHECK(objectGroup.get_draw_order() == object_group::draw_order::top_down);
+      CHECK(objectGroup.order == object_group_draw_order::top_down);
 
-      const auto& objects = objectGroup.objects();
+      const auto& objects = objectGroup.objects;
       REQUIRE(objects.size() == 1);
 
       const auto& object = objects.at(0);

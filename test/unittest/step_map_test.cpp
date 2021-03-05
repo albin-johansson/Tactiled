@@ -17,8 +17,8 @@ TEST_SUITE("map")
     CHECK(map.json_version() == 1.2);
     CHECK(map.next_layer_id() == 2);
     CHECK(map.next_object_id() == 1);
-    CHECK(map.get_orientation() == step::map_orientation::orthogonal);
-    CHECK(map.get_render_order() == step::map_render_order::right_down);
+    CHECK(map.orientation() == step::map_orientation::orthogonal);
+    CHECK(map.render_order() == step::map_render_order::right_down);
     CHECK(map.tiled_version() == "1.3.4");
     CHECK(!map.get_properties());
     CHECK(!map.infinite());

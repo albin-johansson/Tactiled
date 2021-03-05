@@ -81,8 +81,8 @@ TEST_SUITE("Tile")
       CHECK(objectGroupLayer->visible());
 
       const auto& objectGroup = objectGroupLayer->as<step::object_group>();
-      CHECK(objectGroup.get_draw_order() == object_group::draw_order::index);
-      CHECK(objectGroup.objects().size() == 1);
+      CHECK(objectGroup.order == object_group_draw_order::index);
+      CHECK(objectGroup.objects.size() == 1);
     }
   }
 }
