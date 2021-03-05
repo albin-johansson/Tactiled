@@ -61,9 +61,9 @@ TEST_SUITE("Tileset")
     {
       const auto grid = tileset->get_grid();
       REQUIRE(grid);
-      CHECK(grid->get_orientation() == grid::orientation::isometric);
-      CHECK(grid->width() == 48);
-      CHECK(grid->height() == 64);
+      CHECK(grid->orientation == grid_orientation::isometric);
+      CHECK(grid->width == 48);
+      CHECK(grid->height == 64);
     }
 
     SUBCASE("Parsing tile offset")
