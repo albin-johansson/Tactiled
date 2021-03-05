@@ -3,13 +3,14 @@
 #include "frame.hpp"
 #include "utils.hpp"
 
-using namespace step;
+using step::operator""_lid;
 
 TEST_SUITE("Frame")
 {
   TEST_CASE("Parsing valid frame object")
   {
-    const Frame frame{detail::parse_json("resource/frame/frame_complete.json")};
+    const step::frame frame{
+        step::detail::parse_json("resource/frame/frame_complete.json")};
     CHECK(frame.tile_id() == 6227_lid);
     CHECK(frame.duration() == 598);
   }

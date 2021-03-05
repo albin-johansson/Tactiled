@@ -25,7 +25,7 @@ class animation final
 {
  public:
   explicit animation(const json& json)
-      : m_frames{detail::fill<std::vector<Frame>>(json)}
+      : m_frames{detail::fill<std::vector<frame>>(json)}
   {}
 
   /**
@@ -35,7 +35,7 @@ class animation final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto frames() const -> const std::vector<Frame>&
+  [[nodiscard]] auto frames() const -> const std::vector<frame>&
   {
     return m_frames;
   }
@@ -53,7 +53,7 @@ class animation final
   }
 
  private:
-  std::vector<Frame> m_frames;
+  std::vector<frame> m_frames;
 };
 
 }  // namespace step
