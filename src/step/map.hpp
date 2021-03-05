@@ -7,11 +7,11 @@
 #include <vector>       // vector
 
 #include "color.hpp"
+#include "common.hpp"
 #include "layer.hpp"
 #include "properties.hpp"
 #include "step_api.hpp"
 #include "tileset.hpp"
-#include "types.hpp"
 
 namespace step {
 

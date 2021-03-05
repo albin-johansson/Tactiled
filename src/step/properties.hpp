@@ -8,11 +8,11 @@
 #include <string_view>  // string_view
 
 #include "color.hpp"
+#include "common.hpp"
 #include "property.hpp"
 #include "step_api.hpp"
+#include "step_detail.hpp"
 #include "step_exception.hpp"
-#include "types.hpp"
-#include "utils.hpp"
 #include "valid_property.hpp"
 
 namespace step {

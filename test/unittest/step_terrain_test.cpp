@@ -1,7 +1,7 @@
 #include <doctest.h>
 
+#include "step_detail.hpp"
 #include "terrain.hpp"
-#include "utils.hpp"
 
 TEST_SUITE("terrain")
 {

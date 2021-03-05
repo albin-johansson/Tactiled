@@ -136,14 +136,14 @@ TEST_SUITE("Tileset")
 
       SUBCASE("Animation")
       {
-        const auto animation = tile.get_animation();
+        const auto& animation = tile.get_animation();
         REQUIRE(animation);
-        CHECK(animation->num_frames() == 3);
+        CHECK(animation->frames.size() == 3);
 
-        const auto& frames = animation->frames();
+        const auto& frames = animation->frames;
         for (int i = 0; i < 3; ++i) {
-          CHECK(frames.at(i).duration() == 900);
-          CHECK(frames.at(i).tile_id() == 187_lid + local_id{i});
+          CHECK(frames.at(i).duration == 900);
+          CHECK(frames.at(i).tile == 187_lid + local_id{i});
         }
       }
 

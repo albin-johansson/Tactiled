@@ -1,8 +1,8 @@
 #ifndef STEP_GRID_HEADER
 #define STEP_GRID_HEADER
 
+#include "common.hpp"
 #include "step_api.hpp"
-#include "types.hpp"
 
 namespace step {
 

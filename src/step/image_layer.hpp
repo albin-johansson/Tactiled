@@ -4,8 +4,8 @@
 #include <string>
 
 #include "color.hpp"
+#include "common.hpp"
 #include "step_api.hpp"
-#include "types.hpp"
 
 namespace step {
 

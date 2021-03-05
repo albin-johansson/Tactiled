@@ -6,12 +6,12 @@
 #include <string>    // string
 
 #include "animation.hpp"
+#include "common.hpp"
 #include "layer.hpp"
 #include "properties.hpp"
 #include "step_api.hpp"
+#include "step_detail.hpp"
 #include "step_fwd.hpp"
-#include "types.hpp"
-#include "utils.hpp"
 
 namespace step {
 

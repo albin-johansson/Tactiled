@@ -9,11 +9,11 @@
 #include <variant>
 #include <vector>
 
+#include "common.hpp"
 #include "point.hpp"
 #include "properties.hpp"
 #include "step_api.hpp"
 #include "text.hpp"
-#include "types.hpp"
 
 namespace step {
 

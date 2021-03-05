@@ -3,7 +3,7 @@
 #include <string>
 
 #include "layer.hpp"
-#include "utils.hpp"
+#include "step_detail.hpp"
 
 using namespace step;
 

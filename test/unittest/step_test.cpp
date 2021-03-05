@@ -2,8 +2,8 @@
 
 #include <iostream>
 
+#include "common.hpp"
 #include "map.hpp"
-#include "types.hpp"
 
 using namespace step;
 

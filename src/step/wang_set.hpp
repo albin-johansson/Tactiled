@@ -7,7 +7,7 @@
 
 #include "properties.hpp"
 #include "step_api.hpp"
-#include "utils.hpp"
+#include "step_detail.hpp"
 #include "wang_color.hpp"
 #include "wang_tile.hpp"
 

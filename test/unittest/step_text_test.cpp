@@ -1,8 +1,8 @@
 #include <doctest.h>
 
+#include "step_detail.hpp"
 #include "step_exception.hpp"
 #include "text.hpp"
-#include "utils.hpp"
 
 using namespace step;
 

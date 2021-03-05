@@ -1,8 +1,8 @@
 #include <doctest.h>
 
 #include "layer.hpp"
+#include "step_detail.hpp"
 #include "tile.hpp"
-#include "utils.hpp"
 
 using namespace step;
 
@@ -35,15 +35,15 @@ TEST_SUITE("Tile")
       const auto animation = tile.get_animation();
 
       CHECK(animation);
-      CHECK(animation->num_frames() == 2);
+      CHECK(animation->frames.size() == 2);
 
-      const auto& firstFrame = animation->frames().at(0);
-      CHECK(firstFrame.tile_id() == 23_lid);
-      CHECK(firstFrame.duration() == 384);
+      const auto& firstFrame = animation->frames.at(0);
+      CHECK(firstFrame.tile == 23_lid);
+      CHECK(firstFrame.duration == 384);
 
-      const auto& secondFrame = animation->frames().at(1);
-      CHECK(secondFrame.tile_id() == 174_lid);
-      CHECK(secondFrame.duration() == 159);
+      const auto& secondFrame = animation->frames.at(1);
+      CHECK(secondFrame.tile == 174_lid);
+      CHECK(secondFrame.duration == 159);
     }
 
     SUBCASE("Testing parsing of properties")

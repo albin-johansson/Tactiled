@@ -6,13 +6,13 @@
 #include <variant>
 #include <vector>
 
+#include "common.hpp"
 #include "image_layer.hpp"
 #include "object_group.hpp"
 #include "properties.hpp"
 #include "step_api.hpp"
+#include "step_detail.hpp"
 #include "tile_layer.hpp"
-#include "types.hpp"
-#include "utils.hpp"
 
 namespace step {
 

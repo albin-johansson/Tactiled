@@ -1,6 +1,6 @@
 #include <doctest.h>
 
-#include "utils.hpp"
+#include "step_detail.hpp"
 #include "wang_set.hpp"
 
 using step::operator""_lid;

@@ -1,9 +1,9 @@
 #ifndef STEP_CHUNK_HEADER
 #define STEP_CHUNK_HEADER
 
+#include "common.hpp"
 #include "data.hpp"
 #include "step_api.hpp"
-#include "types.hpp"
 
 namespace step {
 

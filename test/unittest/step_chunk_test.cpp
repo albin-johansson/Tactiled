@@ -1,7 +1,7 @@
 #include <doctest.h>
 
 #include "chunk.hpp"
-#include "utils.hpp"
+#include "step_detail.hpp"
 
 TEST_SUITE("chunk")
 {

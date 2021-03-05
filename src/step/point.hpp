@@ -1,8 +1,8 @@
 #ifndef STEP_POINT_HEADER
 #define STEP_POINT_HEADER
 
+#include "common.hpp"
 #include "step_api.hpp"
-#include "types.hpp"
 
 namespace step {
 

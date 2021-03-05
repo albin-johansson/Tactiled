@@ -3,11 +3,11 @@ project(step-src CXX)
 
 set(SOURCE_FILES
     step/step_api.hpp
-    step/types.hpp
+    step/common.hpp
     step/step_exception.hpp
     step/map.hpp
     step/point.hpp
-    step/utils.hpp
+    step/step_detail.hpp
     step/property.hpp
     step/color.hpp
     step/text.hpp

@@ -38,17 +38,7 @@ using global_id = fluent::NamedType<unsigned,
                                     fluent::Subtractable,
                                     fluent::Printable>;
 
-/**
- * The type used for local IDs (LIDs).
- *
- * \since 0.1.0
- */
-using local_id = fluent::NamedType<int,
-                                   struct local_id_t,
-                                   fluent::Comparable,
-                                   fluent::Addable,
-                                   fluent::Subtractable,
-                                   fluent::Printable>;
+using local_id = int;
 
 /**
  * The type used for object references.

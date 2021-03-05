@@ -1,8 +1,8 @@
 #ifndef STEP_TILE_OFFSET_HEADER
 #define STEP_TILE_OFFSET_HEADER
 
+#include "common.hpp"
 #include "step_api.hpp"
-#include "types.hpp"
 
 namespace step {
 

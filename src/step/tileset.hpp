@@ -7,13 +7,13 @@
 #include <vector>       // vector
 
 #include "color.hpp"
+#include "common.hpp"
 #include "grid.hpp"
 #include "properties.hpp"
 #include "step_api.hpp"
 #include "terrain.hpp"
 #include "tile.hpp"
 #include "tile_offset.hpp"
-#include "types.hpp"
 #include "wang_set.hpp"
 
 namespace step {
