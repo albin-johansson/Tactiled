@@ -34,7 +34,7 @@ class group final
   friend void from_json(const json&, group&);
 
   /**
-   * Iterates over all of the layers store in this group.
+   * \brief Iterates over all of the layers store in this group.
    *
    * \tparam Lambda the type of the lambda object.
    * \param lambda the lambda that takes one argument, <code>const
