@@ -21,4 +21,4 @@ target_link_libraries(${STEP_TEST_TARGET}
 
 copy_directory_post_build(${STEP_TEST_TARGET}
     ${STEP_RESOURCES_DIR}
-    ${CMAKE_CURRENT_BINARY_DIR}/resources)
+    ${CMAKE_CURRENT_BINARY_DIR}/resource)
