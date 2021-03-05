@@ -1,0 +1,10 @@
+{
+  "project": "step",
+  "target": "include/step/step.hpp",
+  "sources": [
+    "src/step/step.hpp"
+  ],
+  "include_paths": [
+    "src"
+  ]
+}
