@@ -15,7 +15,7 @@
 
 namespace step {
 
-enum class render_order
+enum class map_render_order
 {
   right_down,
   right_up,
@@ -211,7 +211,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_render_order() const noexcept -> render_order
+  [[nodiscard]] auto get_render_order() const noexcept -> map_render_order
   {
     return m_renderOrder;
   }
@@ -320,7 +320,7 @@ class map final
   std::vector<std::unique_ptr<tileset>> m_tilesets;
   std::unique_ptr<properties> m_properties;
   map_orientation m_orientation{map_orientation::orthogonal};
-  render_order m_renderOrder{render_order::right_down};
+  map_render_order m_renderOrder{map_render_order::right_down};
   stagger_axis m_staggerAxis{stagger_axis::x};
   stagger_index m_staggerIndex{stagger_index::odd};
   int m_hexSideLength{0};
@@ -377,11 +377,11 @@ class map final
   }
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(render_order,
-                             {{render_order::right_down, "right-down"},
-                              {render_order::right_up, "right-up"},
-                              {render_order::left_down, "left-down"},
-                              {render_order::left_up, "left-up"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(map_render_order,
+                             {{map_render_order::right_down, "right-down"},
+                              {map_render_order::right_up, "right-up"},
+                              {map_render_order::left_down, "left-down"},
+                              {map_render_order::left_up, "left-up"}})
 
 NLOHMANN_JSON_SERIALIZE_ENUM(map_orientation,
                              {{map_orientation::orthogonal, "orthogonal"},
