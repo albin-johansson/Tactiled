@@ -7,14 +7,14 @@
 namespace step {
 
 /**
- * @class tile_offset
+ * \class tile_offset
  *
- * @brief Provides offsets in pixels that are to be applied when rendering a
+ * \brief Provides offsets in pixels that are to be applied when rendering a
  * tile from a tileset.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_tile_offset.hpp
+ * \headerfile step_tile_offset.hpp
  */
 class tile_offset final
 {
@@ -25,12 +25,12 @@ class tile_offset final
   {}
 
   /**
-   * @brief Returns the offset in the x-axis associated with the tile offset
+   * \brief Returns the offset in the x-axis associated with the tile offset
    * instance.
    *
-   * @return the offset in the x-axis.
+   * \return the offset in the x-axis.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto x() const noexcept -> int
   {
@@ -38,12 +38,12 @@ class tile_offset final
   }
 
   /**
-   * @brief Returns the offset in the y-axis associated with the tile offset
+   * \brief Returns the offset in the y-axis associated with the tile offset
    * instance.
    *
-   * @return the offset in the y-axis.
+   * \return the offset in the y-axis.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto y() const noexcept -> int
   {

@@ -18,13 +18,13 @@
 namespace step {
 
 /**
- * @class properties
+ * \class properties
  *
- * @brief Represents a collection of `property` instances.
+ * \brief Represents a collection of `property` instances.
  *
- * @see property
+ * \see property
  *
- * @since 0.1.0
+ * \since 0.1.0
  */
 class properties final
 {
@@ -38,14 +38,14 @@ class properties final
   }
 
   /**
-   * @brief Iterates over all of the properties store in this instance.
+   * \brief Iterates over all of the properties store in this instance.
    *
-   * @tparam Lambda the type of the lambda object.
+   * \tparam Lambda the type of the lambda object.
    *
-   * @param lambda the lambda that takes one argument, `std::pair<std::string,
+   * \param lambda the lambda that takes one argument, `std::pair<std::string,
    * Property>`, either by value or const reference.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename Lambda>
   void each(Lambda&& lambda) const
@@ -54,15 +54,15 @@ class properties final
   }
 
   /**
-   * @brief Indicates whether or not there is a property associated with the
+   * \brief Indicates whether or not there is a property associated with the
    * specified name.
    *
-   * @param name the name of the property to look for.
+   * \param name the name of the property to look for.
    *
-   * @return `true` if there is a property associated with the specified name;
+   * \return `true` if there is a property associated with the specified name;
    * `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto has(std::string_view name) const -> bool
   {
@@ -70,18 +70,18 @@ class properties final
   }
 
   /**
-   * @brief Returns the property associated with the specified name.
+   * \brief Returns the property associated with the specified name.
    *
-   * @note This method will throw an exception if the desired property doesn't
+   * \note This method will throw an exception if the desired property doesn't
    * exist.
    *
-   * @param name the name of the desired property.
+   * \param name the name of the desired property.
    *
-   * @return the property associated with the specified name.
+   * \return the property associated with the specified name.
    *
-   * @throws `step_exception` if the desired property doesn't exist.
+   * \throws `step_exception` if the desired property doesn't exist.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get(std::string_view name) const -> const property&
   {
@@ -93,30 +93,30 @@ class properties final
   }
 
   /**
-   * @brief Indicates whether or not the specified property is equal to the
+   * \brief Indicates whether or not the specified property is equal to the
    * supplied value.
    *
-   * @details This method does not throw any exceptions by itself and is the
+   * \details This method does not throw any exceptions by itself and is the
    * preferred way to check the value of a property. The returned value is
    * always `false` if the property doesn't exist or if the property has another
    * type.
    *
-   * @details A compile-time error will be raised if the type of the
+   * \details A compile-time error will be raised if the type of the
    * supplied value isn't one of: `bool`, `int`, `float`, `color`, `file` or
    * `std::string` (accepts anything that is convertible to `std::string`).
    *
-   * @tparam T the type of the value that will be compared to the value of
+   * \tparam T the type of the value that will be compared to the value of
    * the specified property. An unsupported type will cause a compile-time
    * error.
    *
-   * @param name the name of the property to check the value of.
-   * @param value the value that will be compared with the value of the
+   * \param name the name of the property to check the value of.
+   * \param value the value that will be compared with the value of the
    * specified property.
    *
-   * @return `true` if the specified property had a value and it turned out to
+   * \return `true` if the specified property had a value and it turned out to
    * be equal to the supplied value; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
@@ -130,11 +130,11 @@ class properties final
   }
 
   /**
-   * @brief Returns the amount of `property` instances handled by this instance.
+   * \brief Returns the amount of `property` instances handled by this instance.
    *
-   * @return the amount of properties handled by this instance.
+   * \return the amount of properties handled by this instance.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto amount() const noexcept -> int
   {
@@ -142,13 +142,13 @@ class properties final
   }
 
   /**
-   * @brief Indicates whether or not there are any `property` instances handled
+   * \brief Indicates whether or not there are any `property` instances handled
    * by this instance.
    *
-   * @return `true` if there are properties handled by this instance; `false`
+   * \return `true` if there are properties handled by this instance; `false`
    * otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto empty() const noexcept -> bool
   {

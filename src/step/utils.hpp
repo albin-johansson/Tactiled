@@ -20,10 +20,10 @@ namespace step::detail {
  * Parses the specified JSON file and returns the data associated with the
  * file as a JSON object.
  *
- * @param file the the JSON file that will be parsed.
- * @return a JSON object that contains the data from the parsed file.
- * @throws step_exception if the file cannot be parsed.
- * @since 0.1.0
+ * \param file the the JSON file that will be parsed.
+ * \return a JSON object that contains the data from the parsed file.
+ * \throws step_exception if the file cannot be parsed.
+ * \since 0.1.0
  */
 [[nodiscard]] inline auto parse_json(std::string_view file) -> json
 {
@@ -126,12 +126,12 @@ template <typename Container>
 /**
  * Attempts to convert a string to an integral value.
  *
- * @tparam T the integral type that will be used.
- * @param str the string that represents the integer.
- * @param base the base that will be used, defaults to 10.
- * @return the integral value.
- * @throws step_exception if the string cannot be converted.
- * @since 0.1.0
+ * \tparam T the integral type that will be used.
+ * \param str the string that represents the integer.
+ * \param base the base that will be used, defaults to 10.
+ * \return the integral value.
+ * \throws step_exception if the string cannot be converted.
+ * \since 0.1.0
  */
 template <typename T>
 [[nodiscard]] auto convert(std::string_view str, int base = 10) -> T

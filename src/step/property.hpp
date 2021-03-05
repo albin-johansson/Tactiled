@@ -14,29 +14,29 @@
 namespace step {
 
 /**
- * @class property
+ * \class property
  *
- * @brief Represents small objects that have a name, type and value.
+ * \brief Represents small objects that have a name, type and value.
  *
- * @details A property can represent a `std::string`, `int`, `float`, `bool`,
+ * \details A property can represent a `std::string`, `int`, `float`, `bool`,
  * `color` or `file`.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_property.hpp
+ * \headerfile step_property.hpp
  */
 class property final
 {
  public:
   /**
-   * @enum type
+   * \enum type
    *
-   * @brief Provides different values that represent the various kinds of
+   * \brief Provides different values that represent the various kinds of
    * possible property types.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    *
-   * @headerfile step_property.hpp
+   * \headerfile step_property.hpp
    */
   enum class type
   {
@@ -88,22 +88,22 @@ class property final
   }
 
   /**
-   * @brief Returns the value of the property as the specified type.
+   * \brief Returns the value of the property as the specified type.
    *
-   * @note This method will throw an exception if the property doesn't contain
+   * \note This method will throw an exception if the property doesn't contain
    * the specified type.
    *
-   * @details A compile-time error will be raised if the type of the supplied
+   * \details A compile-time error will be raised if the type of the supplied
    * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
    * `std::string` (accepts anything that is convertible to `std::string`).
    *
-   * @tparam T the type of the value that will be returned. Must be the same
+   * \tparam T the type of the value that will be returned. Must be the same
    * type of the value stored in the property. An unsupported type will cause a
    * compile-time error.
    *
-   * @return the value of the property.
+   * \return the value of the property.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
@@ -113,27 +113,27 @@ class property final
   }
 
   /**
-   * @brief Attempts to return the value of the property as the specified type.
+   * \brief Attempts to return the value of the property as the specified type.
    *
-   * @note This method doesn't throw any exceptions on its own.
+   * \note This method doesn't throw any exceptions on its own.
    *
-   * @details If the property doesn't contain a value of the specified type,
+   * \details If the property doesn't contain a value of the specified type,
    * then the supplied default value is returned instead.
    *
-   * @details A compile-time error will be raised if the type of the supplied
+   * \details A compile-time error will be raised if the type of the supplied
    * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
    * `std::string` (accepts anything that is convertible to `std::string`).
    *
-   * @tparam T the type of the value that will be obtained. An unsupported type
+   * \tparam T the type of the value that will be obtained. An unsupported type
    * will cause a compile-time error.
    *
-   * @param defaultValue the backup value that will be returned if the
+   * \param defaultValue the backup value that will be returned if the
    * desired value cannot be obtained.
    *
-   * @return the value stored in the property; `defaultValue` if the property
+   * \return the value stored in the property; `defaultValue` if the property
    * doesn't contain a value of the specified type.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
@@ -147,20 +147,20 @@ class property final
   }
 
   /**
-   * @brief Indicates whether or not the property holds a value of the specified
+   * \brief Indicates whether or not the property holds a value of the specified
    * type.
    *
-   * @details A compile-time error will be raised if the type of the supplied
+   * \details A compile-time error will be raised if the type of the supplied
    * value isn't one of: `bool`, `int`, `float`, `color`, `file` or
    * `std::string` (accepts anything that is convertible to `std::string`).
    *
-   * @tparam T the type to compare with the type of the stored value. An
+   * \tparam T the type to compare with the type of the stored value. An
    * unsupported type will cause a compile-time error.
    *
-   * @return `true` if the property holds a value of the specified type; `false`
+   * \return `true` if the property holds a value of the specified type; `false`
    * otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
@@ -190,19 +190,19 @@ class property final
   }
 
   /**
-   * @brief Indicates whether or not the property holds a value equal to the
+   * \brief Indicates whether or not the property holds a value equal to the
    * specified value.
    *
-   * @tparam T the type of the value. An unsupported type will cause a
+   * \tparam T the type of the value. An unsupported type will cause a
    * compile-time error. If `T` is convertible to `std::string`, e.g. `const
    * char*`, the behaviour of this function is as if `T` was `std::string`.
    *
-   * @param value the value that will be compared with the stored value.
+   * \param value the value that will be compared with the stored value.
    *
-   * @return `true` if the stored value is equal to the supplied value; `false`
+   * \return `true` if the stored value is equal to the supplied value; `false`
    * otherwise.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   template <typename T,
             typename = std::enable_if_t<detail::valid_property_type<T>()>>
@@ -221,11 +221,11 @@ class property final
   }
 
   /**
-   * @brief Returns the name associated with the property.
+   * \brief Returns the name associated with the property.
    *
-   * @return the name associated with the property.
+   * \return the name associated with the property.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string
   {
@@ -233,11 +233,11 @@ class property final
   }
 
   /**
-   * @brief Returns the type associated with the property.
+   * \brief Returns the type associated with the property.
    *
-   * @return the type associated with the property.
+   * \return the type associated with the property.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_type() const noexcept -> type
   {

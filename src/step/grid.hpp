@@ -7,24 +7,24 @@
 namespace step {
 
 /**
- * @class grid
+ * \class grid
  *
- * @brief Provides information about the grid of tiles in a tileset.
+ * \brief Provides information about the grid of tiles in a tileset.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_grid.hpp
+ * \headerfile step_grid.hpp
  */
 class grid final
 {
  public:
   /**
-   * @enum grid::orientation
+   * \enum grid::orientation
    *
-   * @brief Provides values for the different possible  orientations of a
+   * \brief Provides values for the different possible  orientations of a
    * grid in a tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   enum class orientation
   {
@@ -35,13 +35,13 @@ class grid final
   friend void from_json(const json&, grid&);
 
   /**
-   * @brief Returns the orientation of the grid.
+   * \brief Returns the orientation of the grid.
    *
-   * @details The default value of this property is `Orthogonal`.
+   * \details The default value of this property is `Orthogonal`.
    *
-   * @return the orientation of the grid.
+   * \return the orientation of the grid.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_orientation() const noexcept -> orientation
   {
@@ -49,11 +49,11 @@ class grid final
   }
 
   /**
-   * @brief Returns the width of the cells in the grid.
+   * \brief Returns the width of the cells in the grid.
    *
-   * @return the width of the cells in the grid.
+   * \return the width of the cells in the grid.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> int
   {
@@ -61,11 +61,11 @@ class grid final
   }
 
   /**
-   * @brief Returns the height of the cells in the grid.
+   * \brief Returns the height of the cells in the grid.
    *
-   * @return the height of the cells in the grid.
+   * \return the height of the cells in the grid.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> int
   {

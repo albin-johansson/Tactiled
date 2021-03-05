@@ -8,14 +8,14 @@
 namespace step {
 
 /**
- * @class chunk
+ * \class chunk
  *
- * @brief Represents "chunks", that store the tile layer data for
+ * \brief Represents "chunks", that store the tile layer data for
  * infinite maps.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_chunk.hpp
+ * \headerfile step_chunk.hpp
  */
 class chunk final
 {
@@ -29,11 +29,11 @@ class chunk final
   {}
 
   /**
-   * @brief Returns the x-coordinate of the chunk.
+   * \brief Returns the x-coordinate of the chunk.
    *
-   * @return the x-coordinate of the chunk.
+   * \return the x-coordinate of the chunk.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto x() const noexcept -> int
   {
@@ -41,11 +41,11 @@ class chunk final
   }
 
   /**
-   * @brief Returns the y-coordinate of the chunk.
+   * \brief Returns the y-coordinate of the chunk.
    *
-   * @return the y-coordinate of the chunk.
+   * \return the y-coordinate of the chunk.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto y() const noexcept -> int
   {
@@ -53,11 +53,11 @@ class chunk final
   }
 
   /**
-   * @brief Returns the width of the chunk.
+   * \brief Returns the width of the chunk.
    *
-   * @return the width of the chunk.
+   * \return the width of the chunk.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> int
   {
@@ -65,11 +65,11 @@ class chunk final
   }
 
   /**
-   * @brief Returns the height of the chunk.
+   * \brief Returns the height of the chunk.
    *
-   * @return the height of the chunk.
+   * \return the height of the chunk.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> int
   {
@@ -77,11 +77,11 @@ class chunk final
   }
 
   /**
-   * @brief Returns the data associated with the chunk.
+   * \brief Returns the data associated with the chunk.
    *
-   * @return the data associated with the chunk.
+   * \return the data associated with the chunk.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto data() const noexcept -> const detail::data&
   {

@@ -18,13 +18,13 @@
 namespace step {
 
 /**
- * @struct polygon
+ * \struct polygon
  *
- * @brief A simple data container for polygon objects.
+ * \brief A simple data container for polygon objects.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_object.hpp
+ * \headerfile step_object.hpp
  */
 struct polygon final
 {
@@ -32,13 +32,13 @@ struct polygon final
 };
 
 /**
- * @struct polyline
+ * \struct polyline
  *
- * @brief A simple data container for polyline objects.
+ * \brief A simple data container for polyline objects.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_object.hpp
+ * \headerfile step_object.hpp
  */
 struct polyline final
 {
@@ -46,13 +46,13 @@ struct polyline final
 };
 
 /**
- * @struct template_object
+ * \struct template_object
  *
- * @brief A simple data container for template objects.
+ * \brief A simple data container for template objects.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_object.hpp
+ * \headerfile step_object.hpp
  */
 struct template_object final
 {
@@ -62,14 +62,14 @@ struct template_object final
 };
 
 /**
- * @class object
+ * \class object
  *
- * @brief Represents different kinds of objects in tile maps, such as polygons
+ * \brief Represents different kinds of objects in tile maps, such as polygons
  * or text.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_object.hpp
+ * \headerfile step_object.hpp
  */
 class object final
 {
@@ -79,11 +79,11 @@ class object final
 
  public:
   /**
-   * @brief Creates an tiled object from a JSON object.
+   * \brief Creates an tiled object from a JSON object.
    *
-   * @param json the JSON object that represents the tiled object.
+   * \param json the JSON object that represents the tiled object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   explicit object(const json& json)
       : m_id{json.at("id").get<int>()}
@@ -130,11 +130,11 @@ class object final
   }
 
   /**
-   * @brief Returns the incremental ID associated with the object.
+   * \brief Returns the incremental ID associated with the object.
    *
-   * @return the incremental ID associated with the object.
+   * \return the incremental ID associated with the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto id() const noexcept -> int
   {
@@ -142,11 +142,11 @@ class object final
   }
 
   /**
-   * @brief Returns the x-coordinate of the object.
+   * \brief Returns the x-coordinate of the object.
    *
-   * @return the x-coordinate of the object.
+   * \return the x-coordinate of the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto x() const noexcept -> double
   {
@@ -154,11 +154,11 @@ class object final
   }
 
   /**
-   * @brief Returns the y-coordinate of the object.
+   * \brief Returns the y-coordinate of the object.
    *
-   * @return the y-coordinate of the object.
+   * \return the y-coordinate of the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto y() const noexcept -> double
   {
@@ -166,11 +166,11 @@ class object final
   }
 
   /**
-   * @brief Returns the width of the object.
+   * \brief Returns the width of the object.
    *
-   * @return the width of the object.
+   * \return the width of the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> double
   {
@@ -178,11 +178,11 @@ class object final
   }
 
   /**
-   * @brief Returns the height of the object.
+   * \brief Returns the height of the object.
    *
-   * @return the height of the object.
+   * \return the height of the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> double
   {
@@ -190,11 +190,11 @@ class object final
   }
 
   /**
-   * @brief Returns the amount of clockwise rotation of the object.
+   * \brief Returns the amount of clockwise rotation of the object.
    *
-   * @return the clockwise rotation of the object, in degrees.
+   * \return the clockwise rotation of the object, in degrees.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto rotation() const noexcept -> double
   {
@@ -202,11 +202,11 @@ class object final
   }
 
   /**
-   * @brief Returns the name of the object.
+   * \brief Returns the name of the object.
    *
-   * @return the name of the object.
+   * \return the name of the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string_view
   {
@@ -214,11 +214,11 @@ class object final
   }
 
   /**
-   * @brief Returns the type associated with the object.
+   * \brief Returns the type associated with the object.
    *
-   * @return the type associated with the object.
+   * \return the type associated with the object.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto type() const -> std::string_view
   {
@@ -226,12 +226,12 @@ class object final
   }
 
   /**
-   * @brief Returns the properties associated with the object.
+   * \brief Returns the properties associated with the object.
    *
-   * @return the properties associated with the object; `nullptr` if there are
+   * \return the properties associated with the object; `nullptr` if there are
    * none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const -> const properties*
   {
@@ -239,11 +239,11 @@ class object final
   }
 
   /**
-   * @brief Indicates whether or not the object is visible.
+   * \brief Indicates whether or not the object is visible.
    *
-   * @return `true` if the object is visible; `false` otherwise.
+   * \return `true` if the object is visible; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto visible() const noexcept -> bool
   {
@@ -253,9 +253,9 @@ class object final
   /**
    * Indicates whether or not the object represents an ellipse.
    *
-   * @return `true` if the object represents an ellipse; `false` otherwise.
+   * \return `true` if the object represents an ellipse; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto is_ellipse() const noexcept -> bool
   {
@@ -263,11 +263,11 @@ class object final
   }
 
   /**
-   * @brief Indicates whether or not the object represents a point.
+   * \brief Indicates whether or not the object represents a point.
    *
-   * @return `true` if the object represents a point; `false` otherwise.
+   * \return `true` if the object represents a point; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto is_point() const noexcept -> bool
   {
@@ -275,17 +275,17 @@ class object final
   }
 
   /**
-   * @brief Returns a reference to the internal object type-specific data.
+   * \brief Returns a reference to the internal object type-specific data.
    *
-   * @note This function throws if the stored data isn't actually of the
+   * \note This function throws if the stored data isn't actually of the
    * specified type.
    *
-   * @tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
+   * \tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
    * `template_object`, `text` or `global_id`.
    *
-   * @return a reference to the internal data.
+   * \return a reference to the internal data.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto as() const -> const T&
@@ -294,17 +294,17 @@ class object final
   }
 
   /**
-   * @brief Returns a pointer to the internal object type-specific data.
+   * \brief Returns a pointer to the internal object type-specific data.
    *
-   * @note Unlike `get`, this function doesn't throw if the types mismatch,
+   * \note Unlike `get`, this function doesn't throw if the types mismatch,
    * instead `nullptr` is returned.
    *
-   * @tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
+   * \tparam T the type of the data to obtain, i.e. `polygon`, `polyline`,
    * `template_object`, `text` or `global_id`.
    *
-   * @return a pointer to the internal data; `nullptr` if the types mismatch.
+   * \return a pointer to the internal data; `nullptr` if the types mismatch.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto try_as() const noexcept -> const T*
@@ -313,15 +313,15 @@ class object final
   }
 
   /**
-   * @brief Indicates whether or not the stored data is of the specified type.
+   * \brief Indicates whether or not the stored data is of the specified type.
    *
-   * @tparam T the type to look for, i.e. `polygon`, `polyline`,
+   * \tparam T the type to look for, i.e. `polygon`, `polyline`,
    * `template_object`, `text` or `global_id`.
    *
-   * @return `true` if the stored data is of the specified type; `false`
+   * \return `true` if the stored data is of the specified type; `false`
    * otherwise.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   template <typename T, typename = std::enable_if_t<valid_object_type<T>()>>
   [[nodiscard]] auto has() const noexcept -> bool

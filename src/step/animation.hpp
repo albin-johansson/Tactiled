@@ -11,15 +11,15 @@
 namespace step {
 
 /**
- * @class animation
+ * \class animation
  *
- * @brief Represents a collection of frames, used to animate tiles.
+ * \brief Represents a collection of frames, used to animate tiles.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @todo Add begin() and end(), maybe even at() & operator[].
+ * \todo Add begin() and end(), maybe even at() & operator[].
  *
- * @headerfile step_animation.hpp
+ * \headerfile step_animation.hpp
  */
 class animation final
 {
@@ -29,11 +29,11 @@ class animation final
   {}
 
   /**
-   * @brief Returns the frames associated with the animation.
+   * \brief Returns the frames associated with the animation.
    *
-   * @return the frames associated with the animation.
+   * \return the frames associated with the animation.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto frames() const -> const std::vector<Frame>&
   {
@@ -41,11 +41,11 @@ class animation final
   }
 
   /**
-   * @brief Returns the amount of frames that constitute the animation.
+   * \brief Returns the amount of frames that constitute the animation.
    *
-   * @return the amount of frames that constitute the animation.
+   * \return the amount of frames that constitute the animation.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto num_frames() const noexcept -> int
   {

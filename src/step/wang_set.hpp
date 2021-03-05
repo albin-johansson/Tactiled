@@ -20,9 +20,9 @@ class wang_set final
 
  public:
   /**
-   * @param json the JSON object that holds the data for a Wang set.
+   * \param json the JSON object that holds the data for a Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   explicit wang_set(const json& json)
       : m_tile{json.at("tile").get<int>()}
@@ -34,11 +34,11 @@ class wang_set final
   {}
 
   /**
-   * @brief Returns all of the corner colors associated with the Wang set.
+   * \brief Returns all of the corner colors associated with the Wang set.
    *
-   * @return all of the corner colors associated with the Wang set.
+   * \return all of the corner colors associated with the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto corner_colors() const -> const colors&
   {
@@ -46,11 +46,11 @@ class wang_set final
   }
 
   /**
-   * @brief Returns all of the edge colors associated with the Wang set.
+   * \brief Returns all of the edge colors associated with the Wang set.
    *
-   * @return all of the edge colors associated with the Wang set.
+   * \return all of the edge colors associated with the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto edge_colors() const -> const colors&
   {
@@ -58,11 +58,11 @@ class wang_set final
   }
 
   /**
-   * @brief Returns all of the Wang tiles associated with the Wang set.
+   * \brief Returns all of the Wang tiles associated with the Wang set.
    *
-   * @return all of the Wang tiles associated with the Wang set.
+   * \return all of the Wang tiles associated with the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto wang_tiles() const -> const tiles&
   {
@@ -70,11 +70,11 @@ class wang_set final
   }
 
   /**
-   * @brief Returns the properties associated with the Wang set.
+   * \brief Returns the properties associated with the Wang set.
    *
-   * @return the properties associated with the Wang set.
+   * \return the properties associated with the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const -> const properties&
   {
@@ -82,11 +82,11 @@ class wang_set final
   }
 
   /**
-   * @brief Returns the name associated with the Wang set.
+   * \brief Returns the name associated with the Wang set.
    *
-   * @return the name associated with the Wang set.
+   * \return the name associated with the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string_view
   {
@@ -94,11 +94,11 @@ class wang_set final
   }
 
   /**
-   * @brief Returns the local ID of the tile that represents the Wang set.
+   * \brief Returns the local ID of the tile that represents the Wang set.
    *
-   * @return the local ID of the tile that represents the Wang set.
+   * \return the local ID of the tile that represents the Wang set.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_id() const noexcept -> local_id
   {

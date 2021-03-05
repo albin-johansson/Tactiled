@@ -21,16 +21,16 @@ namespace step {
 class tileset;
 
 /**
- * @class tileset
+ * \class tileset
  *
- * @brief Represents a collection of tiles associated with an image.
+ * \brief Represents a collection of tiles associated with an image.
  *
- * @details All tilesets have a global ID (GID) associated with them, that
+ * \details All tilesets have a global ID (GID) associated with them, that
  * starts at 1 for the first tileset.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_tileset.hpp
+ * \headerfile step_tileset.hpp
  */
 class tileset final
 {
@@ -50,11 +50,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the GID (Global ID) of the first tile in the tileset.
+   * \brief Returns the GID (Global ID) of the first tile in the tileset.
    *
-   * @return the GID (Global ID) of the first tile in the tileset.
+   * \return the GID (Global ID) of the first tile in the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto first_gid() const noexcept -> global_id
   {
@@ -62,11 +62,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the maximum width of tiles in the tileset.
+   * \brief Returns the maximum width of tiles in the tileset.
    *
-   * @return the maximum width of tiles in the tileset.
+   * \return the maximum width of tiles in the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_width() const noexcept -> int
   {
@@ -74,11 +74,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the maximum height of tiles in the tileset.
+   * \brief Returns the maximum height of tiles in the tileset.
    *
-   * @return the maximum height of tiles in the tileset.
+   * \return the maximum height of tiles in the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_height() const noexcept -> int
   {
@@ -86,11 +86,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the number of tiles in the tileset.
+   * \brief Returns the number of tiles in the tileset.
    *
-   * @return the number of tiles in the tileset.
+   * \return the number of tiles in the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_count() const noexcept -> int
   {
@@ -98,11 +98,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the number of columns in the tileset.
+   * \brief Returns the number of columns in the tileset.
    *
-   * @return the number of columns in the tileset.
+   * \return the number of columns in the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto columns() const noexcept -> int
   {
@@ -110,11 +110,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the width of the source image in pixels.
+   * \brief Returns the width of the source image in pixels.
    *
-   * @return the width of the source image in pixels.
+   * \return the width of the source image in pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image_width() const noexcept -> int
   {
@@ -122,11 +122,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the height of the source image in pixels.
+   * \brief Returns the height of the source image in pixels.
    *
-   * @return the height of the source image in pixels.
+   * \return the height of the source image in pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image_height() const noexcept -> int
   {
@@ -134,13 +134,13 @@ class tileset final
   }
 
   /**
-   * @brief Returns the buffer amount between the image edge and the first tile,
+   * \brief Returns the buffer amount between the image edge and the first tile,
    * in pixels.
    *
-   * @return the buffer amount between the image edge and the first tile, in
+   * \return the buffer amount between the image edge and the first tile, in
    * pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto margin() const noexcept -> int
   {
@@ -148,13 +148,13 @@ class tileset final
   }
 
   /**
-   * @brief Returns the amount of spacing between adjacent tiles in the tileset,
+   * \brief Returns the amount of spacing between adjacent tiles in the tileset,
    * in pixels.
    *
-   * @return the amount of spacing between adjacent tiles in the tileset, in
+   * \return the amount of spacing between adjacent tiles in the tileset, in
    * pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto spacing() const noexcept -> int
   {
@@ -162,14 +162,14 @@ class tileset final
   }
 
   /**
-   * @brief Returns the tiles associated with the tileset that have custom
+   * \brief Returns the tiles associated with the tileset that have custom
    * properties.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the tiles associated with the tileset.
+   * \return the tiles associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tiles() const -> const std::vector<tile>&
   {
@@ -177,11 +177,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns all of the Wang sets that are associated with the tileset.
+   * \brief Returns all of the Wang sets that are associated with the tileset.
    *
-   * @return the Wang sets associated with the tileset.
+   * \return the Wang sets associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto wang_sets() const -> const std::vector<wang_set>&
   {
@@ -189,11 +189,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the properties associated with the tileset.
+   * \brief Returns the properties associated with the tileset.
    *
-   * @return the properties associated with the tileset; null if there are none.
+   * \return the properties associated with the tileset; null if there are none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const noexcept -> const properties*
   {
@@ -201,13 +201,13 @@ class tileset final
   }
 
   /**
-   * @brief Returns the terrains associated with the tileset.
+   * \brief Returns the terrains associated with the tileset.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the terrains associated with the tileset.
+   * \return the terrains associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto terrains() const -> const std::vector<terrain>&
   {
@@ -215,17 +215,17 @@ class tileset final
   }
 
   /**
-   * @brief Returns the path to the external file that holds the actual tileset
+   * \brief Returns the path to the external file that holds the actual tileset
    * data, if this tileset isn't embedded.
    *
-   * @details This method will return the empty string if the tileset is
+   * \details This method will return the empty string if the tileset is
    * embedded.
    *
-   * @return the path to the external file that holds the tileset data if the
+   * \return the path to the external file that holds the tileset data if the
    * the tileset is external; the empty string is returned if the tileset is
    * embedded.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto source() const -> std::string_view
   {
@@ -233,11 +233,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the path to the image associated with the tileset.
+   * \brief Returns the path to the image associated with the tileset.
    *
-   * @return the path to the image associated with the tileset.
+   * \return the path to the image associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image() const -> std::string_view
   {
@@ -245,11 +245,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the name associated with the tileset.
+   * \brief Returns the name associated with the tileset.
    *
-   * @return the name associated with the tileset.
+   * \return the name associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string_view
   {
@@ -257,14 +257,14 @@ class tileset final
   }
 
   /**
-   * @brief Returns the background color of the tileset.
+   * \brief Returns the background color of the tileset.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the background color of the tileset; `std::nullopt` if there is
+   * \return the background color of the tileset; `std::nullopt` if there is
    * none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto background_color() const noexcept
       -> const std::optional<color>&
@@ -273,13 +273,13 @@ class tileset final
   }
 
   /**
-   * @brief Returns the transparent color of the tileset. This property is
+   * \brief Returns the transparent color of the tileset. This property is
    * optional.
    *
-   * @return the transparent color of the tileset; `std::nullopt`if there is
+   * \return the transparent color of the tileset; `std::nullopt`if there is
    * none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto transparent_color() const noexcept
       -> const std::optional<color>&
@@ -288,12 +288,12 @@ class tileset final
   }
 
   /**
-   * @brief Returns the grid associated with the tileset. This property is
+   * \brief Returns the grid associated with the tileset. This property is
    * optional.
    *
-   * @return the grid associated with the tileset.
+   * \return the grid associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_grid() const noexcept -> const std::optional<grid>&
   {
@@ -301,13 +301,13 @@ class tileset final
   }
 
   /**
-   * @brief Returns the tile offset associated with the tileset.
+   * \brief Returns the tile offset associated with the tileset.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the tile offset associated with the tileset.
+   * \return the tile offset associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_tile_offset() const noexcept
       -> const std::optional<tile_offset>&
@@ -316,11 +316,11 @@ class tileset final
   }
 
   /**
-   * @brief Returns the Tiled version associated with the tileset.
+   * \brief Returns the Tiled version associated with the tileset.
    *
-   * @return the Tiled version associated with the tileset.
+   * \return the Tiled version associated with the tileset.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tiled_version() const -> std::string_view
   {
@@ -330,8 +330,8 @@ class tileset final
   /**
    * Returns the JSON format version associated with the tileset.
    *
-   * @return the JSON format version associated with the tileset.
-   * @since 0.1.0
+   * \return the JSON format version associated with the tileset.
+   * \since 0.1.0
    */
   [[nodiscard]] auto json_version() const noexcept -> double
   {

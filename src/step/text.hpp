@@ -11,26 +11,26 @@
 namespace step {
 
 /**
- * @class text
+ * \class text
  *
- * @brief Represents objects that represent a piece of text.
+ * \brief Represents objects that represent a piece of text.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_text.hpp
+ * \headerfile step_text.hpp
  */
 class text final
 {
  public:
   /**
-   * @enum halign
+   * \enum halign
    *
-   * @brief Provides values that represents the different possible horizontal
+   * \brief Provides values that represents the different possible horizontal
    * alignment modes for text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    *
-   * @headerfile step_text.hpp
+   * \headerfile step_text.hpp
    */
   enum class halign
   {
@@ -41,14 +41,14 @@ class text final
   };
 
   /**
-   * @enum valign
+   * \enum valign
    *
-   * @brief Provides values that represents the different possible vertical
+   * \brief Provides values that represents the different possible vertical
    * alignment modes for text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    *
-   * @headerfile step_text.hpp
+   * \headerfile step_text.hpp
    */
   enum class valign
   {
@@ -82,13 +82,13 @@ class text final
   }
 
   /**
-   * @brief Returns the text associated with the instance.
+   * \brief Returns the text associated with the instance.
    *
-   * @note This property has no default value since it is a required attribute.
+   * \note This property has no default value since it is a required attribute.
    *
-   * @return the text associated with the instance.
+   * \return the text associated with the instance.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_text() const -> const std::string&
   {
@@ -96,13 +96,13 @@ class text final
   }
 
   /**
-   * @brief Returns the name of the font family associated with the text.
+   * \brief Returns the name of the font family associated with the text.
    *
-   * @note The default value of this property is `"sans-serif"`.
+   * \note The default value of this property is `"sans-serif"`.
    *
-   * @return the name of the font family associated with the text.
+   * \return the name of the font family associated with the text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto font_family() const -> const std::string&
   {
@@ -110,13 +110,13 @@ class text final
   }
 
   /**
-   * @brief Returns the color associated with the text.
+   * \brief Returns the color associated with the text.
    *
-   * @note The default value of this property is `#000000`.
+   * \note The default value of this property is `#000000`.
    *
-   * @return the color associated with the text.
+   * \return the color associated with the text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_color() const noexcept -> color
   {
@@ -124,13 +124,13 @@ class text final
   }
 
   /**
-   * @brief Returns the horizontal alignment of the text.
+   * \brief Returns the horizontal alignment of the text.
    *
-   * @note The default value of this property is `Left`
+   * \note The default value of this property is `Left`
    *
-   * @return the horizontal alignment of the text.
+   * \return the horizontal alignment of the text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto horizontal_alignment() const noexcept -> halign
   {
@@ -138,13 +138,13 @@ class text final
   }
 
   /**
-   * @brief Returns the vertical alignment of the text.
+   * \brief Returns the vertical alignment of the text.
    *
-   * @note The default value of this property is `Top`.
+   * \note The default value of this property is `Top`.
    *
-   * @return the vertical alignment of the text.
+   * \return the vertical alignment of the text.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto vertical_alignment() const noexcept -> valign
   {
@@ -152,13 +152,13 @@ class text final
   }
 
   /**
-   * @brief Returns the pixel size of the associated font that the text uses.
+   * \brief Returns the pixel size of the associated font that the text uses.
    *
-   * @note The default value of this property is `16`.
+   * \note The default value of this property is `16`.
    *
-   * @return the pixel size of the associated font.
+   * \return the pixel size of the associated font.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto pixel_size() const noexcept -> int
   {
@@ -166,13 +166,13 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text is bold.
+   * \brief Indicates whether or not the text is bold.
    *
-   * @note The default value of this property is `false`.
+   * \note The default value of this property is `false`.
    *
-   * @return `true` if the text is bold; `false` otherwise.
+   * \return `true` if the text is bold; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto bold() const noexcept -> bool
   {
@@ -180,13 +180,13 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text is italic.
+   * \brief Indicates whether or not the text is italic.
    *
-   * @note The default value of this property is `false`.
+   * \note The default value of this property is `false`.
    *
-   * @return `true` if the text is italic; `false` otherwise.
+   * \return `true` if the text is italic; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto italic() const noexcept -> bool
   {
@@ -194,13 +194,13 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text uses kerning.
+   * \brief Indicates whether or not the text uses kerning.
    *
-   * @note The default value of this property is `true`.
+   * \note The default value of this property is `true`.
    *
-   * @return `true` if the text used kerning; `false` otherwise.
+   * \return `true` if the text used kerning; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto kerning() const noexcept -> bool
   {
@@ -208,13 +208,13 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text is strikethrough.
+   * \brief Indicates whether or not the text is strikethrough.
    *
-   * @note The default value of this property is `false`.
+   * \note The default value of this property is `false`.
    *
-   * @return `true` if the text is strikethrough; `false` otherwise.
+   * \return `true` if the text is strikethrough; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto strikeout() const noexcept -> bool
   {
@@ -222,13 +222,13 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text is underlined.
+   * \brief Indicates whether or not the text is underlined.
    *
-   * @note The default value of this property is `false`.
+   * \note The default value of this property is `false`.
    *
-   * @return `true` if the text is underlined; `false` otherwise.
+   * \return `true` if the text is underlined; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto underline() const noexcept -> bool
   {
@@ -236,15 +236,15 @@ class text final
   }
 
   /**
-   * @brief Indicates whether or not the text is wrapped within the object
+   * \brief Indicates whether or not the text is wrapped within the object
    * bounds.
    *
-   * @note The default value of this property is `false`.
+   * \note The default value of this property is `false`.
    *
-   * @return `true` if the text is wrapped within the object bounds; `false`
+   * \return `true` if the text is wrapped within the object bounds; `false`
    * otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto wrap() const noexcept -> bool
   {

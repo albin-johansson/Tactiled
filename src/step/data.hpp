@@ -12,13 +12,13 @@
 namespace step::detail {
 
 /**
- * @class data
+ * \class data
  *
- * @brief A helper class that represents either GID or Base64 tile data.
+ * \brief A helper class that represents either GID or Base64 tile data.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_data.hpp
+ * \headerfile step_data.hpp
  */
 class data final
 {
@@ -41,15 +41,15 @@ class data final
   }
 
   /**
-   * @brief Returns the GID data associated with the Data instance.
+   * \brief Returns the GID data associated with the Data instance.
    *
-   * @details This method throws if the internal data isn't actually GID data.
+   * \details This method throws if the internal data isn't actually GID data.
    *
-   * @return the GID data associated with the Data instance.
+   * \return the GID data associated with the Data instance.
    *
-   * @throws step_exception if the data cannot be obtained.
+   * \throws step_exception if the data cannot be obtained.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto as_gid() const -> const gid_data&
   {
@@ -61,16 +61,16 @@ class data final
   }
 
   /**
-   * @brief Returns the Base64 data associated with the Data instance.
+   * \brief Returns the Base64 data associated with the Data instance.
    *
-   * @note This function throws if the internal data isn't actually Base64
+   * \note This function throws if the internal data isn't actually Base64
    * data.
    *
-   * @return the Base64 data associated with the data instance.
+   * \return the Base64 data associated with the data instance.
    *
-   * @throws step_exception if the data cannot be obtained.
+   * \throws step_exception if the data cannot be obtained.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto as_base64() const -> const base64_data&
   {

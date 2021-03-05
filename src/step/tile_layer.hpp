@@ -12,25 +12,25 @@
 namespace step {
 
 /**
- * @class tile_layer
+ * \class tile_layer
  *
- * @brief Represents the API for layers that represent "tile layers", that
+ * \brief Represents the API for layers that represent "tile layers", that
  * mainly hold tile data.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_tile_layer.hpp
+ * \headerfile step_tile_layer.hpp
  */
 class tile_layer final
 {
  public:
   /**
-   * @enum tile_layer::compression
+   * \enum tile_layer::compression
    *
-   * @brief Provides values for the different kinds of compression used by
+   * \brief Provides values for the different kinds of compression used by
    * layers.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   enum class compression
   {
@@ -40,11 +40,11 @@ class tile_layer final
   };
 
   /**
-   * @enum tile_layer::encoding
+   * \enum tile_layer::encoding
    *
-   * @brief Provides identifiers for the different encodings used by layers.
+   * \brief Provides identifiers for the different encodings used by layers.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   enum class encoding
   {
@@ -67,13 +67,13 @@ class tile_layer final
   }
 
   /**
-   * @brief Returns the encoding used by the tile layer.
+   * \brief Returns the encoding used by the tile layer.
    *
-   * @details The default value of this property is `csv`.
+   * \details The default value of this property is `csv`.
    *
-   * @return the encoding used by the tile layer.
+   * \return the encoding used by the tile layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_encoding() const noexcept -> encoding
   {
@@ -81,13 +81,13 @@ class tile_layer final
   }
 
   /**
-   * @brief Returns the compression used by the tile layer.
+   * \brief Returns the compression used by the tile layer.
    *
-   * @details The default value of this property is `none`.
+   * \details The default value of this property is `none`.
    *
-   * @return the compression used by the tile layer.
+   * \return the compression used by the tile layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_compression() const noexcept -> compression
   {
@@ -95,16 +95,16 @@ class tile_layer final
   }
 
   /**
-   * @brief Returns a pointer to the tile data associated with the tile layer.
+   * \brief Returns a pointer to the tile data associated with the tile layer.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @warning Do not claim ownership of the returned pointer.
+   * \warning Do not claim ownership of the returned pointer.
    *
-   * @return the tile data associated with the tile layer; null if there is
+   * \return the tile data associated with the tile layer; null if there is
    * no such data.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto data() const -> const detail::data*
   {
@@ -112,11 +112,11 @@ class tile_layer final
   }
 
   /**
-   * @brief Returns the chunks associated with the tile layer.
+   * \brief Returns the chunks associated with the tile layer.
    *
-   * @return the chunks associated with the tile layer.
+   * \return the chunks associated with the tile layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto chunks() const noexcept -> const std::vector<chunk>&
   {

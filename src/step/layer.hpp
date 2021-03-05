@@ -19,14 +19,14 @@ namespace step {
 class layer;
 
 /**
- * @class group
+ * \class group
  *
- * @brief Represents the API for layers that represent "groups", that
+ * \brief Represents the API for layers that represent "groups", that
  * in turn contain zero or more layers.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_group.hpp
+ * \headerfile step_group.hpp
  */
 class group final
 {
@@ -36,10 +36,10 @@ class group final
   /**
    * Iterates over all of the layers store in this group.
    *
-   * @tparam Lambda the type of the lambda object.
-   * @param lambda the lambda that takes one argument, <code>const
+   * \tparam Lambda the type of the lambda object.
+   * \param lambda the lambda that takes one argument, <code>const
    * Layer&</code>.
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename Lambda>
   void each(Lambda&& lambda) const
@@ -50,15 +50,15 @@ class group final
   }
 
   /**
-   * @brief Returns the layer at the specified index.
+   * \brief Returns the layer at the specified index.
    *
-   * @note This function throws if the index is out-of-bounds.
+   * \note This function throws if the index is out-of-bounds.
    *
-   * @param index the index of the desired layer.
+   * \param index the index of the desired layer.
    *
-   * @return the layer at the specified index.
+   * \return the layer at the specified index.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto at(std::size_t index) const -> const layer&
   {
@@ -66,11 +66,11 @@ class group final
   }
 
   /**
-   * @brief Returns the amount of layers that are in the group.
+   * \brief Returns the amount of layers that are in the group.
    *
-   * @return the amount of layers that are in the group.
+   * \return the amount of layers that are in the group.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto num_layers() const noexcept -> int
   {
@@ -89,23 +89,23 @@ inline void from_json(const json& json, group& group)
 }
 
 /**
- * @class layer
+ * \class layer
  *
- * @brief Represents the tile layers that reside in the tile maps.
+ * \brief Represents the tile layers that reside in the tile maps.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_layer.hpp
+ * \headerfile step_layer.hpp
  */
 class layer final
 {
  public:
   /**
-   * @enum layer::type
+   * \enum layer::type
    *
-   * @brief Provides identifiers for all of the different possible layer types.
+   * \brief Provides identifiers for all of the different possible layer types.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   enum class type
   {
@@ -143,19 +143,19 @@ class layer final
   }
 
   /**
-   * @brief Returns specific information associated with the layer, depending
+   * \brief Returns specific information associated with the layer, depending
    * on the type of the layer.
    *
-   * @note This function throws if the layer doesn't contain the specified
+   * \note This function throws if the layer doesn't contain the specified
    * type.
    *
-   * @tparam T the type of the internal layer information.
+   * \tparam T the type of the internal layer information.
    *
-   * @return the layer information.
+   * \return the layer information.
    *
-   * @throws step_exception if there is a type mismatch.
+   * \throws step_exception if there is a type mismatch.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T>
   [[nodiscard]] auto as() const -> const T&
@@ -164,13 +164,13 @@ class layer final
   }
 
   /**
-   * @brief Returns specific information associated with the layer.
+   * \brief Returns specific information associated with the layer.
    *
-   * @tparam T the type of the internal layer information.
+   * \tparam T the type of the internal layer information.
    *
-   * @return the layer information; null if there was a type mismatch.
+   * \return the layer information; null if there was a type mismatch.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   template <typename T>
   [[nodiscard]] auto try_as() const noexcept -> const T*
@@ -179,14 +179,14 @@ class layer final
   }
 
   /**
-   * @brief Indicates whether or not the layer is of the specified layer type.
+   * \brief Indicates whether or not the layer is of the specified layer type.
    *
-   * @tparam T the layer type to check for.
+   * \tparam T the layer type to check for.
    *
-   * @return `true` if the layer matches the supplied layer type; `false`
+   * \return `true` if the layer matches the supplied layer type; `false`
    * otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   template <typename T>
   [[nodiscard]] auto is() const noexcept -> bool
@@ -195,11 +195,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the type of the layer.
+   * \brief Returns the type of the layer.
    *
-   * @return the type of the layer.
+   * \return the type of the layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_type() const noexcept -> type
   {
@@ -207,11 +207,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the unique integer ID associated with the layer.
+   * \brief Returns the unique integer ID associated with the layer.
    *
-   * @return the unique integer ID associated with the layer.
+   * \return the unique integer ID associated with the layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto id() const noexcept -> int
   {
@@ -219,11 +219,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the amount of columns in the layer.
+   * \brief Returns the amount of columns in the layer.
    *
-   * @return the amount of columns in the layer.
+   * \return the amount of columns in the layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> int
   {
@@ -231,11 +231,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the amount of rows in the layer.
+   * \brief Returns the amount of rows in the layer.
    *
-   * @return the amount of rows in the layer.
+   * \return the amount of rows in the layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> int
   {
@@ -243,11 +243,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the properties associated with the layer.
+   * \brief Returns the properties associated with the layer.
    *
-   * @return the properties associated with the layer; null if there are none.
+   * \return the properties associated with the layer; null if there are none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const noexcept -> const properties*
   {
@@ -255,13 +255,13 @@ class layer final
   }
 
   /**
-   * @brief Returns the x-coordinate of where the layer content begins.
+   * \brief Returns the x-coordinate of where the layer content begins.
    *
-   * @details This is used by infinite maps.
+   * \details This is used by infinite maps.
    *
-   * @return the x-coordinate of where the layer content begins.
+   * \return the x-coordinate of where the layer content begins.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto start_x() const noexcept -> int
   {
@@ -269,13 +269,13 @@ class layer final
   }
 
   /**
-   * @brief Returns the y-coordinate of where the layer content begins.
+   * \brief Returns the y-coordinate of where the layer content begins.
    *
-   * @details This is used by infinite maps.
+   * \details This is used by infinite maps.
    *
-   * @return the y-coordinate of where the layer content begins.
+   * \return the y-coordinate of where the layer content begins.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto start_y() const noexcept -> int
   {
@@ -283,13 +283,13 @@ class layer final
   }
 
   /**
-   * @brief Returns the horizontal offset of the layer.
+   * \brief Returns the horizontal offset of the layer.
    *
-   * @details The default value of this property is 0.
+   * \details The default value of this property is 0.
    *
-   * @return the horizontal offset of the layer, in pixels.
+   * \return the horizontal offset of the layer, in pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto offset_x() const noexcept -> double
   {
@@ -297,13 +297,13 @@ class layer final
   }
 
   /**
-   * @brief Returns the vertical offset of the layer.
+   * \brief Returns the vertical offset of the layer.
    *
-   * @details The default value of this property is 0.
+   * \details The default value of this property is 0.
    *
-   * @return the vertical offset of the layer, in pixels.
+   * \return the vertical offset of the layer, in pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto offset_y() const noexcept -> double
   {
@@ -311,11 +311,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the opacity of the layer.
+   * \brief Returns the opacity of the layer.
    *
-   * @return the opacity of the layer, in the range [0, 1].
+   * \return the opacity of the layer, in the range [0, 1].
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto opacity() const noexcept -> double
   {
@@ -323,11 +323,11 @@ class layer final
   }
 
   /**
-   * @brief Indicates whether or not the layer is visible.
+   * \brief Indicates whether or not the layer is visible.
    *
-   * @return `true` if the layer is visible; `false` otherwise.
+   * \return `true` if the layer is visible; `false` otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto visible() const noexcept -> bool
   {
@@ -335,11 +335,11 @@ class layer final
   }
 
   /**
-   * @brief Returns the name associated with the layer.
+   * \brief Returns the name associated with the layer.
    *
-   * @return the name associated with the layer.
+   * \return the name associated with the layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string
   {

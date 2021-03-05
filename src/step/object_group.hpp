@@ -10,26 +10,26 @@
 namespace step {
 
 /**
- * @class object_group
+ * \class object_group
  *
- * @brief Represents the API for layers that represent "object groups", that
+ * \brief Represents the API for layers that represent "object groups", that
  * hold data about various objects in a tile map.
  *
- * @todo begin, end, remove objects-getter
+ * \todo begin, end, remove objects-getter
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_object_group.hpp
+ * \headerfile step_object_group.hpp
  */
 class object_group final
 {
  public:
   /**
-   * @enum object_group::draw_order
+   * \enum object_group::draw_order
    *
-   * @brief Provides hints for how rendering should be performed of layers.
+   * \brief Provides hints for how rendering should be performed of layers.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   enum class draw_order
   {
@@ -46,13 +46,13 @@ class object_group final
   }
 
   /**
-   * @brief Returns the draw order used by the object group.
+   * \brief Returns the draw order used by the object group.
    *
-   * @details The default value of this property is `top_down`.
+   * \details The default value of this property is `top_down`.
    *
-   * @return the draw order used by the object group.
+   * \return the draw order used by the object group.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_draw_order() const noexcept -> draw_order
   {
@@ -60,11 +60,11 @@ class object_group final
   }
 
   /**
-   * @brief Returns the objects contained in the object group.
+   * \brief Returns the objects contained in the object group.
    *
-   * @return the objects contained in the object group.
+   * \return the objects contained in the object group.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto objects() const -> const std::vector<object>&
   {

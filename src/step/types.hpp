@@ -19,7 +19,7 @@ using czstring = const char*;
 /**
  * The type used for properties that represent a file path.
  *
- * @since 0.1.0
+ * \since 0.1.0
  */
 using file = fluent::NamedType<std::string,
                                struct file_t,
@@ -29,7 +29,7 @@ using file = fluent::NamedType<std::string,
 /**
  * The type used for global IDs (GIDs).
  *
- * @since 0.1.0
+ * \since 0.1.0
  */
 using global_id = fluent::NamedType<unsigned,
                                     struct global_id_t,
@@ -41,7 +41,7 @@ using global_id = fluent::NamedType<unsigned,
 /**
  * The type used for local IDs (LIDs).
  *
- * @since 0.1.0
+ * \since 0.1.0
  */
 using local_id = fluent::NamedType<int,
                                    struct local_id_t,
@@ -53,7 +53,7 @@ using local_id = fluent::NamedType<int,
 /**
  * The type used for object references.
  *
- * @since 0.2.0
+ * \since 0.2.0
  */
 using object_ref = fluent::NamedType<int,
                                      struct object_ref_t,
@@ -65,9 +65,9 @@ using object_ref = fluent::NamedType<int,
 /**
  * Constructs a global ID from an integer literal.
  *
- * @param value the literal that will be converted.
- * @return a global ID value.
- * @since 0.1.0
+ * \param value the literal that will be converted.
+ * \return a global ID value.
+ * \since 0.1.0
  */
 [[nodiscard]] inline auto operator"" _gid(unsigned long long int value) noexcept
     -> global_id
@@ -78,9 +78,9 @@ using object_ref = fluent::NamedType<int,
 /**
  * Constructs a local ID from an integer literal.
  *
- * @param value the literal that will be converted.
- * @return a local ID value.
- * @since 0.1.0
+ * \param value the literal that will be converted.
+ * \return a local ID value.
+ * \since 0.1.0
  */
 [[nodiscard]] inline auto operator"" _lid(unsigned long long int value) noexcept
     -> local_id
@@ -91,9 +91,9 @@ using object_ref = fluent::NamedType<int,
 /**
  * Constructs a File instance from a string literal.
  *
- * @param str the string that will be converted to a File instance.
- * @return a File instance.
- * @since 0.1.0
+ * \param str the string that will be converted to a File instance.
+ * \return a File instance.
+ * \since 0.1.0
  */
 [[nodiscard]] inline auto operator"" _file(const char* str, std::size_t) -> file
 {

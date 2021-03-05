@@ -10,14 +10,14 @@
 namespace step {
 
 /**
- * @class image_layer
+ * \class image_layer
  *
- * @brief Represents the API for layers that represent "image layers", layers
+ * \brief Represents the API for layers that represent "image layers", layers
  * that are represented by an image.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_image_layer.hpp
+ * \headerfile step_image_layer.hpp
  */
 class image_layer final
 {
@@ -25,11 +25,11 @@ class image_layer final
   friend void from_json(const json&, image_layer&);
 
   /**
-   * @brief Returns the image used by the image layer.
+   * \brief Returns the image used by the image layer.
    *
-   * @return the image associated with the image layer.
+   * \return the image associated with the image layer.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image() const -> const std::string&
   {
@@ -37,14 +37,14 @@ class image_layer final
   }
 
   /**
-   * @brief Returns the transparent color used by the image layer.
+   * \brief Returns the transparent color used by the image layer.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the transparent color used by the image layer; `std::nullopt` if
+   * \return the transparent color used by the image layer; `std::nullopt` if
    * there is none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto transparent_color() const noexcept
       -> const std::optional<color>&

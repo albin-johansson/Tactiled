@@ -9,7 +9,7 @@ namespace step {
 /**
  * The Frame class represents a frame in an animation.
  *
- * @since 0.1.0
+ * \since 0.1.0
  */
 class Frame final
 {
@@ -22,8 +22,8 @@ class Frame final
   /**
    * Returns the local tile ID that is associated with the frame.
    *
-   * @return the local tile ID that is associated with the frame.
-   * @since 0.1.0
+   * \return the local tile ID that is associated with the frame.
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_id() const noexcept -> local_id
   {
@@ -33,8 +33,8 @@ class Frame final
   /**
    * Returns the duration of this frame, in milliseconds.
    *
-   * @return the duration of this frame, in milliseconds.
-   * @since 0.1.0
+   * \return the duration of this frame, in milliseconds.
+   * \since 0.1.0
    */
   [[nodiscard]] auto duration() const noexcept -> int
   {

@@ -12,13 +12,13 @@
 namespace step {
 
 /**
- * @class terrain
+ * \class terrain
  *
- * @brief Represents optional terrains in a tileset.
+ * \brief Represents optional terrains in a tileset.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_terrain.hpp
+ * \headerfile step_terrain.hpp
  */
 class terrain final
 {
@@ -33,11 +33,11 @@ class terrain final
   }
 
   /**
-   * @brief Returns the local GID of the tile associated with the terrain.
+   * \brief Returns the local GID of the tile associated with the terrain.
    *
-   * @return the local GID of the tile associated with the terrain.
+   * \return the local GID of the tile associated with the terrain.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile() const noexcept -> local_id
   {
@@ -45,11 +45,11 @@ class terrain final
   }
 
   /**
-   * @brief Returns the name associated with the terrain.
+   * \brief Returns the name associated with the terrain.
    *
-   * @return the name associated with the terrain.
+   * \return the name associated with the terrain.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string
   {
@@ -57,13 +57,13 @@ class terrain final
   }
 
   /**
-   * @brief Returns the properties associated with the terrain.
+   * \brief Returns the properties associated with the terrain.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the properties associated with the terrain; null if there are none.
+   * \return the properties associated with the terrain; null if there are none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const noexcept -> const properties*
   {

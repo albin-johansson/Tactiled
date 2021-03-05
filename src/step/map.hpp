@@ -16,13 +16,13 @@
 namespace step {
 
 /**
- * @class map
+ * \class map
  *
- * @brief Represents tile map files created in the Tiled editor.
+ * \brief Represents tile map files created in the Tiled editor.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_map.hpp
+ * \headerfile step_map.hpp
  */
 class map final
 {
@@ -64,10 +64,10 @@ class map final
   }
 
   /**
-   * @param root the file path of the directory that contains the map.
-   * @param file the name of the JSON map file, including the .json extension.
+   * \param root the file path of the directory that contains the map.
+   * \param file the name of the JSON map file, including the .json extension.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[deprecated("Use the path version instead!")]] map(std::string_view root,
                                                       std::string_view file)
@@ -78,11 +78,11 @@ class map final
   }
 
   /**
-   * @brief Returns the width of the map.
+   * \brief Returns the width of the map.
    *
-   * @return the width of the map.
+   * \return the width of the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto width() const noexcept -> int
   {
@@ -90,11 +90,11 @@ class map final
   }
 
   /**
-   * @brief Returns the height of the map.
+   * \brief Returns the height of the map.
    *
-   * @return the height of the map.
+   * \return the height of the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto height() const noexcept -> int
   {
@@ -102,11 +102,11 @@ class map final
   }
 
   /**
-   * @brief Returns the width of the tiles in the map.
+   * \brief Returns the width of the tiles in the map.
    *
-   * @return the width of the tiles in the map.
+   * \return the width of the tiles in the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_width() const noexcept -> int
   {
@@ -114,11 +114,11 @@ class map final
   }
 
   /**
-   * @brief Returns the height of the tiles in the map.
+   * \brief Returns the height of the tiles in the map.
    *
-   * @return the height of the tiles in the map.
+   * \return the height of the tiles in the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile_height() const noexcept -> int
   {
@@ -126,12 +126,12 @@ class map final
   }
 
   /**
-   * @brief Returns the next layer ID, this is incremented every time an layer
+   * \brief Returns the next layer ID, this is incremented every time an layer
    * is added to the map in the Tiled editor.
    *
-   * @return the next layer ID.
+   * \return the next layer ID.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto next_layer_id() const noexcept -> int
   {
@@ -139,12 +139,12 @@ class map final
   }
 
   /**
-   * @brief Returns the next object ID, this is incremented every time an object
+   * \brief Returns the next object ID, this is incremented every time an object
    * is placed in the map in the Tiled editor.
    *
-   * @return the next object ID.
+   * \return the next object ID.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto next_object_id() const noexcept -> int
   {
@@ -152,11 +152,11 @@ class map final
   }
 
   /**
-   * @brief Returns the tile layers associated with the map.
+   * \brief Returns the tile layers associated with the map.
    *
-   * @return the tile layers associated with the map.
+   * \return the tile layers associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto layers() const -> const std::vector<layer>&
   {
@@ -164,11 +164,11 @@ class map final
   }
 
   /**
-   * @brief Returns the tilesets associated with the map.
+   * \brief Returns the tilesets associated with the map.
    *
-   * @return the tilesets associated with the map.
+   * \return the tilesets associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tilesets() const
       -> const std::vector<std::unique_ptr<tileset>>&
@@ -177,11 +177,11 @@ class map final
   }
 
   /**
-   * @brief Returns the properties associated with the map.
+   * \brief Returns the properties associated with the map.
    *
-   * @return the properties associated with the map; null if there are none.
+   * \return the properties associated with the map; null if there are none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const noexcept -> const properties*
   {
@@ -189,11 +189,11 @@ class map final
   }
 
   /**
-   * @brief Returns the orientation of the map.
+   * \brief Returns the orientation of the map.
    *
-   * @return the orientation of the map.
+   * \return the orientation of the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_orientation() const noexcept -> orientation
   {
@@ -201,15 +201,15 @@ class map final
   }
 
   /**
-   * @brief Returns the render-order associated with the map.
+   * \brief Returns the render-order associated with the map.
    *
-   * @details The default value of this property is `right_down`.
+   * \details The default value of this property is `right_down`.
    *
-   * @note This property is only used by orthogonal maps.
+   * \note This property is only used by orthogonal maps.
    *
-   * @return the render-order associated with the map.
+   * \return the render-order associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_render_order() const noexcept -> render_order
   {
@@ -217,13 +217,13 @@ class map final
   }
 
   /**
-   * @brief Returns the stagger axis associated with the map.
+   * \brief Returns the stagger axis associated with the map.
    *
-   * @details This property is only for staggered and hexagonal maps.
+   * \details This property is only for staggered and hexagonal maps.
    *
-   * @return the stagger axis associated with the map.
+   * \return the stagger axis associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_stagger_axis() const noexcept -> stagger_axis
   {
@@ -231,13 +231,13 @@ class map final
   }
 
   /**
-   * @brief Returns the stagger index associated with the map.
+   * \brief Returns the stagger index associated with the map.
    *
-   * @details This property is only for staggered and hexagonal maps.
+   * \details This property is only for staggered and hexagonal maps.
    *
-   * @return the stagger index associated with the map.
+   * \return the stagger index associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_stagger_index() const noexcept -> stagger_index
   {
@@ -245,11 +245,11 @@ class map final
   }
 
   /**
-   * @brief Indicates whether or not the map is infinite.
+   * \brief Indicates whether or not the map is infinite.
    *
-   * @return true if the map is infinite; false otherwise.
+   * \return true if the map is infinite; false otherwise.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto infinite() const noexcept -> bool
   {
@@ -257,13 +257,13 @@ class map final
   }
 
   /**
-   * @brief Returns the length of the side of a hex tile, in pixels.
+   * \brief Returns the length of the side of a hex tile, in pixels.
    *
-   * @details This property is only for hexagonal maps.
+   * \details This property is only for hexagonal maps.
    *
-   * @return the length of the side of a hex tile, in pixels.
+   * \return the length of the side of a hex tile, in pixels.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto hex_side_length() const noexcept -> int
   {
@@ -271,13 +271,13 @@ class map final
   }
 
   /**
-   * @brief Returns the background color associated with the map.
+   * \brief Returns the background color associated with the map.
    *
-   * @details This property is optional.
+   * \details This property is optional.
    *
-   * @return the background color of the map.
+   * \return the background color of the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto background_color() const noexcept
       -> const std::optional<color>&
@@ -286,11 +286,11 @@ class map final
   }
 
   /**
-   * @brief Returns the JSON format version associated with the map.
+   * \brief Returns the JSON format version associated with the map.
    *
-   * @return the JSON format version associated with the map.
+   * \return the JSON format version associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto json_version() const noexcept -> double
   {
@@ -298,11 +298,11 @@ class map final
   }
 
   /**
-   * @brief Returns the Tiled version associated with the map.
+   * \brief Returns the Tiled version associated with the map.
    *
-   * @return the Tiled version associated with the map.
+   * \return the Tiled version associated with the map.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tiled_version() const -> std::string_view
   {

@@ -16,26 +16,26 @@
 namespace step {
 
 /**
- * @class tile
+ * \class tile
  *
- * @brief Provides information about a tile in a tileset.
+ * \brief Provides information about a tile in a tileset.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_tile.hpp
+ * \headerfile step_tile.hpp
  */
 class tile final
 {
  public:
   /**
-   * @enum terrain_pos
+   * \enum terrain_pos
    *
-   * @brief Provides values that represent the different positions that could be
+   * \brief Provides values that represent the different positions that could be
    * inhabited by terrain IDs, in relation to the tile.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    *
-   * @headerfile step_tile.hpp
+   * \headerfile step_tile.hpp
    */
   enum class terrain_pos
   {
@@ -72,11 +72,11 @@ class tile final
   }
 
   /**
-   * @brief Returns the local ID associated with the tile.
+   * \brief Returns the local ID associated with the tile.
    *
-   * @return the local ID associated with the tile.
+   * \return the local ID associated with the tile.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto id() const noexcept -> local_id
   {
@@ -84,12 +84,12 @@ class tile final
   }
 
   /**
-   * @brief Returns the animation associated with the tile.
+   * \brief Returns the animation associated with the tile.
    *
-   * @return the animation associated with the tile; `std::nullopt` if there is
+   * \return the animation associated with the tile; `std::nullopt` if there is
    * no animation associated with the tile.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_animation() const noexcept
       -> const std::optional<animation>&
@@ -98,14 +98,14 @@ class tile final
   }
 
   /**
-   * @brief Returns the properties associated with the tile.
+   * \brief Returns the properties associated with the tile.
    *
-   * @note Don't take ownership of the returned pointer.
+   * \note Don't take ownership of the returned pointer.
    *
-   * @return the properties associated with the tile; `nullptr` if there are
+   * \return the properties associated with the tile; `nullptr` if there are
    * none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_properties() const -> const properties*
   {
@@ -113,14 +113,14 @@ class tile final
   }
 
   /**
-   * @brief Returns the object group layer associated with the tile.
+   * \brief Returns the object group layer associated with the tile.
    *
-   * @note Don't take ownership of the returned pointer.
+   * \note Don't take ownership of the returned pointer.
    *
-   * @return a shared pointer to the object group associated with the tile;
+   * \return a shared pointer to the object group associated with the tile;
    * `nullptr` if there is none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto object_group() const noexcept -> const layer*
   {
@@ -128,11 +128,11 @@ class tile final
   }
 
   /**
-   * @brief Returns the type of the tile.
+   * \brief Returns the type of the tile.
    *
-   * @return the type of the tile; `std::nullopt` if there is none.
+   * \return the type of the tile; `std::nullopt` if there is none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto type() const -> const std::optional<std::string>&
   {
@@ -140,12 +140,12 @@ class tile final
   }
 
   /**
-   * @brief Returns the image associated with the tile.
+   * \brief Returns the image associated with the tile.
    *
-   * @return the image associated with the tile; `std::nullopt` if there is
+   * \return the image associated with the tile; `std::nullopt` if there is
    * none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image() const -> const std::optional<std::string>&
   {
@@ -153,12 +153,12 @@ class tile final
   }
 
   /**
-   * @brief Returns the width of the image associated with the tile.
+   * \brief Returns the width of the image associated with the tile.
    *
-   * @return the width of the image associated with the tile; `std::nullopt` if
+   * \return the width of the image associated with the tile; `std::nullopt` if
    * there is no image associated with the tile.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image_width() const noexcept -> std::optional<int>
   {
@@ -166,12 +166,12 @@ class tile final
   }
 
   /**
-   * @brief Returns the height of the image associated with the tile.
+   * \brief Returns the height of the image associated with the tile.
    *
-   * @return the height of the image associated with the tile; `std::nullopt` if
+   * \return the height of the image associated with the tile; `std::nullopt` if
    * there is no image associated with the tile.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto image_height() const noexcept -> std::optional<int>
   {
@@ -179,12 +179,12 @@ class tile final
   }
 
   /**
-   * @brief Returns the probability associated with the tile.
+   * \brief Returns the probability associated with the tile.
    *
-   * @return the probability associated with the tile; `std::nullopt` if there
+   * \return the probability associated with the tile; `std::nullopt` if there
    * is none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto probability() const noexcept -> std::optional<double>
   {
@@ -192,15 +192,15 @@ class tile final
   }
 
   /**
-   * @brief Returns the ID of the terrain at the specified position, in relation
+   * \brief Returns the ID of the terrain at the specified position, in relation
    * to the tile.
    *
-   * @param position the position that will be checked.
+   * \param position the position that will be checked.
    *
-   * @return the ID of the terrain at the specified position; `std::nullopt`
+   * \return the ID of the terrain at the specified position; `std::nullopt`
    * if there is none.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto terrain_at(terrain_pos position) const noexcept
       -> std::optional<int>

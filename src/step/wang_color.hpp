@@ -15,8 +15,8 @@ class wang_color final
 {
  public:
   /**
-   * @param json the JSON object that holds the data for a Wang color.
-   * @since 0.1.0
+   * \param json the JSON object that holds the data for a Wang color.
+   * \since 0.1.0
    */
   explicit wang_color(const json& json)
       : m_name{json.at("name").get<std::string>()}
@@ -26,11 +26,11 @@ class wang_color final
   {}
 
   /**
-   * @brief Returns the name associated with the Wang color.
+   * \brief Returns the name associated with the Wang color.
    *
-   * @return the name associated with the Wang color.
+   * \return the name associated with the Wang color.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto name() const -> std::string_view
   {
@@ -38,11 +38,11 @@ class wang_color final
   }
 
   /**
-   * @brief Returns the color associated with the Wang color.
+   * \brief Returns the color associated with the Wang color.
    *
-   * @return the color associated with the Wang color.
+   * \return the color associated with the Wang color.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto get_color() const noexcept -> const color&
   {
@@ -50,11 +50,11 @@ class wang_color final
   }
 
   /**
-   * @brief Returns the local ID of the tile that represents the Wang color.
+   * \brief Returns the local ID of the tile that represents the Wang color.
    *
-   * @return the local ID of the tile that represents the Wang color.
+   * \return the local ID of the tile that represents the Wang color.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto tile() const noexcept -> local_id
   {
@@ -62,11 +62,11 @@ class wang_color final
   }
 
   /**
-   * @brief Returns the probability associated with the Wang color.
+   * \brief Returns the probability associated with the Wang color.
    *
-   * @return the probability associated with the Wang color.
+   * \return the probability associated with the Wang color.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto probability() const noexcept -> double
   {

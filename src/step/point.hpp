@@ -7,13 +7,13 @@
 namespace step {
 
 /**
- * @class point
+ * \class point
  *
- * @brief Represents a simple 2D-coordinate in the plane.
+ * \brief Represents a simple 2D-coordinate in the plane.
  *
- * @since 0.1.0
+ * \since 0.1.0
  *
- * @headerfile step_point.hpp
+ * \headerfile step_point.hpp
  */
 class point final
 {
@@ -21,11 +21,11 @@ class point final
   point() noexcept = default;
 
   /**
-   * @brief Parses a point from a JSON object.
+   * \brief Parses a point from a JSON object.
    *
-   * @param json the JSON object that represents the point.
+   * \param json the JSON object that represents the point.
    *
-   * @since 0.2.0
+   * \since 0.2.0
    */
   explicit point(const json& json)
       : m_x{json.at("x").get<double>()}
@@ -33,11 +33,11 @@ class point final
   {}
 
   /**
-   * @brief Returns the x-coordinate associated with the point.
+   * \brief Returns the x-coordinate associated with the point.
    *
-   * @return the x-coordinate of the point.
+   * \return the x-coordinate of the point.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto x() const noexcept -> double
   {
@@ -45,11 +45,11 @@ class point final
   }
 
   /**
-   * @brief Returns the y-coordinate associated with the point.
+   * \brief Returns the y-coordinate associated with the point.
    *
-   * @return the y-coordinate of the point.
+   * \return the y-coordinate of the point.
    *
-   * @since 0.1.0
+   * \since 0.1.0
    */
   [[nodiscard]] auto y() const noexcept -> double
   {
