@@ -25,7 +25,7 @@ class WangTile final
   {}
 
   /**
-   * Returns the local ID associated with the Wang tile.
+   * \brief Returns the local ID associated with the Wang tile.
    *
    * \return the local ID associated with the Wang tile.
    * \since 0.1.0
@@ -36,7 +36,7 @@ class WangTile final
   }
 
   /**
-   * Returns the Wang color indices associated with the Wang tile.
+   * \brief Returns the Wang color indices associated with the Wang tile.
    *
    * \return the Wang color indices associated with the Wang tile.
    * \since 0.1.0
