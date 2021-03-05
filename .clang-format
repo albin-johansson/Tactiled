@@ -28,6 +28,7 @@ BraceWrapping:
   AfterFunction: true
   SplitEmptyRecord: false
   SplitEmptyFunction: false
+  AfterCaseLabel: true
 
 BreakConstructorInitializers: BeforeComma
 AllowAllConstructorInitializersOnNextLine: false
