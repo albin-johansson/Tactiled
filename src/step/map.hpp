@@ -15,6 +15,34 @@
 
 namespace step {
 
+enum class render_order
+{
+  right_down,
+  right_up,
+  left_down,
+  left_up
+};
+
+enum class map_orientation
+{
+  orthogonal,
+  isometric,
+  staggered,
+  hexagonal
+};
+
+enum class stagger_axis
+{
+  x,
+  y
+};
+
+enum class stagger_index
+{
+  odd,
+  even
+};
+
 /**
  * \class map
  *
@@ -27,34 +55,6 @@ namespace step {
 class map final
 {
  public:
-  enum class render_order
-  {
-    right_down,
-    right_up,
-    left_down,
-    left_up
-  };
-
-  enum class orientation
-  {
-    orthogonal,
-    isometric,
-    staggered,
-    hexagonal
-  };
-
-  enum class stagger_axis
-  {
-    x,
-    y
-  };
-
-  enum class stagger_index
-  {
-    odd,
-    even
-  };
-
   explicit map(const fs::path& path)
   {
     auto parent = path.parent_path();
@@ -195,7 +195,7 @@ class map final
    *
    * \since 0.1.0
    */
-  [[nodiscard]] auto get_orientation() const noexcept -> orientation
+  [[nodiscard]] auto get_orientation() const noexcept -> map_orientation
   {
     return m_orientation;
   }
@@ -319,7 +319,7 @@ class map final
   std::vector<layer> m_layers;
   std::vector<std::unique_ptr<tileset>> m_tilesets;
   std::unique_ptr<properties> m_properties;
-  orientation m_orientation{orientation::orthogonal};
+  map_orientation m_orientation{map_orientation::orthogonal};
   render_order m_renderOrder{render_order::right_down};
   stagger_axis m_staggerAxis{stagger_axis::x};
   stagger_index m_staggerIndex{stagger_index::odd};
@@ -377,25 +377,24 @@ class map final
   }
 };
 
-NLOHMANN_JSON_SERIALIZE_ENUM(map::render_order,
-                             {{map::render_order::right_down, "right-down"},
-                              {map::render_order::right_up, "right-up"},
-                              {map::render_order::left_down, "left-down"},
-                              {map::render_order::left_up, "left-up"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(render_order,
+                             {{render_order::right_down, "right-down"},
+                              {render_order::right_up, "right-up"},
+                              {render_order::left_down, "left-down"},
+                              {render_order::left_up, "left-up"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(map::orientation,
-                             {{map::orientation::orthogonal, "orthogonal"},
-                              {map::orientation::isometric, "isometric"},
-                              {map::orientation::staggered, "staggered"},
-                              {map::orientation::hexagonal, "hexagonal"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(map_orientation,
+                             {{map_orientation::orthogonal, "orthogonal"},
+                              {map_orientation::isometric, "isometric"},
+                              {map_orientation::staggered, "staggered"},
+                              {map_orientation::hexagonal, "hexagonal"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(map::stagger_axis,
-                             {{map::stagger_axis::x, "x"},
-                              {map::stagger_axis::y, "y"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(stagger_axis,
+                             {{stagger_axis::x, "x"}, {stagger_axis::y, "y"}})
 
-NLOHMANN_JSON_SERIALIZE_ENUM(map::stagger_index,
-                             {{map::stagger_index::odd, "odd"},
-                              {map::stagger_index::even, "even"}})
+NLOHMANN_JSON_SERIALIZE_ENUM(stagger_index,
+                             {{stagger_index::odd, "odd"},
+                              {stagger_index::even, "even"}})
 
 }  // namespace step
 
