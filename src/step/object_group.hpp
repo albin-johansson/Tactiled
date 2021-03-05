@@ -1,7 +1,7 @@
 #ifndef STEP_OBJECT_GROUP_HEADER
 #define STEP_OBJECT_GROUP_HEADER
 
-#include <vector>
+#include <vector>  // vector
 
 #include "common.hpp"
 #include "object.hpp"
