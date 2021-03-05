@@ -170,8 +170,8 @@ TEST_SUITE("layer")
     SUBCASE("Image layer exclusive properties")
     {
       const auto& imageLayer = layer.as<step::image_layer>();
-      CHECK(imageLayer.image() == "balrog.png");
-      CHECK(*imageLayer.transparent_color() == step::color{"#214365"});
+      CHECK(imageLayer.image == "balrog.png");
+      CHECK(*imageLayer.color == step::color{"#214365"});
     }
 
     CHECK(layer.id() == 2);
